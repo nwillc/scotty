@@ -1,0 +1,64 @@
+<type name="host">
+    <context>
+        <attribute name="container" value="tomcat6x"/>
+
+        <!-- Localhost -->
+        <instance name="localhost">
+            <attribute name="env" value="local"/>
+            <attribute name="domain" value="TST"/>
+            <attribute name="serverName" value="localhost"/>
+            <attribute name="serverHost" value="localhost"/>
+        </instance>
+
+        <!-- Infrastructure -->
+        <context>
+            <attribute name="env" value="infra"/>
+            <attribute name="domain" value="INFRA"/>
+
+            <instance name="jc1zinfp01">
+                <attribute name="serverName" value="Infra"/>
+                <attribute name="serverHost" value="jc1zinfp01.seleritycorp.com"/>
+                <attribute name="apps" value="ran"/>
+            </instance>
+
+            <instance name="ec2vinfp02">
+                <attribute name="serverName" value="Infra - EC2 - Analytics"/>
+                <attribute name="serverHost" value="ec2-184-73-56-33.compute-1.amazonaws.com"/>
+                <attribute name="apps" value="analytics,analyzer"/>
+            </instance>
+        </context>
+
+        <!-- Alpha Test -->
+        <context>
+            <attribute name="env" value="alpha"/>
+            <attribute name="domain" value="TST"/>
+
+            <instance name="jc1tclst01">
+                <attribute name="serverName" value="Alpha - B"/>
+                <attribute name="serverHost" value="jc1tclst01.seleritycorp.com"/>
+                <attribute name="apps" value="cs,aegir,perseus,entitlement,bulkdata,argosub,argopub,clockadjustment,sds,embargo"/>
+                <attribute name="pubInstance" value="PPUB-JC1T-T02"/>
+                <attribute name="subInstance" value="PSUB-JC1T-T02"/>
+            </instance>
+        </context>
+
+        <!-- Quality Assurance -->
+        <context>
+            <attribute name="env" value="qa"/>
+            <attribute name="domain" value="QA"/>
+        </context>
+
+        <!-- Integration -->
+        <context>
+            <attribute name="env" value="int"/>
+            <attribute name="domain" value="INT"/>
+        </context>
+
+        <!-- Production -->
+        <context>
+            <attribute name="env" value="prod"/>
+            <attribute name="domain" value="PRD"/>
+        </context>
+
+    </context>
+</type>

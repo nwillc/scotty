@@ -25,7 +25,7 @@ public class GetAttributeFeature {
 
     @When("^the value of \"([^\"]*)\" is retreived$")
     public void the_value_of_is_retreived(String arg1) throws Throwable {
-        value = database.getAttribute(arg1);
+        value = database.attr(arg1);
         assertNotNull(arg1);
     }
 

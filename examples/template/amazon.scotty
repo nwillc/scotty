@@ -1,0 +1,2 @@
+s3Prefix,s3BucketName,awsAccessKey,awsSecretKey,artifactBucketName
+{#? s3Prefix #},{#? s3BucketName #},{#? awsAccessKey #},{#? awsSecretKey #},{#? artifactBucketName #}

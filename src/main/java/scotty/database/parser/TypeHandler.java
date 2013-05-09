@@ -47,15 +47,15 @@ public class TypeHandler extends DefaultHandler {
 				break;
 			case INSTANCE:
 				Instance instance = new Instance(contexts.peek(), attributes.getValue(NAME));
-				type.add(instance);
-				contexts.push(instance);
+				type.getInstances().put(instance.getName(), instance);
+				contexts.push(instance.getContext());
 				break;
 			case ATTRIBUTE:
 				contexts.peek().put(attributes.getValue(NAME), attributes.getValue(VALUE));
 				break;
 			case TYPE:
 				type = new Type(attributes.getValue(NAME));
-				contexts.push(type);
+				contexts.push(type.getContext());
 				break;
 			default:
 				LOGGER.info("Unknown Start element: " + qName);

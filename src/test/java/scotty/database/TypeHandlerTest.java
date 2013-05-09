@@ -19,18 +19,18 @@ public class TypeHandlerTest {
 	@Test
 	public void parse() throws Exception {
 		assertEquals("host",type.getName());
-		assertNotNull(type.get("address"));
-		assertEquals("127.0.0.1", type.get("address"));
+		assertNotNull(type.getContext().get("address"));
+		assertEquals("127.0.0.1", type.getContext().get("address"));
 
 		Instance instance = type.getInstances().get("devbox2");
-		assertEquals("dev", instance.get("env"));
-		assertEquals("192.0.0.2", instance.get("address"));
-		assertEquals("acme", instance.get("company"));
+		assertEquals("dev", instance.getContext().get("env"));
+		assertEquals("192.0.0.2", instance.getContext().get("address"));
+		assertEquals("acme", instance.getContext().get("company"));
 
 		instance = type.getInstances().get("prod1");
-		assertEquals("prod", instance.get("env"));
-		assertEquals("192.0.0.3", instance.get("address"));
-		assertEquals("acme", instance.get("company"));
+		assertEquals("prod", instance.getContext().get("env"));
+		assertEquals("192.0.0.3", instance.getContext().get("address"));
+		assertEquals("acme", instance.getContext().get("company"));
 	}
 
 

@@ -41,7 +41,7 @@ public class Parser {
                 switch (operator) {
 
                     case Tokens.MATCH:
-                        value = database.getAttribute(scriptBody);
+                        value = database.attr(scriptBody);
                         if (value != null) {
                             outputStream.write(value.getBytes());
                         }

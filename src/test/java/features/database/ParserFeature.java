@@ -29,13 +29,13 @@ public class ParserFeature {
 
 	@Then("^you should receive a Database with (\\d+) Types$")
 	public void you_should_receive_a_Database_with_Types(int arg1) throws Throwable {
-		assertEquals(arg1, database.size());
+		assertEquals(arg1, database.getTypes().size());
 	}
 
 	@Then("^it should contain types \"([^\\\"]*)\"$")
 	public void it_should_contain_type_host(List<String> types) throws Throwable {
 		for (String typeName : types) {
-			assertTrue(database.containsKey(typeName));
+			assertTrue(database.getTypes().containsKey(typeName));
 		}
 	}
 }
