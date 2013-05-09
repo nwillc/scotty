@@ -1,0 +1,14 @@
+# This is a properties file template to be used with SCoTTy
+
+# {#? company env=prod #}
+{#= host.devbox1.type #}.{#= host.devbox1.instance #}.env={#= host.devbox1.env #}
+
+{#
+ output.println("# Hosts");
+ Type type = database.get("host");
+ for (Instance instance : type.getInstances().values()) {
+    output.println(instance.get("env") + ".host." + instance.get("instance") + ".address=" + instance.get("address"));
+ }
+#}
+# End
+

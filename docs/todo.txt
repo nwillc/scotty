@@ -1,0 +1,5 @@
+TODO:
+
+- Mathching by score with best mathc
+- Get into revision cntrol
+- Types, instances should be stored in containing maps by label – not have special container?
