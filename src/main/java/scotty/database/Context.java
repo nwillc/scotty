@@ -2,56 +2,67 @@ package scotty.database;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
 /**
- *  A Context is a set of attributes, that, can also inherit attributes from its parent.
+ * A Context is a set of attributes, that, can also inherit attributes from its parent.
  */
 public class Context extends HashMap<String, String> {
     private static final Logger LOGGER = Logger.getLogger(Context.class.getName());
-    private static boolean VERBOSE = false;
     private final Context parent;
 
-	public Context() {
-		this(null);
-	}
-
-	public Context(Context parent) {
-		this.parent = parent;
-	}
-
-
-    public static boolean isVerbose() {
-        return VERBOSE;
+    public Context() {
+        this(null);
     }
 
-    public static void setVerbose(boolean VERBOSE) {
-        Context.VERBOSE = VERBOSE;
+    public Context(Context parent) {
+        this.parent = parent;
     }
 
+    /**
+     * Checks if A is a superset of B. A must have all the attributes, with equal values of B.
+     */
+    public static boolean superset(Context a, Context b) {
+        if (b == null) {
+            return true;
+        }
 
-    public boolean match(Context context) {
-		if (context == null) {
-			return false;
-		}
-
-		for (String key : context.keySet()) {
-			String value = get(key);
-            if (!context.get(key).equals(value)) {
+        for (String key : b.keySet()) {
+            String value = a.get(key);
+            if (!b.get(key).equals(value)) {
                 return false;
             }
-		}
-
-        if (VERBOSE) {
-            LOGGER.info("Match: \n" + toString() + "\n" + context.toString());
         }
-		return true;
-	}
+
+        return true;
+    }
+
+    /**
+     * The similarity score is the count of all matching attributes between two contexts. If any attribute name is shared where
+     * the values differ the similarity is -1;
+     */
+    public static int similarity(Context a, Context b) {
+        int score = 0;
+        if (a == null || b == null) {
+            return score;
+        }
+
+        for (String key : b.keySet()) {
+            if (!a.containsKey(key)) {
+                continue;
+            }
+
+            if (!a.get(key).equals(b.get(key))) {
+                return -1;
+            }
+            score++;
+        }
+        return score;
+    }
 
     public String query(String attributeName, Context context) {
-        if (match(context)) {
+        if (superset(this, context)) {
             return get(attributeName);
         }
         return null;
@@ -59,7 +70,7 @@ public class Context extends HashMap<String, String> {
 
     @Override
     public boolean containsKey(Object key) {
-        return keySet().contains((String)key);
+        return keySet().contains((String) key);
     }
 
     @Override
@@ -75,16 +86,16 @@ public class Context extends HashMap<String, String> {
 
     @Override
     public String get(Object name) {
-		if (super.containsKey(name)) {
-			return super.get(name);
-		}
+        if (super.containsKey(name)) {
+            return super.get(name);
+        }
 
-		if (parent != null) {
-			return parent.get(name);
-		}
+        if (parent != null) {
+            return parent.get(name);
+        }
 
-		return null;
-	}
+        return null;
+    }
 
     @Override
     public String toString() {

@@ -8,14 +8,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *  A type in a SCoTTY database.
+ * A type in a SCoTTY database.
  */
 public class Type extends NamedContext implements Retrieval<Instance> {
-	private final Map<String, Instance> instances = new HashMap<>();
+    private final Map<String, Instance> instances = new HashMap<>();
 
-	public Type(String name) {
-		super(null, name);
-	}
+    public Type(String name) {
+        super(null, name);
+    }
+
+    public Map<String, Instance> getInstances() {
+        return instances;
+    }
 
     @Override
     protected String getElementType() {
@@ -34,16 +38,12 @@ public class Type extends NamedContext implements Retrieval<Instance> {
         return instance == null ? null : instance.attr(part[1]);
     }
 
-    public Map<String, Instance> getInstances() {
-		return instances;
-	}
-
     public String query(String attributeName, Context context) {
 
         if (context.containsKey(Elements.INSTANCE)) {
             String iName = context.get(Elements.INSTANCE);
             Instance instance = getInstances().get(iName);
-            return  instance == null ? null : instance.getContext().query(attributeName, context);
+            return instance == null ? null : instance.getContext().query(attributeName, context);
         }
 
         for (Instance instance : getInstances().values()) {

@@ -7,28 +7,27 @@ import scotty.database.parser.TypeHandler;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- *  A map of Types.
+ * A map of Types.
  */
 public class Database implements Retrieval<Type> {
-    private final Map<String,Type> types = new HashMap<>();
+    private final Map<String, Type> types = new HashMap<>();
 
-	public static Database parse(String ... files) throws ParserConfigurationException, SAXException, IOException {
-		if (files == null || files.length == 0) {
-			return null;
-		}
+    public static Database parse(String... files) throws ParserConfigurationException, SAXException, IOException {
+        if (files == null || files.length == 0) {
+            return null;
+        }
 
-		Database database = new Database();
-		for (String file : files) {
-			Type type = TypeHandler.parse(file);
-			database.getTypes().put(type.getName(), type);
-		}
-		return database;
-	}
+        Database database = new Database();
+        for (String file : files) {
+            Type type = TypeHandler.parse(file);
+            database.getTypes().put(type.getName(), type);
+        }
+        return database;
+    }
 
     public String query(String attributeName, Context context) {
 
@@ -36,7 +35,7 @@ public class Database implements Retrieval<Type> {
         if (context.containsKey(Elements.TYPE)) {
             String name = context.get(Elements.TYPE);
             Type type = get(name);
-            return  type == null ? null : type.query(attributeName, context);
+            return type == null ? null : type.query(attributeName, context);
         }
 
         for (Type type : types.values()) {

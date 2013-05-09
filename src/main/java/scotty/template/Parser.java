@@ -1,6 +1,5 @@
 package scotty.template;
 
-import bsh.ConsoleInterface;
 import bsh.EvalError;
 import bsh.Interpreter;
 import scotty.database.Context;
@@ -14,7 +13,6 @@ import java.util.logging.Logger;
  */
 public class Parser {
     private static final Logger LOGGER = Logger.getLogger(Parser.class.getName());
-    private static boolean VERBOSE = false;
 
     public static void parse(final InputStream inputStream, final OutputStream outputStream, final Database database, final Context context) throws IOException, EvalError {
         final Interpreter beanShell = new Interpreter();
@@ -24,7 +22,7 @@ public class Parser {
         beanShell.set("context", context);
 
         try (PrintStream output = new PrintStream(outputStream)) {
-			beanShell.set("output", output);
+            beanShell.set("output", output);
 
             while (true) {
                 if (!scanTo(Tokens.OPEN, inputStream, outputStream)) {
@@ -61,9 +59,6 @@ public class Parser {
                                 queryContext.put(parts[0].trim(), parts[1].trim());
                             }
                         }
-                        if (isVerbose()) {
-                            LOGGER.info("Querying " + attributeName + " with " + queryContext);
-                        }
                         value = database.query(attributeName, queryContext);
                         if (value != null) {
                             outputStream.write(value.getBytes());
@@ -74,7 +69,7 @@ public class Parser {
                     case '\t':
                     case '\n':
                     case '\r':
-						beanShell.setOut(output);
+                        beanShell.setOut(output);
                         beanShell.eval(scriptBody);
                         break;
 
@@ -85,14 +80,6 @@ public class Parser {
 
             outputStream.flush();
         }
-    }
-
-    public static boolean isVerbose() {
-        return VERBOSE;
-    }
-
-    public static void setVerbose(boolean VERBOSE) {
-        Parser.VERBOSE = VERBOSE;
     }
 
     private static boolean scanTo(String patternStr, InputStream inputStream, OutputStream outputStream) throws IOException {
