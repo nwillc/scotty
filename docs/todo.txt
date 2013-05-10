@@ -1,4 +1,4 @@
 TODO:
 
-- Matching by score with best match
+- consistent query interface
 - Types, instances should be stored in containing maps by label – not have special container?
