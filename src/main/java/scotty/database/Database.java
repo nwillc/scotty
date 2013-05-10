@@ -1,19 +1,17 @@
 package scotty.database;
 
 import org.xml.sax.SAXException;
-import scotty.database.parser.*;
+import scotty.database.parser.TypeHandler;
+import scotty.database.parser.Utilities;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A map of Types.
  */
-public class Database implements SubContexts<Type>, Retrieval<Type>, InstanceQuery {
-    private final Map<String, Type> types = new HashMap<>();
+public class Database extends Context {
 
     public static Database parse(String... files) throws ParserConfigurationException, SAXException, IOException {
         if (files == null || files.length == 0) {
@@ -23,60 +21,26 @@ public class Database implements SubContexts<Type>, Retrieval<Type>, InstanceQue
         Database database = new Database();
         for (String file : files) {
             Type type = TypeHandler.parse(file);
-            database.getMap().put(type.getName(), type);
+            database.getChildren().put(type.getName(), type);
         }
         return database;
     }
 
-    public String query(String attributeName, Context context) {
+    public String find(String name) {
+        return Utilities.find(this, name);
+    }
 
-        // Optimization, if a type is specified reduce the search space to that type
-        if (context.containsKey(Elements.TYPE)) {
-            String name = context.get(Elements.TYPE);
-            Type type = get(name);
-            return type == null ? null : type.query(attributeName, context);
+    public List<Context> query(Context criteria) {
+        return Utilities.query(this, criteria);
+    }
+
+    public String match(String name, Context criteria) {
+        List<Context> contexts = query(criteria);
+
+        if (contexts != null && contexts.size() > 0) {
+            return contexts.get(0).get(name);
         }
 
-        for (Type type : types.values()) {
-            String value = type.query(attributeName, context);
-            if (value != null) {
-                return value;
-            }
-        }
         return null;
-    }
-
-    @Override
-    public Map<String, Type> getMap() {
-        return types;
-    }
-
-    @Override
-    public Instance find(Context context) {
-        throw new UnsupportedOperationException("Method not implemented");
-    }
-
-    @Override
-    public List<Instance> match(Context context) {
-        throw new UnsupportedOperationException("Method not implemented");
-    }
-
-    @Override
-    public Type get(String label) {
-        return types.get(label);
-    }
-
-    @Override
-    public String attr(String label) {
-        String[] part = label.split("\\.");
-        Type type = get(part[0]);
-        if (type == null) {
-            return null;
-        }
-        Instance instance = type.get(part[1]);
-        if (instance == null) {
-            return null;
-        }
-        return instance.get(part[2]);
     }
 }

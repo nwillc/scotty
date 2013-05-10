@@ -3,11 +3,11 @@ package scotty.database.parser;
 /**
  * Pair a score with some data item. Scores natural sort order is high to low.
  */
-public final class Scored<T> implements Comparable<Scored> {
+public final class Ranked<T> implements Comparable<Ranked> {
     private final Integer score;
     private final T data;
 
-    public Scored(Integer score, T data) {
+    public Ranked(Integer score, T data) {
         if (score == null) {
             throw new IllegalArgumentException("Scored object must have a non-null score.");
         }
@@ -24,7 +24,7 @@ public final class Scored<T> implements Comparable<Scored> {
     }
 
     @Override
-    public int compareTo(Scored o) {
+    public int compareTo(Ranked o) {
         return o.score.compareTo(score);
     }
 }

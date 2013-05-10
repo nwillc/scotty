@@ -6,7 +6,7 @@ package scotty.template;
 public interface Tokens {
     String OPEN = "{#";
     String CLOSE = "#}";
-    char MATCH = '=';
+    char FIND = '=';
     char QUERY = '?';
 }
 

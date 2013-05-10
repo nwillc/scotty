@@ -6,13 +6,14 @@ import scotty.database.Context;
 import scotty.database.Database;
 
 import java.io.*;
-import java.util.logging.Logger;
 
 /**
  * Parses SCoTTY templates, applies data from the Database considering the given context, and produces transformed output.
  */
-public class Parser {
-    private static final Logger LOGGER = Logger.getLogger(Parser.class.getName());
+public final class Parser {
+
+    private Parser() {
+    }
 
     public static void parse(final InputStream inputStream, final OutputStream outputStream, final Database database, final Context context) throws IOException, EvalError {
         final Interpreter beanShell = new Interpreter();
@@ -34,12 +35,12 @@ public class Parser {
                 final String script = scriptOutput.toString();
                 final char operator = script.charAt(0);
                 final String scriptBody = script.substring(1).trim();
-                String value;
+                String value = null;
 
                 switch (operator) {
 
-                    case Tokens.MATCH:
-                        value = database.attr(scriptBody);
+                    case Tokens.FIND:
+                        value = database.find(scriptBody);
                         if (value != null) {
                             outputStream.write(value.getBytes());
                         }
@@ -59,7 +60,7 @@ public class Parser {
                                 queryContext.put(parts[0].trim(), parts[1].trim());
                             }
                         }
-                        value = database.query(attributeName, queryContext);
+                        value = database.match(attributeName, queryContext);
                         if (value != null) {
                             outputStream.write(value.getBytes());
                         }

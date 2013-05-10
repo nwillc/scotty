@@ -3,3 +3,4 @@ TODO:
 - consistent query interface
    - Match should recursively descend
 - Types, instances should be stored in containing maps by label – not in member map?
+- Feature tests for Utilities

@@ -15,8 +15,11 @@ import static scotty.Cli.*;
 /**
  * Scotty's conn.
  */
-public class Conn {
+public final class Conn {
     private static final Logger LOGGER = Logger.getLogger(Conn.class.getName());
+
+    private Conn() {
+    }
 
     public static void main(String[] args) {
         CommandLineParser parser = new PosixParser();

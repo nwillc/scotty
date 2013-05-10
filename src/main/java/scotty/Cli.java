@@ -9,5 +9,4 @@ public interface Cli {
     String TEMPLATE = "template";
     String CONTEXT = "context";
     String OUTPUT = "output";
-    String VERBOSE = "verbose";
 }

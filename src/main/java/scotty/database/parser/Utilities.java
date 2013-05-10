@@ -14,7 +14,6 @@ package scotty.database.parser;
 
 import scotty.database.Context;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -67,30 +66,47 @@ public final class Utilities {
         return score;
     }
 
-    /**
-     * Find the context best matching the criteria.
-     */
-    public static <T extends NamedContext> T find(SubContexts<T> subContexts, Context criteria) {
-        List<T> matched = match(subContexts, criteria);
-        return matched.get(0);
+    public static String find(Context context, String name) {
+        String[] parts = name.split("\\.");
+
+
+        for (String part : parts) {
+            if (!context.isParent()) {
+                return context.get(part);
+            }
+
+            context = context.getChildren().get(part);
+            if (context == null) {
+                return null;
+            }
+        }
+        return null;
     }
 
-    public static <T extends NamedContext> List<T> match(SubContexts<T> subContexts, Context criteria) {
-        List<Scored<T>> results = new LinkedList<>();
+    public static List<Context> query(Context context, Context criteria) {
+        List<Context> contexts = new LinkedList<>();
+        List<Ranked<Context>> results = rankedQuery(context, criteria);
+        for (Ranked<Context> ranked : results) {
+            contexts.add(ranked.getData());
+        }
+        return contexts;
+    }
 
-        for (T namedContext : subContexts.getMap().values()) {
-            int score = Utilities.similarity(namedContext.getContext(), criteria);
-            if (score > 0) {
-                Scored<T> scored = new Scored<>(score, namedContext);
-                results.add(scored);
+    public static List<Ranked<Context>> rankedQuery(Context context, Context criteria) {
+        List<Ranked<Context>> results = new LinkedList<>();
+
+        if (context.isParent()) {
+            for (Context child : context.getChildren().values()) {
+                results.addAll(rankedQuery(child, criteria));
+            }
+        } else {
+            int rank = similarity(context, criteria);
+            if (rank > 0) {
+                results.add(new Ranked<>(rank, context));
             }
         }
 
         Collections.sort(results);
-        List<T> ordered = new ArrayList<>(results.size());
-        for (Scored<T> e : results) {
-            ordered.add(e.getData());
-        }
-        return ordered;
+        return results;
     }
 }

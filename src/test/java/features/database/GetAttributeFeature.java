@@ -25,13 +25,13 @@ public class GetAttributeFeature {
 
     @When("^the value of \"([^\"]*)\" is retreived$")
     public void the_value_of_is_retreived(String arg1) throws Throwable {
-        value = database.attr(arg1);
-        assertNotNull(arg1);
+        value = database.find(arg1);
+        assertNotNull(value);
     }
 
     @Then("^it should equal \"([^\"]*)\"$")
     public void it_should_equal(String arg1) throws Throwable {
-      assertEquals(arg1,value);
+        assertEquals(arg1, value);
     }
 
 }

@@ -14,11 +14,11 @@ import static junit.framework.TestCase.assertEquals;
 public class ScoredTest {
     @Test
     public void sortTest() throws Exception {
-        List<Scored<Integer>> list = new LinkedList<>();
+        List<Ranked<Integer>> list = new LinkedList<>();
 
-        list.add(new Scored<>(1, 1));
-        list.add(new Scored<>(3, 3));
-        list.add(new Scored<>(2, 2));
+        list.add(new Ranked<>(1, 1));
+        list.add(new Ranked<>(3, 3));
+        list.add(new Ranked<>(2, 2));
 
         Collections.sort(list);
 

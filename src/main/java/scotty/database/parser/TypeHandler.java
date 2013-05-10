@@ -27,8 +27,9 @@ import static scotty.database.parser.Elements.*;
 public class TypeHandler extends DefaultHandler {
     private final static Logger LOGGER = Logger.getLogger(TypeHandler.class.getName());
     private final static SAXParserFactory FACTORY = SAXParserFactory.newInstance();
+    private final Deque<Context> contexts = new ArrayDeque<>();
     private Type type;
-    private Deque<Context> contexts = new ArrayDeque<>();
+
 
     public static Type parse(String file) throws IOException, ParserConfigurationException, SAXException {
         InputStream inputStream = new FileInputStream(file);
@@ -47,15 +48,15 @@ public class TypeHandler extends DefaultHandler {
                 break;
             case INSTANCE:
                 Instance instance = new Instance(contexts.peek(), attributes.getValue(NAME));
-                type.getMap().put(instance.getName(), instance);
-                contexts.push(instance.getContext());
+                type.getChildren().put(instance.getName(), instance);
+                contexts.push(instance);
                 break;
             case ATTRIBUTE:
                 contexts.peek().put(attributes.getValue(NAME), attributes.getValue(VALUE));
                 break;
             case TYPE:
                 type = new Type(attributes.getValue(NAME));
-                contexts.push(type.getContext());
+                contexts.push(type);
                 break;
             default:
                 LOGGER.info("Unknown Start element: " + qName);

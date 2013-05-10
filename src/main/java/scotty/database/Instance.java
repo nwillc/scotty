@@ -2,16 +2,16 @@ package scotty.database;
 
 import scotty.database.parser.Elements;
 import scotty.database.parser.NamedContext;
-import scotty.database.parser.Retrieval;
+
 
 /**
  * An instance of a Type.
  */
-public class Instance extends NamedContext implements Retrieval<String> {
+public class Instance extends NamedContext {
 
-	public Instance(Context parentContext, String name) {
-       super(parentContext, name);
-	}
+    public Instance(Context parentContext, String name) {
+        super(parentContext, name);
+    }
 
     @Override
     protected String getElementType() {
@@ -19,12 +19,8 @@ public class Instance extends NamedContext implements Retrieval<String> {
     }
 
     @Override
-    public String get(String label) {
-        return attr(label);
+    public String getName() {
+        return get(getElementType());
     }
 
-    @Override
-    public String attr(String label) {
-        return getContext().get(label);
-    }
 }

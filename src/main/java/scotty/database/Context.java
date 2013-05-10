@@ -1,17 +1,16 @@
 package scotty.database;
 
-import scotty.database.parser.Utilities;
-
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
-import java.util.logging.Logger;
 
 /**
  * A Context is a set of attributes, that, can also inherit attributes from its parent.
  */
-public class Context extends HashMap<String, String> {
-    private static final Logger LOGGER = Logger.getLogger(Context.class.getName());
+public class Context {
+    private final Map<String, String> map = new HashMap<>();
+    private final Map<String, Context> children = new HashMap<>();
     private final Context parent;
 
     public Context() {
@@ -22,53 +21,53 @@ public class Context extends HashMap<String, String> {
         this.parent = parent;
     }
 
-    public String query(String attributeName, Context context) {
-        if (Utilities.superset(this, context)) {
-            return get(attributeName);
-        }
-        return null;
+    public final Map<String, String> getMap() {
+        return map;
     }
 
-    @Override
-    public boolean containsKey(Object key) {
-        return keySet().contains((String) key);
+    public final Map<String, Context> getChildren() {
+        return children;
     }
 
-    @Override
+    public final Context getParent() {
+        return parent;
+    }
+
+    public void put(String key, String value) {
+        map.put(key, value);
+    }
+
     public Set<String> keySet() {
-        Set<String> allkeys = new HashSet<>();
-        allkeys.addAll(super.keySet());
-        if (parent != null) {
-            allkeys.addAll(parent.keySet());
+        Set<String> keys = new HashSet<>(getMap().keySet());
+
+        if (isChild()) {
+            keys.addAll(getParent().keySet());
         }
 
-        return allkeys;
+        return keys;
     }
 
-    @Override
-    public String get(Object name) {
-        if (super.containsKey(name)) {
-            return super.get(name);
+    public boolean containsKey(String key) {
+        return keySet().contains(key);
+    }
+
+    public String get(String key) {
+        if (map.containsKey(key)) {
+            return map.get(key);
         }
 
-        if (parent != null) {
-            return parent.get(name);
+        if (isChild()) {
+            return parent.get(key);
         }
 
         return null;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Context{");
-        sb.append("parent=").append(parent);
-        for (String key : keySet()) {
-            sb.append(", ");
-            sb.append(key);
-            sb.append("=");
-            sb.append(get(key));
-        }
-        sb.append('}');
-        return sb.toString();
+    public boolean isChild() {
+        return parent != null;
+    }
+
+    public boolean isParent() {
+        return children.size() > 0;
     }
 }
