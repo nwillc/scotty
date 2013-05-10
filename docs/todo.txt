@@ -1,4 +1,5 @@
 TODO:
 
 - consistent query interface
-- Types, instances should be stored in containing maps by label – not have special container?
+   - Match should recursively descend
+- Types, instances should be stored in containing maps by label – not in member map?

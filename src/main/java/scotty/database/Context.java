@@ -1,5 +1,7 @@
 package scotty.database;
 
+import scotty.database.parser.Utilities;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,49 +22,8 @@ public class Context extends HashMap<String, String> {
         this.parent = parent;
     }
 
-    /**
-     * Checks if A is a superset of B. A must have all the attributes, with equal values of B.
-     */
-    public static boolean superset(Context a, Context b) {
-        if (b == null) {
-            return true;
-        }
-
-        for (String key : b.keySet()) {
-            String value = a.get(key);
-            if (!b.get(key).equals(value)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * The similarity score is the count of all matching attributes between two contexts. If any attribute name is shared where
-     * the values differ the similarity is -1;
-     */
-    public static int similarity(Context a, Context b) {
-        int score = 0;
-        if (a == null || b == null) {
-            return score;
-        }
-
-        for (String key : b.keySet()) {
-            if (!a.containsKey(key)) {
-                continue;
-            }
-
-            if (!a.get(key).equals(b.get(key))) {
-                return -1;
-            }
-            score++;
-        }
-        return score;
-    }
-
     public String query(String attributeName, Context context) {
-        if (superset(this, context)) {
+        if (Utilities.superset(this, context)) {
             return get(attributeName);
         }
         return null;

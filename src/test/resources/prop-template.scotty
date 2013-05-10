@@ -6,7 +6,7 @@
 {#
  output.println("# Hosts");
  Type type = database.get("host");
- for (Instance instance : type.getInstances().values()) {
+ for (Instance instance : type.getMap().values()) {
     output.println(instance.getContext().get("env") + ".host." + instance.getContext().get("instance") + ".address=" + instance.getContext().get("address"));
  }
 #}

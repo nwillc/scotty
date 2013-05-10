@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
-import static scotty.database.Context.superset;
+import static scotty.database.parser.Utilities.superset;
 
 public class ContextTest {
     @Test

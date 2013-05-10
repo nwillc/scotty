@@ -1,19 +1,18 @@
 package scotty.database;
 
 import org.xml.sax.SAXException;
-import scotty.database.parser.Elements;
-import scotty.database.parser.Retrieval;
-import scotty.database.parser.TypeHandler;
+import scotty.database.parser.*;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * A map of Types.
  */
-public class Database implements Retrieval<Type> {
+public class Database implements SubContexts<Type>, Retrieval<Type>, InstanceQuery {
     private final Map<String, Type> types = new HashMap<>();
 
     public static Database parse(String... files) throws ParserConfigurationException, SAXException, IOException {
@@ -24,7 +23,7 @@ public class Database implements Retrieval<Type> {
         Database database = new Database();
         for (String file : files) {
             Type type = TypeHandler.parse(file);
-            database.getTypes().put(type.getName(), type);
+            database.getMap().put(type.getName(), type);
         }
         return database;
     }
@@ -47,8 +46,19 @@ public class Database implements Retrieval<Type> {
         return null;
     }
 
-    public Map<String, Type> getTypes() {
+    @Override
+    public Map<String, Type> getMap() {
         return types;
+    }
+
+    @Override
+    public Instance find(Context context) {
+        throw new UnsupportedOperationException("Method not implemented");
+    }
+
+    @Override
+    public List<Instance> match(Context context) {
+        throw new UnsupportedOperationException("Method not implemented");
     }
 
     @Override
