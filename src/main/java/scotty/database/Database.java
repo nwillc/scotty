@@ -6,6 +6,7 @@ import scotty.database.parser.Utilities;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -13,34 +14,50 @@ import java.util.List;
  */
 public class Database extends Context {
 
-    public static Database parse(String... files) throws ParserConfigurationException, SAXException, IOException {
-        if (files == null || files.length == 0) {
-            return null;
-        }
+	public static Database parse(InputStream... inputStreams) throws IOException, SAXException, ParserConfigurationException {
+		Database database = new Database();
 
-        Database database = new Database();
-        for (String file : files) {
-            Type type = TypeHandler.parse(file);
-            database.getChildren().put(type.getName(), type);
-        }
-        return database;
-    }
+		if (inputStreams != null) {
+			for (InputStream inputStream : inputStreams) {
+				Type type = TypeHandler.parse(inputStream);
+				database.add(type);
+			}
+		}
+		return database;
+	}
 
-    public String find(String name) {
-        return Utilities.find(this, name);
-    }
+	public static Database parse(String... files) throws ParserConfigurationException, SAXException, IOException {
+		if (files == null || files.length == 0) {
+			return null;
+		}
 
-    public List<Context> query(Context criteria) {
-        return Utilities.query(this, criteria);
-    }
+		Database database = new Database();
+		for (String file : files) {
+			Type type = TypeHandler.parse(file);
+			database.add(type);
+		}
+		return database;
+	}
 
-    public String match(String name, Context criteria) {
-        List<Context> contexts = query(criteria);
+	public String find(String name) {
+		return Utilities.find(this, name);
+	}
 
-        if (contexts != null && contexts.size() > 0) {
-            return contexts.get(0).get(name);
-        }
+	public List<Context> query(Context criteria) {
+		return Utilities.query(this, criteria);
+	}
 
-        return null;
-    }
+	public String match(String name, Context criteria) {
+		List<Context> contexts = query(criteria);
+
+		if (contexts != null && contexts.size() > 0) {
+			return contexts.get(0).get(name);
+		}
+
+		return null;
+	}
+
+	private void add(Type type) {
+		getChildren().put(type.getName(), type);
+	}
 }

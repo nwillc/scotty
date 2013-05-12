@@ -9,65 +9,75 @@ import java.util.Set;
  * A Context is a set of attributes, that, can also inherit attributes from its parent.
  */
 public class Context {
-    private final Map<String, String> map = new HashMap<>();
-    private final Map<String, Context> children = new HashMap<>();
-    private final Context parent;
+	private final Map<String, String> map = new HashMap<>();
+	private final Map<String, Context> children = new HashMap<>();
+	private final Context parent;
 
-    public Context() {
-        this(null);
-    }
+	public Context() {
+		this(null);
+	}
 
-    public Context(Context parent) {
-        this.parent = parent;
-    }
+	public Context(Context parent) {
+		this.parent = parent;
+	}
 
-    public final Map<String, String> getMap() {
-        return map;
-    }
+	public Context(Context parent, String assignmentList) {
+		this(parent);
 
-    public final Map<String, Context> getChildren() {
-        return children;
-    }
+		final String[] assignments = assignmentList.trim().split(",");
+		for (String assignment : assignments) {
+			String[] labelValue = assignment.split("=");
+			put(labelValue[0].trim(), labelValue[1].trim());
+		}
+	}
 
-    public final Context getParent() {
-        return parent;
-    }
+	public final Map<String, String> getMap() {
+		return map;
+	}
 
-    public void put(String key, String value) {
-        map.put(key, value);
-    }
+	public final Map<String, Context> getChildren() {
+		return children;
+	}
 
-    public Set<String> keySet() {
-        Set<String> keys = new HashSet<>(getMap().keySet());
+	public final Context getParent() {
+		return parent;
+	}
 
-        if (isChild()) {
-            keys.addAll(getParent().keySet());
-        }
+	public void put(String key, String value) {
+		map.put(key, value);
+	}
 
-        return keys;
-    }
+	public Set<String> keySet() {
+		Set<String> keys = new HashSet<>(getMap().keySet());
 
-    public boolean containsKey(String key) {
-        return keySet().contains(key);
-    }
+		if (isChild()) {
+			keys.addAll(getParent().keySet());
+		}
 
-    public String get(String key) {
-        if (map.containsKey(key)) {
-            return map.get(key);
-        }
+		return keys;
+	}
 
-        if (isChild()) {
-            return parent.get(key);
-        }
+	public boolean containsKey(String key) {
+		return keySet().contains(key);
+	}
 
-        return null;
-    }
+	public String get(String key) {
+		if (map.containsKey(key)) {
+			return map.get(key);
+		}
 
-    public boolean isChild() {
-        return parent != null;
-    }
+		if (isChild()) {
+			return parent.get(key);
+		}
 
-    public boolean isParent() {
-        return children.size() > 0;
-    }
+		return null;
+	}
+
+	public boolean isChild() {
+		return parent != null;
+	}
+
+	public boolean isParent() {
+		return children.size() > 0;
+	}
 }
