@@ -25,10 +25,12 @@ Feature: Context classes, holding attributes, should form a tree and provide att
 
   Scenario Outline: Requesting a Contexts keySet should yield the keys of the Context and its parents.
     Given a Context instantiated with "<assignments>"
-    And a its child instantiated with "<childAssignments>"
-    Then the keySet should contain "<keys>"
+    And a its child instantiated with "<childAssignments1>"
+    Then the keySet should contain "<keys1>"
+    And a its child instantiated with "<childAssignments2>"
+    Then the keySet should contain "<keys2>"
 
   Examples:
-    | assignments     | childAssignments | keys        |
-    | one=two         | foo=bar          | one,foo     |
-    | one=two,foo=bar | one=fff,two=ggg  | one,foo,two |
+    | assignments     | childAssignments1 | keys1       | childAssignments2 | keys2         |
+    | one=two         | foo=bar           | one,foo     | a=b               | one,foo,a     |
+    | one=two,foo=bar | one=fff,two=ggg   | one,foo,two | a=b               | one,foo,two,a |
