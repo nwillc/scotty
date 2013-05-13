@@ -1,13 +1,13 @@
 ########## Application instances by Environment.Host
 {#
- Type host = database.get("host");
+ Type host = database.getContained().get("host");
+
  Set envSet = new HashSet();
- for (Instance i : host.getInstances().values()) {
+ for (Instance i : host.getContained().values()) {
      envSet.add(i.get("env"));
  }
 
  output.print("environments=");
-
  boolean first = true;
  for (String env : envSet) {
     if (first) {
@@ -20,13 +20,18 @@
 
  output.print("\n\n");
 
- for (Instance i : host.getInstances().values()) {
-    String prefix = i.get("env") + "." + i.get("instance") + ".";
-    output.println(prefix + "name=" + i.get("serverName"));
-    output.println(prefix + "host=" + i.get("serverHost"));
-    output.println(prefix + "domain=" + i.get("domain"));
-    output.println(prefix + "apps=" + i.get("apps"));
-    output.print('\n');
+ for (String env : envSet)
+ {
+    Context c = new Context(null, "env=" + env);
+    List matches = database.query(c);
+    for (Instance i : matches) {
+       String prefix = i.get("env") + "." + i.get("instance") + ".";
+       output.println(prefix + "name=" + i.get("serverName"));
+       output.println(prefix + "host=" + i.get("serverHost"));
+       output.println(prefix + "domain=" + i.get("domain"));
+       output.println(prefix + "apps=" + i.get("apps"));
+       output.print('\n');
+    }
  }
 
 #}

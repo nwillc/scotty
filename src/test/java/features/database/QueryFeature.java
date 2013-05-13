@@ -26,7 +26,7 @@ public class QueryFeature {
         try (InputStream inputStream = new ByteArrayInputStream(arg1.getBytes())) {
             database = Database.parse(inputStream);
         }
-        assertTrue(database.getChildren().size() > 0);
+        assertTrue(database.getContained().size() > 0);
     }
 
     @Given("^the database$")

@@ -22,12 +22,12 @@ public class TypeHandlerTest {
         assertNotNull(type.get("address"));
         assertEquals("127.0.0.1", type.get("address"));
 
-        Instance instance = (Instance) type.getChildren().get("devbox2");
+        Instance instance = (Instance) type.getContained().get("devbox2");
         assertEquals("dev", instance.get("env"));
         assertEquals("192.0.0.2", instance.get("address"));
         assertEquals("acme", instance.get("company"));
 
-        instance = (Instance) type.getChildren().get("prod1");
+        instance = (Instance) type.getContained().get("prod1");
         assertEquals("prod", instance.get("env"));
         assertEquals("192.0.0.3", instance.get("address"));
         assertEquals("acme", instance.get("company"));

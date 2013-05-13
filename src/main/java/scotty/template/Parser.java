@@ -6,6 +6,7 @@ import scotty.database.Context;
 import scotty.database.Database;
 
 import java.io.*;
+import java.util.List;
 
 /**
  * Parses SCoTTY templates, applies data from the Database considering the given context, and produces transformed output.
@@ -35,7 +36,7 @@ public final class Parser {
                 final String script = scriptOutput.toString();
                 final char operator = script.charAt(0);
                 final String scriptBody = script.substring(1).trim();
-                String value = null;
+                String value;
 
                 switch (operator) {
 
@@ -57,7 +58,11 @@ public final class Parser {
                             attributeName = scriptBody.substring(0, endOfAttrName);
                             queryContext = new Context(context, scriptBody.substring(endOfAttrName));
                         }
-                        value = database.match(attributeName, queryContext);
+                        List<Context> matches = database.query(queryContext);
+                        if (matches.size() == 0) {
+                            break;
+                        }
+                        value = matches.get(0).get(attributeName);
                         if (value != null) {
                             outputStream.write(value.getBytes());
                         }

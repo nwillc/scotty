@@ -41,13 +41,11 @@ public final class Conn {
             String[] databaseFiles = commandLine.getOptionValue(DATABASE).split(",");
             Database database = Database.parse(databaseFiles);
 
-            Context context = new Context();
+            Context context;
             if (commandLine.hasOption(CONTEXT)) {
-                String[] assignments = commandLine.getOptionValue(CONTEXT).split(",");
-                for (String assignment : assignments) {
-                    String[] pair = assignment.split("=");
-                    context.put(pair[0], pair[1]);
-                }
+                context = new Context(commandLine.getOptionValue(CONTEXT));
+            } else {
+                context = new Context();
             }
 
             Parser.parse(inputStream, outputStream, database, context);

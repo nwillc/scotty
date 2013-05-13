@@ -73,11 +73,11 @@ public final class Utilities {
         for (int i = 0; i < parts.length; i++) {
             String part = parts[i];
 
-            if ((i == parts.length - 1) || !context.isParent()) {
+            if ((i == parts.length - 1) || !context.isContainer()) {
                 return context.get(part);
             }
 
-            context = context.getChildren().get(part);
+            context = context.getContained().get(part);
             if (context == null) {
                 return null;
             }
@@ -97,8 +97,8 @@ public final class Utilities {
     public static List<Ranked<Context>> rankedQuery(Context context, Context criteria) {
         List<Ranked<Context>> results = new LinkedList<>();
 
-        if (context.isParent()) {
-            for (Context child : context.getChildren().values()) {
+        if (context.isContainer()) {
+            for (Context child : context.getContained().values()) {
                 results.addAll(rankedQuery(child, criteria));
             }
         } else {

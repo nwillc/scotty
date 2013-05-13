@@ -27,5 +27,7 @@ public class ContextTest {
 
         context2.put("abe", "kobo");
         assertFalse(superset(context1, context2));
+
+        System.out.println(context2.toString());
     }
 }

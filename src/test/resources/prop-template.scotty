@@ -5,8 +5,8 @@
 
 {#
  output.println("# Hosts");
- Type type = database.getChildren().get("host");
- for (Instance instance : type.getChildren().values()) {
+ Type type = database.getContained().get("host");
+ for (Instance instance : type.getContained().values()) {
     output.println(instance.get("env") + ".host." + instance.get("instance") + ".address=" + instance.get("address"));
  }
 #}
