@@ -70,8 +70,10 @@ public final class Utilities {
 		String[] parts = name.split("\\.");
 
 
-		for (String part : parts) {
-			if (!context.isParent()) {
+		for (int i = 0; i < parts.length; i++) {
+			String part = parts[i];
+
+			if ((i == parts.length - 1) || !context.isParent()) {
 				return context.get(part);
 			}
 

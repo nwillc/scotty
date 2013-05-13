@@ -1,6 +1,6 @@
 Feature: The Database should provide a way to query instances based on a context.
 
-  Scenario: Query and instance by a context of attributes
+  Background:
     Given a Database based on
     """
     <type name="host">
@@ -11,17 +11,25 @@ Feature: The Database should provide a way to query instances based on a context
 		<instance name="devbox1">
 			<attribute name="address" value="192.0.0.1"/>
 		</instance>
-		<instance name="devbox2">
-			<attribute name="address" value="192.0.0.2"/>
-		</instance>
 	</context>
 	<context>
 		<attribute name="env" value="prod"/>
-		   <instance name="prod1">
-			<attribute name="address" value="192.0.0.3"/>
-		</instance>
+		<instance name="prod1"/>
 	</context>
     </type>
     """
-    Then success
+
+  Scenario Outline: Query and instance by a context of attributes
+    Given the database
+    And you find "<attribute>"
+    Then it should return "<string>"
+
+  Examples:
+    | attribute            | string    |
+    | host.devbox1.address | 192.0.0.1 |
+    | host.company         | acme      |
+    | host.prod1.address   | 127.0.0.1 |
+    | host.prod1.env       | prod      |
+
+
 
