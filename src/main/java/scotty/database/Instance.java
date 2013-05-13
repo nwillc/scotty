@@ -18,9 +18,4 @@ public class Instance extends NamedContext {
         return Elements.INSTANCE;
     }
 
-    @Override
-    public String getName() {
-        return get(getElementType());
-    }
-
 }

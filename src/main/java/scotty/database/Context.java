@@ -9,75 +9,86 @@ import java.util.Set;
  * A Context is a set of attributes, that, can also inherit attributes from its parent.
  */
 public class Context {
-	private final Map<String, String> map = new HashMap<>();
-	private final Map<String, Context> children = new HashMap<>();
-	private final Context parent;
+    private static int next = 0;
+    private final Map<String, String> map = new HashMap<>();
+    private final Map<String, Context> children = new HashMap<>();
+    private final Context parent;
+    private final int age;
 
-	public Context() {
-		this(null);
-	}
+    public Context() {
+        this(null);
+    }
 
-	public Context(Context parent) {
-		this.parent = parent;
-	}
+    public Context(Context parent) {
+        this.parent = parent;
+        this.age = Context.nextAge();
+    }
 
-	public Context(Context parent, String assignmentList) {
-		this(parent);
+    public Context(Context parent, String assignmentList) {
+        this(parent);
 
-		final String[] assignments = assignmentList.trim().split(",");
-		for (String assignment : assignments) {
-			String[] labelValue = assignment.split("=");
-			put(labelValue[0].trim(), labelValue[1].trim());
-		}
-	}
+        final String[] assignments = assignmentList.trim().split(",");
+        for (String assignment : assignments) {
+            String[] labelValue = assignment.split("=");
+            put(labelValue[0].trim(), labelValue[1].trim());
+        }
+    }
 
-	public final Map<String, String> getMap() {
-		return map;
-	}
+    public final Map<String, String> getMap() {
+        return map;
+    }
 
-	public final Map<String, Context> getChildren() {
-		return children;
-	}
+    public final Map<String, Context> getChildren() {
+        return children;
+    }
 
-	public final Context getParent() {
-		return parent;
-	}
+    public final Context getParent() {
+        return parent;
+    }
 
-	public void put(String key, String value) {
-		map.put(key, value);
-	}
+    public void put(String key, String value) {
+        map.put(key, value);
+    }
 
-	public Set<String> keySet() {
-		Set<String> keys = new HashSet<>(getMap().keySet());
+    public Set<String> keySet() {
+        Set<String> keys = new HashSet<>(getMap().keySet());
 
-		if (isChild()) {
-			keys.addAll(getParent().keySet());
-		}
+        if (isChild()) {
+            keys.addAll(getParent().keySet());
+        }
 
-		return keys;
-	}
+        return keys;
+    }
 
-	public boolean containsKey(String key) {
-		return keySet().contains(key);
-	}
+    public boolean containsKey(String key) {
+        return keySet().contains(key);
+    }
 
-	public String get(String key) {
-		if (map.containsKey(key)) {
-			return map.get(key);
-		}
+    public String get(String key) {
+        if (map.containsKey(key)) {
+            return map.get(key);
+        }
 
-		if (isChild()) {
-			return parent.get(key);
-		}
+        if (isChild()) {
+            return parent.get(key);
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	public boolean isChild() {
-		return parent != null;
-	}
+    public boolean isChild() {
+        return parent != null;
+    }
 
-	public boolean isParent() {
-		return children.size() > 0;
-	}
+    public boolean isParent() {
+        return children.size() > 0;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    private synchronized static int nextAge() {
+        return ++next;
+    }
 }

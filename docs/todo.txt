@@ -1,4 +1,3 @@
 TODO:
 
-- Feature tests for query
-    - include a test where instance is overridden by another with additional attribute
+- richer test & examples
