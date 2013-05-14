@@ -24,7 +24,8 @@ import java.io.*;
 import java.util.List;
 
 /**
- * Parses SCoTTY templates, applies data from the Database considering the given context, and produces transformed output.
+ * Parses SCoTTY templates, applies data from the Database considering the given context, and produces transformed
+ * output.
  */
 public final class Parser {
 

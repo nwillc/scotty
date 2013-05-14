@@ -19,7 +19,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- *
+ * A fixed size character buffer that overflows into an output source if provided. Used
+ * to provide a small window into an advancing stream, allowing a parser to search for a fixed sequence.
  */
 public class CharQueue implements Comparable<CharQueue> {
 	private final OutputStream overflow;
