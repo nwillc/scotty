@@ -1,3 +1,6 @@
 TODO:
 
+- attributes with regex values to allow for more compact databases and more elaborate queries.
+- template include mechanism
 - richer test & examples
+- markups to check type & attr presence

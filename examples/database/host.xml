@@ -46,7 +46,7 @@
         <!-- Alpha Test -->
         <context>
             <attribute name="env" value="alpha"/>
-            <attribute name="domain" value="TST"/>
+
 
             <instance name="jc1tclst01">
                 <attribute name="serverName" value="Alpha - B"/>

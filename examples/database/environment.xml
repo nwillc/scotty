@@ -1,0 +1,15 @@
+<type name="environment">
+    <instance name="local">
+
+    </instance>
+    <instance name="alpha">
+        <attribute name="env" value="alpha"/>
+        <attribute name="description" value="AlphaSync"/>
+        <attribute name="domain" value="TST"/>
+    </instance>
+    <instance name="prod">
+        <attribute name="env" value="prod"/>
+        <attribute name="description" value="ProdSync"/>
+        <attribute name="domain" value="PRD"/>
+    </instance>
+</type>

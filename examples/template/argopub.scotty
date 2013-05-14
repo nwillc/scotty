@@ -1,0 +1,16 @@
+# {#t application,environment #} {#c env #}
+# ARGO PUB PROPERTIES FILE
+#
+argopub.environment={#? description type=environment #}
+argopub.user.name={#? username app=argopub #}
+argopub.user.password={#? password app=argopub #}
+argopub.domain={#? domain type=environment #}
+argopub.instance.id={#? instance app=argopub #}
+argopub.sync.urls={#? syncUrls app=argopub #}
+argopub.proxying=true
+argopub.remoteLogging.activate=false
+argopub.remoteLogging.db.host={remoteDatabaseHost,database=remoteLogging}
+argopub.remoteLogging.db.port={remoteDatabasePort,database=remoteLogging}
+argopub.publish.topic={#? publishTopic app=argopub #}
+
+

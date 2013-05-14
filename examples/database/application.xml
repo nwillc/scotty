@@ -1,0 +1,43 @@
+<type name="application">
+    <attribute name="username" value="testsystem1"/>
+    <attribute name="password" value="testsystem1"/>
+
+    <instance name="aegir">
+
+    </instance>
+    <instance name="serts">
+        <attribute name="port" value="8700"/>
+    </instance>
+    <instance name="alerts">
+        <attribute name="port" value="8087"/>
+        <attribute name="username" value="alerts"/>
+        <attribute name="password" value="alerts"/>
+        <attribute name="sertsHost" value="localhost"/>
+        <instance name="alerts-alpha">
+            <attribute name="env" value="alpha"/>
+            <attribute name="sertsHost" value="jc1txtrt01.seleritycorp.com"/>
+        </instance>
+        <instance name="alerts-qa">
+            <attribute name="env" value="qa"/>
+            <attribute name="sertsHost" value="10.220.1.203"/>
+        </instance>
+        <instance name="alerts-prod">
+            <attribute name="env" value="prod"/>
+            <attribute name="sertsHost" value="ec2-23-21-247-239.compute-1.amazonaws.com"/>
+            <instance name="alerts-ec2vclsp01">
+                <attribute name="host" value="ec2vclsp01"/>
+                <attribute name="sertsHost" value="10.219.0.38"/>
+            </instance>
+        </instance>
+    </instance>
+    <context>
+        <attribute name="app" value="argopub"/>
+        <attribute name="publishTopic" value="OBS"/>
+        <attribute name="username" value="gaucho"/>
+        <attribute name="password" value="gaucho"/>
+        <attribute name="syncUrls" value="http://jc1tclst01:8083/rpc.do;http://jc1tclst01:8086/rpc.do;http://jc1tclst01:8080/rhino-1.0-SNAPSHOT/rpc.do"/>
+        <instance name="PPUB-JC1T-T02">
+            <attribute name="env" value="alpha"/>
+        </instance>
+    </context>
+</type>

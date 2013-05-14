@@ -1,0 +1,4 @@
+# {#t application,environment #} {#c env #}
+# Aegir properties file
+#
+aegir.environment={#? description type=environment #}
