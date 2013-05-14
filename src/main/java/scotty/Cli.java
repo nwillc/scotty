@@ -16,7 +16,7 @@
 package scotty;
 
 /**
- *
+ * Command line interface tokens.
  */
 public interface Cli {
 	String HELP = "help";
