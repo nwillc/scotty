@@ -1,0 +1,13 @@
+# {#t application,environment,datasource #} {#c env,host #}  {# context.put("app","bulkdata"); context.put("mode","readonly"); #}
+# BULK DATA SERVICE PROPERTIES FILE
+#
+bulkdata.environment={#? description type=environment #}
+bulkdata.db.host={#? databaseHost type=datasource,database=cs #}
+bulkdata.db.port={#? port type=datasource,database=cs #}
+bulkdata.db.user.name={#? username type=datasource,database=cs #}
+bulkdata.db.user.password={#? password type=datasource,database=cs #}
+bulkdata.user.name={#? username type=application #}
+bulkdata.user.password={#? password type=application #}
+bulkdata.remoteLogging.activate={#? remoteLogging type=application #}
+bulkdata.remoteLogging.db.host={#= datasource.remoteLogging.host #}
+bulkdata.remoteLogging.db.port={#= datasource.remoteLogging.port #}

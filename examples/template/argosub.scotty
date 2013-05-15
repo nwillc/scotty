@@ -1,0 +1,14 @@
+# {#t application,environment,datasource #} {#c env,host #} {# context.put("app","argo"); #}
+# ARGO SUB PROPERTIES FILE
+#
+argosub.environment={#? description type=environment #}
+argosub.user.name={#? username #}
+argosub.user.password={#? password #}
+argosub.domain={#? domain type=environment #}
+argosub.instance.id=PSUB-{#? instance #}
+argosub.sync.urls={#? syncUrls #}
+argosub.proxying=true
+argosub.remoteLogging.activate={#? remoteLogging #}
+argopub.remoteLogging.db.host={#= datasource.remoteLogging.host #}
+argopub.remoteLogging.db.port={#= datasource.remoteLogging.port #}
+

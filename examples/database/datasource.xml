@@ -1,0 +1,44 @@
+<type name="datasource">
+    <attribute name="username" value="cs_admin"/>
+    <attribute name="password" value="selerity2010"/>
+
+    <instance name="remoteLogging">
+        <attribute name="host" value="ec2-184-73-56-33.compute-1.amazonaws.com"/>
+        <attribute name="port" value="27017"/>
+    </instance>
+
+    <instance name="cs">
+        <attribute name="database" value="cs"/>
+        <attribute name="port" value="3306"/>
+        <context>
+            <attribute name="env" value="alpha"/>
+            <instance name="cs-alpha-1">
+                <attribute name="databaseHost" value="jc1tsdbt01.seleritycorp.com"/>
+                <attribute name="jdbcUrl" value="jdbc:mysql://jc1tsdbt01.seleritycorp.com:3306/cs_private"/>
+                <instance name="cs-alpha-2">
+                    <attribute name="host" value="jc1tclst01"/>
+                    <attribute name="databaseHost" value="jc1tclst01.seleritycorp.com"/>
+                    <attribute name="jdbcUrl" value="jdbc:mysql://jc1tclst01.seleritycorp.com:3306/cs_private"/>
+                </instance>
+            </instance>
+        </context>
+        <instance name="cs-qa">
+            <attribute name="env" value="qa"/>
+            <attribute name="databaseHost" value="jc1tcsdq01.seleritycorp.com"/>
+        </instance>
+        <instance name="cs-prod">
+            <attribute name="env" value="prod"/>
+            <attribute name="databaseHost" value="ny2bsdbp01.seleritycorp.com"/>
+            <instance name="cs=int">
+                <attribute name="env" value="int"/>
+            </instance>
+            <instance name="cs-readonly">
+                <attribute name="mode" value="readonly"/>
+                <attribute name="databaseHost" value="ny2asdbp01.seleritycorp.com"/>
+                <instance name="cs-readonly-int">
+                    <attribute name="env" value="int"/>
+                </instance>
+            </instance>
+        </instance>
+    </instance>
+</type>

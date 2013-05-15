@@ -20,9 +20,12 @@
         </instance>
     </context>
 
+    <!-- Serts -->
     <instance name="serts">
         <attribute name="port" value="8700"/>
     </instance>
+
+    <!-- Alerts -->
     <instance name="alerts">
         <attribute name="port" value="8087"/>
         <attribute name="username" value="alerts"/>
@@ -45,15 +48,70 @@
             </instance>
         </instance>
     </instance>
-    <!-- ArgoPub -->
-    <context>
-        <attribute name="app" value="argopub"/>
+
+    <!-- Argo Pub/Sub -->
+    <instance name="argo">
+        <attribute name="app" value="argo"/>
         <attribute name="publishTopic" value="OBS"/>
         <attribute name="username" value="gaucho"/>
         <attribute name="password" value="gaucho"/>
         <attribute name="syncUrls" value="http://jc1tclst01:8083/rpc.do;http://jc1tclst01:8086/rpc.do;http://jc1tclst01:8080/rhino-1.0-SNAPSHOT/rpc.do"/>
-        <instance name="PPUB-JC1T-T02">
+        <attribute name="remoteLogging" value="true"/>
+
+
+        <instance name="JC1T-T01">
+            <attribute name="env" value="local"/>
+        </instance>
+
+        <instance name="JC1T-T02">
             <attribute name="env" value="alpha"/>
         </instance>
-    </context>
+
+        <instance name="JC1T-Q01">
+            <attribute name="env" value="qa"/>
+        </instance>
+
+        <context>
+            <attribute name="env" value="int"/>
+            <instance name="NY2I-I01">
+                <attribute name="host" value="ny2ihtri01"/>
+            </instance>
+            <instance name="CH1I-I01">
+                <attribute name="host" value="ch1ihtri01"/>
+            </instance>
+        </context>
+
+        <context>
+            <attribute name="env" value="prod"/>
+            <instance name="NY2A-P01">
+                <attribute name="host" value="ny2aclsp01"/>
+            </instance>
+            <instance name="NY2B-P01">
+                <attribute name="host" value="ny2bclsp01"/>
+            </instance>
+            <instance name="CH1A-P01">
+                <attribute name="host" value="ch1aclsp01"/>
+            </instance>
+            <instance name="CH1B-P01">
+                <attribute name="host" value="ch1bclsp01"/>
+            </instance>
+            <instance name="FR2A-P01">
+                <attribute name="host" value="fr2ainfp01"/>
+            </instance>
+        </context>
+    </instance>
+
+    <instance name="bulkdata">
+        <attribute name="app" value="bulkdata"/>
+        <attribute name="remoteLogging" value="true"/>
+        <instance name="bulkdata-alpha">
+            <attribute name="env" value="alpha"/>
+        </instance>
+        <instance name="bulkdata-qa">
+            <attribute name="env" value="qa"/>
+        </instance>
+        <instance name="bulkdata-prod">
+            <attribute name="env" value="prod"/>
+        </instance>
+    </instance>
 </type>

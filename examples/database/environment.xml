@@ -1,11 +1,26 @@
 <type name="environment">
     <instance name="local">
-
+        <attribute name="description" value="LocalSync"/>
+    </instance>
+    <instance name="infra">
+        <attribute name="env" value="infra"/>
+        <attribute name="description" value="Infrastructure"/>
+        <attribute name="domain" value="INFRA"/>
     </instance>
     <instance name="alpha">
         <attribute name="env" value="alpha"/>
         <attribute name="description" value="AlphaSync"/>
         <attribute name="domain" value="TST"/>
+    </instance>
+    <instance name="qa">
+        <attribute name="env" value="qa"/>
+        <attribute name="description" value="QASync"/>
+        <attribute name="domain" value="QA"/>
+    </instance>
+    <instance name="int">
+        <attribute name="env" value="int"/>
+        <attribute name="description" value="Integration"/>
+        <attribute name="domain" value="INT"/>
     </instance>
     <instance name="prod">
         <attribute name="env" value="prod"/>
