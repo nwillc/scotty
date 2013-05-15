@@ -129,6 +129,8 @@ public final class Parser {
                 return true;
             }
         }
+
+        outputStream.write(buffer.toString().getBytes());
         return false;
     }
 

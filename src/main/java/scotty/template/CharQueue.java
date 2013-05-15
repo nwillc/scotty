@@ -22,7 +22,7 @@ import java.io.OutputStream;
  * A fixed size character buffer that overflows into an output source if provided. Used
  * to provide a small window into an advancing stream, allowing a parser to search for a fixed sequence.
  */
-public class CharQueue implements Comparable<CharQueue> {
+public class CharQueue implements Comparable<CharQueue>, AutoCloseable {
     private final OutputStream overflow;
     private final int[] data;
     private int start, end;
@@ -67,6 +67,12 @@ public class CharQueue implements Comparable<CharQueue> {
 
         data[end % data.length] = ch;
         end++;
+    }
+
+    @Override
+    public void close() throws Exception {
+        overflow.write(toString().getBytes());
+        overflow.flush();
     }
 
     @Override
