@@ -20,17 +20,21 @@ import scotty.database.Context;
 /**
  * A Context that has a fixed name attribute.
  */
-public abstract class NamedContext extends Context {
+public abstract class NamedContext extends Context implements Comparable<Context> {
 
-	protected NamedContext(Context parentContext, String name) {
-		super(parentContext);
-		put(getElementType(), name);
-	}
+    protected NamedContext(Context parentContext, String name) {
+        super(parentContext);
+        put(getElementType(), name);
+    }
 
-	protected abstract String getElementType();
+    protected abstract String getElementType();
 
-	public String getName() {
-		return get(getElementType());
-	}
+    public String getName() {
+        return get(getElementType());
+    }
 
+    @Override
+    public int compareTo(Context o) {
+        return getName().compareTo(((NamedContext) o).getName());
+    }
 }

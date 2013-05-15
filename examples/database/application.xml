@@ -1,10 +1,25 @@
 <type name="application">
     <attribute name="username" value="testsystem1"/>
     <attribute name="password" value="testsystem1"/>
+    <attribute name="statusUrl" value="version.do"/>
+    <attribute name="protocol" value="http"/>
 
-    <instance name="aegir">
+    <context>
+        <attribute name="port" value="8080"/>
+        <attribute name="jmxPort" value="8686"/>
 
-    </instance>
+        <instance name="cs">
+
+        </instance>
+
+        <instance name="ran">
+
+        </instance>
+        <instance name="aegir">
+
+        </instance>
+    </context>
+
     <instance name="serts">
         <attribute name="port" value="8700"/>
     </instance>
@@ -30,6 +45,7 @@
             </instance>
         </instance>
     </instance>
+    <!-- ArgoPub -->
     <context>
         <attribute name="app" value="argopub"/>
         <attribute name="publishTopic" value="OBS"/>

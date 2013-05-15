@@ -23,13 +23,13 @@ import scotty.database.parser.NamedContext;
  */
 public class Type extends NamedContext {
 
-	public Type(String name) {
-		super(null, name);
-	}
+    public Type(String name) {
+        super(null, name);
+    }
 
-	@Override
-	protected String getElementType() {
-		return Elements.TYPE;
-	}
+    @Override
+    protected String getElementType() {
+        return Elements.TYPE;
+    }
 
 }

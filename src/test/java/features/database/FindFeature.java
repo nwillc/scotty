@@ -29,24 +29,24 @@ import static junit.framework.TestCase.assertNotNull;
  *
  */
 public class FindFeature {
-	private Database database;
-	private String value;
+    private Database database;
+    private String value;
 
-	@Given("^a Database loaded from \"([^\"]*)\"$")
-	public void a_Database_loaded_from(List<String> filenames) throws Throwable {
-		database = Database.parse(filenames.toArray(new String[0]));
-		assertNotNull(database);
-	}
+    @Given("^a Database loaded from \"([^\"]*)\"$")
+    public void a_Database_loaded_from(List<String> filenames) throws Throwable {
+        database = Database.parse(filenames.toArray(new String[0]));
+        assertNotNull(database);
+    }
 
-	@When("^the value of \"([^\"]*)\" is retreived$")
-	public void the_value_of_is_retreived(String arg1) throws Throwable {
-		value = database.find(arg1);
-		assertNotNull(value);
-	}
+    @When("^the value of \"([^\"]*)\" is retreived$")
+    public void the_value_of_is_retreived(String arg1) throws Throwable {
+        value = database.find(arg1);
+        assertNotNull(value);
+    }
 
-	@Then("^it should equal \"([^\"]*)\"$")
-	public void it_should_equal(String arg1) throws Throwable {
-		assertEquals(arg1, value);
-	}
+    @Then("^it should equal \"([^\"]*)\"$")
+    public void it_should_equal(String arg1) throws Throwable {
+        assertEquals(arg1, value);
+    }
 
 }

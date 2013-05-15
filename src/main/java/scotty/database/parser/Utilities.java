@@ -16,7 +16,11 @@
 package scotty.database.parser;
 
 import scotty.database.Context;
+import scotty.database.Database;
+import scotty.database.Instance;
+import scotty.database.Type;
 
+import java.io.PrintStream;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,94 +29,111 @@ import java.util.List;
  *
  */
 public final class Utilities {
-	private Utilities() {
-	}
+    private Utilities() {
+    }
 
-	/**
-	 * Checks if A is a superset of B. A must have all the attributes, with equal values of B.
-	 */
-	public static boolean superset(Context a, Context b) {
-		if (b == null) {
-			return true;
-		}
+    /**
+     * Checks if A is a superset of B. A must have all the attributes, with equal values of B.
+     */
+    public static boolean superset(Context a, Context b) {
+        if (b == null) {
+            return true;
+        }
 
-		for (String key : b.keySet()) {
-			String value = a.get(key);
-			if (!b.get(key).equals(value)) {
-				return false;
-			}
-		}
+        for (String key : b.keySet()) {
+            String value = a.get(key);
+            if (!b.get(key).equals(value)) {
+                return false;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * The similarity score is the count of all matching attributes between two contexts. If any attribute name is shared where
-	 * the values differ the similarity is -1;
-	 */
-	public static int similarity(Context a, Context b) {
-		int score = 0;
-		if (a == null || b == null) {
-			return score;
-		}
+    /**
+     * The similarity score is the count of all matching attributes between two contexts. If any attribute name is shared where
+     * the values differ the similarity is -1;
+     */
+    public static int similarity(Context a, Context b) {
+        int score = 0;
+        if (a == null || b == null) {
+            return score;
+        }
 
-		for (String key : b.keySet()) {
-			if (!a.containsKey(key)) {
-				continue;
-			}
+        for (String key : b.keySet()) {
+            if (!a.containsKey(key)) {
+                continue;
+            }
 
-			if (!a.get(key).equals(b.get(key))) {
-				return -1;
-			}
-			score++;
-		}
-		return score;
-	}
+            if (!a.get(key).equals(b.get(key))) {
+                return -1;
+            }
+            score++;
+        }
+        return score;
+    }
 
-	public static String find(Context context, String name) {
-		String[] parts = name.split("\\.");
+    public static String find(Context context, String name) {
+        String[] parts = name.split("\\.");
 
 
-		for (int i = 0; i < parts.length; i++) {
-			String part = parts[i];
+        for (int i = 0; i < parts.length; i++) {
+            String part = parts[i];
 
-			if ((i == parts.length - 1) || !context.isContainer()) {
-				return context.get(part);
-			}
+            if ((i == parts.length - 1) || !context.isContainer()) {
+                return context.get(part);
+            }
 
-			context = context.getContained().get(part);
-			if (context == null) {
-				return null;
-			}
-		}
-		return null;
-	}
+            context = context.getContained().get(part);
+            if (context == null) {
+                return null;
+            }
+        }
+        return null;
+    }
 
-	public static List<Context> query(Context context, Context criteria) {
-		List<Context> contexts = new LinkedList<>();
-		List<Ranked<Context>> results = rankedQuery(context, criteria);
-		for (Ranked<Context> ranked : results) {
-			contexts.add(ranked.getData());
-		}
-		return contexts;
-	}
+    public static List<Context> query(Context context, Context criteria) {
+        List<Context> contexts = new LinkedList<>();
+        List<Ranked<Context>> results = rankedQuery(context, criteria);
+        for (Ranked<Context> ranked : results) {
+            contexts.add(ranked.getData());
+        }
+        return contexts;
+    }
 
-	public static List<Ranked<Context>> rankedQuery(Context context, Context criteria) {
-		List<Ranked<Context>> results = new LinkedList<>();
+    public static List<Ranked<Context>> rankedQuery(Context context, Context criteria) {
+        List<Ranked<Context>> results = new LinkedList<>();
 
-		if (context.isContainer()) {
-			for (Context child : context.getContained().values()) {
-				results.addAll(rankedQuery(child, criteria));
-			}
-		} else {
-			int rank = similarity(context, criteria);
-			if (rank > 0) {
-				results.add(new Ranked<>(rank, context.getAge(), context));
-			}
-		}
+        if (context.isContainer()) {
+            for (Context child : context.getContained().values()) {
+                results.addAll(rankedQuery(child, criteria));
+            }
+        } else {
+            int rank = similarity(context, criteria);
+            if (rank > 0) {
+                results.add(new Ranked<>(rank, context.getAge(), context));
+            }
+        }
 
-		Collections.sort(results);
-		return results;
-	}
+        Collections.sort(results);
+        return results;
+    }
 
+    public static void print(Database database, PrintStream printStream) {
+        List<Context> types = new LinkedList<>(database.getContained().values());
+        Collections.sort(types);
+        for (Context type : types) {
+            printStream.format("Type: %s\n", ((Type) type).getName());
+            List<Context> instances = new LinkedList<>(type.getContained().values());
+            Collections.sort(instances);
+            for (Context instance : instances) {
+                printStream.format("\tInstance: %s\n", ((Instance) instance).getName());
+                List<String> attrNames = new LinkedList<>(instance.keySet());
+                Collections.sort(attrNames);
+                for (String key : attrNames) {
+                    printStream.format("\t\t%20s: %s\n", key, instance.get(key));
+                }
+            }
+        }
+    }
 }
