@@ -1,10 +1,10 @@
-{#t host #}########## Application instances by Environment.Host
+{#t host,environment #}########## Application instances by Environment.Host
 {#
  Type host = database.getContained().get("host");
 
- Set envSet = new HashSet();
+ Set envSet = new TreeSet();
  for (Instance i : host.getContained().values()) {
-     envSet.add(i.get("env"));
+   envSet.add(i.get("env"));
  }
 
  output.print("environments=");
@@ -22,14 +22,16 @@
 
  for (String env : envSet)
  {
-    Context c = new Context(null, "env=" + env);
+    Context c = new Context(null, "type=host,env=" + env);
     List matches = database.query(c);
     for (Instance i : matches) {
        String prefix = i.get("env") + "." + i.get("instance") + ".";
        output.println(prefix + "name=" + i.get("serverName"));
        output.println(prefix + "host=" + i.get("serverHost"));
-       output.println(prefix + "domain=" + i.get("domain"));
-       output.println(prefix + "apps=" + i.get("apps"));
+       output.println(prefix + "domain=" + database.getContained().get("environment").getContained().get(env).get("domain"));
+       if (i.get("apps") != null) {
+            output.println(prefix + "apps=" + i.get("apps"));
+       }
        output.print('\n');
     }
  }
