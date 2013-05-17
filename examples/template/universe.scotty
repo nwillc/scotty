@@ -1,17 +1,60 @@
 {#t host,environment,application #}
 
-########## Application instances by Environment.Host
+################### Application Classes #########################
 {#
- Type host = database.getContained().get("host");
-
- Set envSet = new TreeSet();
- for (Instance i : host.getContained().values()) {
-   envSet.add(i.get("env"));
+ Type type = database.getContained().get("application");
+ Set set = new TreeSet();
+  for (Instance i : type.getContained().values()) {
+     if (i.containsKey("app")) {
+          set.add(i.get("app"));
+     }
  }
 
+ output.print("applications=");
+ boolean first = true;
+ for (String value : set) {
+    if (first) {
+        first = false;
+    } else {
+        output.print(',');
+    }
+    output.print(value);
+ }
+
+ output.print("\n\n");
+
+ String[] display = new String[]{"name","port","artifactName","repoPath","mainUrl","serviceUrl","jmxPort","protocol","statusUrl"};
+
+ for (String key : set)
+ {
+    Context c = new Context(null, "type=application,app=" + key);
+    List matches = database.query(c);
+
+    Instance i = matches.get(0);
+    String value = i.get("app");
+    if (value != null) {
+       String prefix = value + ".";
+       for (String attr : display) {
+           if (i.containsKey(attr)) {
+              output.format("%s%s=%s\n", new Object[]{prefix, attr, i.get(attr)});
+           }
+       }
+       output.print('\n');
+    }
+ }
+
+#}
+
+########## Application instances by Environment.Host
+{#
+ Type type = database.getContained().get("host");
+ Set set = new TreeSet();
+ for (Instance i : type.getContained().values()) {
+   set.add(i.get("env"));
+ }
  output.print("environments=");
  boolean first = true;
- for (String env : envSet) {
+ for (String env : set) {
     if (first) {
         first = false;
     } else {
@@ -22,15 +65,15 @@
 
  output.print("\n\n");
 
- for (String env : envSet)
+ for (String key : set)
  {
-    Context c = new Context(null, "type=host,env=" + env);
+    Context c = new Context(null, "type=host,env=" + key);
     List matches = database.query(c);
     for (Instance i : matches) {
        String prefix = i.get("env") + "." + i.get("instance") + ".";
        output.println(prefix + "name=" + i.get("serverName"));
        output.println(prefix + "host=" + i.get("serverHost"));
-       output.println(prefix + "domain=" + database.getContained().get("environment").getContained().get(env).get("domain"));
+       output.println(prefix + "domain=" + database.getContained().get("environment").getContained().get(key).get("domain"));
        if (i.get("apps") != null) {
             output.println(prefix + "apps=" + i.get("apps"));
        }

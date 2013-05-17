@@ -5,79 +5,205 @@
     <attribute name="protocol" value="http"/>
 
     <context>
+        <!-- deployed in tomcat -->
         <attribute name="port" value="8080"/>
         <attribute name="jmxPort" value="8686"/>
 
         <instance name="cs">
-
+            <attribute name="app" value="cs"/>
+            <attribute name="name" value="Core Services"/>
+            <attribute name="artifactName" value="rhino-1.0-SNAPSHOT.war"/>
+            <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/trunk"/>
+            <attribute name="mainUrl" value="rhino-1.0-SNAPSHOT"/>
+            <attribute name="serviceUrl" value="rpc.do"/>
         </instance>
-
         <instance name="ran">
-
+            <attribute name="app" value="ran"/>
+            <attribute name="name" value="Ran"/>
+            <attribute name="artifactName" value="ran.war"/>
+            <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/peripheral/Dispatcher/Ran"/>
+            <attribute name="mainUrl" value="ran"/>
         </instance>
         <instance name="aegir">
-
+            <attribute name="app" value="aegir"/>
+            <attribute name="name" value="Aegir"/>
+            <attribute name="artifactName" value="aegir.war"/>
+            <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/peripheral/Aegir"/>
+            <attribute name="mainUrl" value="aegir"/>
         </instance>
     </context>
 
-    <!-- Serts -->
-    <instance name="serts">
-        <attribute name="port" value="8700"/>
-    </instance>
+    <context>
+        <!-- Older Spring MVC -->
+        <attribute name="statusUrl" value="health.do"/>
+        <instance name="sync">
+            <attribute name="app" value="sync"/>
+            <attribute name="name" value="SeleritySync"/>
+            <attribute name="artifactName" value="sync-jar-with-dependencies.war"/>
+            <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_sync/trunk/sync/Sync"/>
+            <attribute name="port" value="9010"/>
+            <attribute name="jmxPort" value="8610"/>
+        </instance>
 
-    <!-- Alerts -->
-    <instance name="alerts">
-        <attribute name="port" value="8087"/>
-        <attribute name="username" value="alerts"/>
-        <attribute name="password" value="alerts"/>
-        <attribute name="sertsHost" value="localhost"/>
-        <instance name="alerts-alpha">
-            <attribute name="env" value="alpha"/>
-            <attribute name="sertsHost" value="jc1txtrt01.seleritycorp.com"/>
+        <instance name="athena">
+            <attribute name="app" value="athena"/>
+            <attribute name="name" value="Athena"/>
+            <attribute name="artifactName" value="athena-jar-with-dependencies.war"/>
+            <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_sync/trunk/sync/Athena"/>
+            <attribute name="port" value="8081"/>
+            <attribute name="jmxPort" value="8687"/>
         </instance>
-        <instance name="alerts-qa">
-            <attribute name="env" value="qa"/>
-            <attribute name="sertsHost" value="10.220.1.203"/>
+
+        <instance name="triton">
+            <attribute name="app" value="triton"/>
+            <attribute name="name" value="Triton"/>
+            <attribute name="artifactName" value="triton-jar-with-dependencies.war"/>
+            <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_sync/trunk/sync/Triton"/>
+            <attribute name="port" value="8092"/>
+            <attribute name="jmxPort" value="8688"/>
         </instance>
-        <instance name="alerts-prod">
-            <attribute name="env" value="prod"/>
-            <attribute name="sertsHost" value="ec2-23-21-247-239.compute-1.amazonaws.com"/>
-            <instance name="alerts-ec2vclsp01">
-                <attribute name="host" value="ec2vclsp01"/>
-                <attribute name="sertsHost" value="10.219.0.38"/>
+    </context>
+
+    <context>
+        <!-- NodeJS -->
+        <attribute name="statusUrl" value="version.txt"/>
+
+        <instance name="viewer">
+            <attribute name="app" value="viewer"/>
+            <attribute name="name" value="Viewer"/>
+            <attribute name="artifactName" value="viewer.tar.gz"/>
+            <attribute name="repoPath" value="git@selerity.unfuddle.com:selerity/viewer.git"/>
+            <attribute name="port" value="9020"/>
+        </instance>
+
+        <!-- Alerts -->
+        <instance name="alerts">
+            <attribute name="app" value="alerts"/>
+            <attribute name="port" value="8087"/>
+            <attribute name="username" value="alerts"/>
+            <attribute name="password" value="alerts"/>
+            <attribute name="sertsHost" value="localhost"/>
+            <instance name="alerts-alpha">
+                <attribute name="env" value="alpha"/>
+                <attribute name="sertsHost" value="jc1txtrt01.seleritycorp.com"/>
+            </instance>
+            <instance name="alerts-qa">
+                <attribute name="env" value="qa"/>
+                <attribute name="sertsHost" value="10.220.1.203"/>
+            </instance>
+            <instance name="alerts-prod">
+                <attribute name="env" value="prod"/>
+                <attribute name="sertsHost" value="ec2-23-21-247-239.compute-1.amazonaws.com"/>
+                <instance name="alerts-ec2vclsp01">
+                    <attribute name="host" value="ec2vclsp01"/>
+                    <attribute name="sertsHost" value="10.219.0.38"/>
+                </instance>
             </instance>
         </instance>
+        <instance name="app" value="embargo">
+            <attribute name="protocol" value="https"/>
+            <attribute name="app" value="embargo"/>
+            <attribute name="name" value="Embargo"/>
+            <attribute name="artifactName" value="embargo.tar.gz"/>
+            <attribute name="repoPath" value="git@selerity.unfuddle.com:selerity/embargo.git"/>
+            <attribute name="port" value="9030"/>
+        </instance>
+        <instance name="analytics">
+            <attribute name="app" value="analytics"/>
+            <attribute name="name" value="Selerity Analytics"/>
+            <attribute name="artifactName" value="analytics.tar.gz"/>
+            <attribute name="repoPath" value="git@selerity.unfuddle.com:selerity/analytics.git"/>
+            <attribute name="port" value="8082"/>
+        </instance>
+    </context>
+
+    <instance name="perseus">
+        <attribute name="app" value="perseus"/>
+        <attribute name="name" value="Perseus"/>
+        <attribute name="artifactName" value="perseus-jar-with-dependencies.war"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_sync/trunk/sync/Perseus"/>
+        <attribute name="port" value="8082"/>
+        <attribute name="jmxPort" value="8182"/>
+    </instance>
+
+    <instance name="entitlement">
+        <attribute name="app" value="entitlement"/>
+        <attribute name="name" value="Entitlement Service"/>
+        <attribute name="artifactName" value="entitlement-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/standalone/entitlement"/>
+        <attribute name="serviceUrl" value=""/>
+        <attribute name="port" value="8083"/>
+        <attribute name="jmxPort" value="8691"/>
+    </instance>
+
+    <!-- Serts -->
+    <instance name="serts">
+        <attribute name="app" value="serts"/>
+        <attribute name="name" value="Serts"/>
+        <attribute name="port" value="8700"/>
+        <attribute name="artifactName" value="serts-jar-with-dependencies.jar"/>
+        <attribute name="jmxPort" value="8710"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/standalone/Serts"/>
+        <attribute name="jmsTopic" value="serts"/>
     </instance>
 
     <!-- Argo Pub/Sub -->
     <instance name="argo">
-        <attribute name="app" value="argo"/>
         <attribute name="publishTopic" value="OBS"/>
         <attribute name="username" value="gaucho"/>
         <attribute name="password" value="gaucho"/>
         <attribute name="syncUrls" value="http://jc1tclst01:8083/rpc.do;http://jc1tclst01:8086/rpc.do;http://jc1tclst01:8080/rhino-1.0-SNAPSHOT/rpc.do"/>
         <attribute name="remoteLogging" value="true"/>
 
-
         <instance name="JC1T-T01">
             <attribute name="env" value="local"/>
+            <instance name="PPUB-JC1T-T01">
+                <attribute name="app" value="argopub"/>
+            </instance>
+            <instance name="PSUB-JC1T-T01">
+                <attribute name="app" value="argosub"/>
+            </instance>
         </instance>
 
         <instance name="JC1T-T02">
             <attribute name="env" value="alpha"/>
+            <instance name="PPUB-JC1T-T02">
+                <attribute name="app" value="argopub"/>
+            </instance>
+            <instance name="PSUB-JC1T-T02">
+                <attribute name="app" value="argosub"/>
+            </instance>
         </instance>
 
         <instance name="JC1T-Q01">
             <attribute name="env" value="qa"/>
+            <instance name="PPUB-JC1T-Q01">
+                <attribute name="app" value="argopub"/>
+            </instance>
+            <instance name="PSUB-JC1T-Q01">
+                <attribute name="app" value="argosub"/>
+            </instance>
         </instance>
 
         <context>
             <attribute name="env" value="int"/>
             <instance name="NY2I-I01">
                 <attribute name="host" value="ny2ihtri01"/>
+                <instance name="PPUB-NY2I-I01">
+                    <attribute name="app" value="argopub"/>
+                </instance>
+                <instance name="PSUB-NY2I-I01">
+                    <attribute name="app" value="argosub"/>
+                </instance>
             </instance>
             <instance name="CH1I-I01">
                 <attribute name="host" value="ch1ihtri01"/>
+                <instance name="PPUB-CH1I-I01">
+                    <attribute name="app" value="argopub"/>
+                </instance>
+                <instance name="PSUB-CH1I-I01">
+                    <attribute name="app" value="argosub"/>
+                </instance>
             </instance>
         </context>
 
@@ -85,18 +211,48 @@
             <attribute name="env" value="prod"/>
             <instance name="NY2A-P01">
                 <attribute name="host" value="ny2aclsp01"/>
+                <instance name="PPUB-NY2A-P01">
+                    <attribute name="app" value="argopub"/>
+                </instance>
+                <instance name="PSUB-NY2A-P01">
+                    <attribute name="app" value="argosub"/>
+                </instance>
             </instance>
             <instance name="NY2B-P01">
                 <attribute name="host" value="ny2bclsp01"/>
+                <instance name="PPUB-NY2B-P01">
+                    <attribute name="app" value="argopub"/>
+                </instance>
+                <instance name="PSUB-NY2B-P01">
+                    <attribute name="app" value="argosub"/>
+                </instance>
             </instance>
             <instance name="CH1A-P01">
                 <attribute name="host" value="ch1aclsp01"/>
+                <instance name="PPUB-CH1A-P01">
+                    <attribute name="app" value="argopub"/>
+                </instance>
+                <instance name="PSUB-CH1A-P01">
+                    <attribute name="app" value="argosub"/>
+                </instance>
             </instance>
             <instance name="CH1B-P01">
                 <attribute name="host" value="ch1bclsp01"/>
+                <instance name="PPUB-CH1B-P01">
+                    <attribute name="app" value="argopub"/>
+                </instance>
+                <instance name="PSUB-CH1B-P01">
+                    <attribute name="app" value="argosub"/>
+                </instance>
             </instance>
             <instance name="FR2A-P01">
                 <attribute name="host" value="fr2ainfp01"/>
+                <instance name="PPUB-FR2A-P01">
+                    <attribute name="app" value="argopub"/>
+                </instance>
+                <instance name="PSUB-FR2A-P01">
+                    <attribute name="app" value="argosub"/>
+                </instance>
             </instance>
         </context>
     </instance>
@@ -113,5 +269,13 @@
         <instance name="bulkdata-prod">
             <attribute name="env" value="prod"/>
         </instance>
+    </instance>
+
+    <instance name="embargo-service">
+        <attribute name="app" value="embargo-service"/>
+        <attribute name="name" value="Embargo Service"/>
+        <attribute name="port" value="49889"/>
+        <attribute name="protocol" value="https"/>
+        <attribute name="statusUrl" value=""/>
     </instance>
 </type>
