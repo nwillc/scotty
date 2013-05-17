@@ -29,7 +29,7 @@ case "$TEMPLATE" in
           java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d database/application.xml,database/environment.xml,database/datasource.xml -t template/bulkdata.scotty
           ;;
         universe)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d database/host.xml,database/environment.xml -t template/universe.scotty
+          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d database/application.xml,database/host.xml,database/environment.xml -t template/universe.scotty
           ;;
 esac
 

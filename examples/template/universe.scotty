@@ -1,4 +1,6 @@
-{#t host,environment #}########## Application instances by Environment.Host
+{#t host,environment,application #}
+
+########## Application instances by Environment.Host
 {#
  Type host = database.getContained().get("host");
 
