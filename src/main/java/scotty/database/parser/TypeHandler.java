@@ -21,6 +21,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import scotty.database.Context;
 import scotty.database.Instance;
 import scotty.database.Type;
+import scotty.database.Value;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -40,57 +41,74 @@ import static scotty.database.parser.Elements.*;
  * Sax parser handler for SCoTTY database documents.
  */
 public class TypeHandler extends DefaultHandler {
-    private final static Logger LOGGER = Logger.getLogger(TypeHandler.class.getName());
-    private final static SAXParserFactory FACTORY = SAXParserFactory.newInstance();
-    private final Deque<Context> contexts = new ArrayDeque<>();
-    private Type type;
+	private final static Logger LOGGER = Logger.getLogger(TypeHandler.class.getName());
+	private final static SAXParserFactory FACTORY = SAXParserFactory.newInstance();
+	private final Deque<Context> contexts = new ArrayDeque<>();
+	private Type type;
+	private Value value;
+	private StringBuilder stringBuilder = null;
 
-    public static Type parse(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {
-        SAXParser saxParser = FACTORY.newSAXParser();
-        TypeHandler typeHandler = new TypeHandler();
-        saxParser.parse(inputStream, typeHandler);
-        return typeHandler.type;
-    }
+	public static Type parse(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {
+		SAXParser saxParser = FACTORY.newSAXParser();
+		TypeHandler typeHandler = new TypeHandler();
+		saxParser.parse(inputStream, typeHandler);
+		return typeHandler.type;
+	}
 
-    public static Type parse(String file) throws IOException, ParserConfigurationException, SAXException {
-        try (InputStream inputStream = new FileInputStream(file)) {
-            return parse(inputStream);
-        }
-    }
+	public static Type parse(String file) throws IOException, ParserConfigurationException, SAXException {
+		try (InputStream inputStream = new FileInputStream(file)) {
+			return parse(inputStream);
+		}
+	}
 
-    @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        switch (qName) {
-            case CONTEXT:
-                Context context = new Context(contexts.peek());
-                contexts.push(context);
-                break;
-            case INSTANCE:
-                Instance instance = new Instance(contexts.peek(), attributes.getValue(NAME));
-                type.getContained().put(instance.getName(), instance);
-                contexts.push(instance);
-                break;
-            case ATTRIBUTE:
-                contexts.peek().put(attributes.getValue(NAME), attributes.getValue(VALUE));
-                break;
-            case TYPE:
-                type = new Type(attributes.getValue(NAME));
-                contexts.push(type);
-                break;
-            default:
-                LOGGER.info("Unknown Start element: " + qName);
-        }
-    }
+	@Override
+	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+		switch (qName) {
+			case CONTEXT:
+				Context context = new Context(contexts.peek());
+				contexts.push(context);
+				break;
+			case INSTANCE:
+				Instance instance = new Instance(contexts.peek(), attributes.getValue(NAME));
+				type.getContained().put(instance.getName(), instance);
+				contexts.push(instance);
+				break;
+			case ATTRIBUTE:
+				value = new Value(attributes.getValue(VALUE));
+				contexts.peek().put(attributes.getValue(NAME), value);
+				break;
+			case TYPE:
+				type = new Type(attributes.getValue(NAME));
+				contexts.push(type);
+				break;
+			case VALUE:
+				stringBuilder = new StringBuilder();
+				break;
+			default:
+				LOGGER.info("Unknown Start element: " + qName);
+		}
+	}
 
-    @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
-        switch (qName) {
-            case CONTEXT:
-                contexts.pop();
-                break;
-            case INSTANCE:
-                contexts.pop();
-                break;
-        }
-    }
+	@Override
+	public void characters(char[] ch, int start, int length) throws SAXException {
+		if (stringBuilder != null) {
+			stringBuilder.append(ch, start, length);
+		}
+	}
+
+	@Override
+	public void endElement(String uri, String localName, String qName) throws SAXException {
+		switch (qName) {
+			case CONTEXT:
+				contexts.pop();
+				break;
+			case INSTANCE:
+				contexts.pop();
+				break;
+			case VALUE:
+				value.add(stringBuilder.toString());
+				stringBuilder = null;
+				break;
+		}
+	}
 }
