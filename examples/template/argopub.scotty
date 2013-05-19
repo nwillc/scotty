@@ -5,7 +5,7 @@ argopub.environment={#? description type=environment #}
 argopub.user.name={#? username #}
 argopub.user.password={#? password #}
 argopub.domain={#? domain type=environment #}
-argopub.instance.id={#? instance #}
+argopub.instance.id=PPUB-{#? instance #}
 argopub.sync.urls={#? syncUrls #}
 argopub.proxying=true
 argopub.remoteLogging.activate={#? remoteLogging #}

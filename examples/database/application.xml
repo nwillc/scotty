@@ -1,3 +1,18 @@
+<!--
+  ~ Copyright (c) 2013, nwillc@gmail.com
+  ~
+  ~ Permission to use, copy, modify, and/or distribute this software for any purpose with or
+  ~ without fee is hereby granted, provided that the above copyright notice and this permission
+  ~ notice appear in all copies.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO
+  ~ THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT
+  ~ SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR
+  ~ ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
+  ~ CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
+  ~ OR PERFORMANCE OF THIS SOFTWARE.
+  -->
+
 <type name="application">
     <attribute name="username" value="testsystem1"/>
     <attribute name="password" value="testsystem1"/>
@@ -117,6 +132,8 @@
         </instance>
     </context>
 
+
+    <!-- Medusa or command line apps -->
     <instance name="perseus">
         <attribute name="app" value="perseus"/>
         <attribute name="name" value="Perseus"/>
@@ -149,61 +166,53 @@
 
     <!-- Argo Pub/Sub -->
     <instance name="argo">
+        <attribute name="app">
+            <value>argosub</value>
+            <value>argopub</value>
+        </attribute>
         <attribute name="publishTopic" value="OBS"/>
         <attribute name="username" value="gaucho"/>
         <attribute name="password" value="gaucho"/>
-        <attribute name="syncUrls" value="http://jc1tclst01:8083/rpc.do;http://jc1tclst01:8086/rpc.do;http://jc1tclst01:8080/rhino-1.0-SNAPSHOT/rpc.do"/>
+        <attribute name="syncUrls"
+                   value="http://jc1tclst01:8083/rpc.do;http://jc1tclst01:8086/rpc.do;http://jc1tclst01:8080/rhino-1.0-SNAPSHOT/rpc.do"/>
         <attribute name="remoteLogging" value="true"/>
+        <attribute name="artifactName" value="JsonProxy-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_selerity/trunk/JsonProxy"/>
+        <attribute name="serviceUrl" value=""/>
+
+        <instance name="argopub">
+            <attribute name="app" value="argopub"/>
+            <attribute name="name" value="Argo Publisher"/>
+            <attribute name="port" value="48640"/>
+            <attribute name="jmxPort" value="48740"/>
+        </instance>
+
+        <instance name="argosub">
+            <attribute name="app" value="argosub"/>
+            <attribute name="name" value="Argo Subscriber"/>
+            <attribute name="port" value="48641"/>
+            <attribute name="jmxPort" value="48741"/>
+        </instance>
 
         <instance name="JC1T-T01">
             <attribute name="env" value="local"/>
-            <instance name="PPUB-JC1T-T01">
-                <attribute name="app" value="argopub"/>
-            </instance>
-            <instance name="PSUB-JC1T-T01">
-                <attribute name="app" value="argosub"/>
-            </instance>
         </instance>
 
         <instance name="JC1T-T02">
             <attribute name="env" value="alpha"/>
-            <instance name="PPUB-JC1T-T02">
-                <attribute name="app" value="argopub"/>
-            </instance>
-            <instance name="PSUB-JC1T-T02">
-                <attribute name="app" value="argosub"/>
-            </instance>
         </instance>
 
         <instance name="JC1T-Q01">
             <attribute name="env" value="qa"/>
-            <instance name="PPUB-JC1T-Q01">
-                <attribute name="app" value="argopub"/>
-            </instance>
-            <instance name="PSUB-JC1T-Q01">
-                <attribute name="app" value="argosub"/>
-            </instance>
         </instance>
 
         <context>
             <attribute name="env" value="int"/>
             <instance name="NY2I-I01">
                 <attribute name="host" value="ny2ihtri01"/>
-                <instance name="PPUB-NY2I-I01">
-                    <attribute name="app" value="argopub"/>
-                </instance>
-                <instance name="PSUB-NY2I-I01">
-                    <attribute name="app" value="argosub"/>
-                </instance>
             </instance>
             <instance name="CH1I-I01">
                 <attribute name="host" value="ch1ihtri01"/>
-                <instance name="PPUB-CH1I-I01">
-                    <attribute name="app" value="argopub"/>
-                </instance>
-                <instance name="PSUB-CH1I-I01">
-                    <attribute name="app" value="argosub"/>
-                </instance>
             </instance>
         </context>
 
@@ -211,48 +220,18 @@
             <attribute name="env" value="prod"/>
             <instance name="NY2A-P01">
                 <attribute name="host" value="ny2aclsp01"/>
-                <instance name="PPUB-NY2A-P01">
-                    <attribute name="app" value="argopub"/>
-                </instance>
-                <instance name="PSUB-NY2A-P01">
-                    <attribute name="app" value="argosub"/>
-                </instance>
             </instance>
             <instance name="NY2B-P01">
                 <attribute name="host" value="ny2bclsp01"/>
-                <instance name="PPUB-NY2B-P01">
-                    <attribute name="app" value="argopub"/>
-                </instance>
-                <instance name="PSUB-NY2B-P01">
-                    <attribute name="app" value="argosub"/>
-                </instance>
             </instance>
             <instance name="CH1A-P01">
                 <attribute name="host" value="ch1aclsp01"/>
-                <instance name="PPUB-CH1A-P01">
-                    <attribute name="app" value="argopub"/>
-                </instance>
-                <instance name="PSUB-CH1A-P01">
-                    <attribute name="app" value="argosub"/>
-                </instance>
             </instance>
             <instance name="CH1B-P01">
                 <attribute name="host" value="ch1bclsp01"/>
-                <instance name="PPUB-CH1B-P01">
-                    <attribute name="app" value="argopub"/>
-                </instance>
-                <instance name="PSUB-CH1B-P01">
-                    <attribute name="app" value="argosub"/>
-                </instance>
             </instance>
             <instance name="FR2A-P01">
                 <attribute name="host" value="fr2ainfp01"/>
-                <instance name="PPUB-FR2A-P01">
-                    <attribute name="app" value="argopub"/>
-                </instance>
-                <instance name="PSUB-FR2A-P01">
-                    <attribute name="app" value="argosub"/>
-                </instance>
             </instance>
         </context>
     </instance>

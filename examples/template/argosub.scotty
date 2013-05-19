@@ -5,7 +5,7 @@ argosub.environment={#? description type=environment #}
 argosub.user.name={#? username #}
 argosub.user.password={#? password #}
 argosub.domain={#? domain type=environment #}
-argosub.instance.id={#? instance #}
+argosub.instance.id=PSUB-{#? instance #}
 argosub.sync.urls={#? syncUrls #}
 argosub.proxying=true
 argosub.remoteLogging.activate={#? remoteLogging #}

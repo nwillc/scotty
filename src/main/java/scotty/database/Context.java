@@ -15,6 +15,8 @@
 
 package scotty.database;
 
+import scotty.database.parser.Similarity;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -23,7 +25,7 @@ import java.util.Set;
 /**
  * A Context is a set of attributes, that, can also inherit attributes from its parent.
  */
-public class Context implements Comparable<Context> {
+public class Context implements Comparable<Context>, Similarity<Context> {
 	private static int next = 0;
 	private final Map<String, Value> map = new HashMap<>();
 	private final Context container;
@@ -171,6 +173,28 @@ public class Context implements Comparable<Context> {
 	@Override
 	public int compareTo(Context o) {
 		return age - o.age;
+	}
+
+	@Override
+	public float similarity(Context b) {
+		float score = NOT_SIMILAR;
+
+		if (b == null) {
+			return score;
+		}
+
+		for (String key : b.keySet()) {
+			if (!containsKey(key)) {
+				continue;
+			}
+
+			float vScore = getValue(key).similarity(b.getValue(key));
+			if (vScore == NOT_SIMILAR) {
+				return NOT_SIMILAR;
+			}
+			score += vScore;
+		}
+		return score;
 	}
 
 	private synchronized static int nextAge() {

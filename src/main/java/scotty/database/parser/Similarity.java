@@ -16,34 +16,14 @@
 package scotty.database.parser;
 
 /**
- * Pair a score with some data item. Scores natural sort order is high to low.
+ * Relative similarity of this to another ranging from NOT_SIMILAR to SIMILAR (0.0 .. 1.0). If there is a
+ * strong similarity then it is SIMILAR. As the similarity is less the value is reduced. DOWN_GRADE is a
+ * suitable amount to express a notable difference.
  */
-public final class Ranked<T> implements Comparable<Ranked> {
-	private final Float score;
-	private final Integer age;
-	private final T data;
+public interface Similarity<T> {
+	float SIMILAR = 1.0F;
+	float NOT_SIMILAR = 0.0F;
+	float DOWN_GRADE = -0.25F;
 
-	public Ranked(Float score, Integer age, T data) {
-		if (score == null || age == null) {
-			throw new IllegalArgumentException("Scores and ages must have a non-null to rank objects.");
-		}
-		this.score = score;
-		this.age = age;
-		this.data = data;
-	}
-
-	public T getData() {
-		return data;
-	}
-
-	public Float getScore() {
-		return score;
-	}
-
-	@Override
-	public int compareTo(Ranked o) {
-		int scoreCompare = o.score.compareTo(score);
-
-		return scoreCompare != 0 ? scoreCompare : age.compareTo(o.age);
-	}
+	float similarity(T b);
 }

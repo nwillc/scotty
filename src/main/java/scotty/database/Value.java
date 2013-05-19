@@ -15,13 +15,15 @@
 
 package scotty.database;
 
+import scotty.database.parser.Similarity;
+
 import java.util.Collection;
 import java.util.LinkedList;
 
 /**
  *
  */
-public class Value {
+public class Value implements Similarity<Value> {
 	private final Collection<String> contents = new LinkedList<>();
 
 	public Value() {
@@ -58,6 +60,10 @@ public class Value {
 		return contents;
 	}
 
+	public boolean isMultiValue() {
+		return contents.size() > 1;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -71,5 +77,30 @@ public class Value {
 			stringBuilder.append(value);
 		}
 		return stringBuilder.toString();
+	}
+
+	@Override
+	public float similarity(Value b) {
+		if (b == null) {
+			return NOT_SIMILAR;
+		}
+
+		float score = SIMILAR;
+
+		if (isMultiValue()) {
+			score += DOWN_GRADE;
+		}
+
+		if (b.isMultiValue()) {
+			score += DOWN_GRADE;
+		}
+
+		for (String element : b.values()) {
+			if (match(element)) {
+				return score;
+			}
+		}
+
+		return NOT_SIMILAR;
 	}
 }

@@ -6,7 +6,10 @@
  Set set = new TreeSet();
   for (Instance i : type.getContained().values()) {
      if (i.containsKey("app")) {
-          set.add(i.get("app"));
+          Value value = i.getValue("app");
+          for (String aValue : value.values()) {
+             set.add(aValue);
+          }
      }
  }
 
@@ -31,16 +34,15 @@
     List matches = database.query(c);
 
     Instance i = matches.get(0);
-    String value = i.get("app");
-    if (value != null) {
-       String prefix = value + ".";
+
+       String prefix = key + ".";
        for (String attr : display) {
            if (i.containsKey(attr)) {
               output.format("%s%s=%s\n", new Object[]{prefix, attr, i.get(attr)});
            }
        }
        output.print('\n');
-    }
+
  }
 
 #}

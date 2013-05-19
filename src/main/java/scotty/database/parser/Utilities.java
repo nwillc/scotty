@@ -32,29 +32,6 @@ public final class Utilities {
 	private Utilities() {
 	}
 
-	/**
-	 * The similarity score is the count of all matching attributes between two contexts. If any attribute name is shared where
-	 * the values differ the similarity is -1;
-	 */
-	public static int similarity(Context a, Context b) {
-		int score = 0;
-		if (a == null || b == null) {
-			return score;
-		}
-
-		for (String key : b.keySet()) {
-			if (!a.containsKey(key)) {
-				continue;
-			}
-
-			if (!a.getValue(key).match(b.getValue(key))) {
-				return -1;
-			}
-			score++;
-		}
-		return score;
-	}
-
 	public static String find(Context context, String name) {
 		String[] parts = name.split("\\.");
 
@@ -91,8 +68,8 @@ public final class Utilities {
 				results.addAll(rankedQuery(child, criteria));
 			}
 		} else {
-			int rank = similarity(context, criteria);
-			if (rank > 0) {
+			float rank = context.similarity(criteria);
+			if (rank > Similarity.NOT_SIMILAR) {
 				results.add(new Ranked<>(rank, context.getAge(), context));
 			}
 		}
