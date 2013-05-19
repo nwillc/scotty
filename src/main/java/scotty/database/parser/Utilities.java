@@ -26,7 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
+ * Utility methods used by the database portions of scotty.
  */
 public final class Utilities {
 	private Utilities() {

@@ -16,7 +16,7 @@
 package scotty.database.parser;
 
 /**
- * Pair a score with some data item. Scores natural sort order is high to low.
+ * Pair a score with some data item. Scores natural sort order is high to low, then age low to high.
  */
 public final class Ranked<T> implements Comparable<Ranked> {
 	private final Float score;

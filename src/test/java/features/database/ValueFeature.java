@@ -47,7 +47,7 @@ public class ValueFeature {
 
 	@When("^they are matched$")
 	public void they_are_matched() throws Throwable {
-		match = value.match(string);
+		match = value.values().contains(string);
 	}
 
 	@Then("^if should return \"([^\"]*)\"$")

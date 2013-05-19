@@ -38,7 +38,7 @@ import static scotty.database.parser.Attributes.VALUE;
 import static scotty.database.parser.Elements.*;
 
 /**
- * Sax parser handler for SCoTTY database documents.
+ * Sax parser for SCoTTY database documents.
  */
 public class Parser extends DefaultHandler {
 	private final static Logger LOGGER = Logger.getLogger(Parser.class.getName());

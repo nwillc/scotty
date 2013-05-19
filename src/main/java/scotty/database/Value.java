@@ -21,7 +21,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 /**
- *
+ * The values of a scotty attribute. A value contains 1 to n strings. The value is
+ * considered a "Multi Value" if it contains more than a single string.
  */
 public class Value implements Similarity<Value> {
 	private final Collection<String> contents = new LinkedList<>();
@@ -41,10 +42,6 @@ public class Value implements Similarity<Value> {
 		if (value != null) {
 			contents.add(value);
 		}
-	}
-
-	public boolean match(String value) {
-		return contents.contains(value);
 	}
 
 	public Collection<String> values() {
@@ -87,7 +84,7 @@ public class Value implements Similarity<Value> {
 		}
 
 		for (String element : b.values()) {
-			if (match(element)) {
+			if (values().contains(element)) {
 				return score;
 			}
 		}
