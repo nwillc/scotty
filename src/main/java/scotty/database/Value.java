@@ -47,15 +47,6 @@ public class Value implements Similarity<Value> {
 		return contents.contains(value);
 	}
 
-	public boolean match(Value value) {
-		for (String element : value.values()) {
-			if (match(element)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public Collection<String> values() {
 		return contents;
 	}
