@@ -40,8 +40,8 @@ import static scotty.database.parser.Elements.*;
 /**
  * Sax parser handler for SCoTTY database documents.
  */
-public class TypeHandler extends DefaultHandler {
-	private final static Logger LOGGER = Logger.getLogger(TypeHandler.class.getName());
+public class Parser extends DefaultHandler {
+	private final static Logger LOGGER = Logger.getLogger(Parser.class.getName());
 	private final static SAXParserFactory FACTORY = SAXParserFactory.newInstance();
 	private final Deque<Context> contexts = new ArrayDeque<>();
 	private Type type;
@@ -50,7 +50,7 @@ public class TypeHandler extends DefaultHandler {
 
 	public static Type parse(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {
 		SAXParser saxParser = FACTORY.newSAXParser();
-		TypeHandler typeHandler = new TypeHandler();
+		Parser typeHandler = new Parser();
 		saxParser.parse(inputStream, typeHandler);
 		return typeHandler.type;
 	}
