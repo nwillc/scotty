@@ -24,6 +24,7 @@
         <attribute name="port" value="8080"/>
         <attribute name="jmxPort" value="8686"/>
 
+        <!-- Core Services -->
         <instance name="cs">
             <attribute name="app" value="cs"/>
             <attribute name="name" value="Core Services"/>
@@ -32,6 +33,7 @@
             <attribute name="mainUrl" value="rhino-1.0-SNAPSHOT"/>
             <attribute name="serviceUrl" value="rpc.do"/>
         </instance>
+        <!-- Ran -->
         <instance name="ran">
             <attribute name="app" value="ran"/>
             <attribute name="name" value="Ran"/>
@@ -39,6 +41,7 @@
             <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/peripheral/Dispatcher/Ran"/>
             <attribute name="mainUrl" value="ran"/>
         </instance>
+        <!-- Aegir -->
         <instance name="aegir">
             <attribute name="app" value="aegir"/>
             <attribute name="name" value="Aegir"/>
@@ -51,6 +54,8 @@
     <context>
         <!-- Older Spring MVC -->
         <attribute name="statusUrl" value="health.do"/>
+
+        <!-- Sync -->
         <instance name="sync">
             <attribute name="app" value="sync"/>
             <attribute name="name" value="SeleritySync"/>
@@ -60,6 +65,7 @@
             <attribute name="jmxPort" value="8610"/>
         </instance>
 
+        <!-- Athena -->
         <instance name="athena">
             <attribute name="app" value="athena"/>
             <attribute name="name" value="Athena"/>
@@ -69,6 +75,7 @@
             <attribute name="jmxPort" value="8687"/>
         </instance>
 
+        <!-- Triton -->
         <instance name="triton">
             <attribute name="app" value="triton"/>
             <attribute name="name" value="Triton"/>
@@ -83,6 +90,7 @@
         <!-- NodeJS -->
         <attribute name="statusUrl" value="version.txt"/>
 
+        <!-- Viewer -->
         <instance name="viewer">
             <attribute name="app" value="viewer"/>
             <attribute name="name" value="Viewer"/>
@@ -115,6 +123,8 @@
                 </instance>
             </instance>
         </instance>
+
+        <!-- Embargo -->
         <instance name="app" value="embargo">
             <attribute name="protocol" value="https"/>
             <attribute name="app" value="embargo"/>
@@ -123,6 +133,8 @@
             <attribute name="repoPath" value="git@selerity.unfuddle.com:selerity/embargo.git"/>
             <attribute name="port" value="9030"/>
         </instance>
+
+        <!-- Analytics -->
         <instance name="analytics">
             <attribute name="app" value="analytics"/>
             <attribute name="name" value="Selerity Analytics"/>
@@ -134,6 +146,113 @@
 
 
     <!-- Medusa or command line apps -->
+
+    <!--  Indexer -->
+    <instance name="indexer">
+        <attribute name="app" value="indexer"/>
+        <attribute name="name" value="Indexer"/>
+        <attribute name="artifactName" value="indexer-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/POCs/Indexer"/>
+        <attribute name="mainUrl" value="solr/lookup"/>
+        <attribute name="port" value="8983"/>
+    </instance>
+
+    <!-- Email Handler  -->
+    <instance name="emailhandler">
+        <attribute name="app" value="emailhandler"/>
+        <attribute name="name" value="EmailHandler"/>
+        <attribute name="artifactName" value="EmailHandler-1.0-SNAPSHOT-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_twitanal"/>
+    </instance>
+
+    <!--  Obsgrad Importer -->
+    <instance name="obsgradimporter">
+        <attribute name="app" value="obsgradimporter"/>
+        <attribute name="name" value="Obs Grad Importer"/>
+        <attribute name="artifactName" value="importer-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_obsgrad/trunk/importer"/>
+    </instance>
+
+    <!-- Obsgrad UI  -->
+    <instance name="obsgradui">
+        <attribute name="app" value="obsgradui"/>
+        <attribute name="name" value="Obs Grad UI"/>
+        <attribute name="artifactName" value="obsgradui.tar.gz"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_obsgrad/trunk/ui"/>
+        <attribute name="port" value="8888"/>
+        <attribute name="rhinoHost" value="ny2aclsp01.seleritycorp.com"/>
+        <attribute name="entitlementHost" value="ny2aclsp01.seleritycorp.com"/>
+    </instance>
+
+    <!-- Datasift handler -->
+    <instance name="datasifthandler">
+        <attribute name="app" value="datasifthandler"/>
+        <attribute name="name" value="DatasiftHandler"/>
+        <attribute name="jmxPort" value="8712"/>
+        <attribute name="artifactName" value="DatasiftHandler-1.0-SNAPSHOT-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_twitanal"/>
+    </instance>
+
+    <!-- Tweet Handler -->
+    <instance name="tweethandler">
+        <attribute name="app" value="tweethandler"/>
+        <attribute name="name" value="TweetHandler"/>
+        <attribute name="jmxPort" value="8711"/>
+        <attribute name="artifactName" value="TweetHandler-1.0-SNAPSHOT-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_twitanal"/>
+    </instance>
+
+    <!--  Classifier Training Service -->
+    <instance name="classifiertraining">
+        <attribute name="app" value="classifiertraining"/>
+        <attribute name="name" value="Classifier Training Service"/>
+        <attribute name="artifactName" value="classifiertraining-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/standalone/ClassifierTraining"/>
+        <attribute name="port" value="8705"/>
+        <attribute name="jmxPort" value="8715"/>
+        <attribute name="serviceUrl" value=""/>
+    </instance>
+
+    <!-- Source Document Service -->
+    <instance name="sds">
+        <attribute name="app" value="sds"/>
+        <attribute name="name" value="Source Document Service"/>
+        <attribute name="artifactName" value="sds-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/standalone/SourceDocument"/>
+        <attribute name="port" value="8088"/>
+        <attribute name="jmxPort" value="8188"/>
+        <attribute name="serviceUrl" value=""/>
+    </instance>
+
+    <!-- S3 Archiver -->
+    <instance name="s3archiver">
+        <attribute name="app" value="s3archiver"/>
+        <attribute name="name" value="S3 Archiver"/>
+        <attribute name="artifactName" value="s3archiver-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/standalone/S3Archiver"/>
+        <attribute name="jmxPort" value="8187"/>
+    </instance>
+
+    <!-- New Classifier -->
+    <instance name="newsclassifier">
+        <attribute name="app" value="newsclassifier"/>
+        <attribute name="name" value="News Classifier"/>
+        <attribute name="artifactName" value="newsclassifier-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/POCs/SertsExperiments/NewsClassifier"/>
+        <attribute name="jmxPort" value="8185"/>
+    </instance>
+
+    <!-- LOG ANALYZER  -->
+    <instance name="analyzer">
+        <attribute name="app" value="analyzer"/>
+        <attribute name="name" value="Log Analyzer"/>
+        <attribute name="artifactName" value="analyzer-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/standalone/logging/analyzer"/>
+        <attribute name="port" value="8085"/>
+        <attribute name="jmxPort" value="8693"/>
+    </instance>
+
+    <!-- Perseus -->
     <instance name="perseus">
         <attribute name="app" value="perseus"/>
         <attribute name="name" value="Perseus"/>
@@ -143,6 +262,7 @@
         <attribute name="jmxPort" value="8182"/>
     </instance>
 
+    <!-- Entitlements -->
     <instance name="entitlement">
         <attribute name="app" value="entitlement"/>
         <attribute name="name" value="Entitlement Service"/>
@@ -236,20 +356,19 @@
         </context>
     </instance>
 
+    <!-- Bulk Data -->
     <instance name="bulkdata">
         <attribute name="app" value="bulkdata"/>
         <attribute name="remoteLogging" value="true"/>
-        <instance name="bulkdata-alpha">
-            <attribute name="env" value="alpha"/>
-        </instance>
-        <instance name="bulkdata-qa">
-            <attribute name="env" value="qa"/>
-        </instance>
-        <instance name="bulkdata-prod">
-            <attribute name="env" value="prod"/>
-        </instance>
+        <attribute name="name" value="Bulk Data Service"/>
+        <attribute name="artifactName" value="JsonProxy-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_selerity/trunk/JsonProxy"/>
+        <attribute name="serviceUrl" value=""/>
+        <attribute name="port" value="8086"/>
+        <attribute name="jmxPort" value="8186"/>
     </instance>
 
+    <!-- Embargo Service -->
     <instance name="embargo-service">
         <attribute name="app" value="embargo-service"/>
         <attribute name="name" value="Embargo Service"/>
