@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * A SCoTTy database, basically a context with a contained map of Types.
+ * A Scotty database, basically a context with a contained map of Types.
  */
 public class Database extends Context {
 

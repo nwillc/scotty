@@ -13,17 +13,8 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.template;
-
 /**
- * Scotty template tokens
+ * This package contains the parsing and internal code for the Scotty database.
+ * @since 1.0
  */
-public interface Tokens {
-	String OPEN = "{#";
-	String CLOSE = "#}";
-	char FIND = '=';
-	char QUERY = '?';
-	char TYPES = 't';
-	char IN_CONTEXT = 'c';
-}
-
+package scotty.database.parser;

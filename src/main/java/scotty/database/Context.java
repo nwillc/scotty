@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * A Context is a set of attributes, that, can also inherit attributes from its parent.
+ * A Context is a set of attributes, that can inherit attributes from its parent and contain sub-contexts within it.
  */
 public class Context implements Comparable<Context>, Similarity<Context> {
 	private static int next = 0;

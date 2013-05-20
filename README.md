@@ -1,4 +1,4 @@
-scotty
+Scotty
 ======
 
 Simple Configuration Transformation Tool

@@ -13,17 +13,8 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.template;
-
 /**
- * Scotty template tokens
+ * This package contains the template related code for Scotty.
+ * @since 1.0
  */
-public interface Tokens {
-	String OPEN = "{#";
-	String CLOSE = "#}";
-	char FIND = '=';
-	char QUERY = '?';
-	char TYPES = 't';
-	char IN_CONTEXT = 'c';
-}
-
+package scotty.template;

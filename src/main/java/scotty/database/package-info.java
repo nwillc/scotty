@@ -13,17 +13,9 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.template;
-
 /**
- * Scotty template tokens
+ * This package contains the data model database related code for Scotty. Additionally, the classes in this package
+ * are available to the BeanShell scripts in the templates.
+ * @since 1.0
  */
-public interface Tokens {
-	String OPEN = "{#";
-	String CLOSE = "#}";
-	char FIND = '=';
-	char QUERY = '?';
-	char TYPES = 't';
-	char IN_CONTEXT = 'c';
-}
-
+package scotty.database;

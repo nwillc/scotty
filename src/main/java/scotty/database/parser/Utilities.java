@@ -26,12 +26,22 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Utility methods used by the database portions of scotty.
+ * Utility methods used by the database portions of Scotty.
  */
 public final class Utilities {
 	private Utilities() {
 	}
 
+	/**
+	 * Find a specific attribute in a Context by name and return it's string value. The name
+	 * uses periods to indicate sub-contexts. So for example "type.instance.attr" would in a
+	 * Database context look for a Type named "type" and then within that an Instance named "instance"
+	 * and withing that an attribute named "attr".
+	 *
+	 * @param context The context to find within.
+	 * @param name    The qualified name of the attribute
+	 * @return The string representation of the Value.
+	 */
 	public static String find(Context context, String name) {
 		String[] parts = name.split("\\.");
 

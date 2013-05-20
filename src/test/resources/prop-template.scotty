@@ -1,4 +1,4 @@
-# This is a properties file template to be used with SCoTTy
+# This is a properties file template to be used with Scotty
 
 # {#? company env=prod #}
 {#= host.devbox1.type #}.{#= host.devbox1.instance #}.env={#= host.devbox1.env #}

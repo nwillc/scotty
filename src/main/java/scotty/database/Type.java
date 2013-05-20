@@ -19,17 +19,17 @@ import scotty.database.parser.Elements;
 import scotty.database.parser.NamedContext;
 
 /**
- * A type in a SCoTTY database.
+ * A Type in a Scotty database.
  */
 public class Type extends NamedContext {
 
-    public Type(String name) {
-        super(null, name);
-    }
+	public Type(String name) {
+		super(null, name);
+	}
 
-    @Override
-    protected String getElementType() {
-        return Elements.TYPE;
-    }
+	@Override
+	protected String getElementType() {
+		return Elements.TYPE;
+	}
 
 }
