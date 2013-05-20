@@ -21,9 +21,15 @@ package scotty.database.parser;
  * suitable amount to express a notable difference.
  */
 public interface Similarity<T> {
-	float SIMILAR = 1.0F;
-	float NOT_SIMILAR = 0.0F;
-	float DOWN_GRADE = -0.25F;
+    float SIMILAR = 1.0F;
+    float NOT_SIMILAR = 0.0F;
+    float DOWN_GRADE = -0.25F;
 
-	float similarity(T b);
+    /**
+     * Return a ranking NOT_SIMILAR to SIMILAR of how closely related this object is to the one passed in.
+     *
+     * @param b object being compared too
+     * @return the similarity value
+     */
+    float similarity(T b);
 }

@@ -16,34 +16,32 @@
 package scotty.database.parser;
 
 /**
- * Pair a score with some data item. Scores natural sort order is high to low, then age low to high.
+ * A comparable container to hold data and ranking. The rank is a combination of the "score" and the "age".
+ * The natural order of the ranks are scores high to low, and then age low to high.
  */
 public final class Ranked<T> implements Comparable<Ranked> {
-	private final Float score;
-	private final Integer age;
-	private final T data;
+    private final Float score;
+    private final Integer age;
+    private final T data;
 
-	public Ranked(Float score, Integer age, T data) {
-		if (score == null || age == null) {
-			throw new IllegalArgumentException("Scores and ages must have a non-null to rank objects.");
-		}
-		this.score = score;
-		this.age = age;
-		this.data = data;
-	}
+    public Ranked(Float score, Integer age, T data) {
+        if (score == null || age == null) {
+            throw new IllegalArgumentException("Scores and ages must have a non-null to rank objects.");
+        }
+        this.score = score;
+        this.age = age;
+        this.data = data;
+    }
 
-	public T getData() {
-		return data;
-	}
+    public T getData() {
+        return data;
+    }
 
-	public Float getScore() {
-		return score;
-	}
 
-	@Override
-	public int compareTo(Ranked o) {
-		int scoreCompare = o.score.compareTo(score);
+    @Override
+    public int compareTo(Ranked o) {
+        int scoreCompare = o.score.compareTo(score);
 
-		return scoreCompare != 0 ? scoreCompare : age.compareTo(o.age);
-	}
+        return scoreCompare != 0 ? scoreCompare : age.compareTo(o.age);
+    }
 }

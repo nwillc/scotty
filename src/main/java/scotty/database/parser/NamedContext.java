@@ -27,8 +27,18 @@ public abstract class NamedContext extends Context implements Comparable<Context
         put(getElementType(), name);
     }
 
+    /**
+     * Indicate which attribute is considered to be the name.
+     *
+     * @return the name attribute
+     */
     protected abstract String getElementType();
 
+    /**
+     * Get the name attributes value.
+     *
+     * @return the value of the name attribute.
+     */
     public String getName() {
         return get(getElementType());
     }

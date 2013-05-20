@@ -25,70 +25,85 @@ import java.util.LinkedList;
  * considered a "Multi Value" if it contains more than a single string.
  */
 public class Value implements Similarity<Value> {
-	private final Collection<String> contents = new LinkedList<>();
+    private final Collection<String> contents = new LinkedList<>();
 
-	public Value() {
-	}
+    public Value() {
+    }
 
-	public Value(String... values) {
-		if (values != null) {
-			for (String value : values) {
-				add(value);
-			}
-		}
-	}
+    public Value(String... values) {
+        if (values != null) {
+            for (String value : values) {
+                add(value);
+            }
+        }
+    }
 
-	public void add(String value) {
-		if (value != null) {
-			contents.add(value);
-		}
-	}
+    /**
+     * Add a string value to this Value. Must be non null.
+     *
+     * @param value to add
+     */
+    public void add(String value) {
+        if (value != null) {
+            contents.add(value);
+        }
+    }
 
-	public Collection<String> values() {
-		return contents;
-	}
+    /**
+     * Return the collection of string values this Value represents.
+     *
+     * @return the values
+     */
+    public Collection<String> values() {
+        return contents;
+    }
 
-	public boolean isMultiValue() {
-		return contents.size() > 1;
-	}
+    /**
+     * Is this Value representing multiple values?
+     *
+     * @return true if the value represents multiple values
+     */
+    public boolean isMultiValue() {
+        return contents.size() > 1;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder stringBuilder = new StringBuilder();
-		boolean first = true;
-		for (String value : contents) {
-			if (first) {
-				first = false;
-			} else {
-				stringBuilder.append(',');
-			}
-			stringBuilder.append(value);
-		}
-		return stringBuilder.toString();
-	}
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean first = true;
+        for (String value : contents) {
+            if (first) {
+                first = false;
+            } else {
+                stringBuilder.append(',');
+            }
+            stringBuilder.append(value);
+        }
+        return stringBuilder.toString();
+    }
 
-	@Override
-	public float similarity(Value b) {
-		if (b == null) {
-			return NOT_SIMILAR;
-		}
+    @Override
+    public float similarity(Value b) {
+        if (b == null) {
+            return NOT_SIMILAR;
+        }
 
-		float score = SIMILAR;
+        float score = SIMILAR;
 
-		if (isMultiValue()) {
-			score += DOWN_GRADE;
-		}
+        if (isMultiValue()) {
+            score += DOWN_GRADE;
+        }
 
-		if (b.isMultiValue()) {
-			score += DOWN_GRADE;
-		}
+        if (b.isMultiValue()) {
+            score += DOWN_GRADE;
+        }
 
-		for (String element : b.values()) {
-			if (values().contains(element)) {
-				return score;
-			}
-		}
+        for (String element : b.values()) {
+            if (values().contains(element)) {
+                return score;
+            }
+        }
 
-		return NOT_SIMILAR;
-	}
+        return NOT_SIMILAR;
+    }
 }
