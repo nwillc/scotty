@@ -158,6 +158,11 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         return value == null ? null : value.toString();
     }
 
+    public String get(String key, String defaultValue) {
+        String value = get(key);
+        return value != null ? value : defaultValue;
+    }
+
     /**
      * Is this context contained in another?
      *

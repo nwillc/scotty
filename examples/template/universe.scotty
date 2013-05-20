@@ -1,6 +1,8 @@
-{#t host,environment,application #}
+{#t host,environment,application,datasource #}
 
-################### Application Classes #########################
+#
+# Application Classes
+#
 {#
  Type type = database.getContained().get("application");
  Set set = new TreeSet();
@@ -46,8 +48,53 @@
  }
 
 #}
+#
+# Databases Instances by Name.Env (Datasource by Name.Env.Host)
+#
+{#
+  Type type = database.getContained().get("datasource");
+  Set set = new TreeSet();
+  for (Instance i : type.getContained().values()) {
+    set.add(i.get("database"));
+  }
+  output.print("databases=");
+  boolean first = true;
+  for (String database : set) {
+     if (first) {
+         first = false;
+     } else {
+         output.print(',');
+     }
+     output.print(database);
+  }
 
-########## Application instances by Environment.Host
+  output.print("\n\n");
+  String[] display = new String[]{"port","mode","username","password","jdbcUrl"};
+   for (String key : set)
+   {
+      Context c = new Context(null, "type=datasource,database=" + key);
+      List matches = database.query(c);
+      for (Instance i : matches) {
+        if (i.get("database") == null || i.get("env") == null || i.get("host") == null) {
+           continue;
+        }
+        Value envValue = i.getValue("env");
+        for (String envName : envValue.values()) {
+           String prefix = i.get("database") + "." + envName + "." + i.get("host");
+
+           output.format("%s.database.%s=%s\n", new Object[]{ prefix, "host", i.get("hostName","") });
+
+           for (String key : display) {
+              output.format("%s.database.%s=%s\n", new Object[]{ prefix, key, i.get(key,"") });
+           }
+           output.println("");
+        }
+      }
+   }
+#}
+#
+# Application instances by Environment.Host
+#
 {#
  Type type = database.getContained().get("host");
  Set set = new TreeSet();
@@ -76,9 +123,7 @@
        output.println(prefix + "name=" + i.get("serverName"));
        output.println(prefix + "host=" + i.get("serverHost"));
        output.println(prefix + "domain=" + database.getContained().get("environment").getContained().get(key).get("domain"));
-       if (i.get("apps") != null) {
-            output.println(prefix + "apps=" + i.get("apps"));
-       }
+       output.println(prefix + "apps=" + i.get("apps",""));
        output.print('\n');
     }
  }

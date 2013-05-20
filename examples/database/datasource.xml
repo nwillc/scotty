@@ -1,44 +1,135 @@
 <type name="datasource">
     <attribute name="username" value="cs_admin"/>
     <attribute name="password" value="selerity2010"/>
+    <attribute name="mode" value="rw"/>
+    <attribute name="port" value="3306"/>
 
+    <!-- Remote Logging -->
     <instance name="remoteLogging">
+        <attribute name="database" value="remoteLogging"/>
         <attribute name="host" value="ec2-184-73-56-33.compute-1.amazonaws.com"/>
         <attribute name="port" value="27017"/>
     </instance>
 
+    <!-- datasifthandler -->
+    <instance name="datasifthandler">
+        <attribute name="database" value="datasifthandler"/>
+    </instance>
+
+    <!-- tweethandler -->
+    <instance name="tweethandler">
+        <attribute name="database" value="tweethandler"/>
+    </instance>
+
+    <!-- Serts -->
+    <instance name="serts">
+        <attribute name="database" value="serts"/>
+    </instance>
+
+    <!-- sds -->
+    <instance name="sds">
+        <attribute name="database" value="sds"/>
+    </instance>
+
+    <!-- classifiertraining -->
+    <instance name="classifiertraining">
+        <attribute name="database" value="classifiertraining"/>
+    </instance>
+
+    <!-- obsgrad -->
+    <instance name="obsgrad">
+        <attribute name="database" value="obsgrad"/>
+    </instance>
+
+    <!-- CS -->
     <instance name="cs">
         <attribute name="database" value="cs"/>
-        <attribute name="port" value="3306"/>
         <context>
             <attribute name="env" value="alpha"/>
             <instance name="cs-alpha-1">
-                <attribute name="databaseHost" value="jc1tsdbt01.seleritycorp.com"/>
+                <attribute name="host" value="jc1tsdbt01"/>
+                <attribute name="hostName" value="jc1tsdbt01.seleritycorp.com"/>
                 <attribute name="jdbcUrl" value="jdbc:mysql://jc1tsdbt01.seleritycorp.com:3306/cs_private"/>
                 <instance name="cs-alpha-2">
                     <attribute name="host" value="jc1tclst01"/>
-                    <attribute name="databaseHost" value="jc1tclst01.seleritycorp.com"/>
+                    <attribute name="hostName" value="jc1tclst01.seleritycorp.com"/>
                     <attribute name="jdbcUrl" value="jdbc:mysql://jc1tclst01.seleritycorp.com:3306/cs_private"/>
                 </instance>
             </instance>
         </context>
         <instance name="cs-qa">
             <attribute name="env" value="qa"/>
-            <attribute name="databaseHost" value="jc1tcsdq01.seleritycorp.com"/>
+            <attribute name="host" value="jc1tcsdq01"/>
+            <attribute name="hostName" value="jc1tcsdq01.seleritycorp.com"/>
         </instance>
         <instance name="cs-prod">
-            <attribute name="env" value="prod"/>
-            <attribute name="databaseHost" value="ny2bsdbp01.seleritycorp.com"/>
-            <instance name="cs=int">
-                <attribute name="env" value="int"/>
-            </instance>
+            <attribute name="env">
+                <value>prod</value>
+                <value>int</value>
+            </attribute>
+            <attribute name="host" value="ny2bsdbp01"/>
+            <attribute name="hostName" value="ny2bsdbp01.seleritycorp.com"/>
             <instance name="cs-readonly">
-                <attribute name="mode" value="readonly"/>
-                <attribute name="databaseHost" value="ny2asdbp01.seleritycorp.com"/>
-                <instance name="cs-readonly-int">
-                    <attribute name="env" value="int"/>
-                </instance>
+                <attribute name="mode" value="ro"/>
+                <attribute name="host" value="ny2asdbp01"/>
+                <attribute name="hostName" value="ny2asdbp01.seleritycorp.com"/>
             </instance>
         </instance>
     </instance>
+
+    <instance name="clockadjustment">
+        <attribute name="database" value="clockadjustment"/>
+        <context>
+            <attribute name="env" value="alpha"/>
+            <instance name="clockadjustment-alpha-1">
+                <attribute name="host" value="jc1tsdbt01"/>
+                <attribute name="hostName" value="jc1tsdbt01.seleritycorp.com"/>
+                <attribute name="jdbcUrl" value="jdbc:mysql://jc1tsdbt01.seleritycorp.com:3306/cs_clock_adjustment"/>
+                <instance name="clockadjustment-alpha-2">
+                    <attribute name="host" value="jc1tclst01"/>
+                    <attribute name="hostName" value="jc1tclst01.seleritycorp.com"/>
+                    <attribute name="jdbcUrl" value="jdbc:mysql://jc1tclst01.seleritycorp.com:3306/cs_clock_adjustment"/>
+                </instance>
+            </instance>
+        </context>
+    </instance>
+
+    <!-- entitlement -->
+    <instance name="entitlement">
+        <attribute name="database" value="entitlement"/>
+        <context>
+            <attribute name="env" value="alpha"/>
+            <instance name="entitlement-alpha-1">
+                <attribute name="host" value="jc1tsdbt01"/>
+                <attribute name="hostName" value="jc1tsdbt01.seleritycorp.com"/>
+                <attribute name="jdbcUrl" value="jdbc:mysql://jc1tsdbt01.seleritycorp.com:3306/cs_new_entitlements"/>
+                <instance name="entitlement-alpha-2">
+                    <attribute name="host" value="jc1tclst01"/>
+                    <attribute name="hostName" value="jc1tclst01.seleritycorp.com"/>
+                    <attribute name="jdbcUrl" value="jdbc:mysql://jc1tclst01.seleritycorp.com:3306/cs_new_entitlements"/>
+                </instance>
+            </instance>
+        </context>
+        <instance name="entitlement-qa">
+            <attribute name="env" value="qa"/>
+            <attribute name="host" value="jc1tcsdq01"/>
+            <attribute name="hostName" value="jc1tcsdq01.seleritycorp.com"/>
+            <attribute name="jdbcUrl" value="jdbc:mysql://jc1tcsdq01.seleritycorp.com:3306/cs_new_entitlements"/>
+        </instance>
+        <instance name="entitlement-prod">
+            <attribute name="env">
+                <value>prod</value>
+                <value>int</value>
+            </attribute>
+            <attribute name="host" value="ny2bsdbp01"/>
+            <attribute name="hostName" value="ny2bsdbp01.seleritycorp.com"/>
+            <attribute name="jdbcUrl" value="jdbc:mysql://ny2bsdbp01.seleritycorp.com:3306/cs_new_entitlements"/>
+            <instance name="entitlement-readonly">
+                <attribute name="mode" value="ro"/>
+                <attribute name="host" value="ny2asdbp01"/>
+                <attribute name="hostName" value="ny2asdbp01.seleritycorp.com"/>
+            </instance>
+        </instance>
+    </instance>
+
 </type>
