@@ -1,0 +1,747 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.0.3.3 (MacOSX)">
+	<META NAME="CREATED" CONTENT="20130504;14425700">
+	<META NAME="CHANGED" CONTENT="20130520;13184700">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 0.79in }
+		P { margin-bottom: 0.08in }
+		H1 { margin-bottom: 0.08in }
+		H1.western { font-family: "Arial", sans-serif; font-size: 16pt }
+		H1.cjk { font-family: "SimSun"; font-size: 16pt }
+		H1.ctl { font-family: "Lucida Sans"; font-size: 16pt }
+		H2 { margin-bottom: 0.08in }
+		H2.western { font-family: "Arial", sans-serif; font-size: 14pt; font-style: italic }
+		H2.cjk { font-family: "SimSun"; font-size: 14pt; font-style: italic }
+		H2.ctl { font-family: "Lucida Sans"; font-size: 14pt; font-style: italic }
+		P.text-body-indent-western { margin-left: 0.2in; font-family: "Courier", monospace; font-size: 8pt; line-height: 0.1in }
+		P.text-body-indent-cjk { margin-left: 0.2in; font-size: 10pt; line-height: 0.1in }
+		P.text-body-indent-ctl { margin-left: 0.2in; line-height: 0.1in }
+		TD P { margin-bottom: 0in }
+		H3 { margin-bottom: 0.08in }
+		H3.western { font-family: "Arial", sans-serif }
+		H3.cjk { font-family: "SimSun" }
+		H3.ctl { font-family: "Lucida Sans" }
+		A:link { so-language: zxx }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<P STYLE="margin-top: 0.17in; page-break-after: avoid"><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<H1 CLASS="western" ALIGN=CENTER></H1>
+<H1 CLASS="western" ALIGN=CENTER></H1>
+<H1 CLASS="western" ALIGN=CENTER></H1>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><A NAME="__RefHeading__330_1399982358"></A>
+<FONT FACE="Arial, sans-serif"><FONT SIZE=6><B>Simple Configuration
+Transformation Tool</B></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><A NAME="__RefHeading__332_1399982358"></A>
+<FONT FACE="Arial, sans-serif"><FONT SIZE=5 STYLE="font-size: 20pt"><B>(SCoTTy)</B></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-weight: normal"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><I>Yes,
+I bought a couple vowels...</I></FONT></FONT></P>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<P ALIGN=CENTER STYLE="font-variant: normal; font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=3><I>I
+have spent my whole life trying to figure out crazy ways of doing
+things.</I></FONT></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="font-variant: normal; font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><I>-
+Montgomery Scott</I></FONT></FONT></FONT></P>
+<DIV ID="Table of Contents1" DIR="LTR">
+	<DIV ID="Table of Contents1_Head" DIR="LTR">
+		<P STYLE="margin-top: 0.17in; page-break-before: always; page-break-after: avoid">
+		<FONT FACE="Arial, sans-serif"><FONT SIZE=4 STYLE="font-size: 16pt"><B>Table
+		of Contents</B></FONT></FONT></P>
+	</DIV>
+	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__334_1399982358">Introduction:
+	The Simple Configuration Transformation Tool	3</A></P>
+	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__336_1399982358">The
+	Database	3</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__454_1399982358">Example
+	Host Database 	4</A></P>
+	<P STYLE="margin-left: 0.39in; margin-bottom: 0in"><A HREF="#__RefHeading__716_1030085182">hosts.xml	4</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__718_1030085182">A
+	Database as a Map of Types	5</A></P>
+	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__338_1399982358">The
+	Transformation Markup	6</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__456_1399982358">Variables
+	Available to BeanShell	6</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__576_1226017537">Class
+	Documentation	6</A></P>
+	<P STYLE="margin-left: 0.39in; margin-bottom: 0in"><A HREF="#__RefHeading__707_501567663">Context	6</A></P>
+	<P STYLE="margin-left: 0.39in; margin-bottom: 0in"><A HREF="#__RefHeading__1192_591635657">Value	7</A></P>
+	<P STYLE="margin-left: 0.39in; margin-bottom: 0in"><A HREF="#__RefHeading__578_1226017537">Database
+	extends Context	7</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__458_1399982358">Example
+	Template 	7</A></P>
+	<P STYLE="margin-left: 0.39in; margin-bottom: 0in"><A HREF="#__RefHeading__720_1030085182">hosts.scotty:	7</A></P>
+	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__460_1399982358">Command
+	Line Operation	8</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__722_1030085182">Command
+	Line	8</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__574_1226017537">Example
+	Run	8</A></P>
+	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__753_1450102712">Things
+	Are Not Always Simple	8</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__755_1450102712">Instance
+	Inheritance	8</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__2027_249703325">Multiple
+	Value Attributes	9</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__2029_249703325">Scripted
+	Database or Context Changes	9</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__724_1030085182">Bean
+	Shell Scripts	9</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__709_501567663">Query
+	Results Ranking	10</A></P>
+	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__714_1030085182">Project
+	License	11</A></P>
+	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__726_1030085182">The
+	Project Build	11</A></P>
+	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__728_1030085182">Getting
+	the Bits	11</A></P>
+	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__572_1226017537">See
+	Also	11</A></P>
+</DIV>
+<H1 CLASS="western"><BR><BR>
+</H1>
+<H1 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__334_1399982358"></A>
+Introduction: The Simple Configuration Transformation Tool</H1>
+<P>Scotty was written as a response to repeated exposures to crazy
+<A HREF="http://www.rubegoldberg.com/">Rube Goldberg</A> tools used
+to generate configuration files. Its designed to be sane and
+flexible, both in its implementation and use. It creates
+configuration files by applying templates to a database of
+configuration data.  The database is stored as a collection of XML
+files. The templates are text files containing markup language and
+call out scripts in bean shell. The database scheme is simple and
+bean shell is basically Java so coming<SPAN STYLE="font-style: normal">
+up to speed </SPAN><SPAN STYLE="font-style: normal">is easy, </SPAN><SPAN STYLE="font-style: normal">but
+</SPAN><SPAN STYLE="font-style: normal">allows</SPAN><SPAN STYLE="font-style: normal">
+for a great deal of </SPAN><SPAN STYLE="font-style: normal">flexibility.
+ </SPAN><SPAN STYLE="font-style: normal">It can generate any type of
+configuration file: properties, XML, JSON, etc.</SPAN><SPAN STYLE="font-style: normal">
+</SPAN><SPAN STYLE="font-style: normal">The project is licensed under
+the </SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">ISC
+license,</SPAN></SPAN></FONT></FONT></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
+a </SPAN></SPAN></FONT></FONT></FONT></SPAN><A HREF="http://en.wikipedia.org/wiki/Permissive_free_software_license"><SPAN STYLE="font-variant: normal"><FONT COLOR="#0b0080"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">permissive
+free software license</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></SPAN></A><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
+</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">written
+by the </SPAN></SPAN></FONT></FONT></FONT></SPAN><A HREF="http://en.wikipedia.org/wiki/Internet_Systems_Consortium"><SPAN STYLE="font-variant: normal"><FONT COLOR="#0b0080"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Internet
+Systems Consortium</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></SPAN></A><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
+</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">(ISC)
+–</SPAN></SPAN></FONT></FONT></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
+so enjoy!</SPAN></SPAN></FONT></FONT></FONT></SPAN></P>
+<H1 CLASS="western"><A NAME="__RefHeading__336_1399982358"></A>The
+Database</H1>
+<P>A <I>database </I><SPAN STYLE="font-style: normal">is made up of a</SPAN>
+map of <I>types. </I><SPAN STYLE="font-style: normal">Each type is
+contained in a single file, and is made up of a map of </SPAN><I>instances.</I><SPAN STYLE="font-style: normal">
+ </SPAN><SPAN STYLE="font-style: normal">Individual properties are
+set with </SPAN><I>attributes</I><SPAN STYLE="font-style: normal">
+which can be placed at any level.  </SPAN><SPAN STYLE="font-style: normal">Attributes
+are a named </SPAN><I>value, </I><SPAN STYLE="font-style: normal">a
+value being either a string or collection of strings.</SPAN><I>
+</I><SPAN STYLE="font-style: normal">Attributes are inherited, for
+example an attribute set in a type can be referenced by or overridden
+by any instance. </SPAN><SPAN STYLE="font-style: normal">Instances
+can be grouped into </SPAN><I>contexts</I><SPAN STYLE="font-style: normal">
+</SPAN><SPAN STYLE="font-style: normal">for the purpose of attribute
+inheritance. </SPAN><SPAN STYLE="font-style: normal">Since </SPAN><SPAN STYLE="font-style: normal">the
+database and types</SPAN><SPAN STYLE="font-style: normal"> are maps,
+the type name should be unique in the database and the instance names
+should be unique to a type.   </SPAN><I> </I>
+</P>
+<P><BR><BR>
+</P>
+<P>The basic XML example for a type file is as follows:</P>
+<P CLASS="text-body-indent-western"><BR><BR>
+</P>
+<P CLASS="text-body-indent-western">&lt;type name=””&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;instance name=””&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;/instance&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;context&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;attribute name=””
+value=””/&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;instance name=””&gt;</P>
+<P CLASS="text-body-indent-western">			&lt;attribute name=””
+value=””/&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;/instance&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;/context&gt;</P>
+<P CLASS="text-body-indent-western">&lt;/type&gt;</P>
+<P CLASS="text-body-indent-western"><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<H2 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__454_1399982358"></A>
+Example Host Database 
+</H2>
+<P>A sample host type file, listing data about a sites host might
+appear as follows. 
+</P>
+<H3 CLASS="western"><A NAME="__RefHeading__716_1030085182"></A><I>hosts.xml</I></H3>
+<P><BR><BR>
+</P>
+<P CLASS="text-body-indent-western">&lt;type name=”host”&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;context&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;attribute name=”env”&gt;</P>
+<P CLASS="text-body-indent-western">			&lt;value&gt;dev&lt;/value&gt;</P>
+<P CLASS="text-body-indent-western">			&lt;value&gt;alpha&lt;/value&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;/attribute&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;instance name=”devbox1”&gt;</P>
+<P CLASS="text-body-indent-western">			&lt;attribute name=”address”
+value=”192.0.0.1”/&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;/instance&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;instance name=”devbox2”&gt;</P>
+<P CLASS="text-body-indent-western">			&lt;attribute name=”address”
+value=”192.0.0.2”/&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;/instance&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;/context&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;instance name=”prod1”&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;attribute name=”env”
+value=”prod”/&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;attribute name=”address”
+value=”192.0.0.3”/&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;/instance&gt;</P>
+<P CLASS="text-body-indent-western">&lt;/type&gt;</P>
+<P CLASS="text-body-indent-western"><BR><BR>
+</P>
+<P CLASS="text-body-indent-western" STYLE="page-break-before: always">
+<BR><BR>
+</P>
+<H2 CLASS="western"><A NAME="__RefHeading__718_1030085182"></A>A
+Database as a Map of Types</H2>
+<P>A database would be a map of types, such as applications, hosts,
+environments etc. It is comprised of a hierarchy of types, and
+instances of those types.  Attributes can be attached at any level
+and are inherited. Types and instances can be placed into contexts
+which allows inheritance subgroups.  
+</P>
+<P><IMG SRC="scotty_html_m1859a63b.png" NAME="graphics1" ALIGN=LEFT WIDTH=605 HEIGHT=473 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H1 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__338_1399982358"></A>
+The Transformation Markup</H1>
+<P>Scotty's templates are nothing more then a text file annotated
+with a very simple markup language.  The markups can insert retrieved
+values, run BeanShell scripts producing arbitrary output.</P>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=651 CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=235>
+	<COL WIDTH=398>
+	<TR VALIGN=TOP>
+		<TD WIDTH=235 STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P>{#= type.instance.attribute #}</P>
+		</TD>
+		<TD WIDTH=398 STYLE="border: 1px solid #000000; padding: 0.04in">
+			<P>Retrieve a specific attribute 
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=235 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P>{#? attribute attribute=value,... #}</P>
+		</TD>
+		<TD WIDTH=398 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<P>Query for an attribute best matching the given context.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=235 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P>{#    … bean shell script…    #}</P>
+		</TD>
+		<TD WIDTH=398 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<P>Run a bean shell script</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=235 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P>{#t  type,list... #}</P>
+		</TD>
+		<TD WIDTH=398 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<P>Assert the database contains required types</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=235 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P>{#c attribute,list.... #}</P>
+		</TD>
+		<TD WIDTH=398 STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<P>Assert the runtime context contains required attributes</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<H2 CLASS="western"><A NAME="__RefHeading__456_1399982358"></A>Variables
+Available to BeanShell</H2>
+<TABLE WIDTH=100% CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=92*>
+	<COL WIDTH=164*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=36% STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P>Database database 
+			</P>
+		</TD>
+		<TD WIDTH=64% STYLE="border: 1px solid #000000; padding: 0.04in">
+			<P>The root context of the parsed database.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=36% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P>Context context</P>
+		</TD>
+		<TD WIDTH=64% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<P>The context that was provided on the command line.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=36% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P>PrintStream output</P>
+		</TD>
+		<TD WIDTH=64% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<P>The output print stream being used by scotty.</P>
+		</TD>
+	</TR>
+</TABLE>
+<H2 CLASS="western"><A NAME="__RefHeading__576_1226017537"></A>Class
+Documentation</H2>
+<P>Full API documentation is available at
+<A HREF="http://nwillc.github.io/scotty/apidocs/">http://nwillc.github.io/scotty/apidocs/</A>
+but the following is a concise explanation of the portions available
+to BeanShell.</P>
+<H3 CLASS="western"><A NAME="__RefHeading__707_501567663"></A>Context</H3>
+<TABLE WIDTH=100% CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=106*>
+	<COL WIDTH=150*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=41% STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in">
+			<P><B>Method</B></P>
+		</TD>
+		<TD WIDTH=59% STYLE="border-top: 1px solid #000000; border-bottom: none; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0.04in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0.04in">
+			<P><B>Description</B></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=41% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in">
+			<P STYLE="font-weight: normal">Map&lt;String, String&gt; getMap()</P>
+		</TD>
+		<TD WIDTH=59% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0in 0.04in">
+			<P STYLE="font-weight: normal">All the attributes in this context.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=41% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in">
+			<P STYLE="font-weight: normal">Map&lt;String, Context&gt;
+			getContained()</P>
+		</TD>
+		<TD WIDTH=59% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0in 0.04in">
+			<P STYLE="font-weight: normal">Any contexts contained inside this
+			one.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=41% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in">
+			<P STYLE="font-weight: normal">Context getContainer()</P>
+		</TD>
+		<TD WIDTH=59% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0in 0.04in">
+			<P STYLE="font-weight: normal">Get the context containing this
+			one.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=41% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in">
+			<P STYLE="font-weight: normal">Set&lt;String&gt; keySet()</P>
+		</TD>
+		<TD WIDTH=59% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0in 0.04in">
+			<P STYLE="font-weight: normal">The list of attribute keys
+			contained in this context and those of the context it is contained
+			in.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=41% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in">
+			<P STYLE="font-weight: normal">boolean containsKey(String key)</P>
+		</TD>
+		<TD WIDTH=59% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0in 0.04in">
+			<P STYLE="font-weight: normal">Get the list of keys contained in
+			the context.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=41% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in">
+			<P STYLE="font-weight: normal">String get(String key)</P>
+		</TD>
+		<TD WIDTH=59% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0in 0.04in">
+			<P STYLE="font-weight: normal">Get the string representation of a
+			value of a key.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=41% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in">
+			<P STYLE="font-weight: normal">Value getValue(String key)</P>
+		</TD>
+		<TD WIDTH=59% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0in 0.04in">
+			<P STYLE="font-weight: normal">Get the actual value associated
+			with key in a context.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=41% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0in; padding-left: 0.04in; padding-right: 0in">
+			<P STYLE="font-weight: normal">boolean isContained()</P>
+		</TD>
+		<TD WIDTH=59% STYLE="border-top: none; border-bottom: none; border-left: 1px solid #000000; border-right: 1px solid #000000; padding: 0in 0.04in">
+			<P STYLE="font-weight: normal">This context is contained in
+			another.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=41% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P STYLE="font-weight: normal">boolean isContainer()</P>
+		</TD>
+		<TD WIDTH=59% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<P STYLE="font-weight: normal">This context is a container of sub
+			contexts.</P>
+		</TD>
+	</TR>
+</TABLE>
+<H3 CLASS="western"><BR><BR>
+</H3>
+<H3 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__1192_591635657"></A>
+Value</H3>
+<TABLE WIDTH=100% CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50% STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P><B>Method</B></P>
+		</TD>
+		<TD WIDTH=50% STYLE="border: 1px solid #000000; padding: 0.04in">
+			<P><B>Description</B></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P>String toString()</P>
+		</TD>
+		<TD WIDTH=50% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<P>Returns the string representation which is a comma separated
+			list of all the values.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P>List&lt;String&gt; values()</P>
+		</TD>
+		<TD WIDTH=50% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<P>Gets a list of all the values contained in this value.</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<H3 CLASS="western"><A NAME="__RefHeading__578_1226017537"></A>Database
+<SPAN STYLE="font-weight: normal">extends</SPAN> <B>Context</B></H3>
+<TABLE WIDTH=100% CELLPADDING=4 CELLSPACING=0>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50% STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P><B>Method</B></P>
+		</TD>
+		<TD WIDTH=50% STYLE="border: 1px solid #000000; padding: 0.04in">
+			<P><B>Description</B></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P>List&lt;Instance&gt; query(Context c)</P>
+		</TD>
+		<TD WIDTH=50% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<P>Retrieves first attribute value from database found matching
+			the name and context given.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<P>String find(String attribute)</P>
+		</TD>
+		<TD WIDTH=50% STYLE="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<P>Retrieves the value of the attribute exactly matching the name
+			given.</P>
+		</TD>
+	</TR>
+</TABLE>
+<H3 CLASS="western"></H3>
+<H2 CLASS="western"><A NAME="__RefHeading__458_1399982358"></A>Example
+Template	</H2>
+<P>The following is an example of a Java Properties file template.</P>
+<P><BR><BR>
+</P>
+<H3 CLASS="western"><A NAME="__RefHeading__720_1030085182"></A><I>hosts.scotty</I>:</H3>
+<P>	</P>
+<P CLASS="text-body-indent-western"># This is a properties file
+template to be used with SCoTTy</P>
+<P CLASS="text-body-indent-western"># {#t host #}</P>
+<P CLASS="text-body-indent-western"><BR><BR>
+</P>
+<P CLASS="text-body-indent-western"># {#? company env=prod #}</P>
+<P CLASS="text-body-indent-western">{#= host.devbox1.type #}.{#=
+host.devbox1.instance #}.env={#= host.devbox1.env #}</P>
+<P CLASS="text-body-indent-western">{#</P>
+<P CLASS="text-body-indent-western"> output.println(&quot;# Hosts&quot;);</P>
+<P CLASS="text-body-indent-western"> Type type =
+database.getContained().get(&quot;host&quot;);</P>
+<P CLASS="text-body-indent-western"> for (Instance instance :
+type.getContained().values()) {</P>
+<P CLASS="text-body-indent-western">   
+output.println(instance.get(&quot;env&quot;) + &quot;.host.&quot; +
+instance.get(&quot;instance&quot;) 
+</P>
+<P CLASS="text-body-indent-western">	+ &quot;.address=&quot; +
+instance.get(&quot;address&quot;));</P>
+<P CLASS="text-body-indent-western"> }</P>
+<P CLASS="text-body-indent-western">#}</P>
+<P CLASS="text-body-indent-western"># End</P>
+<P STYLE="margin-left: 0.49in"><BR><BR>
+</P>
+<H1 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__460_1399982358"></A>
+Command Line Operation</H1>
+<P>Scotty is run from the command line, the command line describes
+the database, the runtime context, a template and the output file.</P>
+<P><BR><BR>
+</P>
+<H2 CLASS="western"><A NAME="__RefHeading__722_1030085182"></A>Command
+Line</H2>
+<P CLASS="text-body-indent-western">usage: java -jar scotty.jar
+[options]</P>
+<P CLASS="text-body-indent-western"> -c,--context &lt;assignments&gt;
+  Comma separated list of assignments to act</P>
+<P CLASS="text-body-indent-western">                              as
+the context.</P>
+<P CLASS="text-body-indent-western"> -d,--database &lt;filenames&gt; 
+  Comma separated of XML files containing</P>
+<P CLASS="text-body-indent-western">                             
+types in database.</P>
+<P CLASS="text-body-indent-western"> -h,--help                   
+print this message.</P>
+<P CLASS="text-body-indent-western"> -o,--output &lt;filename&gt;    
+  The name of the output file.</P>
+<P CLASS="text-body-indent-western"> -p,--print                  
+Print the database out as a flattened text</P>
+<P CLASS="text-body-indent-western">                             
+file.</P>
+<P CLASS="text-body-indent-western"> -t,--template &lt;filename&gt;  
+  The name of the template file.</P>
+<H2 CLASS="western"><A NAME="__RefHeading__574_1226017537"></A>Example
+Run</H2>
+<P>The following could be used to use scotty to process the example
+files in the document:</P>
+<P><BR><BR>
+</P>
+<P CLASS="text-body-indent-western">$ java -jar scotty.jar -c
+env=prod -d hosts.xml -t hosts.scotty -o host.properties</P>
+<H1 CLASS="western"><A NAME="__RefHeading__753_1450102712"></A>Things
+Are Not Always Simple</H1>
+<P>While scotty is designed to be simple, it does support techniques
+that are more advanced.</P>
+<H2 CLASS="western"><A NAME="__RefHeading__755_1450102712"></A>Instance
+Inheritance</H2>
+<P>When you want an instance to have all the properties on an
+existing instance with some attribute additions or value changes you
+can employ inheritance.  The following is an example of a host that
+is completely the same as another but is in a different environment:</P>
+<P CLASS="text-body-indent-western"><BR><BR>
+</P>
+<P CLASS="text-body-indent-western">&lt;instance name=”devbox”&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;attribute name=”os”
+value=”linux”/&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;attribute name=”env”
+value=”dev”/&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;instance name=”qabox”&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;attribute name=”env”
+value=”qa”/&gt;</P>
+<P CLASS="text-body-indent-western">		&lt;attribute name=”tag”
+value=”special”/&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;/instance&gt;</P>
+<P CLASS="text-body-indent-western">&lt;/instance&gt;</P>
+<P CLASS="text-body-indent-western"><BR><BR>
+</P>
+<H2 CLASS="western"><BR><BR>
+</H2>
+<H2 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__2027_249703325"></A>
+Multiple Value Attributes</H2>
+<P>Attributes can have a single value or multiple values. The
+notation for multiple values is:</P>
+<P CLASS="text-body-indent-western">&lt;attribute name”light”&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;value&gt;red&lt;/value&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;value&gt;amber&lt;/value&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;value&gt;green&lt;/value&gt;</P>
+<P CLASS="text-body-indent-western">&lt;/attribute&gt;</P>
+<P>Attributes with multiple values will test all values of the
+attribute in queries. So the above would match a context with<FONT FACE="Courier, monospace">
+light=red</FONT> or <FONT FACE="Courier, monospace">light=green</FONT>.
+ They will return a comma separated string on a simple find.</P>
+<H2 CLASS="western"><A NAME="__RefHeading__2029_249703325"></A>Scripted
+Database or Context Changes</H2>
+<P>The database and context accessible in the scripts are modifiable.
+For example if you wanted to add <I>app=webserver</I><SPAN STYLE="font-style: normal">
+to the context you could simply:</SPAN></P>
+<P STYLE="font-style: normal"><BR><BR>
+</P>
+<P CLASS="text-body-indent-western">{#
+context.put(“app”,”webserver”); #}</P>
+<H2 CLASS="western"><A NAME="__RefHeading__724_1030085182"></A>Bean
+Shell Scripts</H2>
+<P>A template may contain a <A HREF="http://www.beanshell.org/">bean
+shell</A> script which has access to the database, the runtime
+context, and the output stream. Scripts can therefore be used to
+perform elaborate traversals or even non persistent transformations
+of the database, producing completely flexible output.</P>
+<H2 CLASS="western"><BR><BR>
+</H2>
+<H2 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__709_501567663"></A>
+Query Results Ranking</H2>
+<P>The results of the query method are returned in a useful
+deterministic order. They are sorted first by the best matching
+score, and when that is equal then by the instantiation order of the
+instance read from top to bottom or the database.  
+</P>
+<P>Matching score is determined by the similarity of the two
+contexts. Similarity is measured by +1.0 for each attribute that
+matches between the two contexts. A penalty of 0.25 is applied for
+each attribute that is a multiple value attribute.</P>
+<P>So for example the similarity of the following two contexts would
+be 2.0:</P>
+<P CLASS="text-body-indent-western">&lt;context&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;attribute name=”continent”
+value=”North America”/&gt;</P>
+<P CLASS="text-body-indent-western">       &lt;attribute
+name=”country” value=”USA”/&gt;</P>
+<P CLASS="text-body-indent-western">       &lt;attribute name=”year”
+value=”1945”/&gt;</P>
+<P CLASS="text-body-indent-western">&lt;/context&gt;</P>
+<P CLASS="text-body-indent-western">&lt;context&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;attribute name=”continent”
+value=”North America”/&gt;</P>
+<P CLASS="text-body-indent-western">       &lt;attribute
+name=”country” value=”Canada”/&gt;</P>
+<P CLASS="text-body-indent-western">       &lt;attribute name=”year”
+value=”1945”/&gt;</P>
+<P CLASS="text-body-indent-western">&lt;/context&gt;</P>
+<P CLASS="text-body-indent-western" STYLE="line-height: 0.1in"><BR><BR>
+</P>
+<P>While the similarity of the following would be 1.5, since in one
+matching attribute, both values are multiples:</P>
+<P><BR><BR>
+</P>
+<P CLASS="text-body-indent-western">&lt;context&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;attribute name=”continent”
+value=”North America”/&gt;</P>
+<P CLASS="text-body-indent-western">       &lt;attribute
+name=”country”&gt;</P>
+<P CLASS="text-body-indent-western">            &lt;value&gt;USA&lt;/value&gt;</P>
+<P CLASS="text-body-indent-western">            &lt;value&gt;Canada&lt;/value&gt;</P>
+<P CLASS="text-body-indent-western">       &lt;attribute&gt;</P>
+<P CLASS="text-body-indent-western">       &lt;attribute name=”year”
+value=”1945”/&gt;</P>
+<P CLASS="text-body-indent-western">&lt;/context&gt;</P>
+<P CLASS="text-body-indent-western">&lt;context&gt;</P>
+<P CLASS="text-body-indent-western">	&lt;attribute name=”continent”
+value=”North America”/&gt;</P>
+<P CLASS="text-body-indent-western">       &lt;attribute
+name=”country”&gt;</P>
+<P CLASS="text-body-indent-western">            &lt;value&gt;USA&lt;/value&gt;</P>
+<P CLASS="text-body-indent-western">            &lt;value&gt;Canada&lt;/value&gt;</P>
+<P CLASS="text-body-indent-western">       &lt;attribute&gt;</P>
+<P CLASS="text-body-indent-western">       &lt;attribute name=”year”
+value=”1945”/&gt;</P>
+<P CLASS="text-body-indent-western">&lt;/context&gt;</P>
+<P><BR><BR>
+</P>
+<P>This similarity scoring allows you to associate general data with
+instances and then override the instance with more specific
+attributes for more specifics cases. Say all applications might have
+attributes to do with logging, but those written in Java need Log4J
+configuration attributes.</P>
+<H1 CLASS="western"><BR><BR>
+</H1>
+<H1 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__714_1030085182"></A>
+Project License</H1>
+<P>This projected is licensed under the <A HREF="http://en.wikipedia.org/wiki/ISC_license">ISC</A>
+license:</P>
+<P><BR><BR>
+</P>
+<P CLASS="text-body-indent-western">Copyright (c) 2013,
+nwillc@gmail.com</P>
+<P CLASS="text-body-indent-western"><BR><BR>
+</P>
+<P CLASS="text-body-indent-western">Permission to use, copy, modify,
+and/or distribute this software for any purpose with or 
+</P>
+<P CLASS="text-body-indent-western">without fee is hereby granted,
+provided that the above copyright notice and this permission 
+</P>
+<P CLASS="text-body-indent-western">notice appear in all copies.</P>
+<P CLASS="text-body-indent-western"><BR><BR>
+</P>
+<P CLASS="text-body-indent-western">THE SOFTWARE IS PROVIDED &quot;AS
+IS&quot; AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO 
+</P>
+<P CLASS="text-body-indent-western">THIS SOFTWARE INCLUDING ALL
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT 
+</P>
+<P CLASS="text-body-indent-western">SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR 
+</P>
+<P CLASS="text-body-indent-western">ANY DAMAGES WHATSOEVER RESULTING
+FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF 
+</P>
+<P CLASS="text-body-indent-western">CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
+</P>
+<P CLASS="text-body-indent-western">OR PERFORMANCE OF THIS SOFTWARE.</P>
+<P CLASS="text-body-indent-western"><BR><BR>
+</P>
+<H1 CLASS="western"><A NAME="__RefHeading__726_1030085182"></A>The
+Project Build</H1>
+<P>Scotty is written in Java (1.7+) and built with maven (2.2.1+). It
+uses open source packages for command line parsing (commons-cli),
+scripting (bsh) and testing (junit &amp; cucumber).  It is extremely
+light weight, has been test built on a linux atom netbook in under a
+minute and the resultant jar, with all dependencies is under half a
+megabyte.</P>
+<H2 CLASS="western"><A NAME="__RefHeading__728_1030085182"></A>Getting
+the Bits</H2>
+<P>The project is hosted on at <A HREF="https://github.com/nwillc/scotty">https://github.com/nwillc/scotty</A></P>
+<H1 CLASS="western"><A NAME="__RefHeading__572_1226017537"></A>See
+Also</H1>
+<UL>
+	<LI><P>Scotty API documentation:
+	<A HREF="http://nwillc.github.io/scotty/apidocs/">http://nwillc.github.io/scotty/apidocs/</A></P>
+	<LI><P>BeanShell:  <A HREF="http://www.beanshell.org/">http://www.beanshell.org/</A></P>
+</UL>
+</BODY>
+</HTML>
