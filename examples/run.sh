@@ -37,5 +37,11 @@ case "$TEMPLATE" in
         clockadjustment)
           java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d  database/application.xml,database/environment.xml,database/datasource.xml -t template/clockadjustment.scotty
           ;;
+        cs)
+          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d  database/application.xml,database/environment.xml,database/datasource.xml -t template/cs.scotty
+          ;;
+        datasifthandler)
+          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d  database/application.xml,database/environment.xml -t template/datasifthandler.scotty
+          ;;
 esac
 

@@ -27,11 +27,22 @@
         <!-- Core Services -->
         <instance name="cs">
             <attribute name="app" value="cs"/>
+            <attribute name="username" value="cs_admin"/>
+            <attribute name="password" value="cs_admin"/>
             <attribute name="name" value="Core Services"/>
             <attribute name="artifactName" value="rhino-1.0-SNAPSHOT.war"/>
             <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/trunk"/>
             <attribute name="mainUrl" value="rhino-1.0-SNAPSHOT"/>
             <attribute name="serviceUrl" value="rpc.do"/>
+            <attribute name="remoteLogging" value="false"/>
+            <instance name="cs-prod">
+                <attribute name="env">
+                    <value>prod</value>
+                    <value>int</value>
+                </attribute>
+                <attribute name="password" value="selerity2010"/>
+                <attribute name="remoteLogging" value="true"/>
+            </instance>
         </instance>
         <!-- Ran -->
         <instance name="ran">
@@ -203,6 +214,17 @@
         <attribute name="jmxPort" value="8711"/>
         <attribute name="artifactName" value="TweetHandler-1.0-SNAPSHOT-jar-with-dependencies.jar"/>
         <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_twitanal"/>
+        <instance name="ALPHA_TWEETHANDLER_INSTANCE">
+            <attribute name="env">
+                <value>alpha</value>
+                <value>qa</value>
+            </attribute>
+            <attribute name="level" value="TEST"/>
+        </instance>
+        <instance name="PROD_TWEET_HANDLER_INSTANCE">
+            <attribute name="env" value="prod"/>
+            <attribute name="level" value="PROD"/>
+        </instance>
     </instance>
 
     <!--  Classifier Training Service -->

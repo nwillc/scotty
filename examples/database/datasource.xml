@@ -191,6 +191,7 @@
             <attribute name="env" value="qa"/>
             <attribute name="host" value="jc1tcsdq01"/>
             <attribute name="hostName" value="jc1tcsdq01.seleritycorp.com"/>
+            <attribute name="jdbcUrl" value="jdbc:mysql://jc1tcsdq01.seleritycorp.com:3306/cs_private"/>
         </instance>
         <instance name="cs-prod">
             <attribute name="env">
@@ -199,10 +200,12 @@
             </attribute>
             <attribute name="host" value="ny2bsdbp01"/>
             <attribute name="hostName" value="ny2bsdbp01.seleritycorp.com"/>
+            <attribute name="jdbcUrl" value="jdbc:mysql://ny2bsdbp01.seleritycorp.com:3306/cs_private"/>
             <instance name="cs-readonly">
                 <attribute name="mode" value="ro"/>
                 <attribute name="host" value="ny2asdbp01"/>
                 <attribute name="hostName" value="ny2asdbp01.seleritycorp.com"/>
+                <attribute name="jdbcUrl" value="jdbc:mysql://ny2asdbp01.seleritycorp.com:3306/cs_private"/>
             </instance>
         </instance>
     </instance>

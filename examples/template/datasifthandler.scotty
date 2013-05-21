@@ -1,0 +1,12 @@
+# {#t application,environment #} {#c env,host #} {# context.put("app","cs"); #}
+# Datasift Handler properties
+#
+datasifthandler.domain={#? domain type=environment #}
+datasifthandler.app_name=Twern2
+datasifthandler.source_topic=SRC
+datasifthandler.source_host={# output.print(context.get("host")); #}
+datasifthandler.source_instance={#? instance app=tweethandler #}
+datasifthandler.level={#? level app=tweethandler #}
+datasifthandler.datasift_user=AndrewBrook
+datasifthandler.datasift_key=d01d5b69baf771d7a3dfcd6734d40898
+datasifthandler.hashes=e685dcefb532f0c0a582baf6598c740e
