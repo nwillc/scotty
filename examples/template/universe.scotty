@@ -69,7 +69,7 @@
   }
 
   output.print("\n\n");
-  String[] display = new String[]{"port","mode","username","password","jdbcUrl"};
+  String[] display = new String[]{"port","jdbcUrl"};
    for (String key : set)
    {
       Context c = new Context(null, "type=datasource,database=" + key);
@@ -83,6 +83,8 @@
            String prefix = i.get("database") + "." + envName + "." + i.get("host");
 
            output.format("%s.database.%s=%s\n", new Object[]{ prefix, "host", i.get("hostName","") });
+           output.format("%s.database.%s=%s\n", new Object[]{ prefix, "readPassword", i.get("password","") });
+           output.format("%s.database.%s=%s\n", new Object[]{ prefix, "readUser", i.get("username","") });
 
            for (String key : display) {
               output.format("%s.database.%s=%s\n", new Object[]{ prefix, key, i.get(key,"") });
@@ -99,7 +101,9 @@
  Type type = database.getContained().get("host");
  Set set = new TreeSet();
  for (Instance i : type.getContained().values()) {
-   set.add(i.get("env"));
+   for (String eName : i.getValue("env").values()) {
+      set.add(eName);
+   }
  }
  output.print("environments=");
  boolean first = true;
@@ -116,14 +120,32 @@
 
  for (String key : set)
  {
+    Context environment = database.getContained().get("environment").getContained().get(key);
+    output.format("%s.%s=%s\n", new Object[]{key, "name", environment.get("name")});
+    output.format("%s.%s=%s\n", new Object[]{key, "jndi", environment.get("jndi")});
+    output.format("%s.%s=%s\n", new Object[]{key, "container", environment.get("container","")});
+
     Context c = new Context(null, "type=host,env=" + key);
     List matches = database.query(c);
+    output.print(key + ".instances=");
+    first = true;
     for (Instance i : matches) {
-       String prefix = i.get("env") + "." + i.get("instance") + ".";
+       if (first) {
+          first=false;
+       } else {
+          output.print(',');
+       }
+       output.print(i.getName());
+    }
+    output.println("\n");
+
+    for (Instance i : matches) {
+       String prefix = environment.getName() + "." + i.get("instance") + ".";
        output.println(prefix + "name=" + i.get("serverName"));
        output.println(prefix + "host=" + i.get("serverHost"));
-       output.println(prefix + "domain=" + database.getContained().get("environment").getContained().get(key).get("domain"));
+       output.println(prefix + "domain=" + environment.get("domain"));
        output.println(prefix + "apps=" + i.get("apps",""));
+       output.println(prefix + "ec2Proxy=" + environment.get("ec2Proxy",""));
        output.print('\n');
     }
  }

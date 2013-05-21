@@ -52,6 +52,11 @@
             <attribute name="env" value="alpha"/>
 
             <instance name="jc1tclst01">
+                <attribute name="env">
+                    <value>local</value>
+                    <value>alpha</value>
+                    <value>infra</value>
+                </attribute>
                 <attribute name="serverName" value="Alpha - B"/>
                 <attribute name="serverHost" value="jc1tclst01.seleritycorp.com"/>
                 <attribute name="apps"
@@ -142,6 +147,10 @@
             <attribute name="env" value="prod"/>
 
             <instance name="ny2aclsp01">
+                <attribute name="env">
+                    <value>prod</value>
+                    <value>int</value>
+                </attribute>
                 <attribute name="serverName" value="Prod - NY - A"/>
                 <attribute name="serverHost" value="SelerityAPI.seleritycorp.com"/>
                 <attribute name="apps" value="cs,triton,athena,bulkdata,entitlement,argosub,argopub,perseus"/>

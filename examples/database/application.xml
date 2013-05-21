@@ -102,7 +102,10 @@
         <!-- Alerts -->
         <instance name="alerts">
             <attribute name="app" value="alerts"/>
+            <attribute name="name" value="Alerts"/>
             <attribute name="port" value="8087"/>
+            <attribute name="artifactName" value="alerts.tar.gz"/>
+            <attribute name="repoPath" value="git@selerity.unfuddle.com:selerity/alerts.git"/>
             <attribute name="username" value="alerts"/>
             <attribute name="password" value="alerts"/>
             <attribute name="sertsHost" value="localhost"/>
@@ -238,7 +241,8 @@
         <attribute name="app" value="newsclassifier"/>
         <attribute name="name" value="News Classifier"/>
         <attribute name="artifactName" value="newsclassifier-jar-with-dependencies.jar"/>
-        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/POCs/SertsExperiments/NewsClassifier"/>
+        <attribute name="repoPath"
+                   value="https://selerity.unfuddle.com/svn/selerity_cs/POCs/SertsExperiments/NewsClassifier"/>
         <attribute name="jmxPort" value="8185"/>
     </instance>
 
