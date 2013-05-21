@@ -1,0 +1,10 @@
+# {#t application,environment,datasource #} {#c env #}
+# CLOCK ADJUSTMENT SERVICE PROPERTIES FILE
+#
+clockadjustment.environment={#? name type=environment #}
+clockadjustment.user.name={#? username app=clockadjustment #}
+clockadjustment.user.password={#? password app=clockadjustment #}
+clockadjustment.db.host={#? host database=clockadjustment #}
+clockadjustment.db.port={#? port database=clockadjustment #}
+clockadjustment.db.user.name={#? username database=clockadjustment #}
+clockadjustment.db.user.password={#? password database=clockadjustment #}

@@ -34,5 +34,8 @@ case "$TEMPLATE" in
         classifiertraining)
           java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d  database/application.xml,database/environment.xml,database/datasource.xml -t template/classifiertraining.scotty
           ;;
+        clockadjustment)
+          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d  database/application.xml,database/environment.xml,database/datasource.xml -t template/clockadjustment.scotty
+          ;;
 esac
 
