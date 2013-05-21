@@ -1,0 +1,22 @@
+# {#t application,environment,datasource #} {#c env #}
+# CLASSIFIER TRAINING SERVICE PROPERTIES FILE
+#
+classifiertraining.environment={#? name type=environment #}
+
+classifiertraining.jms.url={#? jndi type=environment #}
+classifiertraining.jms.topic=serts
+
+classifiertraining.db.url={#? jdbcUrl database=classifiertraining #}
+classifiertraining.db.host={#? host database=classifiertraining #}
+classifiertraining.db.port={#? port database=classifiertraining #}
+classifiertraining.db.user.name={#? username database=classifiertraining #}
+classifiertraining.db.user.password={#? password database=classifiertraining #}
+
+# Admin credentials
+classifiertraining.user.name={#? username app=classifiertraining #}
+classifiertraining.user.password={#? password app=classifiertraining #}
+
+# Client service ports
+classifiertraining.entitlement.port={#? port app=entitlement #}
+classifiertraining.serts.port={#? port app=serts #}
+classifiertraining.sds.port={#? port app=sds #}
