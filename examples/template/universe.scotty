@@ -80,7 +80,7 @@
         }
         Value envValue = i.getValue("env");
         for (String envName : envValue.values()) {
-           String prefix = i.get("database") + "." + envName + "." + i.get("host");
+           String prefix = i.get("database") + "." + envName + "." + i.get("host").toUpperCase();
 
            output.format("%s.database.%s=%s\n", new Object[]{ prefix, "host", i.get("hostName","") });
            output.format("%s.database.%s=%s\n", new Object[]{ prefix, "readPassword", i.get("password","") });
@@ -140,7 +140,7 @@
     output.println("\n");
 
     for (Instance i : matches) {
-       String prefix = environment.getName() + "." + i.get("instance") + ".";
+       String prefix = environment.getName() + "." + i.get("instance").toUpperCase() + ".";
        output.println(prefix + "name=" + i.get("serverName"));
        output.println(prefix + "host=" + i.get("serverHost"));
        output.println(prefix + "domain=" + environment.get("domain"));

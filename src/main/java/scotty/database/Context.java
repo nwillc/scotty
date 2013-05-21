@@ -158,6 +158,13 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         return value == null ? null : value.toString();
     }
 
+    /**
+     * Get the string value of a Value associated with a given key and provide a default in case of null.
+     *
+     * @param key          the key
+     * @param defaultValue the value to return if null
+     * @return the string
+     */
     public String get(String key, String defaultValue) {
         String value = get(key);
         return value != null ? value : defaultValue;

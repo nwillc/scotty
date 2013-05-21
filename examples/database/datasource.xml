@@ -29,6 +29,24 @@
     <!-- datasifthandler -->
     <instance name="datasifthandler">
         <attribute name="database" value="datasifthandler"/>
+        <attribute name="driver" value="com.mysql.jdbc.Driver"/>
+        <attribute name="password" value="datasift_handler"/>
+        <attribute name="username" value="datasift_handler"/>
+        <instance name="datasifthandler-prod">
+            <attribute name="env" value="prod"/>
+            <attribute name="host" value="ec2vclsp02"/>
+            <attribute name="hostName" value="10.219.0.38"/>
+            <attribute name="jdbcUrl" value="jdbc:mysql://10.219.0.38:3306/datasift_handler"/>
+        </instance>
+        <instance name="datasifthandler-alpha">
+            <attribute name="env">
+                <value>alpha</value>
+                <value>qa</value>
+            </attribute>
+            <attribute name="host" value="ch1asdbp01"/>
+            <attribute name="hostName" value="ch1asdbp01.seleritycorp.com"/>
+            <attribute name="jdbcUrl" value="jdbc:mysql://ch1asdbp01.seleritycorp.com/datasift_handler"/>
+        </instance>
     </instance>
 
     <!-- tweethandler -->
@@ -114,6 +132,30 @@
     <!-- classifiertraining -->
     <instance name="classifiertraining">
         <attribute name="database" value="classifiertraining"/>
+        <attribute name="jdbcUrl" value="jdbc:mysql://localhost:3306/cs_classifiers?useUnicode=true&amp;characterEncoding=UTF-8"/>
+
+        <!-- Alpha -->
+        <context>
+            <attribute name="env" value="alpha"/>
+            <instance name="classifiertraining-alpha-1">
+                <attribute name="host" value="jc1tsdbt01"/>
+                <attribute name="hostName" value="jc1tsdbt01.seleritycorp.com"/>
+                <attribute name="jdbcUrl" value="jdbc:mysql://jc1tsdbt01.seleritycorp.com:3306/cs_classifiers?useUnicode=true&amp;characterEncoding=UTF-8"/>
+            </instance>
+            <instance name="classifiertraining-alpha-2">
+                <attribute name="host" value="jc1tclst01"/>
+                <attribute name="hostName" value="jc1tclst01.seleritycorp.com"/>
+                <attribute name="jdbcUrl" value="jdbc:mysql://jc1tclst01.seleritycorp.com:3306/cs_classifiers?useUnicode=true&amp;characterEncoding=UTF-8"/>
+            </instance>
+        </context>
+
+        <!-- QA -->
+        <instance name="classifiertrainit-qa">
+            <attribute name="env" value="qa"/>
+            <attribute name="host" value="jc1tcsdq01"/>
+            <attribute name="hostName" value="jc1tcsdq01.seleritycorp.com"/>
+            <attribute name="jdbcUrl" value="jdbc:mysql://jc1tcsdq01.seleritycorp.com:3306/cs_classifiers?useUnicode=true&amp;characterEncoding=UTF-8"/>
+        </instance>
     </instance>
 
     <!-- obsgrad -->

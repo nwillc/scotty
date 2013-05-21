@@ -380,4 +380,15 @@
         <attribute name="protocol" value="https"/>
         <attribute name="statusUrl" value=""/>
     </instance>
+
+    <!--Clock Adjustment Service -->
+    <instance name="clockadjustment">
+        <attribute name="app" value="clockadjustment"/>
+        <attribute name="name" value="Clock Adjustment Service"/>
+        <attribute name="artifactName" value="clockadjustment-jar-with-dependencies.jar"/>
+        <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/standalone/ClockAdjustment"/>
+        <attribute name="serviceUrl" value=""/>
+        <attribute name="port" value="8084"/>
+        <attribute name="jmxPort" value="8184"/>
+    </instance>
 </type>
