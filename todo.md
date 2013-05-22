@@ -1,3 +1,6 @@
+---
+layout: todo
+---
 TODO:
 =====
 
