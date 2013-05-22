@@ -63,22 +63,38 @@ public class Parser extends DefaultHandler {
 
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+		final String name;
 		switch (qName) {
 			case CONTEXT:
 				Context context = new Context(contexts.peek());
 				contexts.push(context);
 				break;
 			case INSTANCE:
+				name = attributes.getValue(NAME);
+				if (name == null) {
+					throw new SAXException("Instances require a name");
+				}
+				if (type.getContained().containsKey(name)) {
+					LOGGER.warning("Replacing type " + type.getName() + " instance " + name);
+				}
 				Instance instance = new Instance(contexts.peek(), attributes.getValue(NAME));
 				type.getContained().put(instance.getName(), instance);
 				contexts.push(instance);
 				break;
 			case ATTRIBUTE:
+				name = attributes.getValue(NAME);
+				if (name == null) {
+					throw new SAXException("Attributes require a name.");
+				}
 				value = new Value(attributes.getValue(VALUE));
-				contexts.peek().put(attributes.getValue(NAME), value);
+				contexts.peek().put(name, value);
 				break;
 			case TYPE:
-				type = new Type(attributes.getValue(NAME));
+				name = attributes.getValue(NAME);
+				if (name == null) {
+					throw new SAXException("Types require a name");
+				}
+				type = new Type(name);
 				contexts.push(type);
 				break;
 			case VALUE:

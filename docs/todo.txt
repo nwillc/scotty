@@ -4,5 +4,5 @@ TODO:
 - richer test & examples
 - markups to check type & attr presence
 - queryDistinct
-- warning when database overwrites an instance
+
 
