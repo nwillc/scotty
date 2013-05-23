@@ -40,7 +40,8 @@
                 <attribute name="serverName" value="Infra - EC2 - Analytics"/>
                 <attribute name="serverHost" value="ec2-184-73-56-33.compute-1.amazonaws.com"/>
                 <attribute name="app">
-                    <value>analytics,analyzer</value>
+                    <value>analytics</value>
+                    <value>analyzer</value>
                 </attribute>
             </instance>
 
@@ -48,7 +49,8 @@
                 <attribute name="serverName" value="Infra - Obs Grading"/>
                 <attribute name="serverHost" value="jc1zsdbt01"/>
                 <attribute name="app">
-                    <value>obsgradimporter,obsgradui</value>
+                    <value>obsgradimporter</value>
+                    <value>obsgradui</value>
                 </attribute>
             </instance>
         </context>
@@ -66,7 +68,16 @@
                 <attribute name="serverName" value="Alpha - B"/>
                 <attribute name="serverHost" value="jc1tclst01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>cs,aegir,perseus,entitlement,bulkdata,argosub,argopub,clockadjustment,sds,embargo</value>
+                    <value>cs</value>
+                    <value>aegir</value>
+                    <value>perseus</value>
+                    <value>entitlement</value>
+                    <value>bulkdata</value>
+                    <value>argosub</value>
+                    <value>argopub</value>
+                    <value>clockadjustment</value>
+                    <value>sds</value>
+                    <value>embargo</value>
                 </attribute>
                 <attribute name="pubInstance" value="PPUB-JC1T-T02"/>
                 <attribute name="subInstance" value="PSUB-JC1T-T02"/>
@@ -76,7 +87,19 @@
                 <attribute name="serverName" value="Alpha - A"/>
                 <attribute name="serverHost" value="jc1txtrt01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>cs,aegir,triton,athena,embargo-service,embargo,serts,alerts,newsclassifier,s3archiver,tweethandler,datasifthandler,classifiertraining</value>
+                    <value>cs</value>
+                    <value>aegir</value>
+                    <value>triton</value>
+                    <value>athena</value>
+                    <value>embargo-service</value>
+                    <value>embargo</value>
+                    <value>serts</value>
+                    <value>alerts</value>
+                    <value>newsclassifier</value>
+                    <value>s3archiver</value>
+                    <value>tweethandler</value>
+                    <value>datasifthandler</value>
+                    <value>classifiertraining</value>
                 </attribute>
             </instance>
 
@@ -93,7 +116,8 @@
                 <attribute name="serverHost" value="ec2-23-20-55-59.compute-1.amazonaws.com"/>
                 <attribute name="argoSubHost" value="108.35.104.43"/>
                 <attribute name="app">
-                    <value>sync,viewer</value>
+                    <value>sync</value>
+                    <value>viewer</value>
                 </attribute>
             </instance>
 
@@ -102,7 +126,8 @@
                 <attribute name="serverHost" value="ec2-107-20-93-106.compute-1.amazonaws.com"/>
                 <attribute name="argoSubHost" value="108.35.104.43"/>
                 <attribute name="app">
-                    <value>sync,viewer</value>
+                    <value>sync</value>
+                    <value>viewer</value>
                 </attribute>
             </instance>
 
@@ -116,7 +141,18 @@
                 <attribute name="serverName" value="QA"/>
                 <attribute name="serverHost" value="jc1tcsdq01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>cs,triton,athena,bulkdata,entitlement,aegir,perseus,argosub,argopub,tweethandler,datasifthandler,sds</value>
+                    <value>cs</value>
+                    <value>triton</value>
+                    <value>athena</value>
+                    <value>bulkdata</value>
+                    <value>entitlement</value>
+                    <value>aegir</value>
+                    <value>perseus</value>
+                    <value>argosub</value>
+                    <value>argopub</value>
+                    <value>tweethandler</value>
+                    <value>datasifthandler</value>
+                    <value>sds</value>
                 </attribute>
             </instance>
 
@@ -132,7 +168,8 @@
                 <attribute name="serverName" value="QA - UI"/>
                 <attribute name="serverHost" value="ec2-23-20-241-147.compute-1.amazonaws.com"/>
                 <attribute name="app">
-                    <value>sync,viewer</value>
+                    <value>sync</value>
+                    <value>viewer</value>
                 </attribute>
             </instance>
 
@@ -140,7 +177,8 @@
                 <attribute name="serverName" value="QA - Serts"/>
                 <attribute name="serverHost" value="10.220.1.203"/>
                 <attribute name="app">
-                    <value>alerts,serts</value>
+                    <value>alerts</value>
+                    <value>serts</value>
                 </attribute>
             </instance>
         </context>
@@ -153,7 +191,10 @@
                 <attribute name="serverName" value="Int - NY"/>
                 <attribute name="serverHost" value="ny2ihtri01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>bulkdata,argosub,argopub,emailhandler</value>
+                    <value>bulkdata</value>
+                    <value>argosub</value>
+                    <value>argopub</value>
+                    <value>emailhandler</value>
                 </attribute>
             </instance>
 
@@ -161,7 +202,8 @@
                 <attribute name="serverName" value="Int - CH"/>
                 <attribute name="serverHost" value="ch1ihtri01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>argosub,argopub</value>
+                    <value>argosub</value>
+                    <value>argopub</value>
                 </attribute>
             </instance>
 
@@ -179,7 +221,14 @@
                 <attribute name="serverName" value="Prod - NY - A"/>
                 <attribute name="serverHost" value="SelerityAPI.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>cs,triton,athena,bulkdata,entitlement,argosub,argopub,perseus</value>
+                    <value>cs</value>
+                    <value>triton</value>
+                    <value>athena</value>
+                    <value>bulkdata</value>
+                    <value>entitlement</value>
+                    <value>argosub</value>
+                    <value>argopub</value>
+                    <value>perseus</value>
                 </attribute>
             </instance>
 
@@ -187,7 +236,11 @@
                 <attribute name="serverName" value="Prod - NY - B"/>
                 <attribute name="serverHost" value="ny2bclsp01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>cs,bulkdata,argosub,argopub,aegir</value>
+                    <value>cs</value>
+                    <value>bulkdata</value>
+                    <value>argosub</value>
+                    <value>argopub</value>
+                    <value>aegir</value>
                 </attribute>
             </instance>
 
@@ -195,7 +248,8 @@
                 <attribute name="serverName" value="Prod - CH - A"/>
                 <attribute name="serverHost" value="ch1aclsp01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>argosub,argopub</value>
+                    <value>argosub</value>
+                    <value>argopub</value>
                 </attribute>
             </instance>
 
@@ -203,7 +257,8 @@
                 <attribute name="serverName" value="Prod - CH - B"/>
                 <attribute name="serverHost" value="ch1bclsp01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>argosub,argopub</value>
+                    <value>argosub</value>
+                    <value>argopub</value>
                 </attribute>
             </instance>
 
@@ -211,7 +266,8 @@
                 <attribute name="serverName" value="Prod - FR - A"/>
                 <attribute name="serverHost" value="fr2ainfp01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>argosub,argopub</value>
+                    <value>argosub</value>
+                    <value>argopub</value>
                 </attribute>
             </instance>
 
@@ -219,7 +275,8 @@
                 <attribute name="serverName" value="Prod - EC2 - UI - SMALL"/>
                 <attribute name="serverHost" value="ec2-23-20-154-166.compute-1.amazonaws.com"/>
                 <attribute name="app">
-                    <value>sync,viewer</value>
+                    <value>sync</value>
+                    <value>viewer</value>
                 </attribute>
             </instance>
 
@@ -227,7 +284,8 @@
                 <attribute name="serverName" value="Prod - EC2 - UI - LARGE"/>
                 <attribute name="serverHost" value="ec2-54-242-96-154.compute-1.amazonaws.com"/>
                 <attribute name="app">
-                    <value>sync,viewer</value>
+                    <value>sync</value>
+                    <value>viewer</value>
                 </attribute>
             </instance>
 
@@ -251,7 +309,10 @@
                 <attribute name="serverName" value="Prod - EC2 - Serts"/>
                 <attribute name="serverHost" value="ec2-23-21-247-239.compute-1.amazonaws.com"/>
                 <attribute name="app">
-                    <value>newsclassifier,s3archiver,tweethandler,datasifthandler</value>
+                    <value>newsclassifier</value>
+                    <value>s3archiver</value>
+                    <value>tweethandler</value>
+                    <value>datasifthandler</value>
                 </attribute>
             </instance>
 
@@ -259,7 +320,8 @@
                 <attribute name="serverName" value="Prod - EC2 - Serts - B"/>
                 <attribute name="serverHost" value="10.219.0.38"/>
                 <attribute name="app">
-                    <value>serts,alerts</value>
+                    <value>serts</value>
+                    <value>alerts</value>
                 </attribute>
             </instance>
 
