@@ -68,16 +68,16 @@
                 <attribute name="serverName" value="Alpha - B"/>
                 <attribute name="serverHost" value="jc1tclst01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>cs</value>
                     <value>aegir</value>
-                    <value>perseus</value>
-                    <value>entitlement</value>
-                    <value>bulkdata</value>
-                    <value>argosub</value>
                     <value>argopub</value>
+                    <value>argosub</value>
+                    <value>bulkdata</value>
                     <value>clockadjustment</value>
-                    <value>sds</value>
+                    <value>cs</value>
                     <value>embargo</value>
+                    <value>entitlement</value>
+                    <value>perseus</value>
+                    <value>sds</value>
                 </attribute>
                 <attribute name="pubInstance" value="PPUB-JC1T-T02"/>
                 <attribute name="subInstance" value="PSUB-JC1T-T02"/>
@@ -87,19 +87,19 @@
                 <attribute name="serverName" value="Alpha - A"/>
                 <attribute name="serverHost" value="jc1txtrt01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>cs</value>
                     <value>aegir</value>
-                    <value>triton</value>
+                    <value>alerts</value>
                     <value>athena</value>
+                    <value>classifiertraining</value>
+                    <value>cs</value>
+                    <value>datasifthandler</value>
                     <value>embargo-service</value>
                     <value>embargo</value>
-                    <value>serts</value>
-                    <value>alerts</value>
                     <value>newsclassifier</value>
                     <value>s3archiver</value>
+                    <value>serts</value>
+                    <value>triton</value>
                     <value>tweethandler</value>
-                    <value>datasifthandler</value>
-                    <value>classifiertraining</value>
                 </attribute>
             </instance>
 
@@ -141,18 +141,18 @@
                 <attribute name="serverName" value="QA"/>
                 <attribute name="serverHost" value="jc1tcsdq01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>cs</value>
-                    <value>triton</value>
+                    <value>aegir</value>
+                    <value>argopub</value>
+                    <value>argosub</value>
                     <value>athena</value>
                     <value>bulkdata</value>
-                    <value>entitlement</value>
-                    <value>aegir</value>
-                    <value>perseus</value>
-                    <value>argosub</value>
-                    <value>argopub</value>
-                    <value>tweethandler</value>
+                    <value>cs</value>
                     <value>datasifthandler</value>
+                    <value>entitlement</value>
+                    <value>perseus</value>
                     <value>sds</value>
+                    <value>triton</value>
+                    <value>tweethandler</value>
                 </attribute>
             </instance>
 
@@ -221,14 +221,14 @@
                 <attribute name="serverName" value="Prod - NY - A"/>
                 <attribute name="serverHost" value="SelerityAPI.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>cs</value>
-                    <value>triton</value>
+                    <value>argopub</value>
+                    <value>argosub</value>
                     <value>athena</value>
                     <value>bulkdata</value>
+                    <value>cs</value>
                     <value>entitlement</value>
-                    <value>argosub</value>
-                    <value>argopub</value>
                     <value>perseus</value>
+                    <value>triton</value>
                 </attribute>
             </instance>
 
@@ -236,11 +236,11 @@
                 <attribute name="serverName" value="Prod - NY - B"/>
                 <attribute name="serverHost" value="ny2bclsp01.seleritycorp.com"/>
                 <attribute name="app">
-                    <value>cs</value>
-                    <value>bulkdata</value>
-                    <value>argosub</value>
-                    <value>argopub</value>
                     <value>aegir</value>
+                    <value>argopub</value>
+                    <value>argosub</value>
+                    <value>bulkdata</value>
+                    <value>cs</value>
                 </attribute>
             </instance>
 
@@ -309,10 +309,10 @@
                 <attribute name="serverName" value="Prod - EC2 - Serts"/>
                 <attribute name="serverHost" value="ec2-23-21-247-239.compute-1.amazonaws.com"/>
                 <attribute name="app">
+                    <value>datasifthandler</value>
                     <value>newsclassifier</value>
                     <value>s3archiver</value>
                     <value>tweethandler</value>
-                    <value>datasifthandler</value>
                 </attribute>
             </instance>
 
@@ -329,8 +329,6 @@
                 <attribute name="serverName" value="Prod - EC2 - Proxy"/>
                 <attribute name="serverHost" value="ec2-50-17-254-42.compute-1.amazonaws.com"/>
             </instance>
-
         </context>
-
     </context>
 </type>
