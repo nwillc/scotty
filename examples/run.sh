@@ -5,43 +5,17 @@ CONTEXT=""
 if [ ".$2" != "." ]; then
     CONTEXT="-c $2"
 fi
+DATABASES=database/application.xml,database/host.xml,database/environment.xml,database/datasource.xml,database/amazon.xml
 
 case "$TEMPLATE" in
         print)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar --print -d database/application.xml,database/environment.xml,database/host.xml,database/amazon.xml,database/datasource.xml
+          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar --print -d ${DATABASES}
           ;;
-        alerts)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d database/application.xml -t template/alerts.scotty
+        alerts|argopub|argosub|aegir|amazon|bulkdata|universe|classifiertraining|clockadjustment|cs|datasifthandler|emailhandler|emailhandler|embargo)
+          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar ${CONTEXT} -d ${DATABASES} -t template/${TEMPLATE}.scotty
           ;;
-        argopub)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d database/application.xml,database/environment.xml,database/datasource.xml -t template/argopub.scotty
-          ;;
-        argosub)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d database/application.xml,database/environment.xml,database/datasource.xml -t template/argosub.scotty
-          ;;
-        aegir)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d database/application.xml,database/environment.xml -t template/aegir.scotty
-          ;;
-        amazon)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d database/amazon.xml -t template/amazon.scotty
-          ;;
-        bulkdata)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d database/application.xml,database/environment.xml,database/datasource.xml -t template/bulkdata.scotty
-          ;;
-        universe)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d database/application.xml,database/host.xml,database/environment.xml,database/datasource.xml -t template/universe.scotty
-          ;;
-        classifiertraining)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d  database/application.xml,database/environment.xml,database/datasource.xml -t template/classifiertraining.scotty
-          ;;
-        clockadjustment)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d  database/application.xml,database/environment.xml,database/datasource.xml -t template/clockadjustment.scotty
-          ;;
-        cs)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d  database/application.xml,database/environment.xml,database/datasource.xml -t template/cs.scotty
-          ;;
-        datasifthandler)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar $CONTEXT -d  database/application.xml,database/environment.xml -t template/datasifthandler.scotty
+        *)
+          echo Unknown command ${TEMPLATE}
           ;;
 esac
 

@@ -1,0 +1,14 @@
+{#t application #}{#c env,host #}{# context.put("app","embargo"); #}{
+        "port" : {#? port #},
+        "socketioPort" :  {#? port #},
+        "env" : "{#? name type=environment #}",
+        "logPath" : "/mnt/tmp/logs/embargo.log",
+        "embargoHosts": ["{embargoHost1,app=embargo}", "{embargoHost2,app=embargo}", "{embargoHost3,app=embargo}", "{embargoHost4,app=embargo}", "{embargoHost5,app=embargo}"],
+        "rhinoHost": "{rhinoHost,app=embargo}",
+        "entitlementHost": "{entitlementHost,app=embargo}",
+        "bdsHost" : "{bdsHost,app=embargo}",
+        "keyPath" : "{keyPath,app=embargo}",
+        "certPath" : "{certPath,app=embargo}",
+        "systemPassword" : "{syncPassword,app=embargo}",
+	    "mockServerFlag" : "{mockServerFlag,app=embargo}"
+}

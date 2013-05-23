@@ -18,6 +18,7 @@
     <attribute name="password" value="testsystem1"/>
     <attribute name="statusUrl" value="version.do"/>
     <attribute name="protocol" value="http"/>
+    <attribute name="publishTopic" value="OBS"/>
 
     <context>
         <!-- deployed in tomcat -->
@@ -316,7 +317,6 @@
             <value>argosub</value>
             <value>argopub</value>
         </attribute>
-        <attribute name="publishTopic" value="OBS"/>
         <attribute name="username" value="gaucho"/>
         <attribute name="password" value="gaucho"/>
         <attribute name="syncUrls"

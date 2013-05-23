@@ -31,19 +31,25 @@
             <instance name="jc1zinfp01">
                 <attribute name="serverName" value="Infra"/>
                 <attribute name="serverHost" value="jc1zinfp01.seleritycorp.com"/>
-                <attribute name="apps" value="ran"/>
+                <attribute name="app">
+                    <value>ran</value>
+                </attribute>
             </instance>
 
             <instance name="ec2vinfp02">
                 <attribute name="serverName" value="Infra - EC2 - Analytics"/>
                 <attribute name="serverHost" value="ec2-184-73-56-33.compute-1.amazonaws.com"/>
-                <attribute name="apps" value="analytics,analyzer"/>
+                <attribute name="app">
+                    <value>analytics,analyzer</value>
+                </attribute>
             </instance>
 
             <instance name="jc1zsdbt01">
                 <attribute name="serverName" value="Infra - Obs Grading"/>
                 <attribute name="serverHost" value="jc1zsdbt01"/>
-                <attribute name="apps" value="obsgradimporter,obsgradui"/>
+                <attribute name="app">
+                    <value>obsgradimporter,obsgradui</value>
+                </attribute>
             </instance>
         </context>
 
@@ -59,8 +65,9 @@
                 </attribute>
                 <attribute name="serverName" value="Alpha - B"/>
                 <attribute name="serverHost" value="jc1tclst01.seleritycorp.com"/>
-                <attribute name="apps"
-                           value="cs,aegir,perseus,entitlement,bulkdata,argosub,argopub,clockadjustment,sds,embargo"/>
+                <attribute name="app">
+                    <value>cs,aegir,perseus,entitlement,bulkdata,argosub,argopub,clockadjustment,sds,embargo</value>
+                </attribute>
                 <attribute name="pubInstance" value="PPUB-JC1T-T02"/>
                 <attribute name="subInstance" value="PSUB-JC1T-T02"/>
             </instance>
@@ -68,28 +75,35 @@
             <instance name="jc1txtrt01">
                 <attribute name="serverName" value="Alpha - A"/>
                 <attribute name="serverHost" value="jc1txtrt01.seleritycorp.com"/>
-                <attribute name="apps"
-                           value="cs,aegir,triton,athena,embargo-service,embargo,serts,alerts,newsclassifier,s3archiver,tweethandler,datasifthandler,classifiertraining"/>
+                <attribute name="app">
+                    <value>cs,aegir,triton,athena,embargo-service,embargo,serts,alerts,newsclassifier,s3archiver,tweethandler,datasifthandler,classifiertraining</value>
+                </attribute>
             </instance>
 
             <instance name="jc1tsdbt01">
                 <attribute name="serverName" value="Alpha - DB"/>
                 <attribute name="serverHost" value="jc1tsdbt01.seleritycorp.com"/>
-                <attribute name="apps" value="indexer"/>
+                <attribute name="app">
+                    <value>indexer</value>
+                </attribute>
             </instance>
 
             <instance name="ec2vclst02">
                 <attribute name="serverName" value="Alpha - UI - A"/>
                 <attribute name="serverHost" value="ec2-23-20-55-59.compute-1.amazonaws.com"/>
                 <attribute name="argoSubHost" value="108.35.104.43"/>
-                <attribute name="apps" value="sync,viewer"/>
+                <attribute name="app">
+                    <value>sync,viewer</value>
+                </attribute>
             </instance>
 
             <instance name="ec2vclst01">
                 <attribute name="serverName" value="Alpha - UI - B"/>
                 <attribute name="serverHost" value="ec2-107-20-93-106.compute-1.amazonaws.com"/>
                 <attribute name="argoSubHost" value="108.35.104.43"/>
-                <attribute name="apps" value="sync,viewer"/>
+                <attribute name="app">
+                    <value>sync,viewer</value>
+                </attribute>
             </instance>
 
         </context>
@@ -101,26 +115,33 @@
             <instance name="jc1tcsdq01">
                 <attribute name="serverName" value="QA"/>
                 <attribute name="serverHost" value="jc1tcsdq01.seleritycorp.com"/>
-                <attribute name="apps"
-                           value="cs,triton,athena,bulkdata,entitlement,aegir,perseus,argosub,argopub,tweethandler,datasifthandler,sds"/>
+                <attribute name="app">
+                    <value>cs,triton,athena,bulkdata,entitlement,aegir,perseus,argosub,argopub,tweethandler,datasifthandler,sds</value>
+                </attribute>
             </instance>
 
             <instance name="jc1tevmq01">
                 <attribute name="serverName" value="QA - VM"/>
                 <attribute name="serverHost" value="jc1tevmq01.seleritycorp.com"/>
-                <attribute name="apps" value="embargo"/>
+                <attribute name="app">
+                    <value>embargo</value>
+                </attribute>
             </instance>
 
             <instance name="ec2vclsq01">
                 <attribute name="serverName" value="QA - UI"/>
                 <attribute name="serverHost" value="ec2-23-20-241-147.compute-1.amazonaws.com"/>
-                <attribute name="apps" value="sync,viewer"/>
+                <attribute name="app">
+                    <value>sync,viewer</value>
+                </attribute>
             </instance>
 
             <instance name="ec2vclsq02">
                 <attribute name="serverName" value="QA - Serts"/>
                 <attribute name="serverHost" value="10.220.1.203"/>
-                <attribute name="apps" value="alerts,serts"/>
+                <attribute name="app">
+                    <value>alerts,serts</value>
+                </attribute>
             </instance>
         </context>
 
@@ -131,13 +152,17 @@
             <instance name="ny2ihtri01">
                 <attribute name="serverName" value="Int - NY"/>
                 <attribute name="serverHost" value="ny2ihtri01.seleritycorp.com"/>
-                <attribute name="apps" value="bulkdata,argosub,argopub,emailhandler"/>
+                <attribute name="app">
+                    <value>bulkdata,argosub,argopub,emailhandler</value>
+                </attribute>
             </instance>
 
             <instance name="ch1ihtri01">
                 <attribute name="serverName" value="Int - CH"/>
                 <attribute name="serverHost" value="ch1ihtri01.seleritycorp.com"/>
-                <attribute name="apps" value="argosub,argopub"/>
+                <attribute name="app">
+                    <value>argosub,argopub</value>
+                </attribute>
             </instance>
 
         </context>
@@ -153,67 +178,89 @@
                 </attribute>
                 <attribute name="serverName" value="Prod - NY - A"/>
                 <attribute name="serverHost" value="SelerityAPI.seleritycorp.com"/>
-                <attribute name="apps" value="cs,triton,athena,bulkdata,entitlement,argosub,argopub,perseus"/>
+                <attribute name="app">
+                    <value>cs,triton,athena,bulkdata,entitlement,argosub,argopub,perseus</value>
+                </attribute>
             </instance>
 
             <instance name="ny2bclsp01">
                 <attribute name="serverName" value="Prod - NY - B"/>
                 <attribute name="serverHost" value="ny2bclsp01.seleritycorp.com"/>
-                <attribute name="apps" value="cs,bulkdata,argosub,argopub,aegir"/>
+                <attribute name="app">
+                    <value>cs,bulkdata,argosub,argopub,aegir</value>
+                </attribute>
             </instance>
 
             <instance name="ch1aclsp01">
                 <attribute name="serverName" value="Prod - CH - A"/>
                 <attribute name="serverHost" value="ch1aclsp01.seleritycorp.com"/>
-                <attribute name="apps" value="argosub,argopub"/>
+                <attribute name="app">
+                    <value>argosub,argopub</value>
+                </attribute>
             </instance>
 
             <instance name="ch1bclsp01">
                 <attribute name="serverName" value="Prod - CH - B"/>
                 <attribute name="serverHost" value="ch1bclsp01.seleritycorp.com"/>
-                <attribute name="apps" value="argosub,argopub"/>
+                <attribute name="app">
+                    <value>argosub,argopub</value>
+                </attribute>
             </instance>
 
             <instance name="fr2ainfp01">
                 <attribute name="serverName" value="Prod - FR - A"/>
                 <attribute name="serverHost" value="fr2ainfp01.seleritycorp.com"/>
-                <attribute name="apps" value="argosub,argopub"/>
+                <attribute name="app">
+                    <value>argosub,argopub</value>
+                </attribute>
             </instance>
 
             <instance name="ec2vclsp04">
                 <attribute name="serverName" value="Prod - EC2 - UI - SMALL"/>
                 <attribute name="serverHost" value="ec2-23-20-154-166.compute-1.amazonaws.com"/>
-                <attribute name="apps" value="sync,viewer"/>
+                <attribute name="app">
+                    <value>sync,viewer</value>
+                </attribute>
             </instance>
 
             <instance name="ec2vclsp03">
                 <attribute name="serverName" value="Prod - EC2 - UI - LARGE"/>
                 <attribute name="serverHost" value="ec2-54-242-96-154.compute-1.amazonaws.com"/>
-                <attribute name="apps" value="sync,viewer"/>
+                <attribute name="app">
+                    <value>sync,viewer</value>
+                </attribute>
             </instance>
 
             <instance name="ny2aevmp01">
                 <attribute name="serverName" value="Prod NY Embargo VM"/>
                 <attribute name="serverHost" value="ny2aevmp01"/>
-                <attribute name="apps" value="embargo"/>
+                <attribute name="app">
+                    <value>embargo</value>
+                </attribute>
             </instance>
 
             <instance name="ch1aevmp01">
                 <attribute name="serverName" value="Prod CH Embargo VM"/>
                 <attribute name="serverHost" value="ch1aevmp01"/>
-                <attribute name="apps" value="embargo"/>
+                <attribute name="app">
+                    <value>embargo</value>
+                </attribute>
             </instance>
 
             <instance name="ec2vclsp02">
                 <attribute name="serverName" value="Prod - EC2 - Serts"/>
                 <attribute name="serverHost" value="ec2-23-21-247-239.compute-1.amazonaws.com"/>
-                <attribute name="apps" value="newsclassifier,s3archiver,tweethandler,datasifthandler"/>
+                <attribute name="app">
+                    <value>newsclassifier,s3archiver,tweethandler,datasifthandler</value>
+                </attribute>
             </instance>
 
             <instance name="ec2vclsp01">
                 <attribute name="serverName" value="Prod - EC2 - Serts - B"/>
                 <attribute name="serverHost" value="10.219.0.38"/>
-                <attribute name="apps" value="serts,alerts"/>
+                <attribute name="app">
+                    <value>serts,alerts</value>
+                </attribute>
             </instance>
 
             <instance name="ec2vinfp01">

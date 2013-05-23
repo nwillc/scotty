@@ -1,0 +1,8 @@
+# {#t application,environment #} {#c env,host #} {# context.put("app","emailhandler"); #}
+# Email handler properties
+#
+emailhandler.source_topic={#? publishTopic  #}
+emailhandler.domain={#? domain type=environment #}
+emailhandler.source_host={# output.print(context.get("host")); #}
+emailhandler.source_instance=bill_instance
+emailhandler.level=test

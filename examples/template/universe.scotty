@@ -144,8 +144,21 @@
        output.println(prefix + "name=" + i.get("serverName"));
        output.println(prefix + "host=" + i.get("serverHost"));
        output.println(prefix + "domain=" + environment.get("domain"));
-       output.println(prefix + "apps=" + i.get("apps",""));
        output.println(prefix + "ec2Proxy=" + environment.get("ec2Proxy",""));
+       output.print(prefix + "apps=");
+
+       Value apps = i.getValue("app");
+       if (apps != null) {
+             first = true;
+          for (String app : apps.values()) {
+              if (first) {
+                 first=false;
+              } else {
+                 output.print(',');
+              }
+              output.print(app);
+          }
+       }
        output.print('\n');
     }
  }
