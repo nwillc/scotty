@@ -290,18 +290,44 @@
             </instance>
 
             <instance name="ny2aevmp01">
-                <attribute name="serverName" value="Prod NY Embargo VM"/>
-                <attribute name="serverHost" value="ny2aevmp01"/>
+                <attribute name="serverName" value="Prod NYA Embargo VM"/>
+                <attribute name="serverHost" value="ny2aevmp01.seleritycorp.com"/>
                 <attribute name="app">
                     <value>embargo</value>
+                    <value>embargo-service</value>
+                </attribute>
+            </instance>
+
+            <instance name="ny2bevmp01">
+                <attribute name="serverName" value="Prod NYB Embargo VM"/>
+                <attribute name="serverHost" value="ny2bevmp01.seleritycorp.com"/>
+                <attribute name="app">
+                    <value>embargo-service</value>
                 </attribute>
             </instance>
 
             <instance name="ch1aevmp01">
-                <attribute name="serverName" value="Prod CH Embargo VM"/>
-                <attribute name="serverHost" value="ch1aevmp01"/>
+                <attribute name="serverName" value="Prod CH A Embargo VM"/>
+                <attribute name="serverHost" value="ch1aevmp01.seleritycorp.com"/>
                 <attribute name="app">
                     <value>embargo</value>
+                    <value>embargo-service</value>
+                </attribute>
+            </instance>
+
+            <instance name="ch1bevmp01">
+                <attribute name="serverName" value="Prod CH B Embargo VM"/>
+                <attribute name="serverHost" value="ch1bevmp01.seleritycorp.com"/>
+                <attribute name="app">
+                    <value>embargo-service</value>
+                </attribute>
+            </instance>
+
+            <instance name="fr2aevmp01">
+                <attribute name="serverName" value="Prod FR A Embargo VM"/>
+                <attribute name="serverHost" value="fr2aevmp01.seleritycorp.com"/>
+                <attribute name="app">
+                    <value>embargo-service</value>
                 </attribute>
             </instance>
 

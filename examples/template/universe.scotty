@@ -125,7 +125,7 @@
     output.format("%s.%s=%s\n", new Object[]{key, "jndi", environment.get("jndi")});
     output.format("%s.%s=%s\n", new Object[]{key, "container", environment.get("container","")});
 
-    Context c = new Context(null, "type=host,env=" + key);
+    Context c = new Context("type=host,env=" + key);
     List matches = database.query(c);
     output.print(key + ".instances=");
     first = true;
@@ -159,7 +159,7 @@
               output.print(app);
           }
        }
-       output.print('\n');
+       output.println('\n');
     }
  }
 

@@ -43,10 +43,15 @@ Feature: The Database should provide a way to query instances based on a context
     Then query should yield <count> instances
     And the first instance should be "<name>"
 
-  Examples:
+  Examples: Successful
     | assignments | count | name       |
     | env=dev     | 1     | devbox1    |
     | flag2=true  | 1     | devbox1-qa |
     | flag1=true  | 2     | devbox1    |
+
+  Examples: Failing
+    | assignments     | count | name |
+    | foo=bar         | 0     |      |
+    | env=dev,foo=bar | 0     |      |
 
 

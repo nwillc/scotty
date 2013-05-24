@@ -25,7 +25,9 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
 
-import static junit.framework.TestCase.*;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  *
@@ -74,8 +76,12 @@ public class QueryFeature {
 
     @Then("^the first instance should be \"([^\"]*)\"$")
     public void the_first_instance_should_be(String arg1) throws Throwable {
-        NamedContext namedContext = (NamedContext) results.get(0);
-        assertEquals(arg1, namedContext.getName());
+        if (results.size() > 0) {
+            NamedContext namedContext = (NamedContext) results.get(0);
+            assertEquals(arg1, namedContext.getName());
+        } else {
+            assertEquals(0, arg1.length());
+        }
     }
 
 }

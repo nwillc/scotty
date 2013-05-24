@@ -1,9 +1,22 @@
 {#t application,host #}{#c env,host #}{# context.put("app","embargo"); #}{
-        "port" : {#? port #},
-        "socketioPort" :  {#? port #},
+        "port" : {#? port type=application #},
+        "socketioPort" :  {#? port type=application #},
         "env" : "{#? name type=environment #}",
         "logPath" : "/mnt/tmp/logs/embargo.log",
-        "embargoHosts": ["{embargoHost1,app=embargo}", "{embargoHost2,app=embargo}", "{embargoHost3,app=embargo}", "{embargoHost4,app=embargo}", "{embargoHost5,app=embargo}"],
+        "embargoHosts": [{#
+            Context c = new Context(context,"type=host,app=embargo-service");
+            List matches = database.query(c);
+
+            boolean first=true;
+            for (Instance i : matches) {
+                if (first) {
+                   first=false;
+                } else {
+                    output.print(',');
+                }
+                output.print("\"" + i.get("serverHost") + "\"");
+            }
+        #}],
         "rhinoHost": "{#? serverHost type=host,app=embargo #}",
         "entitlementHost": "{#? serverHost type=host,app=entitlement #}",
         "bdsHost" : "{#? serverHost type=host,app=bulkdata #}",

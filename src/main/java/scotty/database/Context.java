@@ -256,6 +256,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
 
         for (String key : b.keySet()) {
             if (!containsKey(key)) {
+                //   return NOT_SIMILAR;
                 continue;
             }
 
