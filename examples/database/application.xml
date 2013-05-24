@@ -147,6 +147,9 @@
             <attribute name="artifactName" value="embargo.tar.gz"/>
             <attribute name="repoPath" value="git@selerity.unfuddle.com:selerity/embargo.git"/>
             <attribute name="port" value="9030"/>
+            <attribute name="mockServer" value="false"/>
+            <attribute name="keyPath" value="/opt/ui/embargo/site.key"/>
+            <attribute name="certPath" value="/opt/ui/embargo/final.crt"/>
         </instance>
 
         <!-- Analytics -->

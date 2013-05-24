@@ -5,10 +5,11 @@
         "logPath" : "/mnt/tmp/logs/embargo.log",
         "embargoHosts": ["{embargoHost1,app=embargo}", "{embargoHost2,app=embargo}", "{embargoHost3,app=embargo}", "{embargoHost4,app=embargo}", "{embargoHost5,app=embargo}"],
         "rhinoHost": "{#? serverHost type=host,app=embargo #}",
-        "entitlementHost": "{entitlementHost,app=embargo}",
-        "bdsHost" : "{bdsHost,app=embargo}",
-        "keyPath" : "{keyPath,app=embargo}",
-        "certPath" : "{certPath,app=embargo}",
-        "systemPassword" : "{syncPassword,app=embargo}",
-	    "mockServerFlag" : "{mockServerFlag,app=embargo}"
+        "entitlementHost": "{#? serverHost type=host,app=entitlement #}",
+        "bdsHost" : "{#? serverHost type=host,app=bulkdata #}",
+        "keyPath" : "{#? keyPath type=application #}",
+        "certPath" : "{#? certPath type=application #}",
+        "systemUser" : "{#? username type=application #}",
+        "systemPassword" : "{#? password type=application #}",
+        "mockServerFlag" : "{#? mockServer  type=application #}"
 }

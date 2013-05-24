@@ -1,15 +1,15 @@
-# {#t application,environment,datasource #} {#c env #} {# context.put("app","cs"); #}
+# {#t application,environment,datasource #} {#c env #} {# context.put("app","cs"); context.put("database","cs"); #}
 # CORE SERVICES PROPERTIES FILE
 #
 cs.activate.event.collation=false
 cs.cache.events.maxElements=40000
 cs.cache.sourceDocuments.maxElements=500
 cs.cache.specs.maxElements=150000
-cs.db.host={#? hostName type=datasource,database=cs,mode=rw #}
-cs.db.port={#? port type=datasource,database=cs #}
-cs.db.jdbc={#? jdbcUrl type=datasource,database=cs,mode=rw #}
-cs.db.user.name={#? username type=datasource,database=cs #}
-cs.db.user.password={#? password type=datasource,database=cs #}
+cs.db.host={#? hostName type=datasource,,mode=rw #}
+cs.db.port={#? port type=datasource #}
+cs.db.jdbc={#? jdbcUrl type=datasource,mode=rw #}
+cs.db.user.name={#? username type=datasource #}
+cs.db.user.password={#? password type=datasource #}
 cs.environment={#? name type=environment #}
 cs.eula.version=0
 cs.show.extensions=true
