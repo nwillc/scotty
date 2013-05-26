@@ -29,6 +29,15 @@ import java.util.List;
  */
 public class Database extends Context {
 
+	/**
+	 * Parse a collection of streams open to Type data to create a Database.
+	 *
+	 * @param inputStreams Collection of input streams
+	 * @return Database of types
+	 * @throws IOException                  issue reading from stream
+	 * @throws SAXException                 XML content error
+	 * @throws ParserConfigurationException XML parser instantiation issue
+	 */
 	public static Database parse(InputStream... inputStreams) throws IOException, SAXException, ParserConfigurationException {
 		Database database = new Database();
 
@@ -41,6 +50,15 @@ public class Database extends Context {
 		return database;
 	}
 
+	/**
+	 * Parse a collection of files containing Type data to create a Database.
+	 *
+	 * @param files collection of files
+	 * @return Database of types
+	 * @throws IOException                  issue reading from stream
+	 * @throws SAXException                 XML content error
+	 * @throws ParserConfigurationException XML parser instantiation issue
+	 */
 	public static Database parse(String... files) throws ParserConfigurationException, SAXException, IOException {
 		if (files == null || files.length == 0) {
 			return null;
@@ -54,10 +72,22 @@ public class Database extends Context {
 		return database;
 	}
 
+	/**
+	 * Find the string value of a fully qualified attribute name, i.e. "type.instance.attr".
+	 *
+	 * @param name fully qualified name
+	 * @return attribute string value
+	 */
 	public String find(String name) {
 		return Utilities.find(this, name);
 	}
 
+	/**
+	 * Return a list of instances matching a given set of criteria.
+	 *
+	 * @param criteria the criteria to match
+	 * @return a list of instances in match rank order
+	 */
 	public List<Context> query(Context criteria) {
 		return Utilities.query(this, criteria);
 	}
