@@ -103,7 +103,7 @@ public class Database extends Context {
 	 * @return sorted set of values
 	 */
 	public Set<String> query(Context criteria, String attr) {
-		List<Context> matches = Utilities.query(this, criteria);
+		List<Context> matches = query(criteria);
 		Set<String> attributeValues = new TreeSet<>();
 		for (Context c : matches) {
 			Value v = c.getValue(attr);
