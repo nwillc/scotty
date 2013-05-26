@@ -4,16 +4,8 @@
 # Application Classes
 #
 {#
- Type type = database.getContained().get("application");
- Set set = new TreeSet();
-  for (Instance i : type.getContained().values()) {
-     if (i.containsKey("app")) {
-          Value value = i.getValue("app");
-          for (String aValue : value.values()) {
-             set.add(aValue);
-          }
-     }
- }
+
+ Set set = database.query(new Context("type=application"), "app");
 
  output.print("applications=");
  boolean first = true;
@@ -52,11 +44,7 @@
 # Databases Instances by Name.Env (Datasource by Name.Env.Host)
 #
 {#
-  Type type = database.getContained().get("datasource");
-  Set set = new TreeSet();
-  for (Instance i : type.getContained().values()) {
-    set.add(i.get("database"));
-  }
+  Set set = database.query(new Context("type=datasource"), "database");
   output.print("databases=");
   boolean first = true;
   for (String database : set) {
@@ -98,13 +86,7 @@
 # Application instances by Environment.Host
 #
 {#
- Type type = database.getContained().get("host");
- Set set = new TreeSet();
- for (Instance i : type.getContained().values()) {
-   for (String eName : i.getValue("env").values()) {
-      set.add(eName);
-   }
- }
+ Set set = database.query(new Context("type=host"), "env");
  output.print("environments=");
  boolean first = true;
  for (String env : set) {
@@ -149,7 +131,7 @@
 
        Value apps = i.getValue("app");
        if (apps != null) {
-             first = true;
+          first = true;
           for (String app : apps.values()) {
               if (first) {
                  first=false;

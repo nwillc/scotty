@@ -23,6 +23,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * A Scotty database, basically a context with a contained map of Types.
@@ -92,4 +94,27 @@ public class Database extends Context {
 		return Utilities.query(this, criteria);
 	}
 
+	/**
+	 * Return a set, in sorted order, of the values of a specified attribute of all the instances
+	 * matching a criteria.
+	 *
+	 * @param criteria the criteria
+	 * @param attr     the attribute name
+	 * @return sorted set of values
+	 */
+	public Set<String> query(Context criteria, String attr) {
+		List<Context> matches = Utilities.query(this, criteria);
+		Set<String> attributeValues = new TreeSet<>();
+		for (Context c : matches) {
+			Value v = c.getValue(attr);
+			if (v == null) {
+				continue;
+			}
+
+			for (String s : v.values()) {
+				attributeValues.add(s);
+			}
+		}
+		return attributeValues;
+	}
 }

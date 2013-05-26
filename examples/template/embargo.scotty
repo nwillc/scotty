@@ -4,17 +4,16 @@
         "env" : "{#? name type=environment #}",
         "logPath" : "/mnt/tmp/logs/embargo.log",
         "embargoHosts": [{#
-            Context c = new Context(context,"type=host,app=embargo-service");
-            List matches = database.query(c);
+            Set matches = database.query(new Context(context,"type=host,app=embargo-service"),"serverHost");
 
             boolean first=true;
-            for (Instance i : matches) {
+            for (String s : matches) {
                 if (first) {
                    first=false;
                 } else {
                     output.print(',');
                 }
-                output.print("\"" + i.get("serverHost") + "\"");
+                output.print("\"" + s + "\"");
             }
         #}],
         "rhinoHost": "{#? serverHost type=host,app=embargo #}",
