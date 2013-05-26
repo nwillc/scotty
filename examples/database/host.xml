@@ -14,6 +14,7 @@
   -->
 
 <type name="host">
+    <attribute name="app"/>
     <context>
         <attribute name="container" value="tomcat6x"/>
 

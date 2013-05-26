@@ -4,6 +4,7 @@ Feature: The Database should provide a way to query instances based on a context
     Given a Database based on
     """
     <type name="host">
+    <attribute name="foo"/>
     <attribute name="company" value="acme"/>
     <attribute name="address" value="127.0.0.1"/>
 	<context>
