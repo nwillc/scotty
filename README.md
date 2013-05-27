@@ -1,4 +1,4 @@
 Scotty
 ======
 
-Simple Configuration Transformation Tool
+[Simple Configuration Transformation Tool](http://nwillc.github.io/scotty)

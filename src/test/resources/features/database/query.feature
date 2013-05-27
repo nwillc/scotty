@@ -7,6 +7,7 @@ Feature: The Database should provide a way to query instances based on a context
     <attribute name="foo"/>
     <attribute name="company" value="acme"/>
     <attribute name="address" value="127.0.0.1"/>
+    <attribute name="flag1"/>
 	<context>
 	    <attribute name="flag1" value="true"/>
         <attribute name="env" value="dev"/>
@@ -55,4 +56,13 @@ Feature: The Database should provide a way to query instances based on a context
     | foo=bar         | 0     |      |
     | env=dev,foo=bar | 0     |      |
 
+  Scenario Outline: Retrieve a set of attribute values using a query with a context
+    Given the database
+    And the context based on "<assignments>"
+    And and the attribute "<attribute>"
+    Then it should yield set "<set>"
 
+  Examples:
+    | assignments          | attribute | set         |
+    | type=host            | env       | dev,prod,qa |
+    | type=host,flag1=true | env       | dev,qa      |
