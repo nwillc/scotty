@@ -1,0 +1,14 @@
+{#t application,environment,datasource,host #}{#c env #}{#
+   context.put("app","obsgradui");
+   context.put("database","obsgradimporter");
+#}{
+        "logPath": "logs/obsgradui.log",
+        "port": {#? port type=application #},
+        "dbhost": "{#? hostName type=datasource #}",
+        "dbname": "obsgrad",
+        "dbUser": "{#? username type=datasource #}",
+        "dbPassword": "{#? password type=datasource #}"
+        "rhinoUrl" :  "http://{#? serverHost type=host,app=cs #}:{#? port type=application,app=cs #}/{#? mainUrl type=application,app=cs #}/{#? serviceUrl type=application,app=cs #}",
+        "entitlmentUrl" : "http://{#? serverHost type=host,app=entitlement #}:{#? port type=application,app=entitlement #}"
+}
+
