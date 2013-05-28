@@ -19,6 +19,7 @@
     <attribute name="statusUrl" value="version.do"/>
     <attribute name="protocol" value="http"/>
     <attribute name="publishTopic" value="OBS"/>
+    <attribute name="remoteLogging" value="false"/>
 
     <context>
         <!-- deployed in tomcat -->

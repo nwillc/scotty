@@ -1,0 +1,14 @@
+# {#t application,environment,datasource #} {#c env #} {#
+context.put("app","entitlement");
+context.put("database","entitlement");
+#}
+# ENTITLEMENT SERVICE PROPERTIES FILE
+#
+entitlement.environment={#? name type=environment #}
+entitlement.db.host={#? hostName type=datasource #}
+entitlement.db.port={#? port type=datasource #}
+entitlement.db.user.name={#? username type=datasource #}
+entitlement.db.user.password={#? password type=datasource #}
+entitlement.remoteLogging.activate={#? remoteLogging type=application #}
+entitlement.remoteLogging.db.host={#= datasource.remoteLogging.host #}
+entitlement.remoteLogging.db.port={#= datasource.remoteLogging.port #}

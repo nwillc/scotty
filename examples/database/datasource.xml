@@ -16,8 +16,13 @@
 <type name="datasource">
     <attribute name="username" value="cs_admin"/>
     <attribute name="password" value="selerity2010"/>
-    <attribute name="mode" value="rw"/>
+    <attribute name="mode">
+        <value>ro</value>
+        <value>rw</value>
+    </attribute>
     <attribute name="port" value="3306"/>
+    <attribute name="host" value="localhost"/>
+    <attribute name="hostName" value="localhost"/>
 
     <!-- Remote Logging -->
     <instance name="remoteLogging">
@@ -132,7 +137,8 @@
     <!-- classifiertraining -->
     <instance name="classifiertraining">
         <attribute name="database" value="classifiertraining"/>
-        <attribute name="jdbcUrl" value="jdbc:mysql://localhost:3306/cs_classifiers?useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <attribute name="jdbcUrl"
+                   value="jdbc:mysql://localhost:3306/cs_classifiers?useUnicode=true&amp;characterEncoding=UTF-8"/>
 
         <!-- Alpha -->
         <context>
@@ -140,12 +146,14 @@
             <instance name="classifiertraining-alpha-1">
                 <attribute name="host" value="jc1tsdbt01"/>
                 <attribute name="hostName" value="jc1tsdbt01.seleritycorp.com"/>
-                <attribute name="jdbcUrl" value="jdbc:mysql://jc1tsdbt01.seleritycorp.com:3306/cs_classifiers?useUnicode=true&amp;characterEncoding=UTF-8"/>
+                <attribute name="jdbcUrl"
+                           value="jdbc:mysql://jc1tsdbt01.seleritycorp.com:3306/cs_classifiers?useUnicode=true&amp;characterEncoding=UTF-8"/>
             </instance>
             <instance name="classifiertraining-alpha-2">
                 <attribute name="host" value="jc1tclst01"/>
                 <attribute name="hostName" value="jc1tclst01.seleritycorp.com"/>
-                <attribute name="jdbcUrl" value="jdbc:mysql://jc1tclst01.seleritycorp.com:3306/cs_classifiers?useUnicode=true&amp;characterEncoding=UTF-8"/>
+                <attribute name="jdbcUrl"
+                           value="jdbc:mysql://jc1tclst01.seleritycorp.com:3306/cs_classifiers?useUnicode=true&amp;characterEncoding=UTF-8"/>
             </instance>
         </context>
 
@@ -154,7 +162,8 @@
             <attribute name="env" value="qa"/>
             <attribute name="host" value="jc1tcsdq01"/>
             <attribute name="hostName" value="jc1tcsdq01.seleritycorp.com"/>
-            <attribute name="jdbcUrl" value="jdbc:mysql://jc1tcsdq01.seleritycorp.com:3306/cs_classifiers?useUnicode=true&amp;characterEncoding=UTF-8"/>
+            <attribute name="jdbcUrl"
+                       value="jdbc:mysql://jc1tcsdq01.seleritycorp.com:3306/cs_classifiers?useUnicode=true&amp;characterEncoding=UTF-8"/>
         </instance>
     </instance>
 
