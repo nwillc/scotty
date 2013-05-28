@@ -5,7 +5,13 @@ Feature: Context classes, holding attributes, should form a tree and provide att
     When you search for "<label>"
     Then it value should be "<value>"
 
-  Examples:
+  Examples: Complex assignments
+    | assignments         | label   | value      |
+    | company=Acme\, Inc. | company | Acme, Inc. |
+    | orbar=or\\|         | orbar   | or\|       |
+    | two=one\|two        | two     | one,two    |
+
+  Examples: Simple values
     | assignments       | label | value |
     | foo=bar           | foo   | bar   |
     | foo=bar , one=two | one   | two   |
