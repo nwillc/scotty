@@ -417,4 +417,10 @@
         <attribute name="port" value="8084"/>
         <attribute name="jmxPort" value="8184"/>
     </instance>
+
+    <instance name="solr">
+        <attribute name="solr" value="solr"/>
+        <attribute name="port" value="8983"/>
+        <attribute name="dir" value="/d/db1/solr/Solr4.2.0/libexec/SDS"/>
+    </instance>
 </type>
