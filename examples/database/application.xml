@@ -271,6 +271,11 @@
         <attribute name="repoPath"
                    value="https://selerity.unfuddle.com/svn/selerity_cs/POCs/SertsExperiments/NewsClassifier"/>
         <attribute name="jmxPort" value="8185"/>
+        <attribute name="s3ConfigurationDir" value="alpha/config"/>
+        <instance name="newsclassifier-prod">
+            <attribute name="env" value="prod"/>
+            <attribute name="s3ConfigurationDir" value="prod/config"/>
+        </instance>
     </instance>
 
     <!-- LOG ANALYZER  -->
