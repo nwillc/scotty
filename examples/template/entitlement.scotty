@@ -1,7 +1,4 @@
-# {#t application,environment,datasource #} {#c env #} {#
-context.put("app","entitlement");
-context.put("database","entitlement");
-#}
+# {#t application,environment,datasource #} {#c env #} {# context.put("app=entitlement,database=entitlement"); #}
 # ENTITLEMENT SERVICE PROPERTIES FILE
 #
 entitlement.environment={#? name type=environment #}

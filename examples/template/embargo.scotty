@@ -1,4 +1,4 @@
-{#t application,host #}{#c env,host #}{# context.put("app","embargo"); #}{
+{#t application,host #}{#c env,host #}{# context.put("app=embargo"); #}{
         "port" : {#? port type=application #},
         "socketioPort" :  {#? port type=application #},
         "env" : "{#? name type=environment #}",

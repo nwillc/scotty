@@ -1,6 +1,4 @@
-#  {#t environment,datasource #} {#c env #} {#
-    context.put("database","obsgradimporter");
-#}
+#  {#t environment,datasource #} {#c env #} {# context.put("database=obsgradimporter"); #}
 # GRADING IMPORTER SERVICE PROPERTIES FILE
 #
 obsgradimporter.environment={#? name type=environment #}

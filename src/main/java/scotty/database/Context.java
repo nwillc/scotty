@@ -47,7 +47,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
 
     public Context(Context container, String attributes) {
         this(container);
-        parseAttributes(attributes);
+        put(attributes);
     }
 
     /**
@@ -115,7 +115,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
      * The "=" and "|" can be escaped with a \ to allow them to be included in values.
      * @param attributes an attribute string representation
      */
-    public void parseAttributes(String attributes) {
+    public void put(String attributes) {
 
         if (attributes == null) {
             return;

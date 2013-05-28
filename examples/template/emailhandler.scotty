@@ -1,4 +1,4 @@
-# {#t application,environment #} {#c env,host #} {# context.put("app","emailhandler"); #}
+# {#t application,environment #} {#c env,host #} {# context.put("app=emailhandler"); #}
 # Email handler properties
 #
 emailhandler.source_topic={#? publishTopic  #}

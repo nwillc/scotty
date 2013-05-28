@@ -1,6 +1,4 @@
-#  {#t application,environment,amazon #} {#c env #} {#
-   context.put("app","newsclassifier");
-#}
+#  {#t application,environment,amazon #} {#c env #} {# context.put("app=newsclassifier"); #}
 # Configuration for the news classifier
 #
 

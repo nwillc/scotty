@@ -1,8 +1,4 @@
-# {#t application,environment,datasource #} {#c env #}  {#
-    context.put("app","bulkdata");
-    context.put("database","cs");
-    context.put("mode","ro");
-#}
+# {#t application,environment,datasource #}{#c env #}{# context.put("app=bulkdata,database=cs,mode=ro"); #}
 # BULK DATA SERVICE PROPERTIES FILE
 #
 bulkdata.environment={#? name type=environment #}

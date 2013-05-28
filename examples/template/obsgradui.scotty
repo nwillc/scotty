@@ -1,7 +1,4 @@
-{#t application,environment,datasource,host #}{#c env #}{#
-   context.put("app","obsgradui");
-   context.put("database","obsgradimporter");
-#}{
+{#t application,environment,datasource,host #}{#c env #}{# context.put("app=obsgradui,database=obsgradimporter"); #}{
         "logPath": "logs/obsgradui.log",
         "port": {#? port type=application #},
         "dbhost": "{#? hostName type=datasource #}",

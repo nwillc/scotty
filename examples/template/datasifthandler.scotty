@@ -1,4 +1,4 @@
-# {#t application,environment #} {#c env,host #} {# context.put("app","cs"); #}
+# {#t application,environment #} {#c env,host #}
 # Datasift Handler properties
 #
 datasifthandler.domain={#? domain type=environment #}
