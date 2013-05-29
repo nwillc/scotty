@@ -296,6 +296,8 @@
         <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_sync/trunk/sync/Perseus"/>
         <attribute name="port" value="8082"/>
         <attribute name="jmxPort" value="8182"/>
+        <attribute name="blackListedServices" value="argopub,clockadjustment,serts"/>
+        <attribute name="blackListedEnvironments" value="alpha,qa,int,infra"/>
     </instance>
 
     <!-- Entitlements -->
