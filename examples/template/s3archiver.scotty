@@ -1,0 +1,13 @@
+# {#t application,environment,datasource #} {#c env #} {# context.put("app=s3archiver"); #}
+# S3 ARCHIVER PROPERTIES FILE
+#
+s3archiver.environment={#? name type=environment #}
+s3archiver.swordfish.listeningQueue=SRC
+s3archiver.s3.accessKey={#? awsAccessKey type=amazon #}
+s3archiver.s3.secretKey={#? awsSecretKey type=amazon #}
+s3archiver.s3.bucket={#? s3ArchiverBucketName type=amazon #}
+s3archiver.jms.url={#? jndi type=environment #}
+s3archiver.jms.topic=serts
+s3archiver.remoteLogging.activate={#? remoteLogging type=application #}
+s3archiver.remoteLogging.db.host={#= datasource.remoteLogging.host #}
+s3archiver.remoteLogging.db.port={#= datasource.remoteLogging.port #}
