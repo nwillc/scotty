@@ -1,0 +1,15 @@
+# {#t application,environment,datasource,amazon #} {#c env #} {# context.put("app=sds,database=sds"); #}
+# SOURCE DOCUMENT SERVICE PROPERTIES FILE
+#
+sds.environment={#? name type=environment #}
+sds.jms.url={#? jndi type=environment #}
+sds.jms.topic=serts
+sds.s3.accessKey={#? awsAccessKey type=amazon #}
+sds.s3.secretKey={#? awsSecretKey type=amazon #}
+sds.s3.bucket={#? s3ArchiverBucketName type=amazon #}
+sds.db.host={#? hostName type=datasource #}
+sds.db.port={#? port type=datasource #}
+sds.db.user.name={#? username type=datasource #}
+sds.db.user.password={#? password type=datasource #}
+sds.user.name={#? username type=application,app=cs #}
+sds.user.password={#? password type=application,app=cs #}

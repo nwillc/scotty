@@ -1,4 +1,4 @@
-# {#t application,environment,datasource #} {#c env #} {# context.put("app=s3archiver"); #}
+# {#t application,environment,datasource,amzzon #} {#c env #} {# context.put("app=s3archiver"); #}
 # S3 ARCHIVER PROPERTIES FILE
 #
 s3archiver.environment={#? name type=environment #}
