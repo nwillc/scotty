@@ -53,6 +53,11 @@
             <attribute name="artifactName" value="ran.war"/>
             <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/peripheral/Dispatcher/Ran"/>
             <attribute name="mainUrl" value="ran"/>
+            <attribute name="data" value="/d/d1/hudson-scripts"/>
+            <instance name="ran-local">
+                <attribute name="env" value="local"/>
+                <attribute name="data" value="/tmp/ran"/>
+            </instance>
         </instance>
         <!-- Aegir -->
         <instance name="aegir">

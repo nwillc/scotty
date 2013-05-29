@@ -1,0 +1,11 @@
+# {#t application,environment #} {#c env #} {# context.put("app=ran"); #}
+# RAN PROPERTIES FILE
+#
+ran.environment={#? name type=environment #}
+ran.user.name={#? username type=application,app=cs #}
+ran.user.password={#? password type=application,app=cs #}
+ran.data={#? data type=application #}
+ran.config={#? data type=application #}/config
+ran.deployment={#? data type=application #}/deployments
+ran.unfuddle.user.name=sfarchive
+ran.unfuddle.user.password=VmUS0A
