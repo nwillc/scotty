@@ -325,6 +325,12 @@
         <attribute name="jmxPort" value="8710"/>
         <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/standalone/Serts"/>
         <attribute name="jmsTopic" value="serts"/>
+        <attribute name="username" value="cs_admin"/>
+        <attribute name="password" value="password"/>
+        <instance name="serts-prod">
+            <attribute name="env" value="prod"/>
+            <attribute name="password" value="selerity2010"/>
+        </instance>
     </instance>
 
     <!-- Argo Pub/Sub -->
@@ -434,5 +440,12 @@
         <attribute name="solr" value="solr"/>
         <attribute name="port" value="8983"/>
         <attribute name="dir" value="/d/db1/solr/Solr4.2.0/libexec/SDS"/>
+    </instance>
+
+    <instance name="smtp">
+        <attribute name="app" value="smtp"/>
+        <attribute name="password" value="ApMnPnV4VXm0U64VbW9n8uFvijglKKKqntJD8YP/B1Bj"/>
+        <attribute name="port" value="587"/>    <!-- alt: 25 or 465 -->
+        <attribute name="username" value="AKIAJ37WZQYLJ276JVRA"/>
     </instance>
 </type>

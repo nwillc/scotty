@@ -15,6 +15,8 @@
 
 <type name="environment">
     <attribute name="container" value="tomcat6x"/>
+
+    <!-- alt: 25 or 465 -->
     <instance name="local">
         <attribute name="name" value="LocalSync"/>
         <attribute name="domain" value="TST"/>

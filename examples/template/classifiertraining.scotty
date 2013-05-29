@@ -1,4 +1,4 @@
-# {#t application,environment,datasource #} {#c env #}
+# {#t application,environment,datasource #} {#c env #} {# context.put("app=classifiertraining,database=classifiertraining"); #}
 # CLASSIFIER TRAINING SERVICE PROPERTIES FILE
 #
 classifiertraining.environment={#? name type=environment #}
@@ -6,17 +6,17 @@ classifiertraining.environment={#? name type=environment #}
 classifiertraining.jms.url={#? jndi type=environment #}
 classifiertraining.jms.topic=serts
 
-classifiertraining.db.url={#? jdbcUrl database=classifiertraining #}
-classifiertraining.db.host={#? host database=classifiertraining #}
-classifiertraining.db.port={#? port database=classifiertraining #}
-classifiertraining.db.user.name={#? username database=classifiertraining #}
-classifiertraining.db.user.password={#? password database=classifiertraining #}
+classifiertraining.db.url={#? jdbcUrl type=datasource #}
+classifiertraining.db.host={#? host  type=datasource #}
+classifiertraining.db.port={#? port  type=datasource #}
+classifiertraining.db.user.name={#?  username type=datasource #}
+classifiertraining.db.user.password={#? password  type=datasource #}
 
 # Admin credentials
-classifiertraining.user.name={#? username app=classifiertraining #}
-classifiertraining.user.password={#? password app=classifiertraining #}
+classifiertraining.user.name={#? username type=application,app=cs #}
+classifiertraining.user.password={#? password type=application,app=cs #}
 
 # Client service ports
-classifiertraining.entitlement.port={#? port app=entitlement #}
-classifiertraining.serts.port={#? port app=serts #}
-classifiertraining.sds.port={#? port app=sds #}
+classifiertraining.entitlement.port={#? port type=application,app=entitlement #}
+classifiertraining.serts.port={#? port type=application,app=serts #}
+classifiertraining.sds.port={#? port type=application,app=sds #}

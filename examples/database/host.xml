@@ -18,6 +18,11 @@
     <context>
         <attribute name="container" value="tomcat6x"/>
 
+        <instance name="smtp">
+            <attribute name="app" value="smtp"/>
+            <attribute name="serverHost" value="email-smtp.us-east-1.amazonaws.com"/>
+        </instance>
+
         <!-- Localhost -->
         <instance name="localhost">
             <attribute name="env" value="local"/>

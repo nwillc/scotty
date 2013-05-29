@@ -73,6 +73,11 @@
     <instance name="serts">
         <attribute name="database" value="serts"/>
         <attribute name="driver" value="com.mysql.jdbc.Driver"/>
+        <instance name="serts-source">
+            <attribute name="database" value="serts-source"/>
+            <attribute name="driver" value="org.h2.Driver"/>
+            <attribute name="jdbcUrl" value="jdbc:h2:/var/tmp/serts"/>
+        </instance>
         <instance name="serts-local">
             <attribute name="env" value="local"/>
             <attribute name="host" value="localhost"/>
