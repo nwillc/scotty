@@ -102,15 +102,15 @@ public class Context implements Comparable<Context>, Similarity<Context> {
      * Parse a string representation of a set of attributes and assign them to this context.
      * The string representation takes the form:
      * <blockquote>
-     *      attributes ::= attribute | attributes , attribute   <br/>
-     *      attribute ::= <i>label</i> "=" values               <br/>
-     *      values ::= <i>value</i> | values "|" <i>value</i>   <br/>
+     *      attributes ::= attribute | attributes , attribute   <br>
+     *      attribute ::= <i>label</i> "=" values               <br>
+     *      values ::= <i>value</i> | values "|" <i>value</i>   <br>
      * </blockquote>
      * Some examples:
      * <blockquote>
-     *      env=prod <br/>
-     *      env=prod|qa,mode=rw <br/>
-     *      company=Acme\, Inc. <br/>
+     *      env=prod <br>
+     *      env=prod|qa,mode=rw <br>
+     *      company=Acme\, Inc. <br>
      * </blockquote>
      * The "=" and "|" can be escaped with a \ to allow them to be included in values.
      * @param attributes an attribute string representation

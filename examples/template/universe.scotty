@@ -1,6 +1,4 @@
-{#t host,environment,application,datasource #}
-
-#
+# {#t host,environment,application,datasource #}
 # Application Classes
 #
 {#

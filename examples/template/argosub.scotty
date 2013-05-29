@@ -1,4 +1,4 @@
-# {#t application,environment,datasource #} {#c env,host #} {# context.put("app","argosub"); #}
+# {#t application,environment,datasource #} {#c env,host #} {# context.put("app=argosub"); #}
 # ARGO SUB PROPERTIES FILE
 #
 argosub.environment={#? name type=environment #}

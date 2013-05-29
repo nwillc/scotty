@@ -1,4 +1,4 @@
-# {#t application,environment,datasource #} {#c env,host #} {# context.put("app","argopub"); #}
+# {#t application,environment,datasource #} {#c env,host #} {# context.put("app=argopub"); #}
 # ARGO PUB PROPERTIES FILE
 #
 argopub.environment={#? name type=environment #}
