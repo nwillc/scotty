@@ -72,6 +72,8 @@
     <context>
         <!-- Older Spring MVC -->
         <attribute name="statusUrl" value="health.do"/>
+        <attribute name="username" value="triton"/>
+        <attribute name="password" value="triton"/>
 
         <!-- Sync -->
         <instance name="sync">
@@ -81,6 +83,35 @@
             <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_sync/trunk/sync/Sync"/>
             <attribute name="port" value="9010"/>
             <attribute name="jmxPort" value="8610"/>
+            <attribute name="workDirectory" value="/var/tmp/.sync"/>
+            <attribute name="indexDirectory" value="/var/tmp/.sync/indexes"/>
+            <attribute name="linkText">
+                <value>Viewer</value>
+            </attribute>
+            <instance name="sync-alpha">
+                <attribute name="env" value="alpha"/>
+                <attribute name="linkText">
+                    <value>Viewer</value>
+                    <value>Triton</value>
+                </attribute>
+                <attribute name="linkHref">
+                    <value>../viewer</value>
+                    <value>../triton</value>
+                </attribute>
+            </instance>
+            <instance name="sync-qa">
+                <attribute name="env" value="qa"/>
+                <attribute name="linkHref">
+                    <value>http://ec2-23-20-241-147.compute-1.amazonaws.com:9020</value>
+                </attribute>
+            </instance>
+            <instance name="sync-prod">
+                <attribute name="env" value="prod"/>
+                <attribute name="password" value="J.ms43r"/>
+                <attribute name="linkHref">
+                    <value>http://viewer.seleritysync.com</value>
+                </attribute>
+            </instance>
         </instance>
 
         <!-- Athena -->
@@ -445,7 +476,8 @@
     <instance name="smtp">
         <attribute name="app" value="smtp"/>
         <attribute name="password" value="ApMnPnV4VXm0U64VbW9n8uFvijglKKKqntJD8YP/B1Bj"/>
-        <attribute name="port" value="587"/>    <!-- alt: 25 or 465 -->
+        <attribute name="port" value="587"/>
+        <!-- alt: 25 or 465 -->
         <attribute name="username" value="AKIAJ37WZQYLJ276JVRA"/>
     </instance>
 </type>
