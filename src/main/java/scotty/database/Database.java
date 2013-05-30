@@ -74,17 +74,7 @@ public class Database extends Context {
 		return database;
 	}
 
-	/**
-	 * Find the string value of a fully qualified attribute name, i.e. "type.instance.attr".
-	 *
-	 * @param name fully qualified name
-	 * @return attribute string value
-	 */
-	public String find(String name) {
-		return Utilities.find(this, name);
-	}
-
-	/**
+    /**
 	 * Return a list of instances matching a given set of criteria.
 	 *
 	 * @param criteria the criteria to match

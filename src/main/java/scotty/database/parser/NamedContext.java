@@ -24,6 +24,9 @@ public abstract class NamedContext extends Context implements Comparable<Context
 
     protected NamedContext(Context parentContext, String name) {
         super(parentContext);
+        if (name == null ) {
+            name = getElementType() + "-" + getAge();
+        }
         put(getElementType(), name);
     }
 

@@ -7,7 +7,7 @@ CONTEXT=""
 if [ ".$2" != "." ]; then
     CONTEXT="-c $2"
 fi
-DATABASES=database/application.xml,database/host.xml,database/environment.xml,database/datasource.xml,database/amazon.xml
+DATABASES=database/application.xml,database/host.xml,database/environment.xml,database/datasource.xml,database/amazon.xml,database/topic.xml
 
 case "$TEMPLATE" in
         print)

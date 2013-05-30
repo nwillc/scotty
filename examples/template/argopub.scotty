@@ -9,8 +9,8 @@ argopub.instance.id=PPUB-{#? instance #}
 argopub.sync.urls={#? syncUrls #}
 argopub.proxying=true
 argopub.remoteLogging.activate={#? remoteLogging #}
-argopub.remoteLogging.db.host={#= datasource.remoteLogging.host #}
-argopub.remoteLogging.db.port={#= datasource.remoteLogging.port #}
+argopub.remoteLogging.db.host={#? host type=datasource,database=remoteLogging #}
+argopub.remoteLogging.db.port={#? port type=datasource,database=remoteLogging #}
 argopub.publish.topic={#? publishTopic  #}
 
 

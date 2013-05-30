@@ -28,15 +28,15 @@ Feature: The Database should provide a way to query instances based on a context
 
   Scenario Outline: Query and instance by a context of attributes
     Given the database
-    And you find "<attribute>"
+    And you find "<instance>" "<attribute>"
     Then it should return "<string>"
 
   Examples:
-    | attribute            | string    |
-    | host.devbox1.address | 192.0.0.1 |
-    | host.company         | acme      |
-    | host.prod1.address   | 127.0.0.1 |
-    | host.prod1.env       | prod      |
+    | instance         | attribute | string    |
+    | instance=devbox1 | address   | 192.0.0.1 |
+    | type=host        | company   | acme      |
+    | instance=prod1   | address   | 127.0.0.1 |
+    | instance=prod1   | env       | prod      |
 
 
   Scenario Outline: Retreive a lists of instances using a query with a context

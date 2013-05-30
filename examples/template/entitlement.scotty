@@ -7,5 +7,5 @@ entitlement.db.port={#? port type=datasource #}
 entitlement.db.user.name={#? username type=datasource #}
 entitlement.db.user.password={#? password type=datasource #}
 entitlement.remoteLogging.activate={#? remoteLogging type=application #}
-entitlement.remoteLogging.db.host={#= datasource.remoteLogging.host #}
-entitlement.remoteLogging.db.port={#= datasource.remoteLogging.port #}
+entitlement.remoteLogging.db.host={#? host type=datasource,database=remoteLogging #}
+entitlement.remoteLogging.db.port={#? port type=datasource,database=remoteLogging #}

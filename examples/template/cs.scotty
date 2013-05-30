@@ -24,6 +24,6 @@ cs.uuid.entity=c8342b3c-c4de-801b-4e4f-1b0f73bf4e43
 cs.uuid.public=c1bf8518-f826-5d16-80ae-6ac3b705c314
 cs.uuid.user=8ee865df-9dbb-25d3-ead2-8d979cb64786
 cs.remoteLogging.activate={#? remoteLogging type=application #}
-cs.remoteLogging.db.host={#= datasource.remoteLogging.host #}
-cs.remoteLogging.db.port={#= datasource.remoteLogging.port #}
+cs.remoteLogging.db.host={#? host type=datasource,database=remoteLogging #}
+cs.remoteLogging.db.port={#? port type=datasource,database=remoteLogging #}
 cs.content.sets.non.product=8820f3ce-b849-f918-6745-a4cf8d6e918c,c27e58d0-d271-431e-9399-719767c32730

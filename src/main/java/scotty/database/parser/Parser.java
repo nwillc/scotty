@@ -71,13 +71,10 @@ public class Parser extends DefaultHandler {
 				break;
 			case INSTANCE:
 				name = attributes.getValue(NAME);
-				if (name == null) {
-					throw new SAXException("Instances require a name");
-				}
-				if (type.getContained().containsKey(name)) {
+				if (name != null && type.getContained().containsKey(name)) {
 					LOGGER.warning("Replacing type " + type.getName() + " instance " + name);
 				}
-				Instance instance = new Instance(contexts.peek(), attributes.getValue(NAME));
+				Instance instance = new Instance(contexts.peek(), name);
 				type.getContained().put(instance.getName(), instance);
 				contexts.push(instance);
 				break;

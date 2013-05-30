@@ -9,5 +9,5 @@ bulkdata.db.user.password={#? password type=datasource #}
 bulkdata.user.name={#? username type=application #}
 bulkdata.user.password={#? password type=application #}
 bulkdata.remoteLogging.activate={#? remoteLogging type=application #}
-bulkdata.remoteLogging.db.host={#= datasource.remoteLogging.host #}
-bulkdata.remoteLogging.db.port={#= datasource.remoteLogging.port #}
+bulkdata.remoteLogging.db.host={#? host type=datasource,database=remoteLogging #}
+bulkdata.remoteLogging.db.port={#? port type=datasource,database=remoteLogging #}

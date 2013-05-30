@@ -19,7 +19,7 @@
     <!-- alt: 25 or 465 -->
     <instance name="local">
         <attribute name="name" value="LocalSync"/>
-        <attribute name="domain" value="TST"/>
+        <attribute name="domain" value="DEV"/>
     </instance>
     <instance name="infra">
         <attribute name="env" value="infra"/>

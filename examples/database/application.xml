@@ -27,7 +27,7 @@
         <attribute name="jmxPort" value="8686"/>
 
         <!-- Core Services -->
-        <instance name="cs">
+        <instance>
             <attribute name="app" value="cs"/>
             <attribute name="username" value="cs_admin"/>
             <attribute name="password" value="cs_admin"/>
@@ -37,7 +37,7 @@
             <attribute name="mainUrl" value="rhino-1.0-SNAPSHOT"/>
             <attribute name="serviceUrl" value="rpc.do"/>
             <attribute name="remoteLogging" value="false"/>
-            <instance name="cs-prod">
+            <instance>
                 <attribute name="env">
                     <value>prod</value>
                     <value>int</value>
@@ -47,20 +47,20 @@
             </instance>
         </instance>
         <!-- Ran -->
-        <instance name="ran">
+        <instance>
             <attribute name="app" value="ran"/>
             <attribute name="name" value="Ran"/>
             <attribute name="artifactName" value="ran.war"/>
             <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_cs/peripheral/Dispatcher/Ran"/>
             <attribute name="mainUrl" value="ran"/>
             <attribute name="data" value="/d/d1/hudson-scripts"/>
-            <instance name="ran-local">
+            <instance>
                 <attribute name="env" value="local"/>
                 <attribute name="data" value="/tmp/ran"/>
             </instance>
         </instance>
         <!-- Aegir -->
-        <instance name="aegir">
+        <instance>
             <attribute name="app" value="aegir"/>
             <attribute name="name" value="Aegir"/>
             <attribute name="artifactName" value="aegir.war"/>
@@ -76,7 +76,7 @@
         <attribute name="password" value="triton"/>
 
         <!-- Sync -->
-        <instance name="sync">
+        <instance>
             <attribute name="app" value="sync"/>
             <attribute name="name" value="SeleritySync"/>
             <attribute name="artifactName" value="sync-jar-with-dependencies.war"/>
@@ -88,7 +88,7 @@
             <attribute name="linkText">
                 <value>Viewer</value>
             </attribute>
-            <instance name="sync-alpha">
+            <instance>
                 <attribute name="env" value="alpha"/>
                 <attribute name="linkText">
                     <value>Viewer</value>
@@ -99,13 +99,13 @@
                     <value>../triton</value>
                 </attribute>
             </instance>
-            <instance name="sync-qa">
+            <instance>
                 <attribute name="env" value="qa"/>
                 <attribute name="linkHref">
                     <value>http://ec2-23-20-241-147.compute-1.amazonaws.com:9020</value>
                 </attribute>
             </instance>
-            <instance name="sync-prod">
+            <instance>
                 <attribute name="env" value="prod"/>
                 <attribute name="password" value="J.ms43r"/>
                 <attribute name="linkHref">
@@ -115,7 +115,7 @@
         </instance>
 
         <!-- Athena -->
-        <instance name="athena">
+        <instance>
             <attribute name="app" value="athena"/>
             <attribute name="name" value="Athena"/>
             <attribute name="artifactName" value="athena-jar-with-dependencies.war"/>
@@ -125,7 +125,7 @@
         </instance>
 
         <!-- Triton -->
-        <instance name="triton">
+        <instance>
             <attribute name="app" value="triton"/>
             <attribute name="name" value="Triton"/>
             <attribute name="artifactName" value="triton-jar-with-dependencies.war"/>
@@ -140,7 +140,7 @@
         <attribute name="statusUrl" value="version.txt"/>
 
         <!-- Viewer -->
-        <instance name="viewer">
+        <instance>
             <attribute name="app" value="viewer"/>
             <attribute name="name" value="Viewer"/>
             <attribute name="artifactName" value="viewer.tar.gz"/>
@@ -149,7 +149,7 @@
         </instance>
 
         <!-- Alerts -->
-        <instance name="alerts">
+        <instance>
             <attribute name="app" value="alerts"/>
             <attribute name="name" value="Alerts"/>
             <attribute name="port" value="8087"/>
@@ -158,18 +158,18 @@
             <attribute name="username" value="alerts"/>
             <attribute name="password" value="alerts"/>
             <attribute name="sertsHost" value="localhost"/>
-            <instance name="alerts-alpha">
+            <instance>
                 <attribute name="env" value="alpha"/>
                 <attribute name="sertsHost" value="jc1txtrt01.seleritycorp.com"/>
             </instance>
-            <instance name="alerts-qa">
+            <instance>
                 <attribute name="env" value="qa"/>
                 <attribute name="sertsHost" value="10.220.1.203"/>
             </instance>
-            <instance name="alerts-prod">
+            <instance>
                 <attribute name="env" value="prod"/>
                 <attribute name="sertsHost" value="ec2-23-21-247-239.compute-1.amazonaws.com"/>
-                <instance name="alerts-ec2vclsp01">
+                <instance>
                     <attribute name="host" value="ec2vclsp01"/>
                     <attribute name="sertsHost" value="10.219.0.38"/>
                 </instance>
@@ -177,7 +177,7 @@
         </instance>
 
         <!-- Embargo -->
-        <instance name="app" value="embargo">
+        <instance>
             <attribute name="protocol" value="https"/>
             <attribute name="app" value="embargo"/>
             <attribute name="name" value="Embargo"/>
@@ -190,7 +190,7 @@
         </instance>
 
         <!-- Analytics -->
-        <instance name="analytics">
+        <instance>
             <attribute name="app" value="analytics"/>
             <attribute name="name" value="Selerity Analytics"/>
             <attribute name="artifactName" value="analytics.tar.gz"/>
@@ -203,7 +203,7 @@
     <!-- Medusa or command line apps -->
 
     <!--  Indexer -->
-    <instance name="indexer">
+    <instance>
         <attribute name="app" value="indexer"/>
         <attribute name="name" value="Indexer"/>
         <attribute name="artifactName" value="indexer-jar-with-dependencies.jar"/>
@@ -213,7 +213,7 @@
     </instance>
 
     <!-- Email Handler  -->
-    <instance name="emailhandler">
+    <instance>
         <attribute name="app" value="emailhandler"/>
         <attribute name="name" value="EmailHandler"/>
         <attribute name="artifactName" value="EmailHandler-1.0-SNAPSHOT-jar-with-dependencies.jar"/>
@@ -221,7 +221,7 @@
     </instance>
 
     <!--  Obsgrad Importer -->
-    <instance name="obsgradimporter">
+    <instance>
         <attribute name="app" value="obsgradimporter"/>
         <attribute name="name" value="Obs Grad Importer"/>
         <attribute name="artifactName" value="importer-jar-with-dependencies.jar"/>
@@ -229,7 +229,7 @@
     </instance>
 
     <!-- Obsgrad UI  -->
-    <instance name="obsgradui">
+    <instance>
         <attribute name="app" value="obsgradui"/>
         <attribute name="name" value="Obs Grad UI"/>
         <attribute name="artifactName" value="obsgradui.tar.gz"/>
@@ -240,7 +240,7 @@
     </instance>
 
     <!-- Datasift handler -->
-    <instance name="datasifthandler">
+    <instance>
         <attribute name="app" value="datasifthandler"/>
         <attribute name="name" value="DatasiftHandler"/>
         <attribute name="jmxPort" value="8712"/>
@@ -249,7 +249,7 @@
     </instance>
 
     <!-- Tweet Handler -->
-    <instance name="tweethandler">
+    <instance>
         <attribute name="app" value="tweethandler"/>
         <attribute name="name" value="TweetHandler"/>
         <attribute name="jmxPort" value="8711"/>
@@ -269,7 +269,7 @@
     </instance>
 
     <!--  Classifier Training Service -->
-    <instance name="classifiertraining">
+    <instance>
         <attribute name="app" value="classifiertraining"/>
         <attribute name="name" value="Classifier Training Service"/>
         <attribute name="artifactName" value="classifiertraining-jar-with-dependencies.jar"/>
@@ -280,7 +280,7 @@
     </instance>
 
     <!-- Source Document Service -->
-    <instance name="sds">
+    <instance>
         <attribute name="app" value="sds"/>
         <attribute name="name" value="Source Document Service"/>
         <attribute name="artifactName" value="sds-jar-with-dependencies.jar"/>
@@ -291,7 +291,7 @@
     </instance>
 
     <!-- S3 Archiver -->
-    <instance name="s3archiver">
+    <instance>
         <attribute name="app" value="s3archiver"/>
         <attribute name="name" value="S3 Archiver"/>
         <attribute name="artifactName" value="s3archiver-jar-with-dependencies.jar"/>
@@ -300,7 +300,7 @@
     </instance>
 
     <!-- New Classifier -->
-    <instance name="newsclassifier">
+    <instance>
         <attribute name="app" value="newsclassifier"/>
         <attribute name="name" value="News Classifier"/>
         <attribute name="artifactName" value="newsclassifier-jar-with-dependencies.jar"/>
@@ -308,14 +308,14 @@
                    value="https://selerity.unfuddle.com/svn/selerity_cs/POCs/SertsExperiments/NewsClassifier"/>
         <attribute name="jmxPort" value="8185"/>
         <attribute name="s3ConfigurationDir" value="alpha/config"/>
-        <instance name="newsclassifier-prod">
+        <instance>
             <attribute name="env" value="prod"/>
             <attribute name="s3ConfigurationDir" value="prod/config"/>
         </instance>
     </instance>
 
     <!-- LOG ANALYZER  -->
-    <instance name="analyzer">
+    <instance>
         <attribute name="app" value="analyzer"/>
         <attribute name="name" value="Log Analyzer"/>
         <attribute name="artifactName" value="analyzer-jar-with-dependencies.jar"/>
@@ -325,7 +325,7 @@
     </instance>
 
     <!-- Perseus -->
-    <instance name="perseus">
+    <instance>
         <attribute name="app" value="perseus"/>
         <attribute name="name" value="Perseus"/>
         <attribute name="artifactName" value="perseus-jar-with-dependencies.war"/>
@@ -337,7 +337,7 @@
     </instance>
 
     <!-- Entitlements -->
-    <instance name="entitlement">
+    <instance>
         <attribute name="app" value="entitlement"/>
         <attribute name="name" value="Entitlement Service"/>
         <attribute name="artifactName" value="entitlement-jar-with-dependencies.jar"/>
@@ -348,7 +348,7 @@
     </instance>
 
     <!-- Serts -->
-    <instance name="serts">
+    <instance>
         <attribute name="app" value="serts"/>
         <attribute name="name" value="Serts"/>
         <attribute name="port" value="8700"/>
@@ -358,14 +358,14 @@
         <attribute name="jmsTopic" value="serts"/>
         <attribute name="username" value="cs_admin"/>
         <attribute name="password" value="password"/>
-        <instance name="serts-prod">
+        <instance>
             <attribute name="env" value="prod"/>
             <attribute name="password" value="selerity2010"/>
         </instance>
     </instance>
 
     <!-- Argo Pub/Sub -->
-    <instance name="argo">
+    <instance>
         <attribute name="app">
             <value>argosub</value>
             <value>argopub</value>
@@ -379,14 +379,14 @@
         <attribute name="repoPath" value="https://selerity.unfuddle.com/svn/selerity_selerity/trunk/JsonProxy"/>
         <attribute name="serviceUrl" value=""/>
 
-        <instance name="argopub">
+        <instance>
             <attribute name="app" value="argopub"/>
             <attribute name="name" value="Argo Publisher"/>
             <attribute name="port" value="48640"/>
             <attribute name="jmxPort" value="48740"/>
         </instance>
 
-        <instance name="argosub">
+        <instance>
             <attribute name="app" value="argosub"/>
             <attribute name="name" value="Argo Subscriber"/>
             <attribute name="port" value="48641"/>
@@ -436,7 +436,7 @@
     </instance>
 
     <!-- Bulk Data -->
-    <instance name="bulkdata">
+    <instance>
         <attribute name="app" value="bulkdata"/>
         <attribute name="remoteLogging" value="true"/>
         <attribute name="name" value="Bulk Data Service"/>
@@ -448,7 +448,7 @@
     </instance>
 
     <!-- Embargo Service -->
-    <instance name="embargo-service">
+    <instance>
         <attribute name="app" value="embargo-service"/>
         <attribute name="name" value="Embargo Service"/>
         <attribute name="port" value="49889"/>
@@ -457,7 +457,7 @@
     </instance>
 
     <!--Clock Adjustment Service -->
-    <instance name="clockadjustment">
+    <instance>
         <attribute name="app" value="clockadjustment"/>
         <attribute name="name" value="Clock Adjustment Service"/>
         <attribute name="artifactName" value="clockadjustment-jar-with-dependencies.jar"/>
@@ -467,14 +467,15 @@
         <attribute name="jmxPort" value="8184"/>
     </instance>
 
-    <instance name="solr">
+    <instance>
         <attribute name="solr" value="solr"/>
         <attribute name="port" value="8983"/>
         <attribute name="dir" value="/d/db1/solr/Solr4.2.0/libexec/SDS"/>
     </instance>
 
-    <instance name="smtp">
+    <instance>
         <attribute name="app" value="smtp"/>
+        <attribute name="name" value="Simple Mail Transfer Protocol"/>
         <attribute name="password" value="ApMnPnV4VXm0U64VbW9n8uFvijglKKKqntJD8YP/B1Bj"/>
         <attribute name="port" value="587"/>
         <!-- alt: 25 or 465 -->

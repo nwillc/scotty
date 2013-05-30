@@ -16,9 +16,9 @@ Feature: Parsing an SCoTTY xml database.
   Scenario Outline: Attribute values can be multi value.
     Given the XML "./target/test-classes/multivalue.xml"
     When parsed by the Database class
-    Then the value of "<attr>" should be "<value>"
+    Then the value of "<instance>" "<attr>" should be "<value>"
 
   Examples:
-    | attr                   | value         |
-    | multivalue.one.array   | one           |
-    | multivalue.three.array | one,two,three |
+    | instance       | attr  | value         |
+    | instance=one   | array | one           |
+    | instance=three | array | one,two,three |

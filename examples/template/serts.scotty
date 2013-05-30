@@ -16,8 +16,8 @@ serts.src_sf_topic=SRC
 
 # Analytics data collection
 serts.remoteLogging.activate={#? remoteLogging type=application #}
-serts.remoteLogging.db.host={#= datasource.remoteLogging.host #}
-serts.remoteLogging.db.port={#= datasource.remoteLogging.port #}
+serts.remoteLogging.db.host={#? host type=datasource,database=remoteLogging #}
+serts.remoteLogging.db.port={#? port type=datasource,database=remoteLogging #}
 
 # JMS Info
 serts.jms.url={#? jndi type=environment #}

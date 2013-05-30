@@ -29,6 +29,7 @@ import java.util.Set;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  *
@@ -53,9 +54,12 @@ public class QueryFeature {
 		assertNotNull(database);
 	}
 
-	@Given("^you find \"([^\"]*)\"$")
-	public void you_find(String arg1) throws Throwable {
-		value = database.find(arg1);
+    @Given("^you find \"([^\"]*)\" \"([^\"]*)\"$")
+    public void you_find(String arg1, String arg2) throws Throwable {
+        List<Context> matches = database.query(new Context(arg1));
+        assertNotNull(matches);
+        assertNotEquals(0,matches.size());
+		value = matches.get(0).get(arg2);
 		assertNotNull(value);
 	}
 

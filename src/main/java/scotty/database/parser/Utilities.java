@@ -32,36 +32,13 @@ public final class Utilities {
 	private Utilities() {
 	}
 
-	/**
-	 * Find a specific attribute in a Context by name and return it's string value. The name
-	 * uses periods to indicate sub-contexts. So for example "type.instance.attr" would in a
-	 * Database context look for a Type named "type" and then within that an Instance named "instance"
-	 * and withing that an attribute named "attr".
-	 *
-	 * @param context The context to find within.
-	 * @param name    The qualified name of the attribute
-	 * @return The string representation of the Value.
-	 */
-	public static String find(Context context, String name) {
-		String[] parts = name.split("\\.");
-
-
-		for (int i = 0; i < parts.length; i++) {
-			String part = parts[i];
-
-			if ((i == parts.length - 1) || !context.isContainer()) {
-				return context.get(part);
-			}
-
-			context = context.getContained().get(part);
-			if (context == null) {
-				return null;
-			}
-		}
-		return null;
-	}
-
-	public static List<Context> query(Context context, Context criteria) {
+    /**
+     * Query a context for all the contexts within it that match a criteria.
+     * @param context The context to query.
+     * @param criteria The criteria to match.
+     * @return the list of matches in ranked order
+     */
+    public static List<Context> query(Context context, Context criteria) {
 		List<Context> contexts = new LinkedList<>();
 		List<Ranked<Context>> results = rankedQuery(context, criteria);
 		for (Ranked<Context> ranked : results) {
@@ -70,6 +47,12 @@ public final class Utilities {
 		return contexts;
 	}
 
+    /**
+     * Query a context for all the contexts within it that match a criteria.
+     * @param context The context to query
+     * @param criteria the criteria to match
+     * @return the results, with their associated ranks in ranked order
+     */
 	public static List<Ranked<Context>> rankedQuery(Context context, Context criteria) {
 		List<Ranked<Context>> results = new LinkedList<>();
 
@@ -88,6 +71,11 @@ public final class Utilities {
 		return results;
 	}
 
+    /**
+     * Print out the contents of a database, flattening all the inheritance to the instance level.
+     * @param database the database
+     * @param printStream the output stream
+     */
 	public static void print(Database database, PrintStream printStream) {
 		List<Context> types = new LinkedList<>(database.getContained().values());
 		Collections.sort(types);

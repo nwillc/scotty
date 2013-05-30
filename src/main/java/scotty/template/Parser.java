@@ -57,14 +57,6 @@ public final class Parser {
 				String value;
 
 				switch (operator) {
-
-					case FIND:
-						value = database.find(scriptBody);
-						if (value != null) {
-							outputStream.write(value.getBytes());
-						}
-						break;
-
 					case QUERY:
 						final Context queryContext;
 						final int endOfAttrName = scriptBody.indexOf(' ');
