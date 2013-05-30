@@ -1,0 +1,239 @@
+<!--
+  ~ Copyright (c) 2013, nwillc@gmail.com
+  ~
+  ~ Permission to use, copy, modify, and/or distribute this software for any purpose with or 
+  ~ without fee is hereby granted, provided that the above copyright notice and this permission 
+  ~ notice appear in all copies.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO 
+  ~ THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT 
+  ~ SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR 
+  ~ ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF 
+  ~ CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
+  ~ OR PERFORMANCE OF THIS SOFTWARE.
+  -->
+
+<type name="topic">
+    <attribute name="heartbeatInterval" value="10000"/>
+    <attribute name="maxPayloadSize" value="1400"/>
+
+
+    <!-- Environment-specific topic addresses and ports -->
+
+    <context>
+        <attribute name="domain" value="DEV"/>
+        <instance name="dev-src">
+            <attribute name="topic" value="SRC"/>
+            <attribute name="dataAddress" value="224.10.10.100"/>
+            <attribute name="heartbeatAddress" value="224.10.10.101"/>
+            <attribute name="dataPort" value="5600"/>
+            <attribute name="heartbeatPort" value="5601"/>
+        </instance>
+        <instance name="dev-obs">
+            <attribute name="topic" value="OBS"/>
+            <attribute name="dataAddress" value="224.10.10.110"/>
+            <attribute name="heartbeatAddress" value="224.10.10.111"/>
+            <attribute name="dataPort" value="5610"/>
+            <attribute name="heartbeatPort" value="5611"/>
+        </instance>
+        <instance name="dev-ann">
+            <attribute name="topic" value="ANN"/>
+            <attribute name="dataAddress" value="224.10.10.120"/>
+            <attribute name="heartbeatAddress" value="224.10.10.121"/>
+            <attribute name="dataPort" value="5620"/>
+            <attribute name="heartbeatPort" value="5621"/>
+        </instance>
+        <instance name="dev-sta">
+            <attribute name="topic" value="STA"/>
+            <attribute name="dataAddress" value="224.10.10.130"/>
+            <attribute name="heartbeatAddress" value="224.10.10.131"/>
+            <attribute name="dataPort" value="5630"/>
+            <attribute name="heartbeatPort" value="5631"/>
+        </instance>
+        <instance name="dev-ctl">
+            <attribute name="topic" value="CTL"/>
+            <attribute name="dataAddress" value="224.10.10.140"/>
+            <attribute name="heartbeatAddress" value="224.10.10.141"/>
+            <attribute name="dataPort" value="5640"/>
+            <attribute name="heartbeatPort" value="5641"/>
+        </instance>
+    </context>
+    <context>
+        <attribute name="domain">
+            <value>TST</value>
+            <value>INFRA</value>
+        </attribute>
+        <instance>
+            <attribute name="topic" value="SRC"/>
+            <attribute name="dataAddress" value="224.20.20.100"/>
+            <attribute name="heartbeatAddress" value="224.20.20.101"/>
+            <attribute name="dataPort" value="5700"/>
+            <attribute name="heartbeatPort" value="5701"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="OBS"/>
+            <attribute name="dataAddress" value="224.20.20.110"/>
+            <attribute name="heartbeatAddress" value="224.20.20.111"/>
+            <attribute name="dataPort" value="5710"/>
+            <attribute name="heartbeatPort" value="5711"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="ANN"/>
+            <attribute name="dataAddress" value="224.20.20.120"/>
+            <attribute name="heartbeatAddress" value="224.20.20.121"/>
+            <attribute name="dataPort" value="5720"/>
+            <attribute name="heartbeatPort" value="5721"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="STA"/>
+            <attribute name="dataAddress" value="224.20.20.130"/>
+            <attribute name="heartbeatAddress" value="224.20.20.131"/>
+            <attribute name="dataPort" value="5730"/>
+            <attribute name="heartbeatPort" value="5731"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="CTL"/>
+            <attribute name="dataAddress" value="224.20.20.140"/>
+            <attribute name="heartbeatAddress" value="224.20.20.141"/>
+            <attribute name="dataPort" value="5740"/>
+            <attribute name="heartbeatPort" value="5741"/>
+        </instance>
+    </context>
+
+    <context>
+        <attribute name="domain" value="QA"/>
+        <instance>
+            <attribute name="topic" value="SRC"/>
+            <attribute name="dataAddress" value="224.20.20.100"/>
+            <attribute name="heartbeatAddress" value="224.20.20.101"/>
+            <attribute name="dataPort" value="5700"/>
+            <attribute name="heartbeatPort" value="5701"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="OBS"/>
+            <attribute name="dataAddress" value="224.20.20.110"/>
+            <attribute name="heartbeatAddress" value="224.20.20.111"/>
+            <attribute name="dataPort" value="5710"/>
+            <attribute name="heartbeatPort" value="5711"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="ANN"/>
+            <attribute name="dataAddress" value="224.20.20.120"/>
+            <attribute name="heartbeatAddress" value="224.20.20.121"/>
+            <attribute name="dataPort" value="5720"/>
+            <attribute name="heartbeatPort" value="5721"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="STA"/>
+            <attribute name="dataAddress" value="224.20.20.130"/>
+            <attribute name="heartbeatAddress" value="224.20.20.131"/>
+            <attribute name="dataPort" value="5730"/>
+            <attribute name="heartbeatPort" value="5731"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="CTL"/>
+            <attribute name="dataAddress" value="224.20.20.140"/>
+            <attribute name="heartbeatAddress" value="224.20.20.141"/>
+            <attribute name="dataPort" value="5740"/>
+            <attribute name="heartbeatPort" value="5741"/>
+        </instance>
+    </context>
+
+    <context>
+        <attribute name="domain" value="INT"/>
+        <instance>
+            <attribute name="topic" value="SRC"/>
+            <attribute name="dataAddress" value="233.252.2.230"/>
+            <attribute name="heartbeatAddress" value="233.252.2.231"/>
+            <attribute name="dataPort" value="49000"/>
+            <attribute name="heartbeatPort" value="49001"/>
+        </instance>
+
+        <instance>
+            <attribute name="topic" value="OBS"/>
+            <attribute name="dataAddress" value="232.43.211.232"/>
+            <attribute name="heartbeatAddress" value="232.43.211.233"/>
+            <attribute name="dataPort" value="29010"/>
+            <attribute name="heartbeatPort" value="29011"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="ANN"/>
+            <attribute name="dataAddress" value="232.43.211.234"/>
+            <attribute name="heartbeatAddress" value="232.43.211.235"/>
+            <attribute name="dataPort" value="29020"/>
+            <attribute name="heartbeatPort" value="29021"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="STA"/>
+            <attribute name="dataAddress" value="232.43.211.236"/>
+            <attribute name="heartbeatAddress" value="232.43.211.237"/>
+            <attribute name="dataPort" value="29030"/>
+            <attribute name="heartbeatPort" value="29031"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="CTL"/>
+            <attribute name="dataAddress" value="232.43.211.238"/>
+            <attribute name="heartbeatAddress" value="232.43.211.239"/>
+            <attribute name="dataPort" value="29040"/>
+            <attribute name="heartbeatPort" value="29041"/>
+        </instance>
+    </context>
+
+    <context>
+
+        <attribute name="domain" value="PRD"/>
+        <instance>
+            <attribute name="topic" value="SRC"/>
+            <attribute name="dataAddress" value="233.252.2.230"/>
+            <attribute name="heartbeatAddress" value="233.252.2.231"/>
+            <attribute name="dataPort" value="49000"/>
+            <attribute name="heartbeatPort" value="49001"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="OBS"/>
+            <attribute name="dataAddress" value="233.252.2.232"/>
+            <attribute name="heartbeatAddress" value="233.252.2.233"/>
+            <attribute name="dataPort" value="29010"/>
+            <attribute name="heartbeatPort" value="49011"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="ANN"/>
+            <attribute name="dataAddress" value="233.252.2.234"/>
+            <attribute name="heartbeatAddress" value="233.252.2.235"/>
+            <attribute name="dataPort" value="49020"/>
+            <attribute name="heartbeatPort" value="49021"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="STA"/>
+            <attribute name="dataAddress" value="233.252.2.236"/>
+            <attribute name="heartbeatAddress" value="233.252.2.237"/>
+            <attribute name="dataPort" value="49030"/>
+            <attribute name="heartbeatPort" value="49031"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="CTL"/>
+            <attribute name="dataAddress" value="233.252.2.238"/>
+            <attribute name="heartbeatAddress" value="233.252.2.239"/>
+            <attribute name="dataPort" value="49040"/>
+            <attribute name="heartbeatPort" value="49041"/>
+        </instance>
+        <instance>
+            <attribute name="topic" value="OBS_FTL"/>
+            <instance>
+                <attribute name="host" value="NY2ACLSP01,NY2BCLSP01"/>
+                <attribute name="dataAddress" value="233.43.224.230"/>
+                <attribute name="heartbeatAddress" value="233.43.224.229"/>
+            </instance>
+            <instance>
+                <attribute name="host" value="CH1ACLSP01,CH1BCLSP01"/>
+                <attribute name="dataAddress" value="233.43.226.230"/>
+                <attribute name="heartbeatAddress" value="233.43.226.229"/>
+            </instance>
+            <instance>
+                <attribute name="host" value="FR2AINFP01"/>
+                <attribute name="dataAddress" value="233.43.222.230"/>
+                <attribute name="heartbeatAddress" value="233.43.222.229"/>
+            </instance>
+        </instance>
+    </context>
+</type>
