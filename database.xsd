@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://nwillc.github.io/scotty"
+           xmlns:scotty="http://nwillc.github.io/scotty">
     <xs:attribute name="name" type="xs:string"/>
     <xs:attribute name="value" type="xs:string"/>
     <xs:element name="value" type="xs:string"/>
@@ -7,10 +9,10 @@
     <xs:element name="attribute">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="value" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="scotty:value" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
-            <xs:attribute ref="name" use="required"/>
-            <xs:attribute ref="value" use="optional"/>
+            <xs:attribute ref="scotty:name" use="required"/>
+            <xs:attribute ref="scotty:value" use="optional"/>
         </xs:complexType>
     </xs:element>
 
@@ -18,9 +20,9 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element ref="attribute"/>
-                    <xs:element ref="context"/>
-                    <xs:element ref="instance"/>
+                    <xs:element ref="scotty:attribute"/>
+                    <xs:element ref="scotty:context"/>
+                    <xs:element ref="scotty:instance"/>
                 </xs:choice>
             </xs:sequence>
         </xs:complexType>
@@ -30,12 +32,12 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element ref="attribute"/>
-                    <xs:element ref="context"/>
-                    <xs:element ref="instance"/>
+                    <xs:element ref="scotty:attribute"/>
+                    <xs:element ref="scotty:context"/>
+                    <xs:element ref="scotty:instance"/>
                 </xs:choice>
             </xs:sequence>
-            <xs:attribute ref="name" use="optional"/>
+            <xs:attribute ref="scotty:name" use="optional"/>
         </xs:complexType>
     </xs:element>
 
@@ -43,12 +45,12 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element ref="attribute"/>
-                    <xs:element ref="context"/>
-                    <xs:element ref="instance"/>
+                    <xs:element ref="scotty:attribute"/>
+                    <xs:element ref="scotty:context"/>
+                    <xs:element ref="scotty:instance"/>
                 </xs:choice>
             </xs:sequence>
-            <xs:attribute ref="name" use="required"/>
+            <xs:attribute ref="scotty:name" use="required"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>
