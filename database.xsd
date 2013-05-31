@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            targetNamespace="http://nwillc.github.io/scotty"
-           xmlns:scotty="http://nwillc.github.io/scotty">
+           xmlns:scotty="http://nwillc.github.io/scotty"
+           attributeFormDefault="qualified"
+        >
     <xs:attribute name="name" type="xs:string"/>
     <xs:attribute name="value" type="xs:string"/>
     <xs:element name="value" type="xs:string"/>
