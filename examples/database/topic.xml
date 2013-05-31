@@ -51,8 +51,9 @@
             <instance name="tst-src-enabled">
                 <attribute name="host">
                     <value>jc1txtrt01</value>
-                    <attribute name="networkInterface" value="10.99.20.104"/>
                 </attribute>
+                <attribute name="networkInterface" value="10.99.20.104"/>
+
                 <attribute name="disabled" value="false"/>
             </instance>
         </instance>
