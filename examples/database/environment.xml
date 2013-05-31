@@ -32,6 +32,7 @@
         <attribute name="name" value="AlphaSync"/>
         <attribute name="domain" value="TST"/>
         <attribute name="ec2Proxy" value="ec2-174-129-2-86.compute-1.amazonaws.com"/>
+        <attribute name="externalArgoSub" value="108.35.104.43"/>
         <attribute name="jndi" value="jms://jc1tjmst01.seleritycorp.com:5445"/>
     </instance>
     <instance name="qa">
@@ -39,6 +40,7 @@
         <attribute name="name" value="QASync"/>
         <attribute name="domain" value="QA"/>
         <attribute name="ec2Proxy" value="107.23.59.121"/>
+        <attribute name="externalArgoSub" value="23.23.239.103"/>
         <attribute name="jndi" value="jms://jc1tcsdq01:5445"/>
     </instance>
     <instance name="int">
@@ -52,6 +54,7 @@
         <attribute name="name" value="ProdSync"/>
         <attribute name="domain" value="PRD"/>
         <attribute name="ec2Proxy" value="ec2-50-17-254-42.compute-1.amazonaws.com"/>
+        <attribute name="externalArgoSub" value="38.106.81.68"/>
         <attribute name="jndi" value="jms://ny2ajmsp01.seleritycorp.com:5445"/>
     </instance>
 </type>

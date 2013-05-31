@@ -1,18 +1,18 @@
-# {#t application,environment #} {#c env,host #}
+# {#t application,environment,datasource #} {#c env,host #}{# context.put("database=tweethandler,app=tweethandler"); #}
 # Tweet Handler properties
 #
 tweethandler.domain={#? domain type=environment #}
 tweethandler.app_name=Twern2
 tweethandler.source_topic=SRC
 tweethandler.source_host={# output.print(context.get("host")); #}
-tweethandler.source_instance={instance}
-tweethandler.level={level}
+tweethandler.source_instance={#? instance type=application #}
+tweethandler.level={#? level type=application #}
 tweethandler.datasift_user=AndrewBrook
 tweethandler.datasift_key=d01d5b69baf771d7a3dfcd6734d40898
 tweethandler.notify_email=sysadmin@seleritycorp.com
 
-tweethandler.db.url={jdbcUrl,database=tweethandler}
-tweethandler.db.user={databaseUser,database=tweethandler}
-tweethandler.db.password={databasePassword,database=tweethandler}
-tweethandler.db.driver={databaseDriver,database=tweethandler}
+tweethandler.db.url={#? jdbcUrl type=datasource #}
+tweethandler.db.user={#? username type=datasource #}
+tweethandler.db.password={#? database type=datasource #}
+tweethandler.db.driver={#? driver type=datasource #}
 

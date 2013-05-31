@@ -1,0 +1,11 @@
+{#t application,environment #}{#c env #}{# context.put("app=viewer"); #}{
+        "port" : {#? port type=application #},
+        "socketioPort" : {#? port type=application #},
+        "env" : "{#? domain type=environment #}",
+        "logPath" : "/mnt/tmp/logs/viewer.log",
+        "rhinoHost": "{#? ec2Proxy type=environment #}",
+        "entitlementHost": "{#? ec2Proxy type=environment #}",
+        "argoSubHost" : "{#? externalArgoSub type=environment #}",
+        "bdsHost" : "{#? ec2Proxy type=environment #}",
+        "systemPassword" : "{#? password type=application,app=sync #}"
+}
