@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	   targetNamespace="http://nwillc.github.io/scotty" xmlns="http://nwillc.github.io/scotty"
-	   elementFormDefault="qualified">
+           targetNamespace="http://nwillc.github.io/scotty" xmlns="http://nwillc.github.io/scotty"
+           elementFormDefault="qualified">
 
-    <xs:element name="type" type="Type"/>
-
-    <xs:complexType name="Type">
-        <xs:group ref="elements"/>
-        <xs:attribute name="name" type="xs:string" use="required"/>
-    </xs:complexType>
+    <xs:element name="type">
+        <xs:complexType>
+            <xs:group ref="elements"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
 
     <xs:group name="elements">
         <xs:sequence>
