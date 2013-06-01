@@ -13,7 +13,8 @@
   ~ OR PERFORMANCE OF THIS SOFTWARE.
   -->
 
-<type name="topic">
+<type name="topic" xmlns="http://nwillc.github.io/scotty/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://nwillc.github.io/scotty/1.0 http://nwillc.github.io/scotty/database.xsd">
     <attribute name="heartbeatInterval" value="10000"/>
     <attribute name="maxPayloadSize" value="1400"/>
     <attribute name="disabled" value="true"/>

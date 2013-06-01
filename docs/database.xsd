@@ -1,54 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:attribute name="name" type="xs:string"/>
-    <xs:attribute name="value" type="xs:string"/>
-    <xs:element name="value" type="xs:string"/>
 
-    <xs:element name="attribute">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="value" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:sequence>
-            <xs:attribute ref="name" use="required"/>
-            <xs:attribute ref="value" use="optional"/>
-        </xs:complexType>
-    </xs:element>
+    <xs:element name="type" type="Type"/>
 
-    <xs:element name="context">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element ref="attribute"/>
-                    <xs:element ref="context"/>
-                    <xs:element ref="instance"/>
-                </xs:choice>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
+    <xs:complexType name="Type">
+        <xs:group ref="elements"/>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
 
-    <xs:element name="instance">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element ref="attribute"/>
-                    <xs:element ref="context"/>
-                    <xs:element ref="instance"/>
-                </xs:choice>
-            </xs:sequence>
-            <xs:attribute ref="name" use="optional"/>
-        </xs:complexType>
-    </xs:element>
+    <xs:group name="elements">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="attribute" type="Attribute"/>
+                <xs:element name="context" type="Context"/>
+                <xs:element name="instance" type="Instance"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:group>
 
-    <xs:element name="type">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element ref="attribute"/>
-                    <xs:element ref="context"/>
-                    <xs:element ref="instance"/>
-                </xs:choice>
-            </xs:sequence>
-            <xs:attribute ref="name" use="required"/>
-        </xs:complexType>
-    </xs:element>
+    <xs:complexType name="Attribute">
+        <xs:sequence>
+            <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="value" type="xs:string" use="optional"/>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="Context">
+        <xs:group ref="elements"/>
+    </xs:complexType>
+
+    <xs:complexType name="Instance">
+        <xs:group ref="elements"/>
+        <xs:attribute name="name" type="xs:string" use="optional"/>
+    </xs:complexType>
+
+
 </xs:schema>
