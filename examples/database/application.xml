@@ -13,8 +13,8 @@
   ~ OR PERFORMANCE OF THIS SOFTWARE.
   -->
 
-<type name="application" xmlns="http://nwillc.github.io/scotty/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://nwillc.github.io/scotty/1.0 http://nwillc.github.io/scotty/database.xsd">
+<type name="application" xmlns="http://nwillc.github.io/scotty" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://nwillc.github.io/scotty http://nwillc.github.io/scotty/database.xsd">
     <attribute name="username" value="testsystem1"/>
     <attribute name="password" value="testsystem1"/>
     <attribute name="statusUrl" value="version.do"/>
