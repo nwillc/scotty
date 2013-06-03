@@ -1,2 +1,0 @@
-{#t amazon #}{#c env #}{# context.put("type=amazon"); #}s3Prefix,s3BucketName,awsAccessKey,awsSecretKey,artifactBucketName
-{#? s3Prefix #},{#? s3BucketName #},{#? awsAccessKey #},{#? awsSecretKey #},{#? artifactBucketName #}

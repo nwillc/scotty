@@ -1,7 +1,0 @@
-#  {#t environment,datasource #} {#c env #} {# context.put("database=obsgradimporter"); #}
-# GRADING IMPORTER SERVICE PROPERTIES FILE
-#
-obsgradimporter.environment={#? name type=environment #}
-obsgradimporter.db.url={#? jdbcUrl type=datasource #}
-obsgradimporter.db.user.name={#? username type=datasource #}
-obsgradimporter.db.user.password={#? password type=datasource #}

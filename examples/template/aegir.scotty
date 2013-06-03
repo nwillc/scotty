@@ -1,7 +1,0 @@
-# {#t application,environment #} {#c env #}
-# Aegir properties file
-#
-aegir.environment={#? name type=environment #}
-
-
-
