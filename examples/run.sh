@@ -2,16 +2,26 @@
 SCRIPT_DIR=$(cd $(dirname $0) > /dev/null && pwd)
 cd ${SCRIPT_DIR}
 
+JAR='../target/scotty-*-dependencies.jar'
+if [ ! -f $JAR ]; then
+	(cd .. ; mvn clean install -Dmaven.test.skip assembly:single)
+	if [ ! -f $JAR ]; then
+		echo Can not find ${JAR}
+		exit 1
+	fi
+fi
+
+
 TEMPLATE=$1
 CONTEXT=""
 if [ ".$2" != "." ]; then
     CONTEXT="-c $2"
 fi
-DATABASES=database/application.xml,database/host.xml,database/environment.xml,database/datasource.xml,database/amazon.xml,database/topic.xml
+DATABASES=$( ls database | tr "\n" "," )
 
 case "$TEMPLATE" in
         print)
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar --print -d ${DATABASES}
+          java -jar ${JAR} --print -d ${DATABASES}
           ;;
         *)
           if [ ! -f template/${TEMPLATE}.scotty ]; then
