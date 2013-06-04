@@ -28,7 +28,7 @@ case "$TEMPLATE" in
              echo Unknown template ${TEMPLATE}
              exit 2
           fi
-          java -jar ../target/scotty-1.0-SNAPSHOT-jar-with-dependencies.jar ${CONTEXT} -d ${DATABASES} -t template/${TEMPLATE}.scotty
+          java -jar ${JAR} ${CONTEXT} -d ${DATABASES} -t template/${TEMPLATE}.scotty
           ;;
 esac
 
