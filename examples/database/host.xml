@@ -1,0 +1,11 @@
+<type name="host">
+	<instance>
+		<attribute name="hostname" value="localhost"/>
+		<attribute name="ip_address" value="127.0.0.1"/>
+	</instance>
+	<instance>
+		<attribute name="hostname" value="devbox"/>
+		<attribute name="ip_address" value="192.168.0.1"/>
+	</instance>
+</type>
+
