@@ -2,12 +2,12 @@
 # Hostfile
 #
 {#
-	Context c = new Context("type=host");
+	Context c = new Context(context,"type=host");
 	Set set = database.query(c, "hostname");
 	for (String hostname : set ) {
 		c.put("hostname", hostname);
 		Instance host = database.query(c).get(0);
-		output.println(hostname + "\t" + host.get("ip_address"));	
+		output.format("%-20s%s\n", new Object[]{hostname,host.get("ip_address")});
 	}
 #}
 
