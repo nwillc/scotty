@@ -17,18 +17,18 @@ CONTEXT=""
 if [ ".$2" != "." ]; then
     CONTEXT="-c $2"
 fi
-DATABASES=$( ls database | tr "\n" "," )
+DATABASES=$( ls database/* | tr "\n" "," )
 
 case "$TEMPLATE" in
         print)
           java -jar ${JAR} --print -d ${DATABASES}
           ;;
         *)
-          if [ ! -f template/${TEMPLATE}.scotty ]; then
+          if [ ! -f templates/${TEMPLATE}.scotty ]; then
              echo Unknown template ${TEMPLATE}
              exit 2
           fi
-          java -jar ${JAR} ${CONTEXT} -d ${DATABASES} -t template/${TEMPLATE}.scotty
+          java -jar ${JAR} ${CONTEXT} -d ${DATABASES} -t templates/${TEMPLATE}.scotty
           ;;
 esac
 
