@@ -23,6 +23,7 @@ public interface Tokens {
 	String CLOSE = "#}";
     char QUERY = '?';
 	char TYPES = 't';
+	char INCLUDE = 'i';
 	char IN_CONTEXT = 'c';
 }
 
