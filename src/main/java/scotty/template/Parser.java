@@ -19,6 +19,7 @@ import bsh.EvalError;
 import bsh.Interpreter;
 import scotty.database.Context;
 import scotty.database.Database;
+import scotty.database.parser.Utilities;
 
 import java.io.*;
 import java.util.ArrayDeque;
@@ -86,10 +87,9 @@ public final class Parser {
 							outputStream.write(value.getBytes());
 						}
 						break;
-					case INCLUDE:
+					case IMPORT:
 						inputStreams.push(inputStream);
-						// TODO: use getReasourseAsStream logic
-						inputStream = new FileInputStream(scriptBody);
+						inputStream = Utilities.getResourceAsStream(scriptBody);
 						break;
 					case TYPES:
 						String[] types = scriptBody.split(",");
