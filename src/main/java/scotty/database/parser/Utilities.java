@@ -1,16 +1,13 @@
 /*
- * Copyright (c) 2013, nwillc@gmail.com
- *
- * Permission to use, copy, modify, and/or distribute this software for any purpose with or
- * without fee is hereby granted, provided that the above copyright notice and this permission
- * notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO
- * THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT
- * SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR
- * ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
- * CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
- * OR PERFORMANCE OF THIS SOFTWARE.
+ * (c) Copyright Selerity, Inc. 2009-2013. All rights reserved. This source code is confidential
+ * and proprietary information of Selerity Inc. and may be used only by a recipient designated
+ * by and for the purposes permitted by Selerity Inc. in writing.  Reproduction of, dissemination
+ * of, modifications to or creation of derivative works from this source code, whether in source
+ * or binary forms, by any means and in any form or manner, is expressly prohibited, except with
+ * the prior written permission of Selerity Inc..  THIS CODE AND INFORMATION ARE PROVIDED "AS IS"
+ * WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE. This notice may not be
+ * removed from the software by any user thereof.
  */
 
 package scotty.database.parser;
@@ -20,16 +17,22 @@ import scotty.database.Database;
 import scotty.database.Instance;
 import scotty.database.Type;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Utility methods used by the database portions of Scotty.
  */
 public final class Utilities {
-	private Utilities() {
+    private static final Logger LOGGER = Logger.getLogger(Utilities.class.getName());
+
+    private Utilities() {
 	}
 
     /**
@@ -93,4 +96,25 @@ public final class Utilities {
 			}
 		}
 	}
+
+    /**
+     * Look up a resource as either a resource or a file.
+     * @param resource item name to look for
+     * @return return input stream or null if not found
+     */
+    public static InputStream getResourceAsStream(String resource) {
+           InputStream stream = ClassLoader.getSystemClassLoader().getResourceAsStream(resource);
+           if (stream != null) {
+               return stream;
+           }
+
+           // Couldn't be pulled by the class loader, maybe it's just a file
+           try {
+               stream = new FileInputStream(resource);
+           } catch (FileNotFoundException e) {
+               LOGGER.warning("Failed to find " + resource + " as resource or file.");
+           }
+
+           return stream;
+       }
 }
