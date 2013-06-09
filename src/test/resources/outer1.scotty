@@ -1,0 +1,1 @@
+{# context.put("two=two,three=three"); #}one,{#i import.scotty #},{# output.print(context.get("three")); #}

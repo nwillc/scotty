@@ -38,8 +38,9 @@ public final class Parser {
 	}
 
 	public static void parse(InputStream inputStream, final OutputStream outputStream, final Database database,
-							 final Context context) throws IOException, EvalError {
+							 Context context) throws IOException, EvalError {
 		final Deque<InputStream> inputStreams = new ArrayDeque<>();
+		final Deque<Context> contexts = new ArrayDeque<>();
 		final Interpreter beanShell = new Interpreter();
 
 		try (PrintStream output = new PrintStream(outputStream)) {
@@ -53,6 +54,8 @@ public final class Parser {
 				if (!scanTo(Tokens.OPEN, inputStream, outputStream)) {
 					if (inputStreams.size() > 0) {
 						inputStream = inputStreams.pop();
+						context = contexts.pop();
+						beanShell.set("context", context);
 						continue;
 					} else {
 						break;
@@ -88,8 +91,21 @@ public final class Parser {
 						}
 						break;
 					case IMPORT:
+						final Context importContext;
+						final int endOfFileName = scriptBody.indexOf(' ');
+						final String fileName;
+						if (endOfFileName == -1) {
+							fileName = scriptBody;
+							importContext = new Context(context);
+						} else {
+							fileName = scriptBody.substring(0, endOfFileName);
+							importContext = new Context(context, scriptBody.substring(endOfFileName));
+						}
 						inputStreams.push(inputStream);
-						inputStream = Utilities.getResourceAsStream(scriptBody);
+						inputStream = Utilities.getResourceAsStream(fileName);
+						contexts.push(context);
+						context = importContext;
+						beanShell.set("context", context);
 						break;
 					case TYPES:
 						String[] types = scriptBody.split(",");
