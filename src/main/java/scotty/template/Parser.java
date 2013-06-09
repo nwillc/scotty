@@ -22,8 +22,6 @@ import scotty.database.Database;
 import scotty.database.parser.Utilities;
 
 import java.io.*;
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.List;
 
 import static scotty.template.Tokens.*;
@@ -39,8 +37,6 @@ public final class Parser {
 
 	public static void parse(InputStream inputStream, final OutputStream outputStream, final Database database,
 							 Context context) throws IOException, EvalError {
-		final Deque<InputStream> inputStreams = new ArrayDeque<>();
-		final Deque<Context> contexts = new ArrayDeque<>();
 		final Interpreter beanShell = new Interpreter();
 
 		try (PrintStream output = new PrintStream(outputStream)) {
@@ -52,14 +48,7 @@ public final class Parser {
 
 			while (true) {
 				if (!scanTo(Tokens.OPEN, inputStream, outputStream)) {
-					if (inputStreams.size() > 0) {
-						inputStream = inputStreams.pop();
-						context = contexts.pop();
-						beanShell.set("context", context);
-						continue;
-					} else {
-						break;
-					}
+					break;
 				}
 
 				ByteArrayOutputStream scriptOutput = new ByteArrayOutputStream();
@@ -101,11 +90,7 @@ public final class Parser {
 							fileName = scriptBody.substring(0, endOfFileName);
 							importContext = new Context(context, scriptBody.substring(endOfFileName));
 						}
-						inputStreams.push(inputStream);
-						inputStream = Utilities.getResourceAsStream(fileName);
-						contexts.push(context);
-						context = importContext;
-						beanShell.set("context", context);
+						parse(Utilities.getResourceAsStream(fileName), outputStream, database, importContext);
 						break;
 					case TYPES:
 						String[] types = scriptBody.split(",");
