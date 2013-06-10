@@ -22,8 +22,6 @@ import scotty.database.Database;
 import scotty.database.parser.Utilities;
 
 import java.io.*;
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.List;
 
 import static scotty.template.Tokens.*;
@@ -38,8 +36,7 @@ public final class Parser {
 	}
 
 	public static void parse(InputStream inputStream, final OutputStream outputStream, final Database database,
-							 final Context context) throws IOException, EvalError {
-		final Deque<InputStream> inputStreams = new ArrayDeque<>();
+							 Context context) throws IOException, EvalError {
 		final Interpreter beanShell = new Interpreter();
 
 		try (PrintStream output = new PrintStream(outputStream)) {
@@ -51,12 +48,7 @@ public final class Parser {
 
 			while (true) {
 				if (!scanTo(Tokens.OPEN, inputStream, outputStream)) {
-					if (inputStreams.size() > 0) {
-						inputStream = inputStreams.pop();
-						continue;
-					} else {
-						break;
-					}
+					break;
 				}
 
 				ByteArrayOutputStream scriptOutput = new ByteArrayOutputStream();
@@ -88,8 +80,17 @@ public final class Parser {
 						}
 						break;
 					case IMPORT:
-						inputStreams.push(inputStream);
-						inputStream = Utilities.getResourceAsStream(scriptBody);
+						final Context importContext;
+						final int endOfFileName = scriptBody.indexOf(' ');
+						final String fileName;
+						if (endOfFileName == -1) {
+							fileName = scriptBody;
+							importContext = new Context(context);
+						} else {
+							fileName = scriptBody.substring(0, endOfFileName);
+							importContext = new Context(context, scriptBody.substring(endOfFileName));
+						}
+						parse(Utilities.getResourceAsStream(fileName), outputStream, database, importContext);
 						break;
 					case TYPES:
 						String[] types = scriptBody.split(",");
