@@ -4,10 +4,9 @@ layout: todo
 TODO:
 =====
 
-* template include mechanism
 * richer test & examples
-* markups to check type & attr presence
-* queryDistinct
+* document adding user Java code to the beanShell scripts
+* error messages should provide template file name for context
 
 
 
