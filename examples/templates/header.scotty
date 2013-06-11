@@ -1,0 +1,5 @@
+# {#c title #}
+# {# output.print(context.get("title")); #}
+#
+# Generated {# output.print(new java.util.Date()); #}
+#

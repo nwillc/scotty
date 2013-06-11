@@ -1,6 +1,4 @@
-# {#t host #}
-# Hostfile
-#
+{#t host #}{#i templates/header.scotty title=Host File #}
 {#
 	Context c = new Context(context,"type=host");
 	Set set = database.query(c, "hostname");

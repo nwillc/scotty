@@ -1,0 +1,10 @@
+{#t host,user #}{#c env #}
+{#i templates/header.scotty title=Simple Example #}
+box.env={#? env type=host #}
+box.hostname={#? hostname type=host #}
+box.ip_address={#? ip_address type=host #}
+box.admin.username={#? username type=user,level=admin #}
+box.admin.password={#? password type=user,level=admin #}
+box.basic.username={#? username type=user,level=basic #}
+box.basic.password={#? password type=user,level=basic #}
+
