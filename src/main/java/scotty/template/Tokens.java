@@ -21,7 +21,8 @@ package scotty.template;
 public interface Tokens {
 	String OPEN = "{#";
 	String CLOSE = "#}";
-    char QUERY = '?';
+	char QUERY = '?';
+	char CONTEXT = '=';
 	char TYPES = 't';
 	char IMPORT = 'i';
 	char IN_CONTEXT = 'c';

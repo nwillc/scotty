@@ -74,7 +74,17 @@ public class Database extends Context {
 		return database;
 	}
 
-    /**
+	/**
+	 * Return a list of instances matching a given set of criteria.
+	 *
+	 * @param criteria the criteria to match
+	 * @return a list of instances in match rank order
+	 */
+	public List<Context> query(String criteria) {
+		return query(new Context(criteria));
+	}
+
+	/**
 	 * Return a list of instances matching a given set of criteria.
 	 *
 	 * @param criteria the criteria to match
@@ -82,6 +92,18 @@ public class Database extends Context {
 	 */
 	public List<Context> query(Context criteria) {
 		return Utilities.query(this, criteria);
+	}
+
+	/**
+	 * Return a set, in sorted order, of the values of a specified attribute of all the instances
+	 * matching a criteria.
+	 *
+	 * @param criteria the criteria
+	 * @param attr     the attribute name
+	 * @return sorted set of values
+	 */
+	public Set<String> query(String criteria, String attr) {
+		return query(new Context(criteria), attr);
 	}
 
 	/**
