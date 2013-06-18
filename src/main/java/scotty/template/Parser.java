@@ -37,6 +37,17 @@ public final class Parser {
     private Parser() {
     }
 
+    /**
+     * Parse a template, handling the annotations it contains, employing a database and runtime context.
+     *
+     * @param sourceName  the template name if available.
+     * @param inputStream the input stream of the template.
+     * @param outputStream where to send the output.
+     * @param database the database to run queries against
+     * @param context the runtime context of assignments
+     * @throws IOException if one of the files can not be read.
+     * @throws EvalError if there is a syntax error in the bean shell
+     */
     public static void parse(String sourceName, final InputStream inputStream, final OutputStream outputStream, final Database database,
                              final Context context) throws IOException, EvalError {
         final Interpreter beanShell = new Interpreter();
@@ -140,6 +151,14 @@ public final class Parser {
         outputStream.flush();
     }
 
+    /**
+     * Scan for a pattern in a stream, shunting data that is passed by to an output stream.
+     * @param patternStr the pattern to search in
+     * @param inputStream the stream to read from
+     * @param outputStream the stream to send data we have passed to
+     * @return if the there was a match
+     * @throws IOException
+     */
     private static boolean scanTo(String patternStr, InputStream inputStream, OutputStream outputStream) throws IOException {
         final CharQueue pattern = new CharQueue(patternStr, null);
         final CharQueue buffer = new CharQueue(patternStr.length(), outputStream);
