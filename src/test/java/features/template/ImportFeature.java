@@ -31,25 +31,25 @@ import static junit.framework.TestCase.assertNotNull;
  *
  */
 public class ImportFeature {
-	private InputStream inputStream;
-	private OutputStream outputStream;
+    private InputStream inputStream;
+    private OutputStream outputStream;
 
-	@Given("^a template named \"([^\"]*)\"$")
-	public void a_template_named(String arg1) throws Throwable {
-		inputStream = Utilities.getResourceAsStream(arg1);
-		assertNotNull(inputStream);
-	}
+    @Given("^a template named \"([^\"]*)\"$")
+    public void a_template_named(String arg1) throws Throwable {
+        inputStream = Utilities.getResourceAsStream(arg1);
+        assertNotNull(inputStream);
+    }
 
-	@When("^it is parsed$")
-	public void it_is_parsed() throws Throwable {
-		outputStream = new ByteArrayOutputStream();
-		Parser.parse(inputStream, outputStream, new Database(), new Context());
-	}
+    @When("^it is parsed$")
+    public void it_is_parsed() throws Throwable {
+        outputStream = new ByteArrayOutputStream();
+        Parser.parse(null, inputStream, outputStream, new Database(), new Context());
+    }
 
-	@Then("^the results should be \"([^\"]*)\"$")
-	public void the_results_should_be(String arg1) throws Throwable {
-		assertEquals(arg1, outputStream.toString());
-	}
+    @Then("^the results should be \"([^\"]*)\"$")
+    public void the_results_should_be(String arg1) throws Throwable {
+        assertEquals(arg1, outputStream.toString());
+    }
 
 
 }
