@@ -30,23 +30,27 @@
 		  font-size: 18px;
 		  font-family: sans-serif;
 	  }
-	  .wide {
+	  td.wide {
 		  font-size: 18px;
 		  font-family: sans-serif;
 		  width: 80%;
 	  }
-	  .pink {
+	  td.pink {
 		  background-color: #CC99CC;
 	  }
-	  .blue {
+	  th.blue {
 		  background-color: #9999CC;
 		  vertical-align:bottom;
 		  text-align: right;
-		  width: 150px;
+		  width: 170px;
 	  }
-	  .button {
+	  table.button {
 		  border-collapse:collapse;		 
 		  border:0px;
+	  }
+	  p.padding {
+		  padding-top: 50px;
+		  padding-right: 50px;
 	  }
     </style>
   </HEAD>
@@ -68,8 +72,8 @@
       </tr>
       <tr>
 	<td></td>
-	<td colspan="2" class="wide">
-	  Scotty was written as a response to repeated exposures to crazy Rube Goldberg tools used to generate configuration files. Its designed to be sane and flexible, both in its implementation and use. It creates configuration files by applying templates to a database of configuration data.  The database is stored as a collection of XML files. The templates are text files containing markup language and call out scripts in bean shell. The database scheme is simple and bean shell is basically Java so coming up to speed is easy, but allows for a great deal of flexibility.  It can generate any type of configuration file: properties, XML, JSON, etc. The project is licensed under the ISC license, a permissive free software license written by the Internet Systems Consortium (ISC) – so enjoy!<p/>
+	<td colspan="2" valign="top" class="wide">
+	<p class="padding"> Scotty was written as a response to repeated exposures to crazy Rube Goldberg tools used to generate configuration files. Its designed to be sane and flexible, both in its implementation and use. It creates configuration files by applying templates to a database of configuration data.  The database is stored as a collection of XML files. The templates are text files containing markup language and call out scripts in bean shell. The database scheme is simple and bean shell is basically Java so coming up to speed is easy, but allows for a great deal of flexibility.  It can generate any type of configuration file: properties, XML, JSON, etc. The project is licensed under the ISC license, a permissive free software license written by the Internet Systems Consortium (ISC) – so enjoy!<p/>
 	</td>
     <td>
 	<table class="button"><tr><td><img src="images/bl.png"></td><th class="blue"><a href="http://nwillc.github.io/scotty/scotty.html">Manual</a></th><td><img src="images/br.png"></td></tr></table></P>
