@@ -19,7 +19,7 @@
 
     <groupId>scotty</groupId>
     <artifactId>scotty</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <name>scotty</name>

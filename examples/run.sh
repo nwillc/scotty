@@ -21,14 +21,17 @@ DATABASES=$( ls database/* | tr "\n" "," )
 
 case "$TEMPLATE" in
         print)
-          java -jar ${JAR} --print -d ${DATABASES}
+          java -Djava.awt.headless=true -jar ${JAR} --print -d ${DATABASES}
+          ;;
+        javascript)
+          java -Djava.awt.headless=true -jar ${JAR} ${CONTEXT} -d ${DATABASES} -l javascript -t templates/${TEMPLATE}.scotty
           ;;
         *)
           if [ ! -f templates/${TEMPLATE}.scotty ]; then
              echo Unknown template ${TEMPLATE}
              exit 2
           fi
-          java -jar ${JAR} ${CONTEXT} -d ${DATABASES} -t templates/${TEMPLATE}.scotty
+          java -Djava.awt.headless=true -jar ${JAR} ${CONTEXT} -d ${DATABASES} -t templates/${TEMPLATE}.scotty
           ;;
 esac
 

@@ -18,6 +18,7 @@ import cucumber.api.java.en.When;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.database.parser.Utilities;
+import scotty.template.NamedScriptEngine;
 import scotty.template.Parser;
 
 import java.io.ByteArrayOutputStream;
@@ -43,7 +44,7 @@ public class ImportFeature {
     @When("^it is parsed$")
     public void it_is_parsed() throws Throwable {
         outputStream = new ByteArrayOutputStream();
-        Parser.parse(null, inputStream, outputStream, new Database(), new Context());
+        Parser.parse(inputStream, outputStream, new Database(), new Context(), new NamedScriptEngine());
     }
 
     @Then("^the results should be \"([^\"]*)\"$")

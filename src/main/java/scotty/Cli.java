@@ -19,11 +19,11 @@ package scotty;
  * Command line interface tokens.
  */
 public interface Cli {
-	String HELP = "help";
-	String DATABASE = "database";
-	String TEMPLATE = "template";
-	String CONTEXT = "context";
-	String OUTPUT = "output";
-	String PRINT = "print";
-	String SCRIPT_ENGINE = "scriptEngine";
+    String CONTEXT = "context";
+    String DATABASE = "database";
+    String HELP = "help";
+    String LANGUAGE = "language";
+    String OUTPUT = "output";
+    String PRINT = "print";
+    String TEMPLATE = "template";
 }

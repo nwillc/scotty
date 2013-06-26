@@ -1,0 +1,8 @@
+# {#c title #}
+# {#= title #}
+#
+# Generated {#
+ var d = new Date();
+ output.print(d.toUTCString());
+#}
+#
