@@ -13,17 +13,17 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty;
+package scotty.template;
+
+import javax.script.ScriptException;
 
 /**
- * Command line interface tokens.
+ *
  */
-public interface Cli {
-	String HELP = "help";
-	String DATABASE = "database";
-	String TEMPLATE = "template";
-	String CONTEXT = "context";
-	String OUTPUT = "output";
-	String PRINT = "print";
-	String SCRIPT_ENGINE = "scriptEngine";
+public interface ScriptEngine {
+	void setScriptName(String script);
+
+	void export(String name, Object object) throws ScriptException;
+
+	void eval(String script) throws ScriptException;
 }
