@@ -18,42 +18,36 @@ th {
   	text-align: left;
   	text-transform:uppercase;
 }
-a {
-  	text-decoration: none;
-  	color: #000000;
-}
 td.wide {
   	font-size: 18px;
   	font-family: sans-serif;
   	width: 80%;
 }
-td.pink {
-  	background-color: #CC99CC;
-}
-table.button {
-  	border-collapse:collapse;		 
-  	border:0px;
-}
 p.padding {
-  	padding-top: 50px;
-  	padding-right: 50px;
+  	padding-top: 30px;
+  	padding-right: 30px;
+}
+a {
+  	text-decoration: none;
+  	color: #000000;
 }
 .button {
-	font-family: 'Steelfish', sans-serif;
-	font-size: 20px;
+	font-family: sans-serif;
+	font-size: 18px;
 	font-weight: bold;
 	text-transform: uppercase;
   	vertical-align: bottom;
   	text-align: right;
-  	width: 170px;	
-	height: 55px;
+	padding-top: 25px;
+	padding-bottom: 0px;
 	padding-right: 20px;
-}
-.blue {
-	background-color: #9999CC;
-}
-.rounded {
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px;
+}
+.pink {
+  	background-color: #CC99CC;
+}
+.blue {
+	background-color: #9999CC;
 }
