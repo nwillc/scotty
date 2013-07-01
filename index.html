@@ -1,58 +1,7 @@
 ﻿<HTML>
   <HEAD>
     <TITLE>Scotty</TITLE>
-    <style type="text/css">
-	@font-face {
-		font-family: 'Steelfish';
-		font-style: normal;
-		font-weight: normal;
-		src: local('Steelfish'), url('./fonts/steelfish rg.otf') format('truetype');
-		}
-      body {
-      	background-color: #000000;
-      	color: #FF9900;
-      	font-family: 'Steelfish', sans-serif;
-      }
-	  td {
-		  font-size: 24px;
-		  padding: 0px;
-	  }
-	  th {
-		  font-size: 26px;
-		  text-align: left;
-		  text-transform:uppercase;
-	  }
-	  a {
-		  text-transform:uppercase;
-		  text-align:right;
-		  text-decoration: none;
-		  color: #000000;
-		  font-size: 18px;
-		  font-family: sans-serif;
-	  }
-	  td.wide {
-		  font-size: 18px;
-		  font-family: sans-serif;
-		  width: 80%;
-	  }
-	  td.pink {
-		  background-color: #CC99CC;
-	  }
-	  th.blue {
-		  background-color: #9999CC;
-		  vertical-align:bottom;
-		  text-align: right;
-		  width: 170px;
-	  }
-	  table.button {
-		  border-collapse:collapse;		 
-		  border:0px;
-	  }
-	  p.padding {
-		  padding-top: 50px;
-		  padding-right: 50px;
-	  }
-    </style>
+	<link rel="stylesheet" href="style.css" type="text/css" media="screen, projection" />
   </HEAD>
   <BODY>
     <table border="0" width="100%">
@@ -76,16 +25,14 @@
 	<p class="padding"> Scotty was written as a response to repeated exposures to crazy Rube Goldberg tools used to generate configuration files. Its designed to be sane and flexible, both in its implementation and use. It creates configuration files by applying templates to a database of configuration data.  The database is stored as a collection of XML files. The templates are text files containing markup language and call out scripts in bean shell. The database scheme is simple and bean shell is basically Java so coming up to speed is easy, but allows for a great deal of flexibility.  It can generate any type of configuration file: properties, XML, JSON, etc. The project is licensed under the ISC license, a permissive free software license written by the Internet Systems Consortium (ISC) – so enjoy!<p/>
 	</td>
     <td>
-	<table class="button"><tr><td><img src="images/bl.png"></td><th class="blue"><a href="http://nwillc.github.io/scotty/scotty.html">Manual</a></th><td><img src="images/br.png"></td></tr></table></P>
-	<table class="button"><tr><td><img src="images/bl.png"></td><th class="blue"><a href="http://nwillc.github.io/scotty/apidocs">API docs</a></th><td><img src="images/br.png"></td></tr></table></P>
-	<table class="button"><tr><td><img src="images/bl.png"></td><th class="blue"><a href="https://github.com/nwillc/scotty.git">The Bits</a></th><td><img src="images/br.png"></td></tr></table></P>
-	<table class="button"><tr><td><img src="images/bl.png"></td><th class="blue"><a href="scotty_example.swf">Example</a></th><td><img src="images/br.png"></td></tr></table></P>
-	<table class="button"><tr><td><img src="images/bl.png"></td><th class="blue"><a href="todo.html">Upcoming</a></th><td><img src="images/br.png"></td></tr></table></P>
-</td></tr></table>
-	
-
-
-    
+		<table width="170px"><tr><td class="button blue rounded"><a href="http://nwillc.github.io/scotty/scotty.html">Manual</a></td></tr></table></P>
+		<table><tr><td class="button blue rounded"><a href="http://nwillc.github.io/scotty/apidocs">API docs</a><td></tr></table></P>
+		<table><tr><td class="button blue rounded"><a href="https://github.com/nwillc/scotty.git">The Bits</a></td></tr></table></P>
+		<table><tr><td class="button blue rounded"><a href="scotty_example.swf">Example</a></td></tr></table></P>
+		<table><tr><td class="button blue rounded"><a href="todo.html">Upcoming</a></td></tr></table></P>
+	</td>
+</tr></table>
+	 
     <table border="0" width="100%">
       <tr>
 	<td><img src="images/pl.png"></td>

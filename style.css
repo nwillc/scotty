@@ -1,0 +1,59 @@
+@font-face {
+	font-family: 'Steelfish';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Steelfish'), url('./fonts/steelfish rg.otf') format('truetype');
+}
+body {
+	background-color: #000000;
+	color: #FF9900;
+	font-family: 'Steelfish', sans-serif;
+}
+td {
+  	font-size: 24px;
+  	padding: 0px;
+}
+th {
+  	font-size: 26px;
+  	text-align: left;
+  	text-transform:uppercase;
+}
+a {
+  	text-decoration: none;
+  	color: #000000;
+}
+td.wide {
+  	font-size: 18px;
+  	font-family: sans-serif;
+  	width: 80%;
+}
+td.pink {
+  	background-color: #CC99CC;
+}
+table.button {
+  	border-collapse:collapse;		 
+  	border:0px;
+}
+p.padding {
+  	padding-top: 50px;
+  	padding-right: 50px;
+}
+.button {
+	font-family: 'Steelfish', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+  	vertical-align: bottom;
+  	text-align: right;
+  	width: 170px;	
+	height: 55px;
+	padding-right: 20px;
+}
+.blue {
+	background-color: #9999CC;
+}
+.rounded {
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+}
