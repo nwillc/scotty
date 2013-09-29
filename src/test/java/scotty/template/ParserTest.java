@@ -15,6 +15,7 @@
 
 package scotty.template;
 
+import org.junit.Before;
 import org.junit.Test;
 import scotty.database.Context;
 import scotty.database.Database;
@@ -25,12 +26,24 @@ import java.io.FileInputStream;
  *
  */
 public class ParserTest {
+	private Database database;
 
-    @Test
-    public void parse() throws Exception {
-        Database database = Database.parse("./target/test-classes/host.xml");
-        try (FileInputStream fileInputStream = new FileInputStream("./target/test-classes/prop-template.scotty")) {
-            Parser.parse(fileInputStream, System.out, database, new Context(), new NamedScriptEngine());
-        }
-    }
+	@Before
+	public void setup() throws Exception {
+		database = Database.parse("./target/test-classes/host.xml");
+	}
+
+	@Test
+	public void parse() throws Exception {
+		try (FileInputStream fileInputStream = new FileInputStream("./target/test-classes/prop-template.scotty")) {
+			Parser.parse(fileInputStream, System.out, database, new Context(), new NamedScriptEngine());
+		}
+	}
+
+	@Test(expected = IllegalStateException.class)
+	public void badParse() throws Exception {
+		try (FileInputStream fileInputStream = new FileInputStream("./target/test-classes/unclosed.scotty")) {
+			Parser.parse(fileInputStream, System.out, database, new Context(), new NamedScriptEngine());
+		}
+	}
 }
