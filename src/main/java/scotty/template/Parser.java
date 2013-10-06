@@ -50,16 +50,7 @@ public final class Parser {
 	public static void parse(final InputStream inputStream, final OutputStream outputStream, final Database database,
 							 final Context context, NamedScriptEngine scriptEngine) throws IOException, ScriptException {
 		PrintStream printStream = new PrintStream(outputStream);
-
-		try {
-			scriptEngine.export("database", database);
-			scriptEngine.export("context", context);
-			scriptEngine.export("output", printStream);
-		} catch (ScriptException scriptException) {
-			LOGGER.severe(scriptException.toString());
-			throw scriptException;
-		}
-
+		export(scriptEngine, database, context, printStream);
 		while (true) {
 			if (!scanTo(Tokens.OPEN, inputStream, outputStream)) {
 				break;
@@ -109,14 +100,8 @@ public final class Parser {
 						fileName = body.substring(0, endOfFileName);
 						importContext = new Context(context, body.substring(endOfFileName));
 					}
-					NamedScriptEngine clone;
-					try {
-						clone = scriptEngine.clone();
-					} catch (CloneNotSupportedException e) {
-						throw new ScriptException("Could not create new script engine on import.");
-					}
-					clone.setScriptName(fileName);
-					parse(Utilities.getResourceAsStream(fileName), outputStream, database, importContext, clone);
+					NamedScriptEngine newScriptEngine = new NamedScriptEngine(scriptEngine.getLanguageName(), fileName);
+					parse(Utilities.getResourceAsStream(fileName), outputStream, database, importContext, newScriptEngine);
 					break;
 				case TYPES:
 					String[] types = body.split(",");
@@ -125,6 +110,10 @@ public final class Parser {
 							throw new IllegalStateException("Database lacks required type: " + type);
 						}
 					}
+					break;
+				case LANGUAGE:
+					scriptEngine = new NamedScriptEngine(body, scriptEngine.getScriptName());
+					export(scriptEngine, database, context, printStream);
 					break;
 				case IN_CONTEXT:
 					String[] keys = body.split(",");
@@ -144,9 +133,6 @@ public final class Parser {
 						LOGGER.severe(scriptException.getFileName() + ": [" + scriptException.getLineNumber() + "] " + scriptException.getMessage());
 						throw scriptException;
 					}
-					break;
-
-				default:
 					break;
 			}
 		}
@@ -180,4 +166,14 @@ public final class Parser {
 		return false;
 	}
 
+	private static void export(NamedScriptEngine scriptEngine, Database database, Context context, PrintStream printStream) throws ScriptException {
+		try {
+			scriptEngine.export("database", database);
+			scriptEngine.export("context", context);
+			scriptEngine.export("output", printStream);
+		} catch (ScriptException scriptException) {
+			LOGGER.severe(scriptException.toString());
+			throw scriptException;
+		}
+	}
 }

@@ -29,53 +29,57 @@ import javax.script.ScriptException;
  * ScriptEngine support wrapper.
  */
 public class NamedScriptEngine implements Cloneable {
-    private static final String ENGINE_NAME_SPACE_KEY = "org_beanshell_engine_namespace";
-    private static final String BEANSHELL = "beanshell";
-    private static final String SCRIPT_CONTEXT = "javax_script_context";
-    private final String name;
-    private final ScriptEngine scriptEngine;
-    private String scriptName = null;
+	private static final String ENGINE_NAME_SPACE_KEY = "org_beanshell_engine_namespace";
+	private static final String BEANSHELL = "beanshell";
+	private static final String SCRIPT_CONTEXT = "javax_script_context";
+	private final String languageName;
+	private final ScriptEngine scriptEngine;
+	private String scriptName = null;
 
-    public NamedScriptEngine() {
-        this(BEANSHELL);
-    }
+	public NamedScriptEngine() {
+		this(BEANSHELL, null);
+	}
 
-    public NamedScriptEngine(String name) {
-        this.name = name;
-        ScriptEngineManager factory = new ScriptEngineManager();
-        scriptEngine = factory.getEngineByName(name);
-        if (name.toLowerCase().equals(BEANSHELL)) {
-            // beanshell can share namespaces with Java
-            ScriptContext scriptContext = scriptEngine.getContext();
-            NameSpace ns = (NameSpace) scriptContext.getAttribute(ENGINE_NAME_SPACE_KEY, ScriptContext.ENGINE_SCOPE);
-            if (ns == null) {
-                ns = new ExternalNameSpace(null, SCRIPT_CONTEXT, new ScriptContextEngineView(scriptContext));
-                scriptContext.setAttribute(ENGINE_NAME_SPACE_KEY, ns, ScriptContext.ENGINE_SCOPE);
-            }
-            ns.importPackage(Database.class.getPackage().getName());
-        }
-    }
+	public NamedScriptEngine(String languageName, String scriptName) {
+		this.languageName = languageName;
+		setScriptName(scriptName);
+		ScriptEngineManager factory = new ScriptEngineManager();
+		scriptEngine = factory.getEngineByName(languageName);
+		if (languageName.toLowerCase().equals(BEANSHELL)) {
+			// beanshell can share namespaces with Java
+			ScriptContext scriptContext = scriptEngine.getContext();
+			NameSpace ns = (NameSpace) scriptContext.getAttribute(ENGINE_NAME_SPACE_KEY, ScriptContext.ENGINE_SCOPE);
+			if (ns == null) {
+				ns = new ExternalNameSpace(null, SCRIPT_CONTEXT, new ScriptContextEngineView(scriptContext));
+				scriptContext.setAttribute(ENGINE_NAME_SPACE_KEY, ns, ScriptContext.ENGINE_SCOPE);
+			}
+			ns.importPackage(Database.class.getPackage().getName());
+		}
+	}
 
-    public void setScriptName(String script) {
-        scriptName = script;
-    }
+	public void setScriptName(String scriptName) {
+		this.scriptName = scriptName;
+	}
 
-    public void export(String name, Object object) throws ScriptException {
-        scriptEngine.put(name, object);
-    }
+	public void export(String name, Object object) throws ScriptException {
+		scriptEngine.put(name, object);
+	}
 
-    public void eval(String script) throws ScriptException {
-        try {
-            scriptEngine.eval(script);
-        } catch (ScriptException se) {
-            // Add the script name to the exception
-            throw new ScriptException(se.getMessage(), scriptName, se.getLineNumber());
-        }
-    }
+	public void eval(String script) throws ScriptException {
+		try {
+			scriptEngine.eval(script);
+		} catch (ScriptException se) {
+			// Add the script languageName to the exception
+			throw new ScriptException(se.getMessage(), scriptName, se.getLineNumber());
+		}
+	}
 
-    public NamedScriptEngine clone() throws CloneNotSupportedException {
-        NamedScriptEngine namedScriptEngine = new NamedScriptEngine(name);
-        namedScriptEngine.setScriptName(scriptName);
-        return namedScriptEngine;
-    }
+	public String getScriptName() {
+		return scriptName;
+	}
+
+	public String getLanguageName() {
+		return languageName;
+	}
+
 }

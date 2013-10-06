@@ -26,5 +26,6 @@ public interface Tokens {
 	char TYPES = 't';
 	char IMPORT = 'i';
 	char IN_CONTEXT = 'c';
+	char LANGUAGE = 'l';
 }
 

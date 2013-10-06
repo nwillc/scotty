@@ -20,7 +20,13 @@ import org.junit.Test;
 import scotty.database.Context;
 import scotty.database.Database;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
+
+import static junit.framework.Assert.assertEquals;
+import static scotty.database.parser.Utilities.getResourceAsStream;
 
 /**
  *
@@ -45,5 +51,14 @@ public class ParserTest {
 		try (FileInputStream fileInputStream = new FileInputStream("./target/test-classes/unclosed.scotty")) {
 			Parser.parse(fileInputStream, System.out, database, new Context(), new NamedScriptEngine());
 		}
+	}
+
+	@Test
+	public void languageChanges() throws Exception {
+		InputStream inputStream = getResourceAsStream("language_changes.scotty");
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		PrintStream printStream = new PrintStream(outputStream, true);
+		Parser.parse(inputStream, printStream, new Database(), new Context(), new NamedScriptEngine());
+		assertEquals("hello world!\nhello world!\n", outputStream.toString());
 	}
 }

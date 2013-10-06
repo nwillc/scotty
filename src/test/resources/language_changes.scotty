@@ -1,0 +1,8 @@
+{#l beanshell #}{#
+    String str = "Hello World!";
+    output.print(str.toLowerCase());
+#}
+{#l javascript #}{#
+    var str = "Hello World!";
+    output.print(str.toLowerCase());
+#}
