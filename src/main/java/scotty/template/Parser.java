@@ -168,9 +168,9 @@ public final class Parser {
 
 	private static void export(NamedScriptEngine scriptEngine, Database database, Context context, PrintStream printStream) throws ScriptException {
 		try {
-			scriptEngine.export("database", database);
-			scriptEngine.export("context", context);
-			scriptEngine.export("output", printStream);
+			scriptEngine.put("database", database);
+			scriptEngine.put("context", context);
+			scriptEngine.put("output", printStream);
 		} catch (ScriptException scriptException) {
 			LOGGER.severe(scriptException.toString());
 			throw scriptException;

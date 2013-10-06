@@ -36,10 +36,19 @@ public class NamedScriptEngine implements Cloneable {
 	private final ScriptEngine scriptEngine;
 	private String scriptName = null;
 
+	/**
+	 * Basic constructor. Instantiates a beanshell engine with no script name.
+	 */
 	public NamedScriptEngine() {
 		this(BEANSHELL, null);
 	}
 
+	/**
+	 * Instantiate a script engine of a specified language type and with a specified script name.
+	 *
+	 * @param languageName the language
+	 * @param scriptName   the script
+	 */
 	public NamedScriptEngine(String languageName, String scriptName) {
 		this.languageName = languageName;
 		setScriptName(scriptName);
@@ -57,27 +66,58 @@ public class NamedScriptEngine implements Cloneable {
 		}
 	}
 
+	/**
+	 * Set the script name the engine will be evaluating, used solely to enhance error messages.
+	 *
+	 * @param scriptName the name
+	 */
 	public void setScriptName(String scriptName) {
 		this.scriptName = scriptName;
 	}
 
-	public void export(String name, Object object) throws ScriptException {
+	/**
+	 * Put an object into the languages top level context with an associated name. A way to expose variables.
+	 *
+	 * @param name   The name
+	 * @param object the object
+	 * @throws ScriptException
+	 */
+	public void put(String name, Object object) throws ScriptException {
 		scriptEngine.put(name, object);
 	}
 
+	/**
+	 * Evaluate a script
+	 *
+	 * @param script th script
+	 * @throws ScriptException
+	 */
 	public void eval(String script) throws ScriptException {
 		try {
 			scriptEngine.eval(script);
 		} catch (ScriptException se) {
-			// Add the script languageName to the exception
+			if (scriptName == null) {
+				throw se;
+			}
+			// Add the script name to the exception
 			throw new ScriptException(se.getMessage(), scriptName, se.getLineNumber());
 		}
 	}
 
+	/**
+	 * Get the script name the engine is working on.
+	 *
+	 * @return the name
+	 */
 	public String getScriptName() {
 		return scriptName;
 	}
 
+	/**
+	 * Get the language name of this engine.
+	 *
+	 * @return the language
+	 */
 	public String getLanguageName() {
 		return languageName;
 	}
