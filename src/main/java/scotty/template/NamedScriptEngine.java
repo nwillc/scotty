@@ -80,7 +80,7 @@ public class NamedScriptEngine implements Cloneable {
 	 *
 	 * @param name   The name
 	 * @param object the object
-	 * @throws ScriptException
+	 * @throws ScriptException it the object can not be put into the script context
 	 */
 	public void put(String name, Object object) throws ScriptException {
 		scriptEngine.put(name, object);
@@ -90,7 +90,7 @@ public class NamedScriptEngine implements Cloneable {
 	 * Evaluate a script
 	 *
 	 * @param script th script
-	 * @throws ScriptException
+	 * @throws ScriptException if script fails to evaluate
 	 */
 	public void eval(String script) throws ScriptException {
 		try {

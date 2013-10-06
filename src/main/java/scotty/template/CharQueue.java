@@ -78,7 +78,7 @@ public class CharQueue implements Comparable<CharQueue>, AutoCloseable {
 	 * Add a string to the CharQueue, character by character
 	 *
 	 * @param str the string to add
-	 * @throws IOException
+	 * @throws IOException if character causes overflow and overflow fails
 	 */
 	public void add(String str) throws IOException {
 		for (char c : str.toCharArray()) {
@@ -92,7 +92,7 @@ public class CharQueue implements Comparable<CharQueue>, AutoCloseable {
 	 * the the overflow stream.
 	 *
 	 * @param ch the character to add
-	 * @throws IOException
+	 * @throws IOException if overflow attempt fails
 	 */
 	public void add(char ch) throws IOException {
 		if (end >= data.length) {
