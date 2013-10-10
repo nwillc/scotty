@@ -15,12 +15,15 @@
 
 package scotty.template;
 
+import scotty.Cli;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.database.parser.Utilities;
 
 import javax.script.ScriptException;
 import java.io.*;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -119,7 +122,12 @@ public final class Parser {
                     printStream.flush();
                     outputStream.flush();
                     outputStream.close();
-                    outputStream = new FileOutputStream(body);
+                    String filename = body;
+                    if (database.get(Cli.FOLDER) != null) {
+                        Path path = FileSystems.getDefault().getPath(database.get(Cli.FOLDER), filename);
+                        filename = path.toString();
+                    }
+                    outputStream = new FileOutputStream(filename);
                     printStream = new PrintStream(outputStream);
                     export(scriptEngine, database, context, printStream);
                     break;

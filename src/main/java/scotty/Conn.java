@@ -22,10 +22,7 @@ import scotty.template.NamedScriptEngine;
 import scotty.template.Parser;
 
 import javax.script.ScriptException;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -61,6 +58,18 @@ public final class Conn {
 
             String[] databaseFiles = commandLine.getOptionValue(DATABASE).split(",");
             Database database = Database.parse(databaseFiles);
+
+            if (commandLine.hasOption(FOLDER)) {
+                final String outputFolder = commandLine.getOptionValue(FOLDER);
+                final File file = new File(outputFolder);
+
+                if (!(file.exists() && file.isDirectory() && file.canWrite())) {
+                    LOGGER.severe("Folder must exist, be a directory and be writable.");
+                    help(options, 4);
+                }
+
+                database.put(FOLDER, file.getAbsolutePath());
+            }
 
             if (commandLine.hasOption(PRINT)) {
                 print(database, System.out);
@@ -133,9 +142,9 @@ public final class Conn {
         option.setArgs(1);
         options.addOption(option);
 
-		option = new Option(TEMPLATE.substring(0, 1), TEMPLATE, true,
-				"The name of the template file.");
-		option.setArgName("filename");
+        option = new Option(TEMPLATE.substring(0, 1), TEMPLATE, true,
+                "The name of the template file.");
+        option.setArgName("filename");
         option.setArgs(1);
         option.setRequired(false);
         options.addOption(option);
