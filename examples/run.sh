@@ -1,25 +1,25 @@
 #!/bin/sh
-SCRIPT_DIR=$(cd $(dirname $0) > /dev/null && pwd)
+SCRIPT_DIR=$(cd $(dirname ${0}) && pwd)
 cd ${SCRIPT_DIR}
 
 JAR='../target/scotty-*-dependencies.jar'
-if [ ! -f $JAR ]; then
+if [ ! -f ${JAR} ]; then
 	(cd .. ; mvn clean install -Dmaven.test.skip assembly:single)
-	if [ ! -f $JAR ]; then
+	if [ ! -f ${JAR} ]; then
 		echo Can not find ${JAR}
 		exit 1
 	fi
 fi
 
 
-TEMPLATE=$1
+TEMPLATE=${1}
 CONTEXT=""
-if [ ".$2" != "." ]; then
-    CONTEXT="-c $2"
+if [ ".${2}" != "." ]; then
+    CONTEXT="-c ${2}"
 fi
 DATABASES=$( ls database/* | tr "\n" "," )
 
-case "$TEMPLATE" in
+case "${TEMPLATE}" in
         print)
           java -Djava.awt.headless=true -jar ${JAR} --print -d ${DATABASES}
           ;;

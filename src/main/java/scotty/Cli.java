@@ -21,6 +21,7 @@ package scotty;
 public interface Cli {
     String CONTEXT = "context";
     String DATABASE = "database";
+    String FOLDER = "folder";
     String HELP = "help";
     String LANGUAGE = "language";
     String OUTPUT = "output";

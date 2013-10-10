@@ -93,6 +93,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${surefire.version}</version>
                     <configuration>
+                        <argLine>-Djava.awt.headless=true</argLine>
                         <includes>
                             <include>**/*Test.java</include>
                             <include>**/Features.java</include>

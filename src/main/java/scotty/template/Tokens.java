@@ -21,11 +21,12 @@ package scotty.template;
 public interface Tokens {
 	String OPEN = "{#";
 	String CLOSE = "#}";
-	char QUERY = '?';
 	char CONTEXT = '=';
-	char TYPES = 't';
 	char IMPORT = 'i';
 	char IN_CONTEXT = 'c';
 	char LANGUAGE = 'l';
+    char OUTPUT = 'o';
+	char QUERY = '?';
+	char TYPES = 't';
 }
 
