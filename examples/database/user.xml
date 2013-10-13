@@ -8,7 +8,10 @@
         <attribute name="env" value="prod"/>
         <instance>
             <attribute name="level" value="admin"/>
-            <attribute name="username" value="admin"/>
+            <attribute name="username">
+                <value>root</value>
+                <value>admin</value>
+            </attribute>
             <attribute name="password" value="sekretz"/>
         </instance>
     </instance>

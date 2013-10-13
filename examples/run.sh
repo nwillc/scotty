@@ -4,7 +4,8 @@ cd ${SCRIPT_DIR}
 
 JAR='../target/scotty-*-dependencies.jar'
 if [ ! -f ${JAR} ]; then
-	(cd .. ; mvn clean install -Dmaven.test.skip assembly:single)
+    echo Building...
+	(cd .. ; mvn clean install -Dmaven.test.skip assembly:single > /dev/null)
 	if [ ! -f ${JAR} ]; then
 		echo Can not find ${JAR}
 		exit 1

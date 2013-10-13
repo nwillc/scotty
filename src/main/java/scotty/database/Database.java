@@ -22,6 +22,7 @@ import scotty.database.parser.Utilities;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -128,5 +129,16 @@ public class Database extends Context {
 			}
 		}
 		return attributeValues;
+	}
+
+	/**
+	 * Print out the contents of a database, flattening all the inheritance to the instance level and
+	 * showing the similarity score with the context passed in.
+	 *
+	 * @param printStream the output stream
+	 * @param context     the Context to compare instances to.
+	 */
+	public void print(final PrintStream printStream, Context context) {
+		Utilities.print(this, printStream, context);
 	}
 }

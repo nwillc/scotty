@@ -1,0 +1,3 @@
+{#t host #}{#
+    database.print(output, new Context("type=user,username=root"));
+#}
