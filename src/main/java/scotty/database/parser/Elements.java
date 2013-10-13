@@ -15,15 +15,12 @@
 
 package scotty.database.parser;
 
-import scotty.Cli;
-
 /**
  * Expected XML elements and attributes in a SCoTTY database XML.
  */
 public interface Elements {
-    String ATTRIBUTE = "attribute";
-    String TYPE = "type";
-    String CONTEXT = "context";
-    String INSTANCE = "instance";
-    String FOLDER = Cli.FOLDER.toLowerCase();
+	String ATTRIBUTE = "attribute";
+	String TYPE = "type";
+	String CONTEXT = "context";
+	String INSTANCE = "instance";
 }
