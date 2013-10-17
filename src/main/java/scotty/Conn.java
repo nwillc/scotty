@@ -19,15 +19,19 @@ import org.apache.commons.cli.*;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.template.NamedScriptEngine;
-import scotty.template.Parser;
 
 import javax.script.ScriptException;
-import java.io.*;
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static scotty.Cli.*;
-import static scotty.database.parser.Utilities.print;
+import static scotty.ScottyUtilities.getPath;
+import static scotty.ScottyUtilities.getResourceAsStream;
+import static scotty.database.parser.DbParserUtilities.print;
+import static scotty.template.Parser.parse;
 
 /**
  * Scotty's conn, where it all gets put together driven by command line.
@@ -61,14 +65,17 @@ public final class Conn {
 
             if (commandLine.hasOption(FOLDER)) {
                 final String outputFolder = commandLine.getOptionValue(FOLDER);
-                final File file = new File(outputFolder);
+                if ("-".equals(outputFolder)) {
+                    database.put(FOLDER, outputFolder);
+                } else {
+                    final File file = new File(outputFolder);
 
-                if (!(file.exists() && file.isDirectory() && file.canWrite())) {
-                    LOGGER.severe("Folder must exist, be a directory and be writable.");
-                    help(options, 4);
+                    if (!(file.exists() && file.isDirectory() && file.canWrite())) {
+                        LOGGER.severe("Folder must exist, be a directory and be writable.");
+                        help(options, 4);
+                    }
+                    database.put(FOLDER, file.getAbsolutePath());
                 }
-
-                database.put(FOLDER, file.getAbsolutePath());
             }
 
             if (commandLine.hasOption(PRINT)) {
@@ -79,16 +86,15 @@ public final class Conn {
             InputStream inputStream;
             if (commandLine.hasOption(TEMPLATE)) {
                 templateFile = commandLine.getOptionValue(TEMPLATE);
-                inputStream = new FileInputStream(templateFile);
+                inputStream = getResourceAsStream(templateFile);
             } else {
                 templateFile = "stdin";
                 inputStream = System.in;
             }
 
-            OutputStream outputStream;
+            final OutputStream outputStream;
             if (commandLine.hasOption(OUTPUT)) {
-                String outputFile = commandLine.getOptionValue(OUTPUT);
-                outputStream = new FileOutputStream(outputFile);
+                outputStream = getPath(database.get(FOLDER), commandLine.getOptionValue(OUTPUT));
             } else {
                 outputStream = System.out;
             }
@@ -105,7 +111,7 @@ public final class Conn {
             }
 
             NamedScriptEngine scriptEngine = new NamedScriptEngine(scriptEngineName, templateFile);
-            Parser.parse(inputStream, outputStream, database, context, scriptEngine);
+            parse(inputStream, outputStream, database, context, scriptEngine);
         } catch (ScriptException evalError) {
             LOGGER.severe("Exit on script error.");
             System.exit(2);
@@ -157,7 +163,7 @@ public final class Conn {
         options.addOption(option);
 
         option = new Option(FOLDER.substring(0, 1), FOLDER, true,
-                "The folder to put output files in.");
+                "The folder to put output files in. Use \"-\" for standard out.");
         option.setRequired(false);
         option.setArgName("directory");
         option.setArgs(1);

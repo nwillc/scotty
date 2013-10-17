@@ -32,7 +32,7 @@ case "${TEMPLATE}" in
              echo Unknown template ${TEMPLATE}
              exit 2
           fi
-          java -Djava.awt.headless=true -jar ${JAR} ${CONTEXT} -d ${DATABASES} -t templates/${TEMPLATE}.scotty
+          java -Djava.awt.headless=true -jar ${JAR} ${CONTEXT} -d ${DATABASES} -t templates/${TEMPLATE}.scotty -f -
           ;;
 esac
 

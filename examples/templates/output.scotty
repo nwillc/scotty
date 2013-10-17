@@ -1,2 +1,2 @@
-{# database.put("folder","/tmp"); #}{#o output1.txt #}one
+{#o output1.txt #}one
 {#o output2.txt #}two

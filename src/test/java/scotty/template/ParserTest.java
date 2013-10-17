@@ -26,39 +26,39 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 import static junit.framework.Assert.assertEquals;
-import static scotty.database.parser.Utilities.getResourceAsStream;
+import static scotty.ScottyUtilities.getResourceAsStream;
 
 /**
  *
  */
 public class ParserTest {
-	private Database database;
+    private Database database;
 
-	@Before
-	public void setup() throws Exception {
-		database = Database.parse("./target/test-classes/host.xml");
-	}
+    @Before
+    public void setup() throws Exception {
+        database = Database.parse("./target/test-classes/host.xml");
+    }
 
-	@Test
-	public void parse() throws Exception {
-		try (FileInputStream fileInputStream = new FileInputStream("./target/test-classes/prop-template.scotty")) {
-			Parser.parse(fileInputStream, System.out, database, new Context(), new NamedScriptEngine());
-		}
-	}
+    @Test
+    public void parse() throws Exception {
+        try (FileInputStream fileInputStream = new FileInputStream("./target/test-classes/prop-template.scotty")) {
+            Parser.parse(fileInputStream, System.out, database, new Context(), new NamedScriptEngine());
+        }
+    }
 
-	@Test(expected = IllegalStateException.class)
-	public void badParse() throws Exception {
-		try (FileInputStream fileInputStream = new FileInputStream("./target/test-classes/unclosed.scotty")) {
-			Parser.parse(fileInputStream, System.out, database, new Context(), new NamedScriptEngine());
-		}
-	}
+    @Test(expected = IllegalStateException.class)
+    public void badParse() throws Exception {
+        try (FileInputStream fileInputStream = new FileInputStream("./target/test-classes/unclosed.scotty")) {
+            Parser.parse(fileInputStream, System.out, database, new Context(), new NamedScriptEngine());
+        }
+    }
 
-	@Test
-	public void languageChanges() throws Exception {
-		InputStream inputStream = getResourceAsStream("language_changes.scotty");
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		PrintStream printStream = new PrintStream(outputStream, true);
-		Parser.parse(inputStream, printStream, new Database(), new Context(), new NamedScriptEngine());
-		assertEquals("hello world!\nhello world!\n", outputStream.toString());
-	}
+    @Test
+    public void languageChanges() throws Exception {
+        InputStream inputStream = getResourceAsStream("language_changes.scotty");
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream, true);
+        Parser.parse(inputStream, printStream, new Database(), new Context(), new NamedScriptEngine());
+        assertEquals("hello world!\nhello world!\n", outputStream.toString());
+    }
 }

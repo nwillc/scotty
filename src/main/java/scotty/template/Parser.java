@@ -18,15 +18,14 @@ package scotty.template;
 import scotty.Cli;
 import scotty.database.Context;
 import scotty.database.Database;
-import scotty.database.parser.Utilities;
 
 import javax.script.ScriptException;
 import java.io.*;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.logging.Logger;
 
+import static scotty.ScottyUtilities.getPath;
+import static scotty.ScottyUtilities.getResourceAsStream;
 import static scotty.template.Tokens.*;
 
 /**
@@ -52,8 +51,7 @@ public final class Parser {
      */
     public static void parse(final InputStream inputStream, OutputStream outputStream, final Database database,
                              final Context context, NamedScriptEngine scriptEngine) throws IOException, ScriptException {
-        PrintStream printStream = new PrintStream(outputStream);
-        export(scriptEngine, database, context, printStream);
+        export(scriptEngine, database, context, outputStream);
         while (true) {
             if (!scanTo(Tokens.OPEN, inputStream, outputStream)) {
                 break;
@@ -104,7 +102,7 @@ public final class Parser {
                         importContext = new Context(context, body.substring(endOfFileName));
                     }
                     NamedScriptEngine newScriptEngine = new NamedScriptEngine(scriptEngine.getLanguageName(), fileName);
-                    parse(Utilities.getResourceAsStream(fileName), outputStream, database, importContext, newScriptEngine);
+                    parse(getResourceAsStream(fileName), outputStream, database, importContext, newScriptEngine);
                     break;
                 case TYPES:
                     String[] types = body.split(",");
@@ -116,20 +114,12 @@ public final class Parser {
                     break;
                 case LANGUAGE:
                     scriptEngine = new NamedScriptEngine(body, scriptEngine.getScriptName());
-                    export(scriptEngine, database, context, printStream);
+                    export(scriptEngine, database, context, outputStream);
                     break;
                 case OUTPUT:
-                    printStream.flush();
                     outputStream.flush();
-                    outputStream.close();
-                    String filename = body;
-                    if (database.get(Cli.FOLDER) != null) {
-                        Path path = FileSystems.getDefault().getPath(database.get(Cli.FOLDER), filename);
-                        filename = path.toString();
-                    }
-                    outputStream = new FileOutputStream(filename);
-                    printStream = new PrintStream(outputStream);
-                    export(scriptEngine, database, context, printStream);
+                    outputStream = getPath(database.get(Cli.FOLDER), body);
+                    export(scriptEngine, database, context, outputStream);
                     break;
                 case IN_CONTEXT:
                     String[] keys = body.split(",");
@@ -153,7 +143,6 @@ public final class Parser {
             }
         }
 
-        printStream.flush();
         outputStream.flush();
     }
 
@@ -182,11 +171,11 @@ public final class Parser {
         return false;
     }
 
-    private static void export(NamedScriptEngine scriptEngine, Database database, Context context, PrintStream printStream) throws ScriptException {
+    private static void export(NamedScriptEngine scriptEngine, Database database, Context context, OutputStream outputStream) throws ScriptException {
         try {
             scriptEngine.put("database", database);
             scriptEngine.put("context", context);
-            scriptEngine.put("output", printStream);
+            scriptEngine.put("output", new PrintStream(outputStream));
         } catch (ScriptException scriptException) {
             LOGGER.severe(scriptException.toString());
             throw scriptException;

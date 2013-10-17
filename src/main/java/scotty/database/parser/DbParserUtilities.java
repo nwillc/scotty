@@ -17,22 +17,18 @@ import scotty.database.Database;
 import scotty.database.Instance;
 import scotty.database.Type;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Utility methods used by the database portions of Scotty.
  */
-public final class Utilities {
-    private static final Logger LOGGER = Logger.getLogger(Utilities.class.getName());
+public final class DbParserUtilities {
 
-    private Utilities() {
+
+    private DbParserUtilities() {
     }
 
     /**
@@ -129,23 +125,5 @@ public final class Utilities {
         }
     }
 
-    /**
-     * Look up a resource as either file or failing that a resource from the jar.
-     *
-     * @param resource item name to look for
-     * @return return input stream or null if not found
-     */
-    public static InputStream getResourceAsStream(String resource) {
-        try {
-            return new FileInputStream(resource);
-        } catch (FileNotFoundException e) {
-            LOGGER.fine("File not found: " + e);
-        }
 
-        InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(resource);
-        if (inputStream == null) {
-            LOGGER.info("Failed to find " + resource + " as resource or file.");
-        }
-        return inputStream;
-    }
 }

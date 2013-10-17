@@ -17,7 +17,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import scotty.database.Context;
 import scotty.database.Database;
-import scotty.database.parser.Utilities;
 import scotty.template.NamedScriptEngine;
 import scotty.template.Parser;
 
@@ -27,6 +26,7 @@ import java.io.OutputStream;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
+import static scotty.ScottyUtilities.getResourceAsStream;
 
 /**
  *
@@ -37,7 +37,7 @@ public class ImportFeature {
 
     @Given("^a template named \"([^\"]*)\"$")
     public void a_template_named(String arg1) throws Throwable {
-        inputStream = Utilities.getResourceAsStream(arg1);
+        inputStream = getResourceAsStream(arg1);
         assertNotNull(inputStream);
     }
 
