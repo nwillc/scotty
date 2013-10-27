@@ -17,6 +17,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <prerequisites>
+        <maven>2.2.1</maven>
+    </prerequisites>
+
     <groupId>scotty</groupId>
     <artifactId>scotty</artifactId>
     <version>1.3</version>
