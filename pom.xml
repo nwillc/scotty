@@ -38,6 +38,7 @@
         <jdk.version>1.7</jdk.version>
         <junit.version>4.11</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <quava.version>16.0</quava.version>
         <surefire.version>2.12</surefire.version>
     </properties>
 
@@ -69,6 +70,11 @@
             <artifactId>cucumber-junit</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${quava.version}</version>
         </dependency>
     </dependencies>
     <build>
