@@ -15,25 +15,27 @@
 
 package scotty.database.parser;
 
-import org.junit.Before;
 import org.junit.Test;
 import scotty.database.Instance;
 import scotty.database.Type;
+
+import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 public class ParserTest {
-	private Type type;
-
-	@Before
-	public void before() throws Exception {
-		type = Parser.parse("./target/test-classes/host.xml");
-		assertNotNull(type);
+	@Test
+	public void parseWhenFileBad() throws Exception {
+		Optional<Type> typeOptional = Parser.parse("foo");
+		assert(!typeOptional.isPresent());
 	}
-
 	@Test
 	public void parse() throws Exception {
+		Optional<Type> typeOptional = Parser.parse("./target/test-classes/host.xml");
+		assert(typeOptional.isPresent());
+		Type type = typeOptional.get();
+
 		assertEquals("host", type.getName());
 		assertNotNull(type.get("address"));
 		assertEquals("127.0.0.1", type.get("address"));

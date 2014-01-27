@@ -30,6 +30,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Optional;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static scotty.ScottyUtilities.getResourceAsStream;
@@ -48,17 +50,24 @@ public class Parser extends DefaultHandler {
     private Value value;
     private StringBuilder stringBuilder = null;
 
-    public static Type parse(InputStream inputStream) throws ParserConfigurationException, SAXException, IOException {
-        SAXParser saxParser = FACTORY.newSAXParser();
-        Parser typeHandler = new Parser();
-        saxParser.parse(inputStream, typeHandler);
-        return typeHandler.type;
+    public static Optional<Type> parse(InputStream inputStream) {
+		try {
+        	SAXParser saxParser = FACTORY.newSAXParser();
+        	Parser typeHandler = new Parser();
+        	saxParser.parse(inputStream, typeHandler);
+			return Optional.of(typeHandler.type);
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed parsing inputStream", e);
+			return Optional.empty();
+		}
     }
 
-    public static Type parse(String file) throws IOException, ParserConfigurationException, SAXException {
-        try (InputStream inputStream = getResourceAsStream(file)) {
-            return parse(inputStream);
-        }
+    public static Optional<Type> parse(String file) {
+		Optional<InputStream> inputStreamOptional = getResourceAsStream(file);
+		if (inputStreamOptional.isPresent()) {
+			return parse(inputStreamOptional.get());
+		}
+		return Optional.empty();
     }
 
     @Override

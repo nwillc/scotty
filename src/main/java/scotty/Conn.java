@@ -22,6 +22,7 @@ import scotty.template.NamedScriptEngine;
 
 import javax.script.ScriptException;
 import java.io.*;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -81,18 +82,30 @@ public final class Conn {
 				System.exit(0);
 			}
 
-			InputStream inputStream;
+			InputStream inputStream = null;
 			if (commandLine.hasOption(TEMPLATE)) {
 				templateFile = commandLine.getOptionValue(TEMPLATE);
-				inputStream = getResourceAsStream(templateFile);
+				Optional<InputStream> inputStreamOptional = getResourceAsStream(templateFile);
+				if (inputStreamOptional.isPresent()) {
+					inputStream = inputStreamOptional.get();
+				} else {
+					LOGGER.severe("Invalid template file");
+					help(options, 5);
+				}
 			} else {
 				templateFile = "stdin";
 				inputStream = System.in;
 			}
 
-			final OutputStream outputStream;
+			OutputStream outputStream = null;
 			if (commandLine.hasOption(OUTPUT)) {
-				outputStream = getPath(database.get(FOLDER), commandLine.getOptionValue(OUTPUT));
+				Optional<OutputStream> outputStreamOptional = getPath(database.get(FOLDER), commandLine.getOptionValue(OUTPUT));
+				if (outputStreamOptional.isPresent()) {
+					outputStream = outputStreamOptional.get();
+				} else {
+					LOGGER.severe("Invalid output");
+					help(options, 6);
+				}
 			} else {
 				outputStream = new FileOutputStream(FileDescriptor.out);
 			}

@@ -18,12 +18,14 @@ package scotty.database;
 import org.xml.sax.SAXException;
 import scotty.database.parser.DbParserUtilities;
 import scotty.database.parser.Parser;
+import scotty.util.ArrayIterable;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -37,19 +39,15 @@ public class Database extends Context {
      *
      * @param inputStreams Collection of input streams
      * @return Database of types
-     * @throws IOException                  issue reading from stream
-     * @throws SAXException                 XML content error
-     * @throws ParserConfigurationException XML parser instantiation issue
      */
-    public static Database parse(InputStream... inputStreams) throws IOException, SAXException, ParserConfigurationException {
+    public static Database parse(InputStream ... inputStreams) {
         Database database = new Database();
-
-        if (inputStreams != null) {
-            for (InputStream inputStream : inputStreams) {
-                Type type = Parser.parse(inputStream);
-                database.getContained().put(type.getName(), type);
-            }
-        }
+		new ArrayIterable<>(inputStreams).forEach((i) -> {
+			Optional<Type> type = Parser.parse(i);
+			if (type.isPresent()) {
+				database.getContained().put(type.get().getName(), type.get());
+			}
+		});
         return database;
     }
 
@@ -58,20 +56,15 @@ public class Database extends Context {
      *
      * @param files collection of files
      * @return Database of types
-     * @throws IOException                  issue reading from stream
-     * @throws SAXException                 XML content error
-     * @throws ParserConfigurationException XML parser instantiation issue
-     */
-    public static Database parse(String... files) throws ParserConfigurationException, SAXException, IOException {
-        if (files == null || files.length == 0) {
-            return null;
-        }
-
+    */
+    public static Database parse(String... files) {
         Database database = new Database();
-        for (String file : files) {
-            Type type = Parser.parse(file);
-            database.getContained().put(type.getName(), type);
-        }
+		new ArrayIterable<>(files).forEach((f) -> {
+			Optional<Type> type = Parser.parse(f);
+			if (type.isPresent()) {
+				database.getContained().put(type.get().getName(), type.get());
+			}
+		});
         return database;
     }
 

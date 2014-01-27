@@ -22,6 +22,7 @@ import scotty.database.Database;
 import javax.script.ScriptException;
 import java.io.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import static scotty.ScottyUtilities.getPath;
@@ -102,7 +103,10 @@ public final class Parser {
 						importContext = new Context(context, body.substring(endOfFileName));
 					}
 					NamedScriptEngine newScriptEngine = new NamedScriptEngine(scriptEngine.getLanguageName(), fileName);
-					parse(getResourceAsStream(fileName), outputStream, database, importContext, newScriptEngine);
+					Optional<InputStream> streamOptional = getResourceAsStream(fileName);
+					if (streamOptional.isPresent()) {
+						parse(streamOptional.get(), outputStream, database, importContext, newScriptEngine);
+					}
 					break;
 				case TYPES:
 					String[] types = body.split(",");
@@ -119,8 +123,11 @@ public final class Parser {
 				case OUTPUT:
 					outputStream.flush();
 					outputStream.close();
-					outputStream = getPath(database.get(Cli.FOLDER), body);
-					export(scriptEngine, database, context, outputStream);
+					Optional<OutputStream> outputStreamOptional = getPath(database.get(Cli.FOLDER), body);
+					if (outputStreamOptional.isPresent()) {
+						outputStream =  outputStreamOptional.get();
+						export(scriptEngine, database, context, outputStream);
+					}
 					break;
 				case IN_CONTEXT:
 					String[] keys = body.split(",");

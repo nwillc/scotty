@@ -21,12 +21,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A Context is a set of attributes, that can inherit attributes from its parent and contain sub-contexts within it.
  */
 public class Context implements Comparable<Context>, Similarity<Context> {
-    private static int next = 0;
+    private static final AtomicInteger NEXT = new AtomicInteger(1);
     private final Map<String, Value> map = new HashMap<>();
     private final Context container;
     private final Map<String, Context> contained = new HashMap<>();
@@ -302,7 +303,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         return score;
     }
 
-    private synchronized static int nextAge() {
-        return ++next;
+    private static int nextAge() {
+		return NEXT.getAndIncrement();
     }
 }

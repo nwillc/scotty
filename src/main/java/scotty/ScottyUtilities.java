@@ -18,6 +18,7 @@ package scotty;
 import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 /**
@@ -32,26 +33,28 @@ public class ScottyUtilities {
     /**
      * Look up a resource as either file or failing that a resource from the jar.
      *
-     * @param resource item name to look for
-     * @return return input stream or null if not found
+     *
+	 * @param resource item name to look for
+	 * @return return input stream or null if not found
      */
-    public static InputStream getResourceAsStream(String resource) {
+    public static Optional<InputStream> getResourceAsStream(String resource) {
         try {
-            return new FileInputStream(resource);
+            return Optional.of(new FileInputStream(resource));
         } catch (FileNotFoundException e) {
-            LOGGER.fine("File not found: " + e);
+            LOGGER.fine(resource + " not found as file");
         }
 
         InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(resource);
         if (inputStream == null) {
-            LOGGER.info("Failed to find " + resource + " as resource or file.");
+            LOGGER.info("Failed to find " + resource + " as file or resource.");
+			return Optional.empty();
         }
-        return inputStream;
+        return Optional.of(inputStream);
     }
 
-    public static OutputStream getPath(final String folder, final String filename) throws FileNotFoundException {
-        if ("-".equals(folder)) {
-            return System.out;
+    public static Optional<OutputStream> getPath(final String folder, final String filename) {
+		if ("-".equals(folder)) {
+            return Optional.of(System.out);
         }
         final Path path;
         if (folder == null) {
@@ -59,7 +62,12 @@ public class ScottyUtilities {
         } else {
             path = FileSystems.getDefault().getPath(folder, filename);
         }
-        return new FileOutputStream(path.toString());
+		try {
+			return Optional.of(new FileOutputStream(path.toString()));
+		} catch (FileNotFoundException e) {
+			LOGGER.warning("Path " + folder + "/" + filename + " not found");
+			return Optional.empty();
+		}
     }
 
 }

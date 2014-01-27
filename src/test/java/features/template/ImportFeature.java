@@ -23,6 +23,7 @@ import scotty.template.Parser;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
@@ -37,8 +38,9 @@ public class ImportFeature {
 
     @Given("^a template named \"([^\"]*)\"$")
     public void a_template_named(String arg1) throws Throwable {
-        inputStream = getResourceAsStream(arg1);
-        assertNotNull(inputStream);
+		Optional<InputStream> inputStreamOptional = getResourceAsStream(arg1);
+        assert(inputStreamOptional.isPresent());
+		inputStream = inputStreamOptional.get();
     }
 
     @When("^it is parsed$")

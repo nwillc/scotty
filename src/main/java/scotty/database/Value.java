@@ -16,9 +16,11 @@
 package scotty.database;
 
 import scotty.database.parser.Similarity;
+import scotty.util.ArrayIterable;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.function.Consumer;
 
 /**
  * The values of a Scotty attribute. A value contains 1 to n strings. The value is
@@ -30,13 +32,13 @@ public class Value implements Similarity<Value> {
     public Value() {
     }
 
-    public Value(String... values) {
-        if (values != null) {
-            for (String value : values) {
-                add(value);
-            }
-        }
+    public Value(String ... values) {
+        addAll(values);
     }
+
+	public void addAll(String ... values) {
+		new ArrayIterable<>(values).forEach(this::add);
+	}
 
     /**
      * Add a string value to this Value. Must be non null.

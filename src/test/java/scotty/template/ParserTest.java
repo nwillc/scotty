@@ -24,6 +24,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Optional;
 
 import static junit.framework.Assert.assertEquals;
 import static scotty.ScottyUtilities.getResourceAsStream;
@@ -55,10 +56,11 @@ public class ParserTest {
 
     @Test
     public void languageChanges() throws Exception {
-        InputStream inputStream = getResourceAsStream("language_changes.scotty");
+        Optional<InputStream> inputStreamOptional  = getResourceAsStream("language_changes.scotty");
+		assert(inputStreamOptional.isPresent());
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream, true);
-        Parser.parse(inputStream, printStream, new Database(), new Context(), new NamedScriptEngine());
+        Parser.parse(inputStreamOptional.get(), printStream, new Database(), new Context(), new NamedScriptEngine());
         assertEquals("hello world!\nhello world!\n", outputStream.toString());
     }
 }
