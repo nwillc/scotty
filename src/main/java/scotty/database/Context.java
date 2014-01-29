@@ -184,7 +184,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
      * @return string
      */
     public String get(String key) {
-        return getValue(key).map(Object::toString).orElse(null);
+		return get(key, null);
     }
 
     /**
@@ -195,8 +195,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
      * @return the string
      */
     public String get(String key, String defaultValue) {
-        String value = get(key);
-        return value != null ? value : defaultValue;
+		return getValue(key).map(Object::toString).orElse(defaultValue);
     }
 
     /**

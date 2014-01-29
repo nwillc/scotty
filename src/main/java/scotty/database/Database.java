@@ -97,10 +97,9 @@ public class Database extends Context {
      * @return sorted set of values
      */
     public Set<String> query(Context criteria, String attr) {
-        List<Context> matches = query(criteria);
         Set<String> attributeValues = new TreeSet<>();
-        matches.forEach(context ->
-            context.getValue(attr).ifPresent(value -> value.values().forEach(attributeValues::add)));
+		query(criteria).forEach(context ->
+				context.getValue(attr).ifPresent(value -> value.values().forEach(attributeValues::add)));
         return attributeValues;
     }
 
