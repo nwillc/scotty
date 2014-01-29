@@ -16,11 +16,9 @@
 package scotty.database;
 
 import scotty.database.parser.Similarity;
+import scotty.util.ArrayIterable;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -130,11 +128,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
             }
             String[] values = labelValue[1].trim().split("(?<!\\\\)\\|");
             Value value = new Value();
-            if (values != null) {
-                for (String v : values) {
-                    value.add(v.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c","|"));
-                }
-            }
+			new ArrayIterable<>(values).forEach(v -> value.add(v.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c","|")));
             put(labelValue[0].trim(), value);
         }
     }
@@ -167,19 +161,20 @@ public class Context implements Comparable<Context>, Similarity<Context> {
     /**
      * Get the Value associated with a key.
      *
-     * @param key the key
-     * @return the associated Value
+     *
+	 * @param key the key
+	 * @return the associated Value
      */
-    public Value getValue(String key) {
+    public Optional<Value> getValue(String key) {
         if (map.containsKey(key)) {
-            return map.get(key);
+            return Optional.of(map.get(key));
         }
 
         if (isContained()) {
             return container.getValue(key);
         }
 
-        return null;
+        return Optional.empty();
     }
 
     /**
@@ -189,8 +184,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
      * @return string
      */
     public String get(String key) {
-        Value value = getValue(key);
-        return value == null ? null : value.toString();
+		return get(key, null);
     }
 
     /**
@@ -201,8 +195,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
      * @return the string
      */
     public String get(String key, String defaultValue) {
-        String value = get(key);
-        return value != null ? value : defaultValue;
+		return getValue(key).map(Object::toString).orElse(defaultValue);
     }
 
     /**
@@ -290,11 +283,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         }
 
         for (String key : b.keySet()) {
-            if (!containsKey(key)) {
-                continue;
-            }
-
-            float vScore = getValue(key).similarity(b.getValue(key));
+			float vScore = getValue(key).map(value -> value.similarity(b.getValue(key).get())).orElse(0.0f);
             if (vScore == NOT_SIMILAR) {
                 return NOT_SIMILAR;
             }
