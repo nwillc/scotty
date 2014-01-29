@@ -15,17 +15,13 @@
 
 package scotty.database;
 
-import org.xml.sax.SAXException;
 import scotty.database.parser.DbParserUtilities;
 import scotty.database.parser.Parser;
 import scotty.util.ArrayIterable;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -42,12 +38,8 @@ public class Database extends Context {
      */
     public static Database parse(InputStream ... inputStreams) {
         Database database = new Database();
-		new ArrayIterable<>(inputStreams).forEach((i) -> {
-			Optional<Type> type = Parser.parse(i);
-			if (type.isPresent()) {
-				database.getContained().put(type.get().getName(), type.get());
-			}
-		});
+		new ArrayIterable<>(inputStreams).forEach(stream ->
+                    Parser.parse(stream).ifPresent(type -> database.getContained().put(type.getName(), type)));
         return database;
     }
 
@@ -59,12 +51,8 @@ public class Database extends Context {
     */
     public static Database parse(String... files) {
         Database database = new Database();
-		new ArrayIterable<>(files).forEach((f) -> {
-			Optional<Type> type = Parser.parse(f);
-			if (type.isPresent()) {
-				database.getContained().put(type.get().getName(), type.get());
-			}
-		});
+		new ArrayIterable<>(files).forEach(file ->
+                Parser.parse(file).ifPresent(type -> database.getContained().put(type.getName(), type)));
         return database;
     }
 
@@ -111,16 +99,8 @@ public class Database extends Context {
     public Set<String> query(Context criteria, String attr) {
         List<Context> matches = query(criteria);
         Set<String> attributeValues = new TreeSet<>();
-        for (Context c : matches) {
-            Value v = c.getValue(attr);
-            if (v == null) {
-                continue;
-            }
-
-            for (String s : v.values()) {
-                attributeValues.add(s);
-            }
-        }
+        matches.forEach(context ->
+            context.getValue(attr).ifPresent(value -> value.values().forEach(attributeValues::add)));
         return attributeValues;
     }
 

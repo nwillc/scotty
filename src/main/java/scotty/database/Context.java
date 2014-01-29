@@ -16,11 +16,9 @@
 package scotty.database;
 
 import scotty.database.parser.Similarity;
+import scotty.util.ArrayIterable;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -103,17 +101,18 @@ public class Context implements Comparable<Context>, Similarity<Context> {
      * Parse a string representation of a set of attributes and assign them to this context.
      * The string representation takes the form:
      * <blockquote>
-     *      attributes ::= attribute | attributes , attribute   <br>
-     *      attribute ::= <i>label</i> "=" values               <br>
-     *      values ::= <i>value</i> | values "|" <i>value</i>   <br>
+     * attributes ::= attribute | attributes , attribute   <br>
+     * attribute ::= <i>label</i> "=" values               <br>
+     * values ::= <i>value</i> | values "|" <i>value</i>   <br>
      * </blockquote>
      * Some examples:
      * <blockquote>
-     *      env=prod <br>
-     *      env=prod|qa,mode=rw <br>
-     *      company=Acme\, Inc. <br>
+     * env=prod <br>
+     * env=prod|qa,mode=rw <br>
+     * company=Acme\, Inc. <br>
      * </blockquote>
      * The "=" and "|" can be escaped with a \ to allow them to be included in values.
+     *
      * @param attributes an attribute string representation
      */
     public void put(String attributes) {
@@ -123,20 +122,15 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         }
 
         final String[] assignments = attributes.trim().split("(?<!\\\\),");
-        for (String assignment : assignments) {
+        new ArrayIterable<>(assignments).forEach(assignment -> {
             String[] labelValue = assignment.split("(?<!\\\\)=");
-            if (labelValue.length != 2) {
-                continue;
+            if (labelValue.length == 2) {
+                Value value = new Value();
+                final String[] values = labelValue[1].trim().split("(?<!\\\\)\\|");
+                new ArrayIterable<>(values).forEach(str -> value.add(str.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c", "|")));
+                put(labelValue[0].trim(), value);
             }
-            String[] values = labelValue[1].trim().split("(?<!\\\\)\\|");
-            Value value = new Value();
-            if (values != null) {
-                for (String v : values) {
-                    value.add(v.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c","|"));
-                }
-            }
-            put(labelValue[0].trim(), value);
-        }
+        });
     }
 
     /**
@@ -167,19 +161,20 @@ public class Context implements Comparable<Context>, Similarity<Context> {
     /**
      * Get the Value associated with a key.
      *
+     *
      * @param key the key
      * @return the associated Value
      */
-    public Value getValue(String key) {
+    public Optional<Value> getValue(String key) {
         if (map.containsKey(key)) {
-            return map.get(key);
+            return Optional.of(map.get(key));
         }
 
         if (isContained()) {
             return container.getValue(key);
         }
 
-        return null;
+        return Optional.empty();
     }
 
     /**
@@ -189,8 +184,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
      * @return string
      */
     public String get(String key) {
-        Value value = getValue(key);
-        return value == null ? null : value.toString();
+        return getValue(key).map(Object::toString).orElse(null);
     }
 
     /**
@@ -290,11 +284,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         }
 
         for (String key : b.keySet()) {
-            if (!containsKey(key)) {
-                continue;
-            }
-
-            float vScore = getValue(key).similarity(b.getValue(key));
+            float vScore = getValue(key).map(value -> value.similarity(b.getValue(key).get())).orElse(0.0f);
             if (vScore == NOT_SIMILAR) {
                 return NOT_SIMILAR;
             }
@@ -304,6 +294,6 @@ public class Context implements Comparable<Context>, Similarity<Context> {
     }
 
     private static int nextAge() {
-		return NEXT.getAndIncrement();
+        return NEXT.getAndIncrement();
     }
 }

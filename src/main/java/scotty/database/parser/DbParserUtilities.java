@@ -40,10 +40,7 @@ public final class DbParserUtilities {
      */
     public static List<Context> query(Context context, Context criteria) {
         List<Context> contexts = new LinkedList<>();
-        List<Ranked<Context>> results = rankedQuery(context, criteria);
-        for (Ranked<Context> ranked : results) {
-            contexts.add(ranked.getData());
-        }
+        rankedQuery(context, criteria).forEach(ranked -> contexts.add(ranked.getData()));
         return contexts;
     }
 
@@ -58,9 +55,7 @@ public final class DbParserUtilities {
         List<Ranked<Context>> results = new LinkedList<>();
 
         if (context.isContainer()) {
-            for (Context child : context.getContained().values()) {
-                results.addAll(rankedQuery(child, criteria));
-            }
+            context.getContained().values().forEach(child -> results.addAll(rankedQuery(child,criteria)));
         } else {
             float rank = context.similarity(criteria);
             if (rank > Similarity.NOT_SIMILAR) {
@@ -95,9 +90,7 @@ public final class DbParserUtilities {
             printStream.println("Context:");
             List<String> attrNames = new LinkedList<>(context.keySet());
             Collections.sort(attrNames);
-            for (String key : attrNames) {
-                printStream.format("%20s: %s\n", key, context.get(key));
-            }
+            attrNames.forEach(key -> printStream.format("%20s: %s\n", key, context.get(key)));
         }
         List<Context> types = new LinkedList<>(database.getContained().values());
         Collections.sort(types);
