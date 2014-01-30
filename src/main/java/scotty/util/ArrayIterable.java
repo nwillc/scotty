@@ -16,7 +16,7 @@ public class ArrayIterable<T> implements Iterable<T> {
 
 	@Override
 	public Iterator<T> iterator() {
-		return new ArrayIterator<T>(data);
+		return new ArrayIterator<>(data);
 	}
 
 	private class ArrayIterator<T> implements Iterator<T> {
