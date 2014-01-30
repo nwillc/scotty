@@ -16,11 +16,14 @@ import scotty.database.Context;
 import scotty.database.Database;
 import scotty.database.Instance;
 import scotty.database.Type;
+import scotty.util.Consumer;
 
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+
+import static scotty.util.Iterables.forEach;
 
 /**
  * Utility methods used by the database portions of Scotty.
@@ -39,8 +42,13 @@ public final class DbParserUtilities {
      * @return the list of matches in ranked order
      */
     public static List<Context> query(Context context, Context criteria) {
-        List<Context> contexts = new LinkedList<>();
-        rankedQuery(context, criteria).forEach(ranked -> contexts.add(ranked.getData()));
+        final List<Context> contexts = new LinkedList<>();
+        forEach(rankedQuery(context, criteria), new Consumer<Ranked<Context>>() {
+            @Override
+            public void accept(Ranked<Context> ranked) {
+                contexts.add(ranked.getData());
+            }
+        });
         return contexts;
     }
 
@@ -51,11 +59,16 @@ public final class DbParserUtilities {
      * @param criteria the criteria to match
      * @return the results, with their associated ranks in ranked order
      */
-    public static List<Ranked<Context>> rankedQuery(Context context, Context criteria) {
-        List<Ranked<Context>> results = new LinkedList<>();
+    public static List<Ranked<Context>> rankedQuery(Context context, final Context criteria) {
+        final List<Ranked<Context>> results = new LinkedList<>();
 
         if (context.isContainer()) {
-            context.getContained().values().forEach(child -> results.addAll(rankedQuery(child,criteria)));
+            forEach(context.getContained().values(), new Consumer<Context>() {
+                @Override
+                public void accept(Context child) {
+                    results.addAll(rankedQuery(child,criteria));
+                }
+            });
         } else {
             float rank = context.similarity(criteria);
             if (rank > Similarity.NOT_SIMILAR) {
@@ -90,7 +103,12 @@ public final class DbParserUtilities {
             printStream.println("Context:");
             List<String> attrNames = new LinkedList<>(context.keySet());
             Collections.sort(attrNames);
-            attrNames.forEach(key -> printStream.format("%20s: %s\n", key, context.get(key)));
+            forEach(attrNames, new Consumer<String>() {
+                @Override
+                public void accept(String key) {
+                    printStream.format("%20s: %s\n", key, context.get(key));
+                }
+            });
         }
         List<Context> types = new LinkedList<>(database.getContained().values());
         Collections.sort(types);

@@ -22,6 +22,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.function.Consumer;
 
+import static scotty.util.Iterables.forEach;
+
 /**
  * The values of a Scotty attribute. A value contains 1 to n strings. The value is
  * considered a "Multi Value" if it contains more than a single string.
@@ -37,7 +39,12 @@ public class Value implements Similarity<Value> {
     }
 
 	public void addAll(String ... values) {
-		new ArrayIterable<>(values).forEach(this::add);
+        forEach(new ArrayIterable<>(values), new scotty.util.Consumer<String>() {
+            @Override
+            public void accept(String s) {
+                add(s);
+            }
+        });
 	}
 
     /**

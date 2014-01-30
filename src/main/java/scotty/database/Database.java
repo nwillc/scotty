@@ -112,7 +112,13 @@ public class Database extends Context {
         forEach(query(criteria), new Consumer<Context>() {
             @Override
             public void accept(Context context) {
-                context.getValue(attr).ifPresent(value -> value.values().forEach(attributeValues::add));
+                context.getValue(attr).ifPresent(value ->
+                        forEach(value.values(), new Consumer<String>() {
+                            @Override
+                            public void accept(String s) {
+                                 attributeValues.add(s);
+                    }
+                }));
             }
         });
         return attributeValues;
