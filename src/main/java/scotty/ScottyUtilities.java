@@ -15,10 +15,11 @@
 
 package scotty;
 
+import com.google.common.base.Optional;
+
 import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 /**
@@ -39,7 +40,7 @@ public class ScottyUtilities {
      */
     public static Optional<InputStream> getResourceAsStream(String resource) {
         try {
-            return Optional.of(new FileInputStream(resource));
+            return Optional.of((InputStream)new FileInputStream(resource));
         } catch (FileNotFoundException e) {
             LOGGER.fine(resource + " not found as file");
         }
@@ -47,14 +48,14 @@ public class ScottyUtilities {
         InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(resource);
         if (inputStream == null) {
             LOGGER.info("Failed to find " + resource + " as file or resource.");
-			return Optional.empty();
+			return Optional.absent();
         }
         return Optional.of(inputStream);
     }
 
     public static Optional<OutputStream> getPath(final String folder, final String filename) {
 		if ("-".equals(folder)) {
-            return Optional.of(System.out);
+            return Optional.of((OutputStream)System.out);
         }
         final Path path;
         if (folder == null) {
@@ -63,10 +64,10 @@ public class ScottyUtilities {
             path = FileSystems.getDefault().getPath(folder, filename);
         }
 		try {
-			return Optional.of(new FileOutputStream(path.toString()));
+			return Optional.of((OutputStream)new FileOutputStream(path.toString()));
 		} catch (FileNotFoundException e) {
 			LOGGER.warning("Path " + folder + "/" + filename + " not found");
-			return Optional.empty();
+			return Optional.absent();
 		}
     }
 

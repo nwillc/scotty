@@ -15,11 +15,10 @@
 
 package scotty.database.parser;
 
+import com.google.common.base.Optional;
 import org.junit.Test;
 import scotty.database.Instance;
 import scotty.database.Type;
-
-import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;

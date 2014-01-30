@@ -15,6 +15,7 @@
 
 package scotty.template;
 
+import com.google.common.base.Optional;
 import org.junit.Before;
 import org.junit.Test;
 import scotty.database.Context;
@@ -24,7 +25,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Optional;
 
 import static junit.framework.Assert.assertEquals;
 import static scotty.ScottyUtilities.getResourceAsStream;

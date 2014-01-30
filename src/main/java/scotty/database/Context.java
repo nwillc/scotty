@@ -15,9 +15,12 @@
 
 package scotty.database;
 
+import com.google.common.base.Function;
+import com.google.common.base.Supplier;
 import scotty.database.parser.Similarity;
 import scotty.util.ArrayIterable;
 
+import com.google.common.base.Optional;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import scotty.util.Consumer;
@@ -210,7 +213,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
             return container.getValue(key);
         }
 
-        return Optional.empty();
+        return Optional.absent();
     }
 
     /**
@@ -230,8 +233,18 @@ public class Context implements Comparable<Context>, Similarity<Context> {
      * @param defaultValue the value to return if null
      * @return the string
      */
-    public String get(String key, String defaultValue) {
-		return getValue(key).map(Object::toString).orElse(defaultValue);
+    public String get(final String key, final String defaultValue) {
+        return getValue(key).transform(new Function<Value, String>() {
+            @Override
+            public String apply(Value value) {
+                return value.toString();
+            }
+        }).or(new Supplier<String>() {
+            @Override
+            public String get() {
+                return defaultValue;
+            }
+        });
     }
 
     /**
@@ -311,15 +324,20 @@ public class Context implements Comparable<Context>, Similarity<Context> {
     }
 
     @Override
-    public float similarity(Context b) {
+    public float similarity(final Context b) {
         float score = NOT_SIMILAR;
 
         if (b == null) {
             return score;
         }
 
-        for (String key : b.keySet()) {
-            float vScore = getValue(key).map(value -> value.similarity(b.getValue(key).get())).orElse(0.0f);
+        for (final String key : b.keySet()) {
+            float vScore = getValue(key).transform(new Function<Value, Float>() {
+                @Override
+                public Float apply(Value value) {
+                   return value.similarity(b.getValue(key).get());
+                }
+            }).or(0.0f);
             if (vScore == NOT_SIMILAR) {
                 return NOT_SIMILAR;
             }

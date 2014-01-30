@@ -15,6 +15,7 @@
 
 package scotty;
 
+import com.google.common.base.Optional;
 import org.apache.commons.cli.*;
 import scotty.database.Context;
 import scotty.database.Database;
@@ -22,7 +23,6 @@ import scotty.template.NamedScriptEngine;
 
 import javax.script.ScriptException;
 import java.io.*;
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

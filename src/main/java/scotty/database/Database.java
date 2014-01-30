@@ -15,6 +15,7 @@
 
 package scotty.database;
 
+import com.google.common.base.Function;
 import scotty.database.parser.DbParserUtilities;
 import scotty.database.parser.Parser;
 import scotty.util.ArrayIterable;
@@ -44,7 +45,13 @@ public class Database extends Context {
         forEach(new ArrayIterable<>(inputStreams), new Consumer<InputStream>() {
             @Override
             public void accept(InputStream stream) {
-                Parser.parse(stream).ifPresent(type -> database.getContained().put(type.getName(), type));
+                Parser.parse(stream).transform(new Function<Type, Object>() {
+                    @Override
+                    public Object apply(Type type) {
+                        database.getContained().put(type.getName(), type);
+                        return this;
+                    }
+                });
             }
         });
         return database;
@@ -61,7 +68,13 @@ public class Database extends Context {
         forEach(new ArrayIterable<>(files), new Consumer<String>() {
             @Override
             public void accept(String file) {
-                Parser.parse(file).ifPresent(type -> database.getContained().put(type.getName(), type));
+                Parser.parse(file).transform(new Function<Type, Object>() {
+                    @Override
+                    public Object apply(Type type) {
+                        database.getContained().put(type.getName(), type);
+                        return this;
+                    }
+                });
             }
         });
         return database;
@@ -112,13 +125,18 @@ public class Database extends Context {
         forEach(query(criteria), new Consumer<Context>() {
             @Override
             public void accept(Context context) {
-                context.getValue(attr).ifPresent(value ->
+                context.getValue(attr).transform(new Function<Value, Object>() {
+                    @Override
+                    public Object apply(Value value) {
                         forEach(value.values(), new Consumer<String>() {
                             @Override
                             public void accept(String s) {
-                                 attributeValues.add(s);
+                                attributeValues.add(s);
+                            }
+                        });
+                        return this;
                     }
-                }));
+                });
             }
         });
         return attributeValues;
