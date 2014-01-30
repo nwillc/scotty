@@ -20,7 +20,6 @@ import scotty.util.ArrayIterable;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.function.Consumer;
 
 import static scotty.util.Iterables.forEach;
 
