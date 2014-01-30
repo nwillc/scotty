@@ -1,6 +1,5 @@
 package scotty.util;
 
-import com.sun.tools.example.debug.bdi.MethodNotFoundException;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
