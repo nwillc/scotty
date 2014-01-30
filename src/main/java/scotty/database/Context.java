@@ -20,6 +20,9 @@ import scotty.util.ArrayIterable;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import scotty.util.Consumer;
+
+import static scotty.util.Iterables.forEach;
 
 /**
  * A Context is a set of attributes, that can inherit attributes from its parent and contain sub-contexts within it.
@@ -122,15 +125,48 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         }
 
         final String[] assignments = attributes.trim().split("(?<!\\\\),");
-        new ArrayIterable<>(assignments).forEach(assignment -> {
-            String[] labelValue = assignment.split("(?<!\\\\)=");
-            if (labelValue.length == 2) {
-                Value value = new Value();
-                final String[] values = labelValue[1].trim().split("(?<!\\\\)\\|");
-                new ArrayIterable<>(values).forEach(str -> value.add(str.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c", "|")));
-                put(labelValue[0].trim(), value);
+        forEach(new ArrayIterable<>(assignments), new Consumer<String>(){
+            @Override
+            public void accept(String assignment) {
+                String[] labelValue = assignment.split("(?<!\\\\)=");
+                if (labelValue.length == 2) {
+                    final Value value = new Value();
+                    final String[] values = labelValue[1].trim().split("(?<!\\\\)\\|");
+                    forEach(new ArrayIterable<>(values), new Consumer<String>() {
+                        @Override
+                        public void accept(String str) {
+                            value.add(str.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c", "|"));
+                        }
+                    });
+                    forEach(new ArrayIterable<>(values), new Consumer<String>() {
+                        @Override
+                        public void accept(String str) {
+                            value.add(str.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c", "|"));
+                        }
+                    });
+                    put(labelValue[0].trim(), value);
+                }
             }
         });
+
+        forEach(new ArrayIterable<>(assignments), new Consumer<String>() {
+            @Override
+            public void accept(String assignment) {
+                String[] labelValue = assignment.split("(?<!\\\\)=");
+                if (labelValue.length == 2) {
+                    final Value value = new Value();
+                    final String[] values = labelValue[1].trim().split("(?<!\\\\)\\|");
+                    forEach(new ArrayIterable<>(values), new Consumer<String>() {
+                        @Override
+                        public void accept(String str) {
+                            value.add(str.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c", "|"));
+                        }
+                    });
+                    put(labelValue[0].trim(), value);
+                }
+            }
+        });
+
     }
 
     /**

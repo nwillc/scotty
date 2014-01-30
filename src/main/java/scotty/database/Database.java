@@ -18,12 +18,15 @@ package scotty.database;
 import scotty.database.parser.DbParserUtilities;
 import scotty.database.parser.Parser;
 import scotty.util.ArrayIterable;
+import scotty.util.Consumer;
 
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+
+import static scotty.util.Iterables.forEach;
 
 /**
  * A Scotty database, basically a context with a contained map of Types.
@@ -37,9 +40,13 @@ public class Database extends Context {
      * @return Database of types
      */
     public static Database parse(InputStream ... inputStreams) {
-        Database database = new Database();
-		new ArrayIterable<>(inputStreams).forEach(stream ->
-                    Parser.parse(stream).ifPresent(type -> database.getContained().put(type.getName(), type)));
+        final Database database = new Database();
+        forEach(new ArrayIterable<>(inputStreams), new Consumer<InputStream>() {
+            @Override
+            public void accept(InputStream stream) {
+                Parser.parse(stream).ifPresent(type -> database.getContained().put(type.getName(), type));
+            }
+        });
         return database;
     }
 
@@ -50,9 +57,13 @@ public class Database extends Context {
      * @return Database of types
     */
     public static Database parse(String... files) {
-        Database database = new Database();
-		new ArrayIterable<>(files).forEach(file ->
-                Parser.parse(file).ifPresent(type -> database.getContained().put(type.getName(), type)));
+        final Database database = new Database();
+        forEach(new ArrayIterable<>(files), new Consumer<String>() {
+            @Override
+            public void accept(String file) {
+                Parser.parse(file).ifPresent(type -> database.getContained().put(type.getName(), type));
+            }
+        });
         return database;
     }
 
@@ -96,10 +107,14 @@ public class Database extends Context {
      * @param attr     the attribute name
      * @return sorted set of values
      */
-    public Set<String> query(Context criteria, String attr) {
-        Set<String> attributeValues = new TreeSet<>();
-		query(criteria).forEach(context ->
-				context.getValue(attr).ifPresent(value -> value.values().forEach(attributeValues::add)));
+    public Set<String> query(final Context criteria, final String attr) {
+        final Set<String> attributeValues = new TreeSet<>();
+        forEach(query(criteria), new Consumer<Context>() {
+            @Override
+            public void accept(Context context) {
+                context.getValue(attr).ifPresent(value -> value.values().forEach(attributeValues::add));
+            }
+        });
         return attributeValues;
     }
 
