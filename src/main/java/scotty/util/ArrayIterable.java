@@ -1,5 +1,7 @@
 package scotty.util;
 
+import com.sun.tools.example.debug.bdi.MethodNotFoundException;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -15,7 +17,7 @@ public class ArrayIterable<T> implements Iterable<T> {
 
 	@Override
 	public Iterator<T> iterator() {
-		return new ArrayIterator<>(data);
+		return new ArrayIterator<T>(data);
 	}
 
 	private class ArrayIterator<T> implements Iterator<T> {
@@ -41,5 +43,12 @@ public class ArrayIterable<T> implements Iterable<T> {
 			index++;
 			return next;
 		}
+
+		@Override
+		public void remove() {
+			throw new NoSuchMethodError("Remove not implemented for ArrayIterator.");
+		}
 	}
+
+
 }
