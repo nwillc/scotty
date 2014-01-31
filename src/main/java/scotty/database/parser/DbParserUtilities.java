@@ -30,7 +30,6 @@ import static scotty.util.Iterables.forEach;
  */
 public final class DbParserUtilities {
 
-
     private DbParserUtilities() {
     }
 
@@ -66,7 +65,7 @@ public final class DbParserUtilities {
             forEach(context.getContained().values(), new Consumer<Context>() {
                 @Override
                 public void accept(Context child) {
-                    results.addAll(rankedQuery(child,criteria));
+                    results.addAll(rankedQuery(child, criteria));
                 }
             });
         } else {
@@ -110,31 +109,37 @@ public final class DbParserUtilities {
                 }
             });
         }
-        List<Context> types = new LinkedList<>(database.getContained().values());
+        final List<Context> types = new LinkedList<>(database.getContained().values());
         Collections.sort(types);
-        for (Context type : types) {
-            printStream.format("Type: %s\n", ((Type) type).getName());
-            List<Context> instances = new LinkedList<>(type.getContained().values());
-            Collections.sort(instances);
-            for (Context instance : instances) {
-                if (context == null) {
-                    printStream.format("\tInstance: %s\n", ((Instance) instance).getName());
-                } else {
-                    final float similarity = instance.similarity(context);
-                    if (similarity == 0.0) {
-                        continue;
+        forEach(types, new Consumer<Context>() {
+            @Override
+            public void accept(Context type) {
+                printStream.format("Type: %s\n", ((Type) type).getName());
+                final List<Context> instances = new LinkedList<>(type.getContained().values());
+                Collections.sort(instances);
+                forEach(instances, new Consumer<Context>() {
+                    @Override
+                    public void accept(final Context instance) {
+                        if (context == null) {
+                            printStream.format("\tInstance: %s\n", ((Instance) instance).getName());
+                        } else {
+                            final float similarity = instance.similarity(context);
+                            if (similarity != 0.0f) {
+                                printStream.format("\tInstance: %s\n", ((Instance) instance).getName());
+                                printStream.format("\tSimilarity Score: %f\n", similarity);
+                            }
+                        }
+                        final List<String> attrNames = new LinkedList<>(instance.keySet());
+                        Collections.sort(attrNames);
+                        forEach(attrNames, new Consumer<String>() {
+                            @Override
+                            public void accept(String key) {
+                                printStream.format("\t\t%20s: %s\n", key, instance.get(key));
+                            }
+                        });
                     }
-                    printStream.format("\tInstance: %s\n", ((Instance) instance).getName());
-                    printStream.format("\tSimilarity Score: %f\n", similarity);
-                }
-                List<String> attrNames = new LinkedList<>(instance.keySet());
-                Collections.sort(attrNames);
-                for (String key : attrNames) {
-                    printStream.format("\t\t%20s: %s\n", key, instance.get(key));
-                }
+                });
             }
-        }
+        });
     }
-
-
 }

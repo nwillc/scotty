@@ -18,7 +18,6 @@ package scotty.database;
 import com.google.common.base.Function;
 import scotty.database.parser.DbParserUtilities;
 import scotty.database.parser.Parser;
-import scotty.util.ArrayIterable;
 import scotty.util.Consumer;
 
 import java.io.InputStream;
@@ -27,6 +26,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import static scotty.util.ArrayIterable.newArrayIterable;
 import static scotty.util.Iterables.forEach;
 
 /**
@@ -42,7 +42,7 @@ public class Database extends Context {
      */
     public static Database parse(InputStream ... inputStreams) {
         final Database database = new Database();
-        forEach(new ArrayIterable<>(inputStreams), new Consumer<InputStream>() {
+        forEach(newArrayIterable(inputStreams), new Consumer<InputStream>() {
             @Override
             public void accept(InputStream stream) {
                 Parser.parse(stream).transform(new Function<Type, Object>() {
@@ -65,7 +65,7 @@ public class Database extends Context {
     */
     public static Database parse(String... files) {
         final Database database = new Database();
-        forEach(new ArrayIterable<>(files), new Consumer<String>() {
+        forEach(newArrayIterable(files), new Consumer<String>() {
             @Override
             public void accept(String file) {
                 Parser.parse(file).transform(new Function<Type, Object>() {

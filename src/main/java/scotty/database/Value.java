@@ -16,11 +16,11 @@
 package scotty.database;
 
 import scotty.database.parser.Similarity;
-import scotty.util.ArrayIterable;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
+import static scotty.util.ArrayIterable.newArrayIterable;
 import static scotty.util.Iterables.forEach;
 
 /**
@@ -38,7 +38,7 @@ public class Value implements Similarity<Value> {
     }
 
 	public void addAll(String ... values) {
-        forEach(new ArrayIterable<>(values), new scotty.util.Consumer<String>() {
+        forEach(newArrayIterable(values), new scotty.util.Consumer<String>() {
             @Override
             public void accept(String s) {
                 add(s);

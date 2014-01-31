@@ -14,6 +14,10 @@ public class ArrayIterable<T> implements Iterable<T> {
 		this.data = data;
 	}
 
+    public static <T> ArrayIterable<T> newArrayIterable(T[] a) {
+        return new ArrayIterable<>(a);
+    }
+
 	@Override
 	public Iterator<T> iterator() {
 		return new ArrayIterator<>(data);
