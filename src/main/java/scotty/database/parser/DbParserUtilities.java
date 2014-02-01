@@ -1,13 +1,16 @@
 /*
- * (c) Copyright Selerity, Inc. 2009-2013. All rights reserved. This source code is confidential
- * and proprietary information of Selerity Inc. and may be used only by a recipient designated
- * by and for the purposes permitted by Selerity Inc. in writing.  Reproduction of, dissemination
- * of, modifications to or creation of derivative works from this source code, whether in source
- * or binary forms, by any means and in any form or manner, is expressly prohibited, except with
- * the prior written permission of Selerity Inc..  THIS CODE AND INFORMATION ARE PROVIDED "AS IS"
- * WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE. This notice may not be
- * removed from the software by any user thereof.
+ * Copyright (c) 2013-2014, nwillc@gmail.com
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any purpose with or
+ * without fee is hereby granted, provided that the above copyright notice and this permission
+ * notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO
+ * THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT
+ * SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR
+ * ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
+ * CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
+ * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
 package scotty.database.parser;
@@ -29,7 +32,6 @@ import static scotty.util.Iterables.forEach;
  * Utility methods used by the database portions of Scotty.
  */
 public final class DbParserUtilities {
-
 
     private DbParserUtilities() {
     }
@@ -66,7 +68,7 @@ public final class DbParserUtilities {
             forEach(context.getContained().values(), new Consumer<Context>() {
                 @Override
                 public void accept(Context child) {
-                    results.addAll(rankedQuery(child,criteria));
+                    results.addAll(rankedQuery(child, criteria));
                 }
             });
         } else {
@@ -110,31 +112,37 @@ public final class DbParserUtilities {
                 }
             });
         }
-        List<Context> types = new LinkedList<>(database.getContained().values());
+        final List<Context> types = new LinkedList<>(database.getContained().values());
         Collections.sort(types);
-        for (Context type : types) {
-            printStream.format("Type: %s\n", ((Type) type).getName());
-            List<Context> instances = new LinkedList<>(type.getContained().values());
-            Collections.sort(instances);
-            for (Context instance : instances) {
-                if (context == null) {
-                    printStream.format("\tInstance: %s\n", ((Instance) instance).getName());
-                } else {
-                    final float similarity = instance.similarity(context);
-                    if (similarity == 0.0) {
-                        continue;
+        forEach(types, new Consumer<Context>() {
+            @Override
+            public void accept(Context type) {
+                printStream.format("Type: %s\n", ((Type) type).getName());
+                final List<Context> instances = new LinkedList<>(type.getContained().values());
+                Collections.sort(instances);
+                forEach(instances, new Consumer<Context>() {
+                    @Override
+                    public void accept(final Context instance) {
+                        if (context == null) {
+                            printStream.format("\tInstance: %s\n", ((Instance) instance).getName());
+                        } else {
+                            final float similarity = instance.similarity(context);
+                            if (similarity != 0.0f) {
+                                printStream.format("\tInstance: %s\n", ((Instance) instance).getName());
+                                printStream.format("\tSimilarity Score: %f\n", similarity);
+                            }
+                        }
+                        final List<String> attrNames = new LinkedList<>(instance.keySet());
+                        Collections.sort(attrNames);
+                        forEach(attrNames, new Consumer<String>() {
+                            @Override
+                            public void accept(String key) {
+                                printStream.format("\t\t%20s: %s\n", key, instance.get(key));
+                            }
+                        });
                     }
-                    printStream.format("\tInstance: %s\n", ((Instance) instance).getName());
-                    printStream.format("\tSimilarity Score: %f\n", similarity);
-                }
-                List<String> attrNames = new LinkedList<>(instance.keySet());
-                Collections.sort(attrNames);
-                for (String key : attrNames) {
-                    printStream.format("\t\t%20s: %s\n", key, instance.get(key));
-                }
+                });
             }
-        }
+        });
     }
-
-
 }

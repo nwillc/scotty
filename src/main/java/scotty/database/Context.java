@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, nwillc@gmail.com
+ * Copyright (c) 2013-2014, nwillc@gmail.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any purpose with or
  * without fee is hereby granted, provided that the above copyright notice and this permission
@@ -16,15 +16,20 @@
 package scotty.database;
 
 import com.google.common.base.Function;
-import com.google.common.base.Supplier;
-import scotty.database.parser.Similarity;
-import scotty.util.ArrayIterable;
-
+import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import com.google.common.base.Supplier;
+import com.google.common.collect.Iterables;
+import scotty.database.parser.Similarity;
 import scotty.util.Consumer;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static scotty.util.ArrayIterable.newArrayIterable;
 import static scotty.util.Iterables.forEach;
 
 /**
@@ -128,20 +133,20 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         }
 
         final String[] assignments = attributes.trim().split("(?<!\\\\),");
-        forEach(new ArrayIterable<>(assignments), new Consumer<String>(){
+        forEach(newArrayIterable(assignments), new Consumer<String>(){
             @Override
             public void accept(String assignment) {
                 String[] labelValue = assignment.split("(?<!\\\\)=");
                 if (labelValue.length == 2) {
                     final Value value = new Value();
                     final String[] values = labelValue[1].trim().split("(?<!\\\\)\\|");
-                    forEach(new ArrayIterable<>(values), new Consumer<String>() {
+                    forEach(newArrayIterable(values), new Consumer<String>() {
                         @Override
                         public void accept(String str) {
                             value.add(str.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c", "|"));
                         }
                     });
-                    forEach(new ArrayIterable<>(values), new Consumer<String>() {
+                    forEach(newArrayIterable(values), new Consumer<String>() {
                         @Override
                         public void accept(String str) {
                             value.add(str.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c", "|"));
@@ -152,14 +157,14 @@ public class Context implements Comparable<Context>, Similarity<Context> {
             }
         });
 
-        forEach(new ArrayIterable<>(assignments), new Consumer<String>() {
+        forEach(newArrayIterable(assignments), new Consumer<String>() {
             @Override
             public void accept(String assignment) {
                 String[] labelValue = assignment.split("(?<!\\\\)=");
                 if (labelValue.length == 2) {
                     final Value value = new Value();
                     final String[] values = labelValue[1].trim().split("(?<!\\\\)\\|");
-                    forEach(new ArrayIterable<>(values), new Consumer<String>() {
+                    forEach(newArrayIterable(values), new Consumer<String>() {
                         @Override
                         public void accept(String str) {
                             value.add(str.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c", "|"));
@@ -279,19 +284,12 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         final StringBuilder sb = new StringBuilder(this.getClass().getSimpleName());
         sb.append("{");
         sb.append("Map{");
-
-        boolean first = true;
-        for (String key : getMap().keySet()) {
-            if (first) {
-                first = false;
-            } else {
-                sb.append(", ");
+        Joiner.on(", ").appendTo(sb, Iterables.transform(getMap().keySet(),new Function<String, String>() {
+            @Override
+            public String apply(String key) {
+                return key + "=" + getMap().get(key);
             }
-            sb.append(key);
-            sb.append("=");
-            sb.append(getMap().get(key));
-        }
-
+        }));
         sb.append("}");
         sb.append(", isContained=");
         sb.append(isContained());
@@ -300,17 +298,12 @@ public class Context implements Comparable<Context>, Similarity<Context> {
             sb.append(isContainer());
         } else {
             sb.append(", Contained{");
-            first = true;
-            for (String key : getContained().keySet()) {
-                if (first) {
-                    first = false;
-                } else {
-                    sb.append(", ");
+            Joiner.on(", ").appendTo(sb, Iterables.transform(getContained().keySet(), new Function<String,String>() {
+                @Override
+                public String apply(String key) {
+                    return key + "=" + getContained().get(key);
                 }
-                sb.append(key);
-                sb.append("=");
-                sb.append(getContained().get(key));
-            }
+            }));
             sb.append("}");
         }
         sb.append(", age=").append(age);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, nwillc@gmail.com
+ * Copyright (c) 2013-2014, nwillc@gmail.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any purpose with or
  * without fee is hereby granted, provided that the above copyright notice and this permission
@@ -16,15 +16,14 @@
 package scotty.database;
 
 import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
 import scotty.database.parser.Similarity;
-import scotty.util.ArrayIterable;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
 import static com.google.common.collect.Iterables.any;
 import static com.google.common.collect.Iterables.contains;
+import static scotty.util.ArrayIterable.newArrayIterable;
 import static scotty.util.Iterables.forEach;
 
 /**
@@ -42,7 +41,7 @@ public class Value implements Similarity<Value> {
     }
 
 	public void addAll(String ... values) {
-        forEach(new ArrayIterable<>(values), new scotty.util.Consumer<String>() {
+        forEach(newArrayIterable(values), new scotty.util.Consumer<String>() {
             @Override
             public void accept(String s) {
                 add(s);
@@ -113,7 +112,7 @@ public class Value implements Similarity<Value> {
 		return any(b.values(), new Predicate<String>() {
 			@Override
 			public boolean apply(String s) {
-				return contains(values(),s);
+				return contains(values(), s);
 			}
 		}) ? score : NOT_SIMILAR;
     }
