@@ -27,6 +27,10 @@ public class ContainsPredicate<T,I extends Iterable<T>> implements Predicate<T> 
 		this.iterable = iterable;
 	}
 
+	public static <T,I extends Iterable<T>> ContainsPredicate<T,I> newContainsPredicate(I i) {
+		return new ContainsPredicate<>(i);
+	}
+
 	@Override
 	public boolean apply(T t) {
 		return contains(iterable, t);

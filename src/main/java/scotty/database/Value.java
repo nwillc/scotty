@@ -24,6 +24,7 @@ import java.util.LinkedList;
 import static com.google.common.collect.Iterables.any;
 import static com.google.common.collect.Iterables.contains;
 import static scotty.util.ArrayIterable.newArrayIterable;
+import static scotty.util.ContainsPredicate.newContainsPredicate;
 import static scotty.util.Iterables.forEach;
 
 /**
@@ -109,11 +110,6 @@ public class Value implements Similarity<Value> {
             score -= DOWN_GRADE;
         }
 
-		return any(b.values(), new Predicate<String>() {
-			@Override
-			public boolean apply(String s) {
-				return contains(values(), s);
-			}
-		}) ? score : NOT_SIMILAR;
+		return any(b.values(), newContainsPredicate(values())) ? score : NOT_SIMILAR;
     }
 }
