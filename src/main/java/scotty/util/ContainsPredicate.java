@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, nwillc@gmail.com
+ * Copyright (c) 2013-2014, nwillc@gmail.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any purpose with or
  * without fee is hereby granted, provided that the above copyright notice and this permission
@@ -13,26 +13,22 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.database.parser;
+package scotty.util;
 
-import com.google.common.base.Function;
 
-/**
- * Relative similarity of this to another ranging from NOT_SIMILAR to SIMILAR (0.0 .. 1.0). If there is a
- * strong similarity then it is SIMILAR. As the similarity is less the value is reduced. DOWN_GRADE is a
- * suitable amount to express a notable difference.
- */
-public interface Similarity<T> {
-    float SIMILAR = 1.0F;
-    float NOT_SIMILAR = 0.0F;
-    float DOWN_GRADE = 0.25F;
+import com.google.common.base.Predicate;
 
-    /**
-     * Return a ranking NOT_SIMILAR to SIMILAR of how closely related this object is to the one passed in.
-     *
-     * @param b object being compared too
-     * @return the similarity value
-     */
-    float similarity(T b);
+import static com.google.common.collect.Iterables.contains;
 
+public class ContainsPredicate<T,I extends Iterable<T>> implements Predicate<T> {
+	final private I iterable;
+
+	public ContainsPredicate(I iterable) {
+		this.iterable = iterable;
+	}
+
+	@Override
+	public boolean apply(T t) {
+		return contains(iterable, t);
+	}
 }

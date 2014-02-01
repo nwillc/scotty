@@ -15,12 +15,16 @@
 
 package scotty.database;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 import scotty.database.parser.Similarity;
 import scotty.util.ArrayIterable;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
+import static com.google.common.collect.Iterables.any;
+import static com.google.common.collect.Iterables.contains;
 import static scotty.util.Iterables.forEach;
 
 /**
@@ -99,19 +103,18 @@ public class Value implements Similarity<Value> {
         float score = SIMILAR;
 
         if (isMultiValue()) {
-            score += DOWN_GRADE;
+            score -= DOWN_GRADE;
         }
 
         if (b.isMultiValue()) {
-            score += DOWN_GRADE;
+            score -= DOWN_GRADE;
         }
 
-        for (String element : b.values()) {
-            if (values().contains(element)) {
-                return score;
-            }
-        }
-
-        return NOT_SIMILAR;
+		return any(b.values(), new Predicate<String>() {
+			@Override
+			public boolean apply(String s) {
+				return contains(values(),s);
+			}
+		}) ? score : NOT_SIMILAR;
     }
 }
