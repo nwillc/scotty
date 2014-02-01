@@ -25,9 +25,6 @@ import static com.google.common.collect.Lists.newArrayList;
 import static junit.framework.Assert.assertEquals;
 import static scotty.util.Iterables.forEach;
 
-/**
- *
- */
 public class IterablesTest {
 
 	private List<String> strings;
