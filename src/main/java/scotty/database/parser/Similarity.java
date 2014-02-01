@@ -15,8 +15,6 @@
 
 package scotty.database.parser;
 
-import com.google.common.base.Function;
-
 /**
  * Relative similarity of this to another ranging from NOT_SIMILAR to SIMILAR (0.0 .. 1.0). If there is a
  * strong similarity then it is SIMILAR. As the similarity is less the value is reduced. DOWN_GRADE is a

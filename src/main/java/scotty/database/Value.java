@@ -15,14 +15,13 @@
 
 package scotty.database;
 
-import com.google.common.base.Predicate;
+import com.google.common.base.Joiner;
 import scotty.database.parser.Similarity;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
 import static com.google.common.collect.Iterables.any;
-import static com.google.common.collect.Iterables.contains;
 import static scotty.util.ArrayIterable.newArrayIterable;
 import static scotty.util.ContainsPredicate.newContainsPredicate;
 import static scotty.util.Iterables.forEach;
@@ -82,15 +81,7 @@ public class Value implements Similarity<Value> {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        boolean first = true;
-        for (String value : contents) {
-            if (first) {
-                first = false;
-            } else {
-                stringBuilder.append(',');
-            }
-            stringBuilder.append(value);
-        }
+		Joiner.on(',').appendTo(stringBuilder, contents);
         return stringBuilder.toString();
     }
 
