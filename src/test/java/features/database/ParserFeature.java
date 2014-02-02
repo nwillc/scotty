@@ -23,8 +23,7 @@ import scotty.database.Database;
 
 import java.util.List;
 
-import static junit.framework.TestCase.*;
-import static org.junit.Assert.assertNotEquals;
+import static org.fest.assertions.api.Assertions.assertThat;
 
 /**
  *
@@ -41,29 +40,28 @@ public class ParserFeature {
     @When("^parsed by the Database class$")
     public void parsed_by_the_Database_class() throws Throwable {
         database = Database.parse(filename);
-        assertNotNull(database);
+		assertThat(database).isNotNull();
     }
 
     @Then("^you should receive a Database with (\\d+) Types$")
     public void you_should_receive_a_Database_with_Types(int arg1) throws Throwable {
-        assertEquals(arg1, database.getContained().size());
+		assertThat(database.getContained().size()).isEqualTo(arg1);
     }
 
     @Then("^it should contain types \"([^\\\"]*)\"$")
     public void it_should_contain_type_host(List<String> types) throws Throwable {
         for (String typeName : types) {
-            assertTrue(database.getContained().containsKey(typeName));
+			assertThat(database.getContained().containsKey(typeName)).isTrue();
         }
     }
 
     @Then("^the value of \"([^\"]*)\" \"([^\"]*)\" should be \"([^\"]*)\"$")
     public void the_value_of_should_be(String arg1, String arg2, String arg3) throws Throwable {
         List<Context> matches = database.query(new Context(arg1));
-        assertNotNull(matches);
-        assertNotEquals(0, matches.size());
+		assertThat(matches).isNotNull();
+		assertThat(matches.size()).isNotZero();
         String value = matches.get(0).get(arg2);
-        assertEquals(arg3, value);
+		assertThat(value).isEqualTo(arg3);
     }
-
 
 }

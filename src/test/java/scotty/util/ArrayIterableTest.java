@@ -21,7 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static junit.framework.Assert.*;
+import static org.fest.assertions.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static scotty.util.ArrayIterable.newArrayIterable;
 
@@ -34,7 +34,7 @@ public class ArrayIterableTest {
 		assertNotNull(strings);
 		Iterator<String> iter = strings.iterator();
 		assertNotNull(iter);
-		assertFalse(iter.hasNext());
+		assertThat(iter.hasNext()).isFalse();
 	}
 
 	@Test
@@ -44,10 +44,10 @@ public class ArrayIterableTest {
 
 		int length = 0;
 		for (String s : newArrayIterable(stringArray)) {
-			assertTrue(stringList.contains(s));
+			assertThat(stringList.contains(s)).isTrue();
 			stringList.remove(s);
 			length++;
 		}
-		assertEquals(stringArray.length, length);
+		assertThat(length).isEqualTo(stringArray.length);
 	}
 }

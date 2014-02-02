@@ -21,8 +21,7 @@ import org.junit.Test;
 import java.util.Collection;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static org.fest.assertions.api.Assertions.assertThat;
 import static scotty.util.ContainsPredicate.newContainsPredicate;
 import static scotty.util.Iterables.forEach;
 
@@ -39,13 +38,13 @@ public class ContainsPredicateTest {
 		forEach(strings, new Consumer<String>() {
 			@Override
 			public void accept(String str) {
-				assertTrue(newContainsPredicate(strings).apply(str));
+				assertThat(newContainsPredicate(strings).apply(str)).isTrue();
 			}
 		});
 	}
 
 	@Test
 	public void testNotContained() throws Exception {
-		assertFalse(newContainsPredicate(strings).apply("d"));
+		assertThat(newContainsPredicate(strings).apply("d")).isFalse();
 	}
 }

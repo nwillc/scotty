@@ -22,11 +22,8 @@ import scotty.database.Context;
 
 import java.util.Set;
 
-import static junit.framework.TestCase.*;
+import static org.fest.assertions.api.Assertions.assertThat;
 
-/**
- *
- */
 public class ContextFeature {
     private Context context;
     private String value;
@@ -34,24 +31,24 @@ public class ContextFeature {
     @Given("^a Context instantiated with \"([^\"]*)\"$")
     public void a_Context_instantiated_with(String arg1) throws Throwable {
         context = new Context(null, arg1);
-        assertNotNull(context);
+        assertThat(context).isNotNull();
     }
 
     @When("^you search for \"([^\"]*)\"$")
     public void you_search_for(String arg1) throws Throwable {
         value = context.get(arg1);
-        assertNotNull(value);
+        assertThat(value).isNotNull();
     }
 
     @Then("^it value should be \"([^\"]*)\"$")
     public void it_value_should_be(String arg1) throws Throwable {
-        assertEquals(arg1, value);
+        assertThat(value).isEqualTo(arg1);
     }
 
     @Given("^a its child instantiated with \"([^\"]*)\"$")
     public void a_its_child_instantiated_with(String arg1) throws Throwable {
         Context child = new Context(context, arg1);
-        assertNotNull(child);
+        assertThat(child).isNotNull();
         context = child;
     }
 
@@ -60,7 +57,7 @@ public class ContextFeature {
         String[] keys = arg1.split(",");
         Set<String> keySet = context.keySet();
         for (String key : keys) {
-            assertTrue(keySet.contains(key));
+            assertThat(keySet.contains(key));
         }
     }
 

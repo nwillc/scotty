@@ -20,8 +20,7 @@ import org.junit.Test;
 import scotty.database.Instance;
 import scotty.database.Type;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
+import static org.fest.assertions.api.Assertions.assertThat;
 
 public class ParserTest {
 	@Test
@@ -35,19 +34,19 @@ public class ParserTest {
 		assert(typeOptional.isPresent());
 		Type type = typeOptional.get();
 
-		assertEquals("host", type.getName());
-		assertNotNull(type.get("address"));
-		assertEquals("127.0.0.1", type.get("address"));
+		assertThat(type.getName()).isEqualTo("host");
+		assertThat(type.get("address")).isNotNull();
+		assertThat(type.get("address")).isEqualTo("127.0.0.1");
 
 		Instance instance = (Instance) type.getContained().get("devbox2");
-		assertEquals("dev", instance.get("env"));
-		assertEquals("192.0.0.2", instance.get("address"));
-		assertEquals("acme", instance.get("company"));
+		assertThat(instance.get("env")).isEqualTo("dev");
+		assertThat(instance.get("address")).isEqualTo("192.0.0.2");
+		assertThat(instance.get("company")).isEqualTo("acme");
 
 		instance = (Instance) type.getContained().get("prod1");
-		assertEquals("prod", instance.get("env"));
-		assertEquals("192.0.0.3", instance.get("address"));
-		assertEquals("acme", instance.get("company"));
+		assertThat(instance.get("env")).isEqualTo("prod");
+		assertThat(instance.get("address")).isEqualTo("192.0.0.3");
+		assertThat(instance.get("company")).isEqualTo("acme");
 	}
 
 

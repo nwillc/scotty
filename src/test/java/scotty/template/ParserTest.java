@@ -26,12 +26,9 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static junit.framework.Assert.assertEquals;
+import static org.fest.assertions.api.Assertions.assertThat;
 import static scotty.ScottyUtilities.getResourceAsStream;
 
-/**
- *
- */
 public class ParserTest {
     private Database database;
 
@@ -57,10 +54,10 @@ public class ParserTest {
     @Test
     public void languageChanges() throws Exception {
         Optional<InputStream> inputStreamOptional  = getResourceAsStream("language_changes.scotty");
-		assert(inputStreamOptional.isPresent());
+		assertThat(inputStreamOptional.isPresent()).isTrue();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream, true);
         Parser.parse(inputStreamOptional.get(), printStream, new Database(), new Context(), new NamedScriptEngine());
-        assertEquals("hello world!\nhello world!\n", outputStream.toString());
+		assertThat(outputStream.toString()).isEqualTo("hello world!\nhello world!\n");
     }
 }

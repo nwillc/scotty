@@ -26,14 +26,8 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Set;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertNotEquals;
+import static org.fest.assertions.api.Assertions.assertThat;
 
-/**
- *
- */
 public class QueryFeature {
 	private Database database;
 	private Context context;
@@ -46,47 +40,47 @@ public class QueryFeature {
 		try (InputStream inputStream = new ByteArrayInputStream(arg1.getBytes())) {
 			database = Database.parse(inputStream);
 		}
-		assertTrue(database.getContained().size() > 0);
+		assertThat(database.getContained().size() > 0).isTrue();
 	}
 
 	@Given("^the database$")
 	public void the_database() throws Throwable {
-		assertNotNull(database);
+		assertThat(database).isNotNull();
 	}
 
     @Given("^you find \"([^\"]*)\" \"([^\"]*)\"$")
     public void you_find(String arg1, String arg2) throws Throwable {
         List<Context> matches = database.query(new Context(arg1));
-        assertNotNull(matches);
-        assertNotEquals(0,matches.size());
+        assertThat(matches).isNotNull();
+        assertThat(matches.size()).isNotZero();
 		value = matches.get(0).get(arg2);
-		assertNotNull(value);
+		assertThat(value).isNotNull();
 	}
 
 	@Then("^it should return \"([^\"]*)\"$")
 	public void it_should_return(String arg1) throws Throwable {
-		assertEquals(value, arg1);
+		assertThat(value).isEqualTo(arg1);
 	}
 
 	@Given("^the context based on \"([^\"]*)\"$")
 	public void the_context_based_on(String arg1) throws Throwable {
 		context = new Context(null, arg1);
-		assertNotNull(context);
+		assertThat(context).isNotNull();
 	}
 
 	@Then("^query should yield (\\d+) instances$")
 	public void query_should_yield_instances(int arg1) throws Throwable {
 		results = database.query(context);
-		assertEquals(arg1, results.size());
+		assertThat(results.size()).isEqualTo(arg1);
 	}
 
 	@Then("^the first instance should be \"([^\"]*)\"$")
 	public void the_first_instance_should_be(String arg1) throws Throwable {
 		if (results.size() > 0) {
 			NamedContext namedContext = (NamedContext) results.get(0);
-			assertEquals(arg1, namedContext.getName());
+			assertThat(namedContext.getName()).isEqualTo(arg1);
 		} else {
-			assertEquals(0, arg1.length());
+			assertThat(arg1.length()).isZero();
 		}
 	}
 
@@ -101,9 +95,9 @@ public class QueryFeature {
 
 		String[] values = arg1.split(",");
 
-		assertEquals(values.length, set.size());
+		assertThat(set.size()).isEqualTo(values.length);
 		for (String value : values) {
-			assertTrue(set.contains(value));
+			assertThat(set.contains(value));
 		}
 	}
 

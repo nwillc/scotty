@@ -33,7 +33,8 @@
         <beanshell.version>2.0b5</beanshell.version>
         <commons.cli.version>1.2</commons.cli.version>
         <compiler.version>2.5.1</compiler.version>
-        <cucumber.version>1.1.3</cucumber.version>
+        <cucumber.version>1.1.5</cucumber.version>
+        <fest.version>2.0M10</fest.version>
         <javadoc.version>2.9</javadoc.version>
         <jdk.version>1.7</jdk.version>
         <junit.version>4.11</junit.version>
@@ -54,6 +55,12 @@
             <version>${beanshell.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${quava.version}</version>
+        </dependency>
+        <!-- testing -->
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
@@ -72,9 +79,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${quava.version}</version>
+            <groupId>org.easytesting</groupId>
+            <artifactId>fest-assert-core</artifactId>
+            <version>${fest.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>

@@ -22,7 +22,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static junit.framework.Assert.assertEquals;
+import static org.fest.assertions.api.Assertions.assertThat;
 import static scotty.util.Iterables.forEach;
 
 public class IterablesTest {
@@ -43,7 +43,7 @@ public class IterablesTest {
 				stringBuffer.append(s);
 			}
 		});
-		assertEquals("abc", stringBuffer.toString());
+		assertThat(stringBuffer.toString()).isEqualTo("abc");
 	}
 
 	@Test
@@ -56,6 +56,6 @@ public class IterablesTest {
 				return stringBuffer.toString();
 			}
 		};
-		assertEquals("abc", forEach(strings,function));
+		assertThat(forEach(strings,function)).isEqualTo("abc");
 	}
 }

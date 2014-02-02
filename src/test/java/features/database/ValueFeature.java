@@ -20,13 +20,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import scotty.database.Value;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
-import static junit.framework.TestCase.assertTrue;
+import static org.fest.assertions.api.Assertions.assertThat;
 
-/**
- *
- */
 public class ValueFeature {
 	private Value value;
 	private String string;
@@ -36,8 +31,8 @@ public class ValueFeature {
 	public void a_value_of(String arg1) throws Throwable {
 		String[] values = arg1.split(" ");
 		value = new Value(values);
-		assertNotNull(value);
-		assertTrue(value.values().size() > 0);
+		assertThat(value).isNotNull();
+		assertThat(value.values().size()).isGreaterThan(0);
 	}
 
 	@Given("^a \"([^\"]*)\"$")
@@ -52,12 +47,12 @@ public class ValueFeature {
 
 	@Then("^if should return \"([^\"]*)\"$")
 	public void if_should_return(String arg1) throws Throwable {
-		assertEquals(arg1, String.valueOf(match));
+		assertThat(String.valueOf(match)).isEqualTo(arg1);
 	}
 
 	@Then("^its string representation should be \"([^\"]*)\"$")
 	public void its_string_representation_should_be(String arg1) throws Throwable {
-		assertEquals(arg1, value.toString());
+		assertThat(value.toString()).isEqualTo(arg1);
 	}
 
 

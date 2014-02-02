@@ -17,17 +17,13 @@ package scotty.database;
 
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotNull;
+import static org.fest.assertions.api.Assertions.assertThat;
 
-/**
- *
- */
 public class ValueTest {
 	@Test
 	public void testNull() throws Exception {
 		Value value = new Value(null);
-		assertNotNull(value);
-		assertEquals(0, value.values().size());
+		assertThat(value).isNotNull();
+		assertThat(value.values().size()).isEqualTo(0);
 	}
 }

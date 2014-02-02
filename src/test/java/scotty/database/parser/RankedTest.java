@@ -21,11 +21,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.fest.assertions.api.Assertions.assertThat;
 
-/**
- *
- */
 public class RankedTest {
 	@Test
 	public void sortTest() throws Exception {
@@ -38,16 +35,16 @@ public class RankedTest {
 
 		Collections.sort(list);
 
-		assertEquals(3, list.get(0).getData().intValue());
-		assertEquals(4, list.get(1).getData().intValue());
-		assertEquals(2, list.get(2).getData().intValue());
-		assertEquals(1, list.get(3).getData().intValue());
+		assertThat(list.get(0).getData().intValue()).isEqualTo(3);
+		assertThat(list.get(1).getData().intValue()).isEqualTo(4);
+		assertThat(list.get(2).getData().intValue()).isEqualTo(2);
+		assertThat(list.get(3).getData().intValue()).isEqualTo(1);
 
 		list.add(new Ranked<>(3.0f, -1, 0));
 
 		Collections.sort(list);
 
-		assertEquals(0, list.get(0).getData().intValue());
+		assertThat(list.get(0).getData().intValue()).isEqualTo(0);
 	}
 
 }
