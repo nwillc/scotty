@@ -2,3 +2,4 @@ scotty
 scotty.database
 scotty.database.parser
 scotty.template
+scotty.util
