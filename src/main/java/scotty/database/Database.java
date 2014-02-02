@@ -15,7 +15,6 @@
 
 package scotty.database;
 
-import com.google.common.base.Function;
 import scotty.database.parser.DbParserUtilities;
 import scotty.database.parser.Parser;
 import scotty.util.Consumer;
