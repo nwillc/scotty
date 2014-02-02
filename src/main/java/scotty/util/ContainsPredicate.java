@@ -20,6 +20,11 @@ import com.google.common.base.Predicate;
 
 import static com.google.common.collect.Iterables.contains;
 
+/**
+ * A predicate that tests if value is contained in an iterables members.
+ * @param <T> The value type
+ * @param <I> An iterable of T
+ */
 public class ContainsPredicate<T,I extends Iterable<T>> implements Predicate<T> {
 	final private I iterable;
 
