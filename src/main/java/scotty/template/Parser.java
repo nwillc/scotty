@@ -66,23 +66,23 @@ public final class Parser {
 			if (!scanTo(Tokens.CLOSE, inputStream, scriptOutput)) {
 				throw new IllegalStateException("Unclosed Scotty markup.");
 			}
-			final Script script = new Script(scriptOutput.toString());
+			final Markup markup = new Markup(scriptOutput.toString());
 			String value;
 
-			switch (script.operator) {
+			switch (markup.operator) {
 				case CONTEXT:
-					parsingContext.getOutputStream().write(context.get(script.body, "").getBytes());
+					parsingContext.getOutputStream().write(context.get(markup.body, "").getBytes());
 					break;
 				case QUERY:
 					final Context queryContext;
-					final int endOfAttrName = script.body.indexOf(' ');
+					final int endOfAttrName = markup.body.indexOf(' ');
 					final String attributeName;
 					if (endOfAttrName == -1) {
-						attributeName = script.body;
+						attributeName = markup.body;
 						queryContext = new Context(context);
 					} else {
-						attributeName = script.body.substring(0, endOfAttrName);
-						queryContext = new Context(context, script.body.substring(endOfAttrName));
+						attributeName = markup.body.substring(0, endOfAttrName);
+						queryContext = new Context(context, markup.body.substring(endOfAttrName));
 					}
 					List<Context> matches = database.query(queryContext);
 					if (matches.size() == 0) {
@@ -95,14 +95,14 @@ public final class Parser {
 					break;
 				case IMPORT:
 					final Context importContext;
-					final int endOfFileName = script.body.indexOf(' ');
+					final int endOfFileName = markup.body.indexOf(' ');
 					final String fileName;
 					if (endOfFileName == -1) {
-						fileName = script.body;
+						fileName = markup.body;
 						importContext = new Context(context);
 					} else {
-						fileName = script.body.substring(0, endOfFileName);
-						importContext = new Context(context, script.body.substring(endOfFileName));
+						fileName = markup.body.substring(0, endOfFileName);
+						importContext = new Context(context, markup.body.substring(endOfFileName));
 					}
 					NamedScriptEngine newScriptEngine = new NamedScriptEngine(parsingContext.getLanguageName(), fileName);
 					Optional<InputStream> streamOptional = getResourceAsStream(fileName);
@@ -111,7 +111,7 @@ public final class Parser {
 					}
 					break;
 				case TYPES:
-					String[] types = script.body.split(",");
+					String[] types = markup.body.split(",");
 					forEach(newArrayIterable(types), new Consumer<String>() {
 						@Override
 						public void accept(String type) {
@@ -122,20 +122,20 @@ public final class Parser {
 					});
 					break;
 				case LANGUAGE:
-					parsingContext.setScriptEngine(new NamedScriptEngine(script.body, parsingContext.getScriptName()));
+					parsingContext.setScriptEngine(new NamedScriptEngine(markup.body, parsingContext.getScriptName()));
 					export(database, context, parsingContext);
 					break;
 				case OUTPUT:
 					parsingContext.getOutputStream().flush();
 					parsingContext.getOutputStream().close();
-					Optional<OutputStream> outputStreamOptional = getPath(database.get(Cli.FOLDER), script.body);
+					Optional<OutputStream> outputStreamOptional = getPath(database.get(Cli.FOLDER), markup.body);
 					if (outputStreamOptional.isPresent()) {
 						parsingContext.setOutputStream(outputStreamOptional.get());
 						export(database, context, parsingContext);
 					}
 					break;
 				case IN_CONTEXT:
-					String[] keys = script.body.split(",");
+					String[] keys = markup.body.split(",");
 					forEach(newArrayIterable(keys), new Consumer<String>() {
 						@Override
 						public void accept(String key) {
@@ -147,7 +147,7 @@ public final class Parser {
 					break;
 				default:
 					try {
-						parsingContext.getScriptEngine().eval(script.body);
+						parsingContext.getScriptEngine().eval(markup.body);
 					} catch (ScriptException scriptException) {
 						LOGGER.severe(scriptException.getFileName() + ": [" + scriptException.getLineNumber() + "] " + scriptException.getMessage());
 						throw scriptException;
@@ -195,47 +195,4 @@ public final class Parser {
 		}
 	}
 
-	private static class Script {
-		final char operator;
-		final String body;
-
-		public Script(final String script) {
-			operator = script.charAt(0);
-			body = script.substring(1).trim();
-		}
-	}
-
-	private static class ParsingContext {
-		private NamedScriptEngine scriptEngine;
-		private OutputStream outputStream;
-
-		private ParsingContext(NamedScriptEngine scriptEngine, OutputStream outputStream) {
-			this.scriptEngine = scriptEngine;
-			this.outputStream = outputStream;
-		}
-
-		public NamedScriptEngine getScriptEngine() {
-			return scriptEngine;
-		}
-
-		public void setScriptEngine(NamedScriptEngine scriptEngine) {
-			this.scriptEngine = scriptEngine;
-		}
-
-		public OutputStream getOutputStream() {
-			return outputStream;
-		}
-
-		public void setOutputStream(OutputStream outputStream) {
-			this.outputStream = outputStream;
-		}
-
-		public String getScriptName() {
-			return getScriptEngine().getScriptName();
-		}
-
-		public String getLanguageName() {
-			return getScriptEngine().getLanguageName();
-		}
-	}
 }
