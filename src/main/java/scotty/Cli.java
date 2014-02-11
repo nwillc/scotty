@@ -16,7 +16,7 @@
 package scotty;
 
 /**
- * Command line interface tokens.
+ * OperatorEvaluator line interface tokens.
  */
 public interface Cli {
     String CONTEXT = "context";

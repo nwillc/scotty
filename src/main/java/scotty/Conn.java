@@ -33,7 +33,7 @@ import static scotty.database.parser.DbParserUtilities.print;
 import static scotty.template.Parser.parse;
 
 /**
- * Scotty's conn, where it all gets put together driven by command line.
+ * Scotty's conn, where it all gets put together driven by operator line.
  */
 public final class Conn {
 	private static final Logger LOGGER = Logger.getLogger(Conn.class.getName());

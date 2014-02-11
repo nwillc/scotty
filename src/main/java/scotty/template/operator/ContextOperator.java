@@ -13,14 +13,25 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.template;
+package scotty.template.operator;
 
-public class Markup {
-    public final char operator;
-    public final String body;
+import scotty.database.Context;
+import scotty.database.Database;
+import scotty.template.Markup;
+import scotty.template.ParsingContext;
+import scotty.template.Tokens;
 
-    public Markup(final String script) {
-        operator = script.charAt(0);
-        body = script.substring(1).trim();
+import javax.script.ScriptException;
+import java.io.IOException;
+
+public class ContextOperator implements OperatorEvaluator {
+    @Override
+    public char getOperator() {
+        return Tokens.CONTEXT;
+    }
+
+    @Override
+    public void eval(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
+        parsingContext.getOutputStream().write(context.get(markup.body, "").getBytes());
     }
 }
