@@ -40,6 +40,7 @@
         <junit.version>4.11</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <quava.version>16.0</quava.version>
+        <rxjava.version>0.16.1</rxjava.version>
         <surefire.version>2.12</surefire.version>
     </properties>
 
@@ -59,6 +60,13 @@
             <artifactId>guava</artifactId>
             <version>${quava.version}</version>
         </dependency>
+        <!--
+        <dependency>
+            <groupId>com.netflix.rxjava</groupId>
+            <artifactId>rxjava-core</artifactId>
+            <version>${rxjava.version}</version>
+        </dependency>
+        -->
         <!-- testing -->
         <dependency>
             <groupId>junit</groupId>
