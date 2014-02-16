@@ -23,7 +23,7 @@ import java.util.List;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
-import static scotty.util.ArrayIterable.newArrayIterable;
+import static scotty.util.ArrayIterable.newIterable;
 
 public class ArrayIterableTest {
 
@@ -43,7 +43,7 @@ public class ArrayIterableTest {
 		final List<String> stringList = newArrayList(stringArray);
 
 		int length = 0;
-		for (String s : newArrayIterable(stringArray)) {
+		for (String s : newIterable(stringArray)) {
 			assertThat(stringList.contains(s)).isTrue();
 			stringList.remove(s);
 			length++;

@@ -29,7 +29,7 @@ public class ArrayIterable<T> implements Iterable<T> {
 		this.data = data;
 	}
 
-    public static <T> ArrayIterable<T> newArrayIterable(T[] a) {
+    public static <T> ArrayIterable<T> newIterable(T[] a) {
         return new ArrayIterable<>(a);
     }
 

@@ -29,7 +29,7 @@ public class ScriptOperator implements OperatorEvaluator {
 
     @Override
     public char getOperator() {
-        throw new NoSuchMethodError("Scripts have no operations");
+        throw new NoSuchMethodError("Scripts have no operator associated with them.");
     }
 
     @Override

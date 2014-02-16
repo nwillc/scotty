@@ -19,37 +19,30 @@ import com.google.common.base.Optional;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.template.operator.*;
-import scotty.util.Consumer;
 
 import javax.script.ScriptException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.Map;
 
-import static scotty.util.ArrayIterable.newArrayIterable;
-import static scotty.util.Iterables.forEach;
+import static com.google.common.collect.Iterables.find;
+import static scotty.util.ArrayIterable.newIterable;
 
 /**
  * Parses Scotty templates, applies data from the Database considering the given context, and produces transformed
  * output.
  */
 public final class Parser {
-    private static final Map<Character, OperatorEvaluator> OPS = new HashMap<>();
     private static final OperatorEvaluator DEFAULT_OP = new ScriptOperator();
-    private static final OperatorEvaluator[] OPERATOR_EVALUATORS = { new ContextOperator(), new QueryOperator(), new ImportOperator(),
-            new TypesOperator(), new LanguageOperator(), new OutputOperator(), new InContextOperator()};
-
-    static {
-       forEach(newArrayIterable(OPERATOR_EVALUATORS), new Consumer<OperatorEvaluator>() {
-           @Override
-           public void accept(OperatorEvaluator operatorEvaluator) {
-               OPS.put(operatorEvaluator.getOperator(), operatorEvaluator);
-           }
-       });
-    }
+    private static final OperatorEvaluator[] OPERATOR_EVALUATORS = {
+			new ContextOperator(),
+			new QueryOperator(),
+			new ImportOperator(),
+            new TypesOperator(),
+			new LanguageOperator(),
+			new OutputOperator(),
+			new InContextOperator()};
 
     private Parser() {
     }
@@ -70,24 +63,24 @@ public final class Parser {
         ParsingContext parsingContext = new ParsingContext(namedScriptEngine, outputStream);
         parsingContext.export(database, context);
         while (true) {
-            Optional<Markup> markupOptional = parseMarkup(inputStream, parsingContext);
+            Optional<Markup> markupOptional = nextMarkup(inputStream, parsingContext);
 
             if (!markupOptional.isPresent()) {
                 break;
             }
 
-            OperatorEvaluator operatorEvaluator = OPS.get(markupOptional.get().operator);
-
-            if (operatorEvaluator == null) {
-                operatorEvaluator = DEFAULT_OP;
-            }
-            operatorEvaluator.eval(database, context, markupOptional.get(), parsingContext);
+			Markup markup = markupOptional.get();
+            find(newIterable(OPERATOR_EVALUATORS), new OperatorFor(markup), DEFAULT_OP).eval(database, context, markup, parsingContext);
         }
 
         parsingContext.getOutputStream().flush();
     }
 
-    private static Optional<Markup> parseMarkup(InputStream inputStream, ParsingContext parsingContext) throws IOException {
+	/**
+	 * Find the next markup in the input stream. Data preceding the next markup is copied to the output.
+	 * @throws IOException
+	 */
+    private static Optional<Markup> nextMarkup(InputStream inputStream, ParsingContext parsingContext) throws IOException {
         if (!scanTo(Tokens.OPEN, inputStream, parsingContext.getOutputStream())) {
            return Optional.absent();
         }

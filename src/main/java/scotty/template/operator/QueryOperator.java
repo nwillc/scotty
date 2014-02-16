@@ -25,9 +25,6 @@ import javax.script.ScriptException;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by nchristopher on 2/11/14.
- */
 public class QueryOperator implements OperatorEvaluator {
     @Override
     public char getOperator() {

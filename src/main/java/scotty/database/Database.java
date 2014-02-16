@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static scotty.util.ArrayIterable.newArrayIterable;
+import static scotty.util.ArrayIterable.newIterable;
 import static scotty.util.Iterables.forEach;
 
 /**
@@ -42,7 +42,7 @@ public class Database extends Context {
 	 */
 	public static Database parse(InputStream... inputStreams) {
 		final Database database = new Database();
-		forEach(newArrayIterable(inputStreams), new Consumer<InputStream>() {
+		forEach(newIterable(inputStreams), new Consumer<InputStream>() {
 			@Override
 			public void accept(InputStream stream) {
 				Optionals.accept(Parser.parse(stream), new Consumer<Type>() {
@@ -64,7 +64,7 @@ public class Database extends Context {
 	 */
 	public static Database parse(String... files) {
 		final Database database = new Database();
-		forEach(newArrayIterable(files), new Consumer<String>() {
+		forEach(newIterable(files), new Consumer<String>() {
 			@Override
 			public void accept(String file) {
 				Optionals.accept(Parser.parse(file), new Consumer<Type>() {

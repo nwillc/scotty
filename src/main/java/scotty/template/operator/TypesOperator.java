@@ -25,7 +25,7 @@ import scotty.util.Consumer;
 import javax.script.ScriptException;
 import java.io.IOException;
 
-import static scotty.util.ArrayIterable.newArrayIterable;
+import static scotty.util.ArrayIterable.newIterable;
 import static scotty.util.Iterables.forEach;
 
 public class TypesOperator implements OperatorEvaluator {
@@ -37,7 +37,7 @@ public class TypesOperator implements OperatorEvaluator {
     @Override
     public void eval(final Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
         String[] types = markup.body.split(",");
-        forEach(newArrayIterable(types), new Consumer<String>() {
+        forEach(newIterable(types), new Consumer<String>() {
             @Override
             public void accept(String type) {
                 if (!database.getContained().containsKey(type.trim())) {

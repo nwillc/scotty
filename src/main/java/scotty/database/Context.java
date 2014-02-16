@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static scotty.util.ArrayIterable.newArrayIterable;
+import static scotty.util.ArrayIterable.newIterable;
 import static scotty.util.Iterables.forEach;
 
 /**
@@ -133,20 +133,20 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         }
 
         final String[] assignments = attributes.trim().split("(?<!\\\\),");
-        forEach(newArrayIterable(assignments), new Consumer<String>(){
+        forEach(newIterable(assignments), new Consumer<String>(){
             @Override
             public void accept(String assignment) {
                 String[] labelValue = assignment.split("(?<!\\\\)=");
                 if (labelValue.length == 2) {
                     final Value value = new Value();
                     final String[] values = labelValue[1].trim().split("(?<!\\\\)\\|");
-                    forEach(newArrayIterable(values), new Consumer<String>() {
+                    forEach(newIterable(values), new Consumer<String>() {
                         @Override
                         public void accept(String str) {
                             value.add(str.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c", "|"));
                         }
                     });
-                    forEach(newArrayIterable(values), new Consumer<String>() {
+                    forEach(newIterable(values), new Consumer<String>() {
                         @Override
                         public void accept(String str) {
                             value.add(str.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c", "|"));
@@ -157,14 +157,14 @@ public class Context implements Comparable<Context>, Similarity<Context> {
             }
         });
 
-        forEach(newArrayIterable(assignments), new Consumer<String>() {
+        forEach(newIterable(assignments), new Consumer<String>() {
             @Override
             public void accept(String assignment) {
                 String[] labelValue = assignment.split("(?<!\\\\)=");
                 if (labelValue.length == 2) {
                     final Value value = new Value();
                     final String[] values = labelValue[1].trim().split("(?<!\\\\)\\|");
-                    forEach(newArrayIterable(values), new Consumer<String>() {
+                    forEach(newIterable(values), new Consumer<String>() {
                         @Override
                         public void accept(String str) {
                             value.add(str.replaceAll("\\\\,", ",").replaceAll("\\\\\\x7c", "|"));

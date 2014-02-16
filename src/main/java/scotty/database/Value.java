@@ -22,7 +22,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import static com.google.common.collect.Iterables.any;
-import static scotty.util.ArrayIterable.newArrayIterable;
+import static scotty.util.ArrayIterable.newIterable;
 import static scotty.util.ContainsPredicate.newContainsPredicate;
 import static scotty.util.Iterables.forEach;
 
@@ -41,7 +41,7 @@ public class Value implements Similarity<Value> {
     }
 
 	public void addAll(String ... values) {
-        forEach(newArrayIterable(values), new scotty.util.Consumer<String>() {
+        forEach(newIterable(values), new scotty.util.Consumer<String>() {
             @Override
             public void accept(String s) {
                 add(s);
