@@ -70,7 +70,7 @@ public final class Parser {
         ParsingContext parsingContext = new ParsingContext(namedScriptEngine, outputStream);
         parsingContext.export(database, context);
         while (true) {
-            Optional<Markup> markupOptional = parseMarkups(inputStream, parsingContext);
+            Optional<Markup> markupOptional = parseMarkup(inputStream, parsingContext);
 
             if (!markupOptional.isPresent()) {
                 break;
@@ -87,7 +87,7 @@ public final class Parser {
         parsingContext.getOutputStream().flush();
     }
 
-    private static Optional<Markup> parseMarkups(InputStream inputStream, ParsingContext parsingContext) throws IOException {
+    private static Optional<Markup> parseMarkup(InputStream inputStream, ParsingContext parsingContext) throws IOException {
         if (!scanTo(Tokens.OPEN, inputStream, parsingContext.getOutputStream())) {
            return Optional.absent();
         }

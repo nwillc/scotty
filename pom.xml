@@ -60,13 +60,6 @@
             <artifactId>guava</artifactId>
             <version>${quava.version}</version>
         </dependency>
-        <!--
-        <dependency>
-            <groupId>com.netflix.rxjava</groupId>
-            <artifactId>rxjava-core</artifactId>
-            <version>${rxjava.version}</version>
-        </dependency>
-        -->
         <!-- testing -->
         <dependency>
             <groupId>junit</groupId>
