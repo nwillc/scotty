@@ -15,9 +15,11 @@
 
 package scotty.template;
 
+import com.google.common.base.Optional;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.template.operator.*;
+import scotty.util.Consumer;
 
 import javax.script.ScriptException;
 import java.io.ByteArrayOutputStream;
@@ -27,6 +29,9 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import static scotty.util.ArrayIterable.newArrayIterable;
+import static scotty.util.Iterables.forEach;
+
 /**
  * Parses Scotty templates, applies data from the Database considering the given context, and produces transformed
  * output.
@@ -34,24 +39,16 @@ import java.util.Map;
 public final class Parser {
     private static final Map<Character, OperatorEvaluator> OPS = new HashMap<>();
     private static final OperatorEvaluator DEFAULT_OP = new ScriptOperator();
+    private static final OperatorEvaluator[] OPERATOR_EVALUATORS = { new ContextOperator(), new QueryOperator(), new ImportOperator(),
+            new TypesOperator(), new LanguageOperator(), new OutputOperator(), new InContextOperator()};
 
     static {
-        OperatorEvaluator operatorEvaluator;
-
-        operatorEvaluator = new ContextOperator();
-        OPS.put(operatorEvaluator.getOperator(), operatorEvaluator);
-        operatorEvaluator = new QueryOperator();
-        OPS.put(operatorEvaluator.getOperator(), operatorEvaluator);
-        operatorEvaluator = new ImportOperator();
-        OPS.put(operatorEvaluator.getOperator(), operatorEvaluator);
-        operatorEvaluator = new TypesOperator();
-        OPS.put(operatorEvaluator.getOperator(), operatorEvaluator);
-        operatorEvaluator = new LanguageOperator();
-        OPS.put(operatorEvaluator.getOperator(), operatorEvaluator);
-        operatorEvaluator = new OutputOperator();
-        OPS.put(operatorEvaluator.getOperator(), operatorEvaluator);
-        operatorEvaluator = new InContextOperator();
-        OPS.put(operatorEvaluator.getOperator(), operatorEvaluator);
+       forEach(newArrayIterable(OPERATOR_EVALUATORS), new Consumer<OperatorEvaluator>() {
+           @Override
+           public void accept(OperatorEvaluator operatorEvaluator) {
+               OPS.put(operatorEvaluator.getOperator(), operatorEvaluator);
+           }
+       });
     }
 
     private Parser() {
@@ -73,24 +70,32 @@ public final class Parser {
         ParsingContext parsingContext = new ParsingContext(namedScriptEngine, outputStream);
         parsingContext.export(database, context);
         while (true) {
-            if (!scanTo(Tokens.OPEN, inputStream, parsingContext.getOutputStream())) {
+            Optional<Markup> markupOptional = parseMarkups(inputStream, parsingContext);
+
+            if (!markupOptional.isPresent()) {
                 break;
             }
 
-            ByteArrayOutputStream scriptOutput = new ByteArrayOutputStream();
-            if (!scanTo(Tokens.CLOSE, inputStream, scriptOutput)) {
-                throw new IllegalStateException("Unclosed Scotty markup.");
-            }
-            final Markup markup = new Markup(scriptOutput.toString());
+            OperatorEvaluator operatorEvaluator = OPS.get(markupOptional.get().operator);
 
-            OperatorEvaluator operatorEvaluator = OPS.get(markup.operator);
             if (operatorEvaluator == null) {
                 operatorEvaluator = DEFAULT_OP;
             }
-            operatorEvaluator.eval(database, context, markup, parsingContext);
+            operatorEvaluator.eval(database, context, markupOptional.get(), parsingContext);
         }
 
         parsingContext.getOutputStream().flush();
+    }
+
+    private static Optional<Markup> parseMarkups(InputStream inputStream, ParsingContext parsingContext) throws IOException {
+        if (!scanTo(Tokens.OPEN, inputStream, parsingContext.getOutputStream())) {
+           return Optional.absent();
+        }
+        ByteArrayOutputStream scriptOutput = new ByteArrayOutputStream();
+        if (!scanTo(Tokens.CLOSE, inputStream, scriptOutput)) {
+            throw new IllegalStateException("Unclosed Scotty markup.");
+        }
+        return Optional.of(new Markup(scriptOutput.toString()));
     }
 
     /**
