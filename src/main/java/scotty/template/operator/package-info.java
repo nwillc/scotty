@@ -13,12 +13,8 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.util.function;
-
 /**
- * A supplier interface.
- * @param <T> type supplied.
+ * The operator package contains Scotty's implementations of how to handle each of it's DSL markups.
+ * @since 1.4
  */
-public interface Supplier<T> {
-	public T get();
-}
+package scotty.template.operator;

@@ -15,6 +15,12 @@
 
 package scotty.util.function;
 
+/**
+ * Basic interface of a function.
+ *
+ * @param <T>  takes
+ * @param <R>  returns
+ */
 public interface Function<T,R> {
 	public R apply(T t);
 }

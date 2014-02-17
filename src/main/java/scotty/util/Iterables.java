@@ -21,6 +21,9 @@ import java.util.Iterator;
 
 import static scotty.util.Preconditions.checkNotNull;
 
+/**
+ * Additional operations provided for Iterables.
+ */
 public class Iterables {
 	private Iterables() {}
 

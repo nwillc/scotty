@@ -16,7 +16,7 @@
 package scotty.util.function;
 
 /**
- * Java 8 featured partially pulled through to 7.
+ * A predicate function.
  */
 public interface Predicate<T> {
     boolean test(T t);

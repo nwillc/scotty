@@ -13,12 +13,9 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.util.function;
-
 /**
- * A supplier interface.
- * @param <T> type supplied.
+ * This package functional programming code based on Guava, and Java 1.8. The goal is a very light
+ * weight best of breed.
+ * @since 1.4
  */
-public interface Supplier<T> {
-	public T get();
-}
+package scotty.util.function;

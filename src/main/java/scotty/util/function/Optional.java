@@ -20,7 +20,7 @@ import java.util.NoSuchElementException;
 import static scotty.util.Preconditions.checkNotNull;
 
 /**
- * An Optional implementation. Will be deprecated by 1.8
+ * An Optional implementation.
  */
 public final class Optional<T> {
     private static final Optional EMPTY = new Optional<>();
@@ -63,12 +63,21 @@ public final class Optional<T> {
         return optional != null;
     }
 
+	/**
+	 * If the optional is present, consume it.
+	 * @param consumer function to consume the optional if present
+	 */
 	public void ifPresent(Consumer<? super T> consumer){
 		if (isPresent()) {
 			consumer.accept(get());
 		}
 	}
 
+	/**
+	 * If the optional is empty return another value.
+	 * @param other the other value
+	 * @return the optional if present or other if empty
+	 */
     public T orElse(T other) {
         if (isPresent()) {
             return get();
@@ -77,6 +86,12 @@ public final class Optional<T> {
         return other;
     }
 
+	/**
+	 * Transform the optional to and optional of another type via a function.
+	 * @param function
+	 * @param <V>
+	 * @return
+	 */
 	public <V> Optional<V> transform(Function<T,V> function){
 		if (isPresent()) {
 			return Optional.of(function.apply(get()));

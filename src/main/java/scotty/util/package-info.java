@@ -13,12 +13,8 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.util.function;
-
 /**
- * A supplier interface.
- * @param <T> type supplied.
+ * Various utility classes used by Scotty.
+ * @since 1.2
  */
-public interface Supplier<T> {
-	public T get();
-}
+package scotty.util;

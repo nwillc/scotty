@@ -17,6 +17,9 @@ package scotty.util.function;
 
 import scotty.util.Iterables;
 
+/**
+ * Some basic predicates.
+ */
 public class Predicates {
 	public static <T> Predicate<T> isEqual(final T targetRef) {
 		return new Predicate<T>() {
