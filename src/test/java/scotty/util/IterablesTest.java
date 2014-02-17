@@ -15,29 +15,25 @@
 
 package scotty.util;
 
-import com.google.common.base.Function;
 import org.junit.Before;
 import org.junit.Test;
+import scotty.util.function.Consumer;
+import scotty.util.function.Function;
 
 import java.util.List;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static org.fest.assertions.api.Assertions.assertThat;
+import static scotty.util.ArrayIterable.newIterable;
 import static scotty.util.Iterables.forEach;
 
 public class IterablesTest {
 
-	private List<String> strings;
-
-	@Before
-	public void setUp() throws Exception {
-		strings = newArrayList("a", "b", "c");
-	}
+	private String[] strings = {"a", "b", "c"};
 
 	@Test
 	public void shouldForEachConsumer() throws Exception {
 		final StringBuffer stringBuffer = new StringBuffer();
-		forEach(strings, new Consumer<String>() {
+		forEach(newIterable(strings), new Consumer<String>() {
 			@Override
 			public void accept(String s) {
 				stringBuffer.append(s);
@@ -56,6 +52,6 @@ public class IterablesTest {
 				return stringBuffer.toString();
 			}
 		};
-		assertThat(forEach(strings,function)).isEqualTo("abc");
+		assertThat(forEach(newIterable(strings),function)).isEqualTo("abc");
 	}
 }

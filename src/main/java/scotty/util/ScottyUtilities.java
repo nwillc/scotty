@@ -13,23 +13,41 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty;
+package scotty.util;
 
-import com.google.common.base.Optional;
+import scotty.util.function.Optional;
 
 import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.Iterator;
 import java.util.logging.Logger;
 
-/**
- *
- */
+
 public class ScottyUtilities {
     private static final Logger LOGGER = Logger.getLogger(ScottyUtilities.class.getName());
 
     private ScottyUtilities() {
     }
+
+	public static String join(CharSequence delimeter, Iterable iterable) {
+		Preconditions.checkNotNull(iterable, "Can't join a null iterable");
+		Preconditions.checkNotNull(delimeter," Null is not a valid delimeter");
+
+		Iterator iterator = iterable.iterator();
+		if (!iterator.hasNext()) {
+			return "";
+		}
+
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(iterator.next().toString());
+
+		while(iterator.hasNext()) {
+			stringBuilder.append(delimeter);
+			stringBuilder.append(iterator.next().toString());
+		}
+		return stringBuilder.toString();
+	}
 
     /**
      * Look up a resource as either file or failing that a resource from the jar.
@@ -48,7 +66,7 @@ public class ScottyUtilities {
         InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(resource);
         if (inputStream == null) {
             LOGGER.info("Failed to find " + resource + " as file or resource.");
-			return Optional.absent();
+			return Optional.empty();
         }
         return Optional.of(inputStream);
     }
@@ -67,7 +85,7 @@ public class ScottyUtilities {
 			return Optional.of((OutputStream)new FileOutputStream(path.toString()));
 		} catch (FileNotFoundException e) {
 			LOGGER.warning("Path " + folder + "/" + filename + " not found");
-			return Optional.absent();
+			return Optional.empty();
 		}
     }
 

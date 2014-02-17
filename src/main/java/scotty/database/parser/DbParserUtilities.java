@@ -19,7 +19,7 @@ import scotty.database.Context;
 import scotty.database.Database;
 import scotty.database.Instance;
 import scotty.database.Type;
-import scotty.util.Consumer;
+import scotty.util.function.Consumer;
 
 import java.io.PrintStream;
 import java.util.Collections;

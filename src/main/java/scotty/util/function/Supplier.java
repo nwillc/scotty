@@ -13,23 +13,8 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.template.operator;
+package scotty.util.function;
 
-import scotty.template.Markup;
-import scotty.util.function.Predicate;
-
-/**
- * Predicate asserting that an OperatorEvaluator is appropriate for a Markup.
- */
-public class OperatorFor implements Predicate<OperatorEvaluator> {
-	private final Markup markup;
-
-	public OperatorFor(Markup markup) {
-		this.markup = markup;
-	}
-
-	@Override
-	public boolean test(OperatorEvaluator operatorEvaluator) {
-		return operatorEvaluator.getOperator() == markup.operator;
-	}
+public interface Supplier<T> {
+	public T get();
 }

@@ -15,11 +15,11 @@
 
 package scotty;
 
-import com.google.common.base.Optional;
 import org.apache.commons.cli.*;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.template.NamedScriptEngine;
+import scotty.util.function.Optional;
 
 import javax.script.ScriptException;
 import java.io.*;
@@ -27,8 +27,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static scotty.Cli.*;
-import static scotty.ScottyUtilities.getPath;
-import static scotty.ScottyUtilities.getResourceAsStream;
+import static scotty.util.ScottyUtilities.getPath;
+import static scotty.util.ScottyUtilities.getResourceAsStream;
 import static scotty.database.parser.DbParserUtilities.print;
 import static scotty.template.Parser.parse;
 

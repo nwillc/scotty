@@ -20,7 +20,7 @@ import scotty.database.Database;
 import scotty.template.Markup;
 import scotty.template.ParsingContext;
 import scotty.template.Tokens;
-import scotty.util.Consumer;
+import scotty.util.function.Consumer;
 
 import javax.script.ScriptException;
 import java.io.IOException;

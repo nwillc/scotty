@@ -15,10 +15,10 @@
 
 package scotty.template;
 
-import com.google.common.base.Optional;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.template.operator.*;
+import scotty.util.function.Optional;
 
 import javax.script.ScriptException;
 import java.io.ByteArrayOutputStream;
@@ -26,8 +26,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static com.google.common.collect.Iterables.find;
 import static scotty.util.ArrayIterable.newIterable;
+import static scotty.util.Iterables.find;
 
 /**
  * Parses Scotty templates, applies data from the Database considering the given context, and produces transformed
@@ -82,7 +82,7 @@ public final class Parser {
 	 */
     private static Optional<Markup> nextMarkup(InputStream inputStream, ParsingContext parsingContext) throws IOException {
         if (!scanTo(Tokens.OPEN, inputStream, parsingContext.getOutputStream())) {
-           return Optional.absent();
+           return Optional.empty();
         }
         ByteArrayOutputStream scriptOutput = new ByteArrayOutputStream();
         if (!scanTo(Tokens.CLOSE, inputStream, scriptOutput)) {

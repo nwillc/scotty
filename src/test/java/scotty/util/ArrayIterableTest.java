@@ -17,10 +17,10 @@ package scotty.util;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static scotty.util.ArrayIterable.newIterable;
@@ -40,12 +40,10 @@ public class ArrayIterableTest {
 	@Test
 	public void shouldIterateAll() throws Exception {
 		String[] stringArray = new String[]{"a", "b", "c"};
-		final List<String> stringList = newArrayList(stringArray);
 
 		int length = 0;
 		for (String s : newIterable(stringArray)) {
-			assertThat(stringList.contains(s)).isTrue();
-			stringList.remove(s);
+			assertThat(Arrays.binarySearch(stringArray, s)).isGreaterThan(-1);
 			length++;
 		}
 		assertThat(length).isEqualTo(stringArray.length);

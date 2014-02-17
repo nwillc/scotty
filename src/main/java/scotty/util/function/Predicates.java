@@ -13,13 +13,26 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.util;
+package scotty.util.function;
 
-/**
- * A functional consumer interface definition.
- *
- * @param <T> The type consumed
- */
-public interface Consumer<T> {
-	void accept(T t);
+import scotty.util.Iterables;
+
+public class Predicates {
+	public static <T> Predicate<T> isEqual(final T targetRef) {
+		return new Predicate<T>() {
+			@Override
+			public boolean test(T t) {
+				return t.equals(targetRef);
+			}
+		};
+	}
+
+	public static <T> Predicate<T> contains(final Iterable<T> iterable) {
+		return new Predicate<T>() {
+			@Override
+			public boolean test(T t) {
+				return Iterables.contains(iterable, t);
+			}
+		};
+	}
 }

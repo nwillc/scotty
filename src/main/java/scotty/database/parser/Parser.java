@@ -15,7 +15,7 @@
 
 package scotty.database.parser;
 
-import com.google.common.base.Optional;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -23,6 +23,7 @@ import scotty.database.Context;
 import scotty.database.Instance;
 import scotty.database.Type;
 import scotty.database.Value;
+import scotty.util.function.Optional;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -32,7 +33,7 @@ import java.util.Deque;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static scotty.ScottyUtilities.getResourceAsStream;
+import static scotty.util.ScottyUtilities.getResourceAsStream;
 import static scotty.database.parser.Attributes.NAME;
 import static scotty.database.parser.Attributes.VALUE;
 import static scotty.database.parser.Elements.*;
@@ -56,7 +57,7 @@ public class Parser extends DefaultHandler {
 			return Optional.of(typeHandler.type);
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Failed parsing inputStream", e);
-			return Optional.absent();
+			return Optional.empty();
 		}
     }
 
@@ -65,7 +66,7 @@ public class Parser extends DefaultHandler {
 		if (inputStreamOptional.isPresent()) {
 			return parse(inputStreamOptional.get());
 		}
-		return Optional.absent();
+		return Optional.empty();
     }
 
     @Override

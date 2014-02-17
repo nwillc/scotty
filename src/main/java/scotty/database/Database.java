@@ -17,8 +17,7 @@ package scotty.database;
 
 import scotty.database.parser.DbParserUtilities;
 import scotty.database.parser.Parser;
-import scotty.util.Consumer;
-import scotty.util.Optionals;
+import scotty.util.function.Consumer;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -45,7 +44,7 @@ public class Database extends Context {
 		forEach(newIterable(inputStreams), new Consumer<InputStream>() {
 			@Override
 			public void accept(InputStream stream) {
-				Optionals.accept(Parser.parse(stream), new Consumer<Type>() {
+				Parser.parse(stream).ifPresent(new Consumer<Type>() {
 					@Override
 					public void accept(Type type) {
 						database.getContained().put(type.getName(), type);
@@ -67,7 +66,7 @@ public class Database extends Context {
 		forEach(newIterable(files), new Consumer<String>() {
 			@Override
 			public void accept(String file) {
-				Optionals.accept(Parser.parse(file), new Consumer<Type>() {
+				Parser.parse(file).ifPresent(new Consumer<Type>() {
 					@Override
 					public void accept(Type type) {
 						database.getContained().put(type.getName(), type);
@@ -123,7 +122,7 @@ public class Database extends Context {
 		forEach(query(criteria), new Consumer<Context>() {
 			@Override
 			public void accept(Context context) {
-				Optionals.accept(context.getValue(attr), new Consumer<Value>() {
+				context.getValue(attr).ifPresent(new Consumer<Value>() {
 					@Override
 					public void accept(Value value) {
 						forEach(value.values(), new Consumer<String>() {

@@ -15,15 +15,18 @@
 
 package scotty.util;
 
-import com.google.common.base.Function;
-import com.google.common.base.Preconditions;
+import scotty.util.function.*;
+
+import java.util.Iterator;
+
+import static scotty.util.Preconditions.checkNotNull;
 
 public class Iterables {
 	private Iterables() {}
 
 	public static <T> void forEach(Iterable<T> i, final Consumer<T> c) {
-		Preconditions.checkNotNull(i);
-		Preconditions.checkNotNull(c);
+		checkNotNull(i, "forEach must have a valid iterable");
+		checkNotNull(c, "forEach must have a valid consumer");
 
 		for (T t : i) {
 			c.accept(t);
@@ -31,14 +34,60 @@ public class Iterables {
 	}
 
 	public static <T,R> R forEach(Iterable<T> i, final Function<T,R> f) {
-		Preconditions.checkNotNull(i);
-		Preconditions.checkNotNull(f);
+		checkNotNull(i, "forEach must have a valid iterable");
+		checkNotNull(f, "forEach must have a valid function");
 		R ret = null;
 
 		for (T t : i) {
 			ret = f.apply(t);
 		}
-		Preconditions.checkNotNull(ret, "Function can not return null");
+		checkNotNull(ret, "Function can not return null");
 		return ret;
+	}
+
+	public static <T> Optional<T> find(Iterable<? extends T> iterable, Predicate<? super T> predicate) {
+		for (T t : iterable) {
+			if (predicate.test(t)) {
+				return Optional.of(t);
+			}
+		}
+		return Optional.empty();
+	}
+
+	public static <T> T find(Iterable<? extends T> iterable, Predicate<? super T> predicate, T defaultValue) {
+		return find(iterable, predicate).orElse(defaultValue);
+	}
+
+	public static <T> boolean any(Iterable<T> iterable, Predicate<? super T> predicate) {
+		return find(iterable, predicate).isPresent();
+	}
+
+	public static <T> boolean contains(Iterable<T> iterable, T value) {
+		return any(iterable, Predicates.isEqual(value));
+	}
+
+	public static <F,T> Iterable<T>	transform(final Iterable<F> fromIterable, final Function<? super F,? extends T> function) {
+		return new Iterable<T>() {
+			@Override
+			public Iterator<T> iterator() {
+				final Iterator<F> fromIterator = fromIterable.iterator();
+				return new Iterator<T>() {
+					@Override
+					public boolean hasNext() {
+						return fromIterator.hasNext();
+					}
+
+					@Override
+					public T next() {
+						return function.apply(fromIterator.next());
+					}
+
+					@Override
+					public void remove() {
+					  throw new NoSuchMethodError("transform does not implement remove");
+					}
+				};
+			}
+		};
 	}
 }

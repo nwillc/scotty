@@ -15,11 +15,11 @@
 
 package scotty.template;
 
-import com.google.common.base.Optional;
 import org.junit.Before;
 import org.junit.Test;
 import scotty.database.Context;
 import scotty.database.Database;
+import scotty.util.function.Optional;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -27,7 +27,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 import static org.fest.assertions.api.Assertions.assertThat;
-import static scotty.ScottyUtilities.getResourceAsStream;
+import static scotty.util.ScottyUtilities.getResourceAsStream;
 
 public class ParserTest {
     private Database database;

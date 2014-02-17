@@ -15,7 +15,7 @@
 
 package scotty.database.parser;
 
-import com.google.common.base.Preconditions;
+import static scotty.util.Preconditions.checkNotNull;
 
 /**
  * A comparable container to hold data and ranking. The rank is a combination of the "score" and the "age".
@@ -27,8 +27,8 @@ public final class Ranked<T> implements Comparable<Ranked> {
     private final T data;
 
     public Ranked(Float score, Integer age, T data) {
-		Preconditions.checkNotNull(score);
-		Preconditions.checkNotNull(age);
+		checkNotNull(score, "Ranked must have a valid score");
+		checkNotNull(age, "Ranked must have a valid age");
         this.score = score;
         this.age = age;
         this.data = data;

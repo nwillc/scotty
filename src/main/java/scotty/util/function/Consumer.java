@@ -13,31 +13,13 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.util;
-
-
-import com.google.common.base.Predicate;
-
-import static com.google.common.collect.Iterables.contains;
+package scotty.util.function;
 
 /**
- * A predicate that tests if value is contained in an iterables members.
- * @param <T> The value type
- * @param <I> An iterable of T
+ * A functional consumer interface definition.
+ *
+ * @param <T> The type consumed
  */
-public class ContainsPredicate<T,I extends Iterable<T>> implements Predicate<T> {
-	final private I iterable;
-
-	public ContainsPredicate(I iterable) {
-		this.iterable = iterable;
-	}
-
-	public static <T,I extends Iterable<T>> ContainsPredicate<T,I> newContainsPredicate(I i) {
-		return new ContainsPredicate<>(i);
-	}
-
-	@Override
-	public boolean apply(T t) {
-		return contains(iterable, t);
-	}
+public interface Consumer<T> {
+	void accept(T t);
 }

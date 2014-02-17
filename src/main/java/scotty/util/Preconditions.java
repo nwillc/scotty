@@ -15,14 +15,12 @@
 
 package scotty.util;
 
-import com.google.common.base.Optional;
+public class Preconditions {
 
-public class Optionals {
-	private Optionals() {}
-
-	public static <T> void accept(Optional<T> optional, Consumer<T> consumer) {
-		if (optional.isPresent()) {
-			consumer.accept(optional.get());
+	public static <T> T checkNotNull(T reference, String errorMessage) {
+		if (reference == null) {
+			throw new NullPointerException(errorMessage);
 		}
+		return reference;
 	}
 }

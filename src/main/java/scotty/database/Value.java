@@ -15,16 +15,18 @@
 
 package scotty.database;
 
-import com.google.common.base.Joiner;
 import scotty.database.parser.Similarity;
+import scotty.util.ScottyUtilities;
+import scotty.util.function.Consumer;
+import scotty.util.function.Predicates;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
-import static com.google.common.collect.Iterables.any;
 import static scotty.util.ArrayIterable.newIterable;
-import static scotty.util.ContainsPredicate.newContainsPredicate;
+import static scotty.util.Iterables.any;
 import static scotty.util.Iterables.forEach;
+import static scotty.util.ScottyUtilities.join;
 
 /**
  * The values of a Scotty attribute. A value contains 1 to n strings. The value is
@@ -41,7 +43,7 @@ public class Value implements Similarity<Value> {
     }
 
 	public void addAll(String ... values) {
-        forEach(newIterable(values), new scotty.util.Consumer<String>() {
+        forEach(newIterable(values), new Consumer<String>() {
             @Override
             public void accept(String s) {
                 add(s);
@@ -80,9 +82,7 @@ public class Value implements Similarity<Value> {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-		Joiner.on(',').appendTo(stringBuilder, contents);
-        return stringBuilder.toString();
+		return join(",", contents);
     }
 
     @Override
@@ -101,6 +101,6 @@ public class Value implements Similarity<Value> {
             score -= DOWN_GRADE;
         }
 
-		return any(b.values(), newContainsPredicate(values())) ? score : NOT_SIMILAR;
+		return any(b.values(), Predicates.contains(values())) ? score : NOT_SIMILAR;
     }
 }

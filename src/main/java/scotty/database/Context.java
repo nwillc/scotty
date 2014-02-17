@@ -15,13 +15,11 @@
 
 package scotty.database;
 
-import com.google.common.base.Function;
-import com.google.common.base.Joiner;
-import com.google.common.base.Optional;
-import com.google.common.base.Supplier;
-import com.google.common.collect.Iterables;
 import scotty.database.parser.Similarity;
-import scotty.util.Consumer;
+import scotty.util.Iterables;
+import scotty.util.function.Consumer;
+import scotty.util.function.Function;
+import scotty.util.function.Optional;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -31,6 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static scotty.util.ArrayIterable.newIterable;
 import static scotty.util.Iterables.forEach;
+import static scotty.util.ScottyUtilities.join;
 
 /**
  * A Context is a set of attributes, that can inherit attributes from its parent and contain sub-contexts within it.
@@ -218,7 +217,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
             return container.getValue(key);
         }
 
-        return Optional.absent();
+        return Optional.empty();
     }
 
     /**
@@ -244,12 +243,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
             public String apply(Value value) {
                 return value.toString();
             }
-        }).or(new Supplier<String>() {
-            @Override
-            public String get() {
-                return defaultValue;
-            }
-        });
+        }).orElse(defaultValue);
     }
 
     /**
@@ -284,12 +278,12 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         final StringBuilder sb = new StringBuilder(this.getClass().getSimpleName());
         sb.append("{");
         sb.append("Map{");
-        Joiner.on(", ").appendTo(sb, Iterables.transform(getMap().keySet(),new Function<String, String>() {
-            @Override
-            public String apply(String key) {
-                return key + "=" + getMap().get(key);
-            }
-        }));
+		sb.append(join(", ", Iterables.transform(getMap().keySet(), new Function<String, String>() {
+			@Override
+			public String apply(String key) {
+				return key + "=" + getMap().get(key);
+			}
+		})));
         sb.append("}");
         sb.append(", isContained=");
         sb.append(isContained());
@@ -298,12 +292,12 @@ public class Context implements Comparable<Context>, Similarity<Context> {
             sb.append(isContainer());
         } else {
             sb.append(", Contained{");
-            Joiner.on(", ").appendTo(sb, Iterables.transform(getContained().keySet(), new Function<String,String>() {
-                @Override
-                public String apply(String key) {
-                    return key + "=" + getContained().get(key);
-                }
-            }));
+			sb.append(join(", ", Iterables.transform(getContained().keySet(), new Function<String, String>() {
+				@Override
+				public String apply(String key) {
+					return key + "=" + getContained().get(key);
+				}
+			})));
             sb.append("}");
         }
         sb.append(", age=").append(age);
@@ -330,7 +324,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
                 public Float apply(Value value) {
                    return value.similarity(b.getValue(key).get());
                 }
-            }).or(0.0f);
+            }).orElse(0.0f);
             if (vScore == NOT_SIMILAR) {
                 return NOT_SIMILAR;
             }

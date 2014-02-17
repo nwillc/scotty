@@ -15,16 +15,16 @@
 
 package scotty.template.operator;
 
-import com.google.common.base.Optional;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.template.*;
+import scotty.util.function.Optional;
 
 import javax.script.ScriptException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static scotty.ScottyUtilities.getResourceAsStream;
+import static scotty.util.ScottyUtilities.getResourceAsStream;
 
 public class ImportOperator implements OperatorEvaluator {
     @Override
