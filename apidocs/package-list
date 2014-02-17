@@ -2,4 +2,6 @@ scotty
 scotty.database
 scotty.database.parser
 scotty.template
+scotty.template.operator
 scotty.util
+scotty.util.function
