@@ -15,6 +15,7 @@
 
 package features.template;
 
+import almost.functional.Optional;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -22,7 +23,6 @@ import scotty.database.Context;
 import scotty.database.Database;
 import scotty.template.NamedScriptEngine;
 import scotty.template.Parser;
-import scotty.util.function.Optional;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;

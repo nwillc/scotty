@@ -15,8 +15,8 @@
 
 package scotty.template.operator;
 
+import almost.functional.Predicate;
 import scotty.template.Markup;
-import scotty.util.function.Predicate;
 
 /**
  * Predicate asserting that an OperatorEvaluator is appropriate for a Markup.

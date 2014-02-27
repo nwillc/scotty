@@ -16,13 +16,13 @@
 package scotty.template.operator;
 
 
+import almost.functional.Optional;
 import scotty.Cli;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.template.Markup;
 import scotty.template.ParsingContext;
 import scotty.template.Tokens;
-import scotty.util.function.Optional;
 
 import javax.script.ScriptException;
 import java.io.IOException;

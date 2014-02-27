@@ -15,10 +15,10 @@
 
 package scotty.template;
 
+import almost.functional.Optional;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.template.operator.*;
-import scotty.util.function.Optional;
 
 import javax.script.ScriptException;
 import java.io.ByteArrayOutputStream;
@@ -26,8 +26,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static scotty.util.ArrayIterable.newIterable;
-import static scotty.util.Iterables.find;
+import static almost.functional.utils.ArrayIterable.newIterable;
+import static almost.functional.utils.Iterables.find;
+
 
 /**
  * Parses Scotty templates, applies data from the Database considering the given context, and produces transformed

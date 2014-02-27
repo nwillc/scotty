@@ -15,18 +15,18 @@
 
 package scotty.database.parser;
 
+import almost.functional.Consumer;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.database.Instance;
 import scotty.database.Type;
-import scotty.util.function.Consumer;
 
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import static scotty.util.Iterables.forEach;
+import static almost.functional.utils.Iterables.forEach;
 
 /**
  * Utility methods used by the database portions of Scotty.

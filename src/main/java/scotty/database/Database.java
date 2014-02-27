@@ -15,9 +15,9 @@
 
 package scotty.database;
 
+import almost.functional.Consumer;
 import scotty.database.parser.DbParserUtilities;
 import scotty.database.parser.Parser;
-import scotty.util.function.Consumer;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -25,8 +25,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static scotty.util.ArrayIterable.newIterable;
-import static scotty.util.Iterables.forEach;
+import static almost.functional.utils.ArrayIterable.newIterable;
+import static almost.functional.utils.Iterables.forEach;
 
 /**
  * A Scotty database, basically a context with a contained map of Types.

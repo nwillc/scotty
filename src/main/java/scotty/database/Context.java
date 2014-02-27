@@ -15,11 +15,11 @@
 
 package scotty.database;
 
+import almost.functional.Consumer;
+import almost.functional.Function;
+import almost.functional.Optional;
+import almost.functional.utils.Iterables;
 import scotty.database.parser.Similarity;
-import scotty.util.Iterables;
-import scotty.util.function.Consumer;
-import scotty.util.function.Function;
-import scotty.util.function.Optional;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,8 +27,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static scotty.util.ArrayIterable.newIterable;
-import static scotty.util.Iterables.forEach;
+import static almost.functional.utils.ArrayIterable.newIterable;
+import static almost.functional.utils.Iterables.forEach;
+import static almost.functional.utils.Iterables.transform;
 import static scotty.util.ScottyUtilities.join;
 
 /**
@@ -278,7 +279,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         final StringBuilder sb = new StringBuilder(this.getClass().getSimpleName());
         sb.append("{");
         sb.append("Map{");
-		sb.append(join(", ", Iterables.transform(getMap().keySet(), new Function<String, String>() {
+		sb.append(join(", ", transform(getMap().keySet(), new Function<String, String>() {
 			@Override
 			public String apply(String key) {
 				return key + "=" + getMap().get(key);
@@ -292,7 +293,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
             sb.append(isContainer());
         } else {
             sb.append(", Contained{");
-			sb.append(join(", ", Iterables.transform(getContained().keySet(), new Function<String, String>() {
+			sb.append(join(", ", transform(getContained().keySet(), new Function<String, String>() {
 				@Override
 				public String apply(String key) {
 					return key + "=" + getContained().get(key);

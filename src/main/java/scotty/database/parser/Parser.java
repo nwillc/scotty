@@ -16,6 +16,7 @@
 package scotty.database.parser;
 
 
+import almost.functional.Optional;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -23,7 +24,6 @@ import scotty.database.Context;
 import scotty.database.Instance;
 import scotty.database.Type;
 import scotty.database.Value;
-import scotty.util.function.Optional;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;

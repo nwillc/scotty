@@ -15,17 +15,16 @@
 
 package scotty.database;
 
+import almost.functional.Consumer;
 import scotty.database.parser.Similarity;
-import scotty.util.ScottyUtilities;
-import scotty.util.function.Consumer;
-import scotty.util.function.Predicates;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
-import static scotty.util.ArrayIterable.newIterable;
-import static scotty.util.Iterables.any;
-import static scotty.util.Iterables.forEach;
+import static almost.functional.Predicates.contains;
+import static almost.functional.utils.ArrayIterable.newIterable;
+import static almost.functional.utils.Iterables.any;
+import static almost.functional.utils.Iterables.forEach;
 import static scotty.util.ScottyUtilities.join;
 
 /**
@@ -101,6 +100,6 @@ public class Value implements Similarity<Value> {
             score -= DOWN_GRADE;
         }
 
-		return any(b.values(), Predicates.contains(values())) ? score : NOT_SIMILAR;
+		return any(b.values(), contains(values())) ? score : NOT_SIMILAR;
     }
 }

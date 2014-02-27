@@ -15,11 +15,11 @@
 
 package scotty.template;
 
+import almost.functional.Optional;
 import org.junit.Before;
 import org.junit.Test;
 import scotty.database.Context;
 import scotty.database.Database;
-import scotty.util.function.Optional;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;

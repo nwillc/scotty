@@ -15,10 +15,10 @@
 
 package scotty.database.parser;
 
+import almost.functional.Optional;
 import org.junit.Test;
 import scotty.database.Instance;
 import scotty.database.Type;
-import scotty.util.function.Optional;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 

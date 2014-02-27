@@ -15,7 +15,7 @@
 
 package scotty.database.parser;
 
-import static scotty.util.Preconditions.checkNotNull;
+import static almost.functional.utils.Preconditions.checkNotNull;
 
 /**
  * A comparable container to hold data and ranking. The rank is a combination of the "score" and the "age".

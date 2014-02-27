@@ -15,11 +15,11 @@
 
 package scotty;
 
+import almost.functional.Optional;
 import org.apache.commons.cli.*;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.template.NamedScriptEngine;
-import scotty.util.function.Optional;
 
 import javax.script.ScriptException;
 import java.io.*;

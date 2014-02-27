@@ -15,10 +15,10 @@
 
 package scotty.template.operator;
 
+import almost.functional.Optional;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.template.*;
-import scotty.util.function.Optional;
 
 import javax.script.ScriptException;
 import java.io.IOException;

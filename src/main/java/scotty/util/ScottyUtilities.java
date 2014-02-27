@@ -15,7 +15,8 @@
 
 package scotty.util;
 
-import scotty.util.function.Optional;
+import almost.functional.Optional;
+import almost.functional.utils.Preconditions;
 
 import java.io.*;
 import java.nio.file.FileSystems;

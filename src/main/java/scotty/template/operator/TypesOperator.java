@@ -15,18 +15,18 @@
 
 package scotty.template.operator;
 
+import almost.functional.Consumer;
 import scotty.database.Context;
 import scotty.database.Database;
 import scotty.template.Markup;
 import scotty.template.ParsingContext;
 import scotty.template.Tokens;
-import scotty.util.function.Consumer;
 
 import javax.script.ScriptException;
 import java.io.IOException;
 
-import static scotty.util.ArrayIterable.newIterable;
-import static scotty.util.Iterables.forEach;
+import static almost.functional.utils.ArrayIterable.newIterable;
+import static almost.functional.utils.Iterables.forEach;
 
 public class TypesOperator implements OperatorEvaluator {
     @Override
