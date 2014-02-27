@@ -21,13 +21,13 @@
         <maven>2.2.1</maven>
     </prerequisites>
 
-    <groupId>scotty</groupId>
+    <groupId>com.github.nwillc</groupId>
     <artifactId>scotty</artifactId>
-    <version>1.4</version>
-    <packaging>jar</packaging>
-
     <name>scotty</name>
-    <url>http://maven.apache.org</url>
+    <version>1.5</version>
+    <packaging>jar</packaging>
+    <description>Simple Configuration Transformation Tool</description>
+    <url>https://github.com/nwillc/scotty</url>
 
     <properties>
         <beanshell.version>2.0b5</beanshell.version>
@@ -140,4 +140,25 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <scm>
+        <url>https://github.com/nwillc/scotty</url>
+        <connection>https://github.com/nwillc/scotty.git</connection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Nicholas Christopher</name>
+            <email>nwillc@gmail.com</email>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>ISC</name>
+            <url>http://www.isc.org/downloads/software-support-policy/isc-license/</url>
+            <comments>a permissive free software license</comments>
+        </license>
+    </licenses>
+
 </project>
