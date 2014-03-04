@@ -18,7 +18,7 @@ package scotty.database;
 import almost.functional.Consumer;
 import almost.functional.Function;
 import almost.functional.Optional;
-import almost.functional.utils.Iterables;
+import almost.functional.utils.Preconditions;
 import scotty.database.parser.Similarity;
 
 import java.util.HashMap;
@@ -308,6 +308,8 @@ public class Context implements Comparable<Context>, Similarity<Context> {
 
     @Override
     public int compareTo(Context o) {
+        Preconditions.checkNotNull(o, "Can not compare to null object.");
+        Preconditions.isAssignableTo(o.getClass(), this.getClass(), "Class " + o.getClass().getName() + " must be castable to " + this.getClass().getName());
         return age - o.age;
     }
 
@@ -325,7 +327,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
                 public Float apply(Value value) {
                    return value.similarity(b.getValue(key).get());
                 }
-            }).orElse(0.0f);
+            }).orElse(NOT_SIMILAR);
             if (vScore == NOT_SIMILAR) {
                 return NOT_SIMILAR;
             }
