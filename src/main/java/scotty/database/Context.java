@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static almost.functional.utils.ArrayIterable.newIterable;
 import static almost.functional.utils.Iterables.forEach;
-import static almost.functional.utils.Iterables.transform;
+import static almost.functional.utils.Iterables.map;
 import static scotty.util.ScottyUtilities.join;
 
 /**
@@ -239,7 +239,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
      * @return the string
      */
     public String get(final String key, final String defaultValue) {
-        return getValue(key).transform(new Function<Value, String>() {
+        return getValue(key).map(new Function<Value, String>() {
             @Override
             public String apply(Value value) {
                 return value.toString();
@@ -279,7 +279,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         final StringBuilder sb = new StringBuilder(this.getClass().getSimpleName());
         sb.append("{");
         sb.append("Map{");
-		sb.append(join(", ", transform(getMap().keySet(), new Function<String, String>() {
+		sb.append(join(", ", map(getMap().keySet(), new Function<String, String>() {
 			@Override
 			public String apply(String key) {
 				return key + "=" + getMap().get(key);
@@ -293,7 +293,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
             sb.append(isContainer());
         } else {
             sb.append(", Contained{");
-			sb.append(join(", ", transform(getContained().keySet(), new Function<String, String>() {
+			sb.append(join(", ", map(getContained().keySet(), new Function<String, String>() {
 				@Override
 				public String apply(String key) {
 					return key + "=" + getContained().get(key);
@@ -322,7 +322,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         }
 
         for (final String key : b.keySet()) {
-            float vScore = getValue(key).transform(new Function<Value, Float>() {
+            float vScore = getValue(key).map(new Function<Value, Float>() {
                 @Override
                 public Float apply(Value value) {
                    return value.similarity(b.getValue(key).get());
