@@ -33,6 +33,7 @@ import java.util.Deque;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static almost.functional.utils.LogFactory.getLogger;
 import static scotty.util.ScottyUtilities.getResourceAsStream;
 import static scotty.database.parser.Attributes.NAME;
 import static scotty.database.parser.Attributes.VALUE;
@@ -42,7 +43,7 @@ import static scotty.database.parser.Elements.*;
  * Sax parser for SCoTTY database documents.
  */
 public class Parser extends DefaultHandler {
-    private final static Logger LOGGER = Logger.getLogger(Parser.class.getName());
+    private final static Logger LOGGER = getLogger();
     private final static SAXParserFactory FACTORY = SAXParserFactory.newInstance();
     private final Deque<Context> contexts = new ArrayDeque<>();
     private Type type;

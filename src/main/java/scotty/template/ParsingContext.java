@@ -23,8 +23,10 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.logging.Logger;
 
+import static almost.functional.utils.LogFactory.getLogger;
+
 public class ParsingContext {
-    private static final Logger LOGGER = Logger.getLogger(Parser.class.getName());
+    private static final Logger LOGGER = getLogger();
 
     private NamedScriptEngine scriptEngine;
     private OutputStream outputStream;

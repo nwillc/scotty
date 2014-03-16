@@ -24,8 +24,10 @@ import javax.script.ScriptException;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import static almost.functional.utils.LogFactory.getLogger;
+
 public class ScriptOperator implements OperatorEvaluator {
-    private static final Logger LOGGER = Logger.getLogger(ScriptOperator.class.getName());
+    private static final Logger LOGGER = getLogger();
 
     @Override
     public char getOperator() {

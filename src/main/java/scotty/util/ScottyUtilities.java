@@ -24,9 +24,11 @@ import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
+import static almost.functional.utils.LogFactory.getLogger;
+
 
 public class ScottyUtilities {
-    private static final Logger LOGGER = Logger.getLogger(ScottyUtilities.class.getName());
+    private static final Logger LOGGER = getLogger();
 
     private ScottyUtilities() {
     }

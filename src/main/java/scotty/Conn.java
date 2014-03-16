@@ -26,6 +26,7 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static almost.functional.utils.LogFactory.getLogger;
 import static scotty.Cli.*;
 import static scotty.util.ScottyUtilities.getPath;
 import static scotty.util.ScottyUtilities.getResourceAsStream;
@@ -36,7 +37,7 @@ import static scotty.template.Parser.parse;
  * Scotty's conn, where it all gets put together driven by operator line.
  */
 public final class Conn {
-	private static final Logger LOGGER = Logger.getLogger(Conn.class.getName());
+	private static final Logger LOGGER = getLogger();
 
 	private Conn() {
 	}
