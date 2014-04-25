@@ -37,7 +37,7 @@ public class OutputOperator implements OperatorEvaluator {
     }
 
     @Override
-    public void eval(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
+    public void evaluate(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
         parsingContext.getOutputStream().flush();
         parsingContext.getOutputStream().close();
         Optional<OutputStream> outputStreamOptional = getPath(database.get(Cli.FOLDER), markup.body);

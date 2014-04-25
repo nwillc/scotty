@@ -33,7 +33,7 @@ public class ImportOperator implements OperatorEvaluator {
     }
 
     @Override
-    public void eval(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
+    public void evaluate(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
         final Context importContext;
         final int endOfFileName = markup.body.indexOf(' ');
         final String fileName;

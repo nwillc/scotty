@@ -31,7 +31,7 @@ public class ContextOperator implements OperatorEvaluator {
     }
 
     @Override
-    public void eval(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
+    public void evaluate(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
         parsingContext.getOutputStream().write(context.get(markup.body, "").getBytes());
     }
 }

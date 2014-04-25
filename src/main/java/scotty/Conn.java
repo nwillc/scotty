@@ -16,28 +16,28 @@
 package scotty;
 
 import almost.functional.Optional;
+import almost.functional.utils.LogFactory;
 import org.apache.commons.cli.*;
 import scotty.database.Context;
 import scotty.database.Database;
+import scotty.database.parser.*;
 import scotty.template.NamedScriptEngine;
+import scotty.template.Parser;
 
 import javax.script.ScriptException;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static almost.functional.utils.LogFactory.getLogger;
 import static scotty.Cli.*;
 import static scotty.util.ScottyUtilities.getPath;
 import static scotty.util.ScottyUtilities.getResourceAsStream;
-import static scotty.database.parser.DbParserUtilities.print;
-import static scotty.template.Parser.parse;
 
 /**
  * Scotty's conn, where it all gets put together driven by operator line.
  */
 public final class Conn {
-	private static final Logger LOGGER = getLogger();
+	private static final Logger LOGGER = LogFactory.getLogger();
 
 	private Conn() {
 	}
@@ -79,7 +79,7 @@ public final class Conn {
 			}
 
 			if (commandLine.hasOption(PRINT)) {
-				print(database, System.out);
+			    DbParserUtilities.print(database, System.out);
 				System.exit(0);
 			}
 
@@ -123,7 +123,7 @@ public final class Conn {
 			}
 
 			NamedScriptEngine scriptEngine = new NamedScriptEngine(scriptEngineName, templateFile);
-			parse(inputStream, outputStream, database, context, scriptEngine);
+		    Parser.parse(inputStream, outputStream, database, context, scriptEngine);
 		} catch (ScriptException evalError) {
 			LOGGER.severe("Exit on script error.");
 			System.exit(2);

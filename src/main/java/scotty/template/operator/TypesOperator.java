@@ -35,7 +35,7 @@ public class TypesOperator implements OperatorEvaluator {
     }
 
     @Override
-    public void eval(final Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
+    public void evaluate(final Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
         String[] types = markup.body.split(",");
         forEach(newIterable(types), new Consumer<String>() {
             @Override

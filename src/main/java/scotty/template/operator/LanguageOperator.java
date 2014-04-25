@@ -32,7 +32,7 @@ public class LanguageOperator implements OperatorEvaluator {
     }
 
     @Override
-    public void eval(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
+    public void evaluate(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
         parsingContext.setScriptEngine(new NamedScriptEngine(markup.body, parsingContext.getScriptName()));
         parsingContext.export(database, context);
     }

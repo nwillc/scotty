@@ -24,6 +24,6 @@ import javax.script.ScriptException;
 import java.io.IOException;
 
 public interface OperatorEvaluator {
-    public char getOperator();
-    public void eval(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException;
+    char getOperator();
+    void evaluate(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException;
 }

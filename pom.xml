@@ -30,7 +30,7 @@
     <url>https://github.com/nwillc/scotty</url>
 
     <properties>
-        <almost-functional.version>1.6</almost-functional.version>
+        <almost-functional.version>1.7</almost-functional.version>
         <assembly.version>2.4</assembly.version>
         <beanshell.version>2.0b5</beanshell.version>
         <commons.cli.version>1.2</commons.cli.version>
@@ -40,6 +40,7 @@
         <javadoc.version>2.9.1</javadoc.version>
         <jdk.version>1.7</jdk.version>
         <junit.version>4.11</junit.version>
+        <pmd.skip>false</pmd.skip>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <quava.version>16.0</quava.version>
         <rxjava.version>0.16.1</rxjava.version>
@@ -148,7 +149,45 @@
             </plugins>
         </pluginManagement>
     </build>
-
+    <reporting>
+        <plugins>
+            <!-- JXR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
+            <!-- PMD -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+                    <targetJdk>${jdk.version}</targetJdk>
+                    <skip>${pmd.skip}</skip>
+                    <outputDirectory>${project.basedir}/target</outputDirectory>
+                    <targetDirectory>${project.basedir}/target</targetDirectory>
+                    <linkXRef>false</linkXRef>
+                    <includeTests>false</includeTests>
+                    <rulesets>
+                        <ruleset>file://${project.basedir}/pmd.xml</ruleset>
+                    </rulesets>
+                </configuration>
+            </plugin>
+            <!-- FindBugs -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <xmlOutput>true</xmlOutput>
+                    <!-- Optional directory to put findbugs xdoc xml report -->
+                    <xmlOutputDirectory>target/site</xmlOutputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
     <scm>
         <url>https://github.com/nwillc/scotty</url>
         <connection>https://github.com/nwillc/scotty.git</connection>

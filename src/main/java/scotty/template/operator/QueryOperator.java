@@ -32,7 +32,7 @@ public class QueryOperator implements OperatorEvaluator {
     }
 
     @Override
-    public void eval(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
+    public void evaluate(Database database, Context context, Markup markup, ParsingContext parsingContext) throws IOException, ScriptException {
         final Context queryContext;
         final int endOfAttrName = markup.body.indexOf(' ');
         final String attributeName;
