@@ -33,35 +33,34 @@ public class ScottyUtilities {
     private ScottyUtilities() {
     }
 
-	public static String join(CharSequence delimeter, Iterable iterable) {
-		Preconditions.checkNotNull(iterable, "Can't join a null iterable");
-		Preconditions.checkNotNull(delimeter," Null is not a valid delimeter");
+    public static String join(CharSequence delimeter, Iterable iterable) {
+        Preconditions.checkNotNull(iterable, "Can't join a null iterable");
+        Preconditions.checkNotNull(delimeter, " Null is not a valid delimeter");
 
-		Iterator iterator = iterable.iterator();
-		if (!iterator.hasNext()) {
-			return "";
-		}
+        Iterator iterator = iterable.iterator();
+        if (!iterator.hasNext()) {
+            return "";
+        }
 
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(iterator.next().toString());
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(iterator.next().toString());
 
-		while(iterator.hasNext()) {
-			stringBuilder.append(delimeter);
-			stringBuilder.append(iterator.next().toString());
-		}
-		return stringBuilder.toString();
-	}
+        while (iterator.hasNext()) {
+            stringBuilder.append(delimeter);
+            stringBuilder.append(iterator.next().toString());
+        }
+        return stringBuilder.toString();
+    }
 
     /**
      * Look up a resource as either file or failing that a resource from the jar.
      *
-     *
-	 * @param resource item name to look for
-	 * @return return input stream or null if not found
+     * @param resource item name to look for
+     * @return return input stream or null if not found
      */
     public static Optional<InputStream> getResourceAsStream(String resource) {
         try {
-            return Optional.of((InputStream)new FileInputStream(resource));
+            return Optional.of((InputStream) new FileInputStream(resource));
         } catch (FileNotFoundException e) {
             LOGGER.fine(resource + " not found as file");
         }
@@ -69,14 +68,14 @@ public class ScottyUtilities {
         InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(resource);
         if (inputStream == null) {
             LOGGER.info("Failed to find " + resource + " as file or resource.");
-			return Optional.empty();
+            return Optional.empty();
         }
         return Optional.of(inputStream);
     }
 
     public static Optional<OutputStream> getPath(final String folder, final String filename) {
-		if ("-".equals(folder)) {
-            return Optional.of((OutputStream)System.out);
+        if ("-".equals(folder)) {
+            return Optional.of((OutputStream) System.out);
         }
         final Path path;
         if (folder == null) {
@@ -84,12 +83,12 @@ public class ScottyUtilities {
         } else {
             path = FileSystems.getDefault().getPath(folder, filename);
         }
-		try {
-			return Optional.of((OutputStream)new FileOutputStream(path.toString()));
-		} catch (FileNotFoundException e) {
-			LOGGER.warning("Path " + folder + "/" + filename + " not found");
-			return Optional.empty();
-		}
+        try {
+            return Optional.of((OutputStream) new FileOutputStream(path.toString()));
+        } catch (FileNotFoundException e) {
+            LOGGER.warning("Path " + folder + "/" + filename + " not found");
+            return Optional.empty();
+        }
     }
 
 }
