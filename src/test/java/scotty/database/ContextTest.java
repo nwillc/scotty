@@ -16,24 +16,18 @@
 package scotty.database;
 
 import org.junit.Before;
-import org.junit.Test;
 import scotty.database.parser.SimilarityContract;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+public class ContextTest extends SimilarityContract<Context> {
 
-public class ValueTest extends SimilarityContract<Value> {
     @Before
     public void setUp() throws Exception {
-        Value from = new Value("foo");
+        Context from = new Context("foo=bar");
+        Context dislike = new Context("bar=baz");
+
         setFrom(from);
         setLike(from);
-        setDislike(new Value("bar"));
+        setDislike(dislike);
     }
 
-	@Test
-	public void testNull() throws Exception {
-		Value value = new Value(null);
-		assertThat(value).isNotNull();
-		assertThat(value.values().size()).isEqualTo(0);
-	}
 }
