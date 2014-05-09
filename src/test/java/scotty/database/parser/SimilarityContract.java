@@ -19,7 +19,7 @@ import org.junit.Test;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-public class SimilarityContract<T extends Similarity> {
+public class SimilarityContract<T> {
     private Similarity<T> from;
     private T like;
     private T dislike;
@@ -48,5 +48,11 @@ public class SimilarityContract<T extends Similarity> {
         assertThat(from).isNotNull();
         assertThat(dislike).isNotNull();
         assertThat(from.similarity(dislike)).isLessThanOrEqualTo(Similarity.SIMILAR).isGreaterThanOrEqualTo(Similarity.NOT_SIMILAR);
+    }
+
+    @Test
+    public void shouldNotBeSimilarToNull() throws Exception {
+        assertThat(from).isNotNull();
+        assertThat(from.similarity(null)).isEqualTo(Similarity.NOT_SIMILAR);
     }
 }
