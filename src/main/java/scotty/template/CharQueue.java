@@ -18,6 +18,9 @@ package scotty.template;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import static almost.functional.utils.Preconditions.checkNotNull;
+import static almost.functional.utils.Preconditions.isAssignableTo;
+
 /**
  * A fixed size character buffer that overflows into an output stream. Used
  * to provide a small window into an advancing stream, allowing for comparisons to be made
@@ -112,9 +115,8 @@ public class CharQueue implements Comparable<CharQueue>, AutoCloseable {
 
 	@Override
 	public int compareTo(CharQueue that) {
-		if (that == null) {
-			throw new NullPointerException("Compare to null");
-		}
+		checkNotNull(that, "Can not compare to null");
+		isAssignableTo(that.getClass(), getClass(), "Is not assignable to");
 
 		final int min = Math.min(this.data.length, that.data.length);
 

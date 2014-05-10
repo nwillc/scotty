@@ -30,6 +30,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static almost.functional.utils.ArrayIterable.newIterable;
 import static almost.functional.utils.Iterables.forEach;
 import static almost.functional.utils.Iterables.map;
+import static almost.functional.utils.Preconditions.checkNotNull;
+import static almost.functional.utils.Preconditions.isAssignableTo;
 import static scotty.util.ScottyUtilities.join;
 
 /**
@@ -308,8 +310,8 @@ public class Context implements Comparable<Context>, Similarity<Context> {
 
     @Override
     public int compareTo(Context o) {
-        Preconditions.checkNotNull(o, "Can not compare to null object.");
-        Preconditions.isAssignableTo(o.getClass(), this.getClass(), "Class " + o.getClass().getName() + " must be castable to " + this.getClass().getName());
+        checkNotNull(o, "Can not compare to null object.");
+        isAssignableTo(o.getClass(), this.getClass(), "Class " + o.getClass().getName() + " must be castable to " + this.getClass().getName());
         return age - o.age;
     }
 

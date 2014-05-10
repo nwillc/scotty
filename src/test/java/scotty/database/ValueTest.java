@@ -17,7 +17,7 @@ package scotty.database;
 
 import org.junit.Before;
 import org.junit.Test;
-import scotty.database.parser.SimilarityContract;
+import contracts.SimilarityContract;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 

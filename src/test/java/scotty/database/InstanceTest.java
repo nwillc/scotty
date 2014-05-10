@@ -15,19 +15,26 @@
 
 package scotty.database;
 
-import org.junit.Before;
-import contracts.SimilarityContract;
+import contracts.ComparableContract;
 
-public class ContextTest extends SimilarityContract<Context> {
+public class InstanceTest extends ComparableContract<Instance> {
+	@Override
+	protected Instance getValue() {
+		return new Instance(null, "bbb");
+	}
 
-    @Before
-    public void setUp() throws Exception {
-        Context from = new Context("foo=bar");
-        Context dislike = new Context("bar=baz");
+	@Override
+	protected Instance getEqualToValue() {
+		return new Instance(null, "bbb");
+	}
 
-        setFrom(from);
-        setLike(from);
-        setDislike(dislike);
-    }
+	@Override
+	protected Instance getLessThanValue() {
+		return new Instance(null, "aaa");
+	}
 
+	@Override
+	protected Instance getGreaterThanValue() {
+		return new Instance(null, "ccc");
+	}
 }

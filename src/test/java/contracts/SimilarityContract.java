@@ -13,9 +13,10 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.database.parser;
+package contracts;
 
 import org.junit.Test;
+import scotty.database.parser.Similarity;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 

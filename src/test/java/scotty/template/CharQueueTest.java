@@ -13,21 +13,38 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package scotty.database;
+package scotty.template;
 
+import contracts.ComparableContract;
 import org.junit.Before;
-import contracts.SimilarityContract;
 
-public class ContextTest extends SimilarityContract<Context> {
+import java.io.ByteArrayOutputStream;
 
-    @Before
-    public void setUp() throws Exception {
-        Context from = new Context("foo=bar");
-        Context dislike = new Context("bar=baz");
+public class CharQueueTest extends ComparableContract<CharQueue> {
+	private ByteArrayOutputStream outputStream;
 
-        setFrom(from);
-        setLike(from);
-        setDislike(dislike);
-    }
+	@Before
+	public void setUp() throws Exception {
+		outputStream = new ByteArrayOutputStream();
+	}
 
+	@Override
+	protected CharQueue getValue() {
+		return new CharQueue("bbb", outputStream);
+	}
+
+	@Override
+	protected CharQueue getEqualToValue() {
+		return new CharQueue("bbb", outputStream);
+	}
+
+	@Override
+	protected CharQueue getLessThanValue() {
+		return new CharQueue("aaa", outputStream);
+	}
+
+	@Override
+	protected CharQueue getGreaterThanValue() {
+		return new CharQueue("ccc", outputStream);
+	}
 }
