@@ -28,7 +28,7 @@ import javax.script.ScriptException;
 /**
  * ScriptEngine support wrapper.
  */
-public class NamedScriptEngine implements Cloneable {
+public class NamedScriptEngine {
     public static final String DEFAULT_LANGUAGE = "beanshell";
 	private static final String ENGINE_NAME_SPACE_KEY = "org_beanshell_engine_namespace";
 	private static final String BEANSHELL = DEFAULT_LANGUAGE;
