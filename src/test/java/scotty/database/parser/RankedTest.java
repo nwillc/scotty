@@ -15,7 +15,7 @@
 
 package scotty.database.parser;
 
-import contracts.ComparableContract;
+import com.github.nwillc.contracts.ComparableContract;
 import org.junit.Test;
 
 import java.util.Collections;

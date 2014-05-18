@@ -15,7 +15,7 @@
 
 package scotty.template;
 
-import contracts.ComparableContract;
+import com.github.nwillc.contracts.ComparableContract;
 import org.junit.Before;
 
 import java.io.ByteArrayOutputStream;

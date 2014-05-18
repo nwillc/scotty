@@ -15,7 +15,7 @@
 
 package scotty.database;
 
-import contracts.ComparableContract;
+import com.github.nwillc.contracts.ComparableContract;
 import org.junit.Before;
 
 public class ContextComparableTest extends ComparableContract<Context> {

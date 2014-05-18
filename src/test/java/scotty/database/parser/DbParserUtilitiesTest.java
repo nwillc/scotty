@@ -15,12 +15,11 @@
 
 package scotty.database.parser;
 
-import assertions.PrivateConstructorAssert;
-import org.junit.Test;
+import com.github.nwillc.contracts.PrivateConstructorContract;
 
-public class DbParserUtilitiesTest {
-    @Test
-    public void testOnlyPrivateConstructor() throws Exception {
-        PrivateConstructorAssert.assertThat(DbParserUtilities.class).hasOnlyPrivateConstructor();
-    }
+public class DbParserUtilitiesTest extends PrivateConstructorContract {
+	@Override
+	protected Class<?> getUtilityClass() {
+		return DbParserUtilities.class;
+	}
 }

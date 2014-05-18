@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 import static almost.functional.utils.LogFactory.getLogger;
 
 
-public class ScottyUtilities {
+public final class  ScottyUtilities {
     private static final Logger LOGGER = getLogger();
 
     private ScottyUtilities() {

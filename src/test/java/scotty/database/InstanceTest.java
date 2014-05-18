@@ -15,7 +15,8 @@
 
 package scotty.database;
 
-import contracts.ComparableContract;
+
+import com.github.nwillc.contracts.ComparableContract;
 
 public class InstanceTest extends ComparableContract<Instance> {
 	@Override
