@@ -15,12 +15,13 @@
 
 package scotty.template;
 
-import contracts.ComparableContract;
+
+import com.github.nwillc.contracts.ComparableContract;
 import org.junit.Before;
 
 import java.io.ByteArrayOutputStream;
 
-public class CharQueueTest extends ComparableContract<CharQueue> {
+public class CharQueueTest extends ComparableContract {
 	private ByteArrayOutputStream outputStream;
 
 	@Before

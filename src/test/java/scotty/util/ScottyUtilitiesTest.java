@@ -15,12 +15,13 @@
 
 package scotty.util;
 
-import assertions.PrivateConstructorAssert;
-import org.junit.Test;
+import com.github.nwillc.contracts.PrivateConstructorContract;
 
-public class ScottyUtilitiesTest {
-    @Test
-    public void testOnlyPrivateConstructor() throws Exception {
-        PrivateConstructorAssert.assertThat(ScottyUtilities.class).hasOnlyPrivateConstructor();
+public class ScottyUtilitiesTest extends PrivateConstructorContract {
+
+    @Override
+    protected Class<?> getUtilityClass() {
+        return ScottyUtilities.class;
     }
+
 }

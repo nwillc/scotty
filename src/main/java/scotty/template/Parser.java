@@ -71,7 +71,7 @@ public final class Parser {
             }
 
 			Markup markup = markupOptional.get();
-            find(newIterable(OPERATOR_EVALUATORS), new OperatorFor(markup), DEFAULT_OP).evaluate(database, context, markup, parsingContext);
+            find(newIterable(OPERATOR_EVALUATORS), new OperatorFor(markup)).orElse(DEFAULT_OP).evaluate(database, context, markup, parsingContext);
         }
 
         parsingContext.getOutputStream().flush();

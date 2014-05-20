@@ -15,7 +15,8 @@
 
 package scotty.database.parser;
 
-import contracts.ComparableContract;
+
+import com.github.nwillc.contracts.ComparableContract;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -24,7 +25,7 @@ import java.util.List;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-public class RankedTest extends ComparableContract<Ranked<Integer>> {
+public class RankedTest extends ComparableContract {
 	@Override
 	protected Ranked<Integer> getValue() {
 		return new Ranked<>(1.0f, 0, 1);
