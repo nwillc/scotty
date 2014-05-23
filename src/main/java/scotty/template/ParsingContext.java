@@ -37,14 +37,10 @@ public class ParsingContext {
     }
 
     public void export(Database database, Context context) throws ScriptException {
-        try {
+
             getScriptEngine().put("database", database);
             getScriptEngine().put("context", context);
             getScriptEngine().put("output", new PrintStream(getOutputStream()));
-        } catch (ScriptException scriptException) {
-            LOGGER.severe(scriptException.toString());
-            throw scriptException;
-        }
     }
 
     public NamedScriptEngine getScriptEngine() {

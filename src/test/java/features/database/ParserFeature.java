@@ -34,7 +34,7 @@ public class ParserFeature {
 
     @Given("^the XML \"([^\\\"]*)\"$")
     public void the_XML_target_test_classes_xml(List<String> filenames) throws Throwable {
-        this.filename = filenames.toArray(new String[0]);
+        this.filename = filenames.toArray(new String[filenames.size()]);
     }
 
     @When("^parsed by the Database class$")

@@ -15,8 +15,8 @@
 
 package scotty.database;
 
-import org.junit.Before;
 import contracts.SimilarityContract;
+import org.junit.Before;
 
 public class ContextTest extends SimilarityContract<Context> {
 

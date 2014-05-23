@@ -34,10 +34,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static almost.functional.utils.LogFactory.getLogger;
-import static scotty.util.ScottyUtilities.getResourceAsStream;
 import static scotty.database.parser.Attributes.NAME;
 import static scotty.database.parser.Attributes.VALUE;
 import static scotty.database.parser.Elements.*;
+import static scotty.util.ScottyUtilities.getResourceAsStream;
 
 /**
  * Sax parser for SCoTTY database documents.

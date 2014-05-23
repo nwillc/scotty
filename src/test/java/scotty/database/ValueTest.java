@@ -15,9 +15,9 @@
 
 package scotty.database;
 
+import contracts.SimilarityContract;
 import org.junit.Before;
 import org.junit.Test;
-import contracts.SimilarityContract;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 

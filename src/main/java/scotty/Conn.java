@@ -20,7 +20,7 @@ import almost.functional.utils.LogFactory;
 import org.apache.commons.cli.*;
 import scotty.database.Context;
 import scotty.database.Database;
-import scotty.database.parser.*;
+import scotty.database.parser.DbParserUtilities;
 import scotty.template.NamedScriptEngine;
 import scotty.template.Parser;
 

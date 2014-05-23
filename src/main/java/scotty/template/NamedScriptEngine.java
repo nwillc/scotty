@@ -83,7 +83,7 @@ public class NamedScriptEngine {
 	 * @param object the object
 	 * @throws ScriptException it the object can not be put into the script context
 	 */
-	public void put(String name, Object object) throws ScriptException {
+	public void put(String name, Object object)  {
 		scriptEngine.put(name, object);
 	}
 

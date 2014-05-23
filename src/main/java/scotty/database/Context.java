@@ -18,7 +18,6 @@ package scotty.database;
 import almost.functional.Consumer;
 import almost.functional.Function;
 import almost.functional.Optional;
-import almost.functional.utils.Preconditions;
 import scotty.database.parser.Similarity;
 
 import java.util.HashMap;
