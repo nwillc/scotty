@@ -18,8 +18,10 @@ package scotty.database.parser;
 import com.github.nwillc.contracts.PrivateConstructorContract;
 
 public class DbParserUtilitiesTest extends PrivateConstructorContract {
-	@Override
-	protected Class<?> getUtilityClass() {
-		return DbParserUtilities.class;
-	}
+
+    @Override
+    protected Class<?> getUtilityClass() {
+        return DbParserUtilities.class;
+    }
+
 }

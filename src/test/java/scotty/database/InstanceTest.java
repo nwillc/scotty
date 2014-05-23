@@ -15,10 +15,9 @@
 
 package scotty.database;
 
-
 import com.github.nwillc.contracts.ComparableContract;
 
-public class InstanceTest extends ComparableContract<Instance> {
+public class InstanceTest extends ComparableContract {
 	@Override
 	protected Instance getValue() {
 		return new Instance(null, "bbb");

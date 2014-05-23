@@ -18,7 +18,7 @@ package scotty.database;
 import com.github.nwillc.contracts.ComparableContract;
 import org.junit.Before;
 
-public class ContextComparableTest extends ComparableContract<Context> {
+public class ContextComparableTest extends ComparableContract {
 	private Context one, two, three;
 
 	@Before
