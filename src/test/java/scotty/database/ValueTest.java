@@ -32,7 +32,7 @@ public class ValueTest extends SimilarityContract<Value> {
 
 	@Test
 	public void testNull() throws Exception {
-		Value value = new Value(null);
+		Value value = new Value((String)null);
 		assertThat(value).isNotNull();
 		assertThat(value.values().size()).isEqualTo(0);
 	}
