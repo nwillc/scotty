@@ -1,0 +1,60 @@
+/*
+ * Copyright (c) 2013-2014, nwillc@gmail.com
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any purpose with or
+ * without fee is hereby granted, provided that the above copyright notice and this permission
+ * notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO
+ * THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT
+ * SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR
+ * ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
+ * CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE
+ * OR PERFORMANCE OF THIS SOFTWARE.
+ */
+
+apply plugin: 'java'
+
+group = "com.github.nwillc"
+archivesBaseName = "scotty"
+version = "1.6"
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'commons-cli:commons-cli:1.2',
+            'org.beanshell:bsh:2.0b5',
+            'com.github.nwillc:almost-functional:1.+'
+    testCompile 'junit:junit:4.11',
+            'org.easytesting:fest-assert:1.+',
+            'org.easytesting:fest-assert-core:2.0M10',
+            'com.github.nwillc:contracts:1.+',
+            'info.cukes:cucumber-java:1.+',
+            'info.cukes:cucumber-junit:1.+'
+}
+
+test {
+    filter {
+        includeTestsMatching "*Test"
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['-f', 'pretty', '--glue', 'features', 'src/test/resources']
+
+        }
+    }
+}
