@@ -30,7 +30,7 @@ public class ParserTest {
 	}
 	@Test
 	public void parse() throws Exception {
-		Optional<Type> typeOptional = Parser.parse("./target/test-classes/host.xml");
+		Optional<Type> typeOptional = Parser.parse("./build/resources/test/host.xml");
 		assert(typeOptional.isPresent());
 		Type type = typeOptional.get();
 

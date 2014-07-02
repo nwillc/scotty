@@ -34,19 +34,19 @@ public class ParserTest {
 
     @Before
     public void setup() throws Exception {
-        database = Database.parse("./target/test-classes/host.xml");
+        database = Database.parse("./build/resources/test/host.xml");
     }
 
     @Test
     public void parse() throws Exception {
-        try (FileInputStream fileInputStream = new FileInputStream("./target/test-classes/prop-template.scotty")) {
+        try (FileInputStream fileInputStream = new FileInputStream("./build/resources/test/prop-template.scotty")) {
             Parser.parse(fileInputStream, System.out, database, new Context(), new NamedScriptEngine());
         }
     }
 
     @Test(expected = IllegalStateException.class)
     public void badParse() throws Exception {
-        try (FileInputStream fileInputStream = new FileInputStream("./target/test-classes/unclosed.scotty")) {
+        try (FileInputStream fileInputStream = new FileInputStream("./build/resources/test/unclosed.scotty")) {
             Parser.parse(fileInputStream, System.out, database, new Context(), new NamedScriptEngine());
         }
     }

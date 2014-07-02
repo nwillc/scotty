@@ -309,7 +309,11 @@ public class Context implements Comparable<Context>, Similarity<Context> {
 
     @Override
     public int compareTo(Context o) {
-        checkNotNull(o, "Can not compare to null object.");
+        try {
+            checkNotNull(o, "Can not compare to null object.");
+        } catch (IllegalArgumentException e) {
+            throw new NullPointerException(e.getMessage());
+        }
         isAssignableTo(o.getClass(), this.getClass(), "Class " + o.getClass().getName() + " must be castable to " + this.getClass().getName());
         return age - o.age;
     }

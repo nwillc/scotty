@@ -115,7 +115,11 @@ public class CharQueue implements Comparable<CharQueue>, AutoCloseable {
 
 	@Override
 	public int compareTo(CharQueue that) {
-		checkNotNull(that, "Can not compare to null");
+        try {
+            checkNotNull(that, "Can not compare to null");
+        } catch (IllegalArgumentException e) {
+            throw new NullPointerException(e.getMessage());
+        }
 		isAssignableTo(that.getClass(), getClass(), "Is not assignable to");
 
 		final int min = Math.min(this.data.length, that.data.length);

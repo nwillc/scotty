@@ -7,14 +7,14 @@ Feature: Parsing an SCoTTY xml database.
     And it should contain types "<typelist>"
 
   Examples:
-    | filelist                                                             | count | typelist         |
-    | ./target/test-classes/host.xml                                       | 1     | host             |
-    | ./target/test-classes/environment.xml                                | 1     | environment      |
-    | ./target/test-classes/host.xml,./target/test-classes/environment.xml | 2     | host,environment |
+    | filelist                                                               | count | typelist         |
+    | ./build/resources/test/host.xml                                        | 1     | host             |
+    | ./build/resources/test/environment.xml                                 | 1     | environment      |
+    | ./build/resources/test/host.xml,./build/resources/test/environment.xml | 2     | host,environment |
 
 
   Scenario Outline: Attribute values can be multi value.
-    Given the XML "./target/test-classes/multivalue.xml"
+    Given the XML "./build/resources/test/multivalue.xml"
     When parsed by the Database class
     Then the value of "<instance>" "<attr>" should be "<value>"
 
