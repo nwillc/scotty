@@ -1,936 +1,117 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
-	<TITLE>Simple Configuration Transformation Tool</TITLE>
-	<META NAME="GENERATOR" CONTENT="OpenOffice 4.0.1  (Unix)">
-	<META NAME="CREATED" CONTENT="20130504;14425700">
-	<META NAME="CHANGED" CONTENT="20140309;19404000">
-	<META NAME="version" CONTENT="1.5">
-	<STYLE TYPE="text/css">
-	<!--
-		@page { margin: 0.79in }
-		P { margin-bottom: 0.08in }
-		H1 { margin-bottom: 0.08in }
-		H1.western { font-family: "Arial", sans-serif; font-size: 16pt }
-		H1.cjk { font-family: "SimSun"; font-size: 16pt }
-		H1.ctl { font-family: "Lucida Sans"; font-size: 16pt }
-		H2 { margin-bottom: 0.08in }
-		H2.western { font-family: "Arial", sans-serif; font-size: 14pt; font-style: italic }
-		H2.cjk { font-family: "SimSun"; font-size: 14pt; font-style: italic }
-		H2.ctl { font-family: "Lucida Sans"; font-size: 14pt; font-style: italic }
-		P.text-body-indent-western { margin-left: 0.2in; margin-bottom: 0in; font-family: "Courier", monospace; font-size: 8pt; line-height: 0.1in }
-		P.text-body-indent-cjk { margin-left: 0.2in; margin-bottom: 0in; font-size: 10pt; line-height: 0.1in }
-		P.text-body-indent-ctl { margin-left: 0.2in; margin-bottom: 0in; line-height: 0.1in }
-		TD P { margin-bottom: 0in }
-		TH P { margin-bottom: 0in }
-		H3 { margin-bottom: 0.08in }
-		H3.western { font-family: "Arial", sans-serif }
-		H3.cjk { font-family: "SimSun" }
-		H3.ctl { font-family: "Lucida Sans" }
-		A:link { so-language: zxx }
-	-->
-	</STYLE>
-</HEAD>
-<BODY LANG="en-US" DIR="LTR">
-<P STYLE="margin-top: 0.17in; page-break-after: avoid"><BR><BR>
-</P>
-<P><BR><BR>
-</P>
-<H1 CLASS="western" ALIGN=CENTER></H1>
-<H1 CLASS="western" ALIGN=CENTER></H1>
-<H1 CLASS="western" ALIGN=CENTER></H1>
-<P ALIGN=CENTER><BR><BR>
-</P>
-<P ALIGN=CENTER STYLE="margin-bottom: 0in"><A NAME="__RefHeading__330_1399982358"></A>
-<SDFIELD TYPE=DOCINFO SUBTYPE=TITLE>Simple Configuration Transformation Tool</SDFIELD></P>
-<P ALIGN=CENTER STYLE="margin-bottom: 0in"><A NAME="__RefHeading__332_1399982358"></A>
-<FONT FACE="Arial, sans-serif"><FONT SIZE=5 STYLE="font-size: 20pt"><B>(SCoTTy)</B></FONT></FONT></P>
-<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-weight: normal"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><I>Yes,
-I bought a couple vowels...</I></FONT></FONT></P>
-<P ALIGN=CENTER><BR><BR>
-</P>
-<P ALIGN=CENTER><BR><BR>
-</P>
-<P ALIGN=CENTER><BR><BR>
-</P>
-<P ALIGN=CENTER><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><I>Version:
-<SDFIELD TYPE=DOCINFO SUBTYPE=CUSTOM NAME="version">1.5</SDFIELD></I></FONT></FONT></FONT></P>
-<P ALIGN=CENTER><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><I>Last
-Edit: <SDFIELD TYPE=DATETIME SDVAL="41704.5576157407" SDNUM="1033;1033;YYYY-MM-DD">2014-03-06</SDFIELD></I></FONT></FONT></FONT></P>
-<P ALIGN=CENTER><BR><BR>
-</P>
-<P ALIGN=CENTER><BR><BR>
-</P>
-<P ALIGN=CENTER><BR><BR>
-</P>
-<P ALIGN=CENTER><BR><BR>
-</P>
-<P ALIGN=CENTER><BR><BR>
-</P>
-<P ALIGN=CENTER STYLE="font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=3><I>I
-have spent my whole life trying to figure out crazy ways of doing
-things.</I></FONT></FONT></FONT></P>
-<P ALIGN=CENTER STYLE="font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Arial, sans-serif"><FONT SIZE=2><I>-
-Montgomery Scott</I></FONT></FONT></FONT></P>
-<DIV ID="Table of Contents1" DIR="LTR">
-	<DIV ID="Table of Contents1_Head" DIR="LTR">
-		<P STYLE="margin-bottom: 0in; page-break-before: always; page-break-after: avoid">
-		<FONT FACE="Arial, sans-serif"><FONT SIZE=4 STYLE="font-size: 16pt"><B>Table
-		of Contents</B></FONT></FONT></P>
-	</DIV>
-	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__334_1399982358">Simple
-	Configuration Transformation Tool	3</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__454_1399982358">An
-	Example Database 	4</A></P>
-	<P STYLE="margin-left: 0.39in; margin-bottom: 0in"><A HREF="#__RefHeading__716_1030085182">hosts.xml	4</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__2687_672427820">An
-	Example Template 	5</A></P>
-	<P STYLE="margin-left: 0.39in; margin-bottom: 0in"><A HREF="#__RefHeading__720_1030085182">hosts.scotty:	5</A></P>
-	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__2695_672427820">Command
-	Line Operation	6</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__722_1030085182">Command
-	Line	6</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__574_1226017537">Example
-	Run	6</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__1380_346239147">How
-	Are Files Found?	6</A></P>
-	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__2689_672427820">The
-	Database Explained	7</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__718_1030085182">A
-	Database as a Map of Types, Types as Maps of Instances	7</A></P>
-	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__338_1399982358">The
-	Transformation Markup DSL Explained	9</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__456_1399982358">Variables
-	Available to Scripts	9</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__1226_672427820">Inherent
-	Attributes	9</A></P>
-	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__576_1226017537">Class
-	Documentation	10</A></P>
-	<P STYLE="margin-left: 0.39in; margin-bottom: 0in"><A HREF="#__RefHeading__707_501567663">Context	10</A></P>
-	<P STYLE="margin-left: 0.39in; margin-bottom: 0in"><A HREF="#__RefHeading__1192_591635657">Value	10</A></P>
-	<P STYLE="margin-left: 0.39in; margin-bottom: 0in"><A HREF="#__RefHeading__578_1226017537">Database
-	extends Context	10</A></P>
-	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__753_1450102712">Things
-	Are Not Always Simple	11</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__755_1450102712">Instance
-	Inheritance	11</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__2027_249703325">Multiple
-	Value Attributes	11</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__2029_249703325">Mutable
-	in Memory Database &amp; Context 	11</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__724_1030085182">Scripts	12</A></P>
-	<P STYLE="margin-left: 0.39in; margin-bottom: 0in"><A HREF="#__RefHeading__1363_631966402">Alternate
-	Scripting Languages	12</A></P>
-	<P STYLE="margin-left: 0.39in; margin-bottom: 0in"><A HREF="#__RefHeading__1276_672427820">Importing
-	Additional Code	12</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__1410_1555280004">Template
-	Imports	12</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__709_501567663">Query
-	Results Ranking	12</A></P>
-	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__714_1030085182">Project
-	License	14</A></P>
-	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__726_1030085182">The
-	Project Build	14</A></P>
-	<P STYLE="margin-left: 0.2in; margin-bottom: 0in"><A HREF="#__RefHeading__728_1030085182">Getting
-	the Bits	14</A></P>
-	<P STYLE="margin-bottom: 0in"><A HREF="#__RefHeading__572_1226017537">See
-	Also	14</A></P>
-</DIV>
-<H1 CLASS="western"><BR><BR>
-</H1>
-<H1 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__334_1399982358"></A>
-<SDFIELD TYPE=DOCINFO SUBTYPE=TITLE>Simple Configuration Transformation Tool</SDFIELD></H1>
-<P>Scotty was written as a response to repeated exposures to crazy
-<A HREF="http://www.rubegoldberg.com/">Rube Goldberg</A> tools used
-to generate configuration files. Its designed to be sane and
-flexible, both in its implementation and use. It outputs
-configuration files by applying templates to data from a database of
-configuration data.  The database is stored as a collection of XML
-files. The templates are text files containing markup language and
-scripts. The database scheme is simple and the scripts are in
-familiar languages, like BeanShell which is basically Java, so coming<SPAN STYLE="font-style: normal">
-up to speed </SPAN><SPAN STYLE="font-style: normal">is easy, </SPAN><SPAN STYLE="font-style: normal">but
-</SPAN><SPAN STYLE="font-style: normal">allows</SPAN><SPAN STYLE="font-style: normal">
-for a great deal of </SPAN><SPAN STYLE="font-style: normal">flexibility.
- </SPAN><SPAN STYLE="font-style: normal">Scotty</SPAN><SPAN STYLE="font-style: normal">
-generate</SPAN><SPAN STYLE="font-style: normal">s text output, so it
-can generate</SPAN><SPAN STYLE="font-style: normal"> any </SPAN><SPAN STYLE="font-style: normal">sort</SPAN><SPAN STYLE="font-style: normal">
-of configuration file: properties, XML, JSON, etc.</SPAN><SPAN STYLE="font-style: normal">
-</SPAN><SPAN STYLE="font-style: normal">Additionally, </SPAN><SPAN STYLE="font-style: normal">The
-project is licensed under the </SPAN><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">ISC
-license,</SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
-a </SPAN></SPAN></FONT></FONT></FONT><A HREF="http://en.wikipedia.org/wiki/Permissive_free_software_license"><FONT COLOR="#0b0080"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">permissive
-free software license</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></A><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
-</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">written
-by the </SPAN></SPAN></FONT></FONT></FONT><A HREF="http://en.wikipedia.org/wiki/Internet_Systems_Consortium"><FONT COLOR="#0b0080"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">Internet
-Systems Consortium</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></A><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: #ffffff">
-</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">(ISC)
-–</SPAN></SPAN></FONT></FONT></FONT><FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal">
-so enjoy!</SPAN></SPAN></FONT></FONT></FONT></P>
-<H1 CLASS="western"></H1>
-<H2 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__454_1399982358"></A>
-An Example Database 
-</H2>
-<P>A Scotty database is built up of topical XML files following a
-very simple scheme. Following is a sample database file containing
-host data, listing  a sites host information. 
-</P>
-<H3 CLASS="western"><A NAME="__RefHeading__716_1030085182"></A><I>hosts.xml</I></H3>
-<P><BR><BR>
-</P>
-<P CLASS="text-body-indent-western">&lt;type name=”host”
-xmlns=&quot;<A HREF="http://nwillc.github.io/scotty">http://nwillc.github.io/scotty</A>&quot;</P>
-<P CLASS="text-body-indent-western">   
-xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</P>
-<P CLASS="text-body-indent-western">   
-xsi:schemaLocation=&quot;<A HREF="http://nwillc.github.io/scotty">http://nwillc.github.io/scotty</A>
-<A HREF="http://nwillc.github.io/scotty/database.xsd">http://nwillc.github.io/scotty/database.xsd</A>&quot;&gt;</P>
-<P CLASS="text-body-indent-western">       &lt;attribute
-name=”company” value=”Acme”/&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;context&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;attribute name=”env”&gt;</P>
-<P CLASS="text-body-indent-western">			&lt;value&gt;dev&lt;/value&gt;</P>
-<P CLASS="text-body-indent-western">			&lt;value&gt;alpha&lt;/value&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;/attribute&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;instance&gt;</P>
-<P CLASS="text-body-indent-western">			&lt;attribute name=&quot;hostname&quot;
-value=&quot;devbox&quot;/&gt;</P>
-<P CLASS="text-body-indent-western">			&lt;attribute
-name=”ip_address” value=”192.0.0.1”/&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;/instance&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;instance&gt;</P>
-<P CLASS="text-body-indent-western">			&lt;attribute name=&quot;hostname&quot;
-value=&quot;devbox2&quot;/&gt;</P>
-<P CLASS="text-body-indent-western">			&lt;attribute
-name=”ip_address” value=”192.0.0.2”/&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;/instance&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;/context&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;instance&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;attribute name=&quot;hostname&quot;
-value=&quot;prod1&quot;/&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;attribute name=”env”
-value=”prod”/&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;attribute name=”ip_address”
-value=”192.0.0.3”/&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;/instance&gt;</P>
-<P CLASS="text-body-indent-western">&lt;/type&gt;</P>
-<P CLASS="text-body-indent-western"><BR>
-</P>
-<P>Each file is a collection of <I>instances</I><SPAN STYLE="font-style: normal">
-of some </SPAN><I>type</I><SPAN STYLE="font-style: normal">.
-Instances have </SPAN><I>attributes </I><SPAN STYLE="font-style: normal">that
-define their properties. Instances can be grouped in </SPAN><I>contexts</I><SPAN STYLE="font-style: normal">
-to express commonalities and instances can inherit from parent
-instances to allow for overriding of, or addition of, attributes.</SPAN></P>
-<P CLASS="text-body-indent-western" STYLE="page-break-before: always">
-<BR>
-</P>
-<H2 CLASS="western"><A NAME="__RefHeading__2687_672427820"></A>An
-Example Template	</H2>
-<P>Templates are text files containing Scotty's markup DSL and
-scripts. The markup and scripting allows the templates to retrieve
-data from the database. The following is an example template draws
-from the host instances from the database to create a Java Properties
-file.</P>
-<H3 CLASS="western"><A NAME="__RefHeading__720_1030085182"></A><I>hosts.scotty</I>:</H3>
-<P>	</P>
-<P CLASS="text-body-indent-western"># {#t host #}{#o hosts.properties
-#}</P>
-<P CLASS="text-body-indent-western"># This is a properties file
-template to be used with SCoTTy</P>
-<P CLASS="text-body-indent-western"># {#? company #}</P>
-<P CLASS="text-body-indent-western">{#</P>
-<P CLASS="text-body-indent-western">	Context c = new
-Context(context,&quot;type=host&quot;);</P>
-<P CLASS="text-body-indent-western">	Set set = database.query(c,
-&quot;hostname&quot;);</P>
-<P CLASS="text-body-indent-western">	for (String hostname : set ) {</P>
-<P CLASS="text-body-indent-western">		c.put(&quot;hostname&quot;,
-hostname);</P>
-<P CLASS="text-body-indent-western">		Instance host =
-database.query(c).get(0);</P>
-<P CLASS="text-body-indent-western">		output.format(&quot;%-20s%s\n&quot;,
-new Object[]{hostname,host.get(&quot;ip_address&quot;)});</P>
-<P CLASS="text-body-indent-western">	}</P>
-<P CLASS="text-body-indent-western">#}</P>
-<P CLASS="text-body-indent-western"># End</P>
-<H1 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__2695_672427820"></A>
-Command Line Operation</H1>
-<P>Scotty is run from the command line, the command line describes
-the database, the runtime context, a template and the output file.</P>
-<P><BR><BR>
-</P>
-<H2 CLASS="western"><A NAME="__RefHeading__722_1030085182"></A>Command
-Line</H2>
-<P CLASS="text-body-indent-western">usage: java -jar scotty.jar
-[options]</P>
-<P CLASS="text-body-indent-western"> -c,--context &lt;assignments&gt;
-  Comma separated list of assignments to act</P>
-<P CLASS="text-body-indent-western">                              as
-the context.</P>
-<P CLASS="text-body-indent-western"> -d,--database &lt;filenames&gt; 
-  Comma separated of XML files containing</P>
-<P CLASS="text-body-indent-western">                             
-types in database.</P>
-<P CLASS="text-body-indent-western"> -f,--folder &lt;directory&gt;   
-  The folder to put output files in. Use &quot;-&quot;</P>
-<P CLASS="text-body-indent-western">                              for
-standard out.</P>
-<P CLASS="text-body-indent-western"> -h,--help                   
-print this message.</P>
-<P CLASS="text-body-indent-western"> -l,--language &lt;language&gt;  
-  Define an alternative scripting language.</P>
-<P CLASS="text-body-indent-western">                             
-BeanShell used by default.</P>
-<P CLASS="text-body-indent-western"> -o,--output &lt;filename&gt;    
-  The name of the output file.</P>
-<P CLASS="text-body-indent-western"> -p,--print                  
-Print the database out as a flattened text</P>
-<P CLASS="text-body-indent-western">                             
-file.</P>
-<P CLASS="text-body-indent-western"> -t,--template &lt;filename&gt;  
-  The name of the template file.</P>
-<H2 CLASS="western"><A NAME="__RefHeading__574_1226017537"></A>Example
-Run</H2>
-<P>The following could be used to use scotty to process the example
-files in this document:</P>
-<P><BR><BR>
-</P>
-<P CLASS="text-body-indent-western">$ java -jar scotty.jar -c
-env=prod -d hosts.xml -t hosts.scotty -o host.properties -f -</P>
-<H2 CLASS="western"><A NAME="__RefHeading__1380_346239147"></A>How
-Are Files Found?</H2>
-<P>It's noteworthy that the files designated on the command line, the
-database files and template, can be in the file system or in the jar,
-this allows you to embed Scotty along with those files if you desire.</P>
-<H1 CLASS="western"><BR><BR>
-</H1>
-<H1 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__2689_672427820"></A>
-The Database Explained</H1>
-<P>A <I>database </I><SPAN STYLE="font-style: normal">is made up of a</SPAN>
-map of <I>types. </I><SPAN STYLE="font-style: normal">Each type is
-contained in a single file, and is made up of a map of </SPAN><I>instances.</I><SPAN STYLE="font-style: normal">
- </SPAN><SPAN STYLE="font-style: normal">Individual properties are
-set with </SPAN><I>attributes</I><SPAN STYLE="font-style: normal">
-which can be placed at any level.  </SPAN><SPAN STYLE="font-style: normal">Attributes
-are a named </SPAN><I>value, </I><SPAN STYLE="font-style: normal">a
-value being either a string or collection of strings.</SPAN><I>
-</I><SPAN STYLE="font-style: normal">Attributes are inherited, for
-example an attribute set in a type can be referenced by or overridden
-by any instance. </SPAN><SPAN STYLE="font-style: normal">Instances
-can be grouped into </SPAN><I>contexts</I><SPAN STYLE="font-style: normal">
-</SPAN><SPAN STYLE="font-style: normal">for the purpose of attribute
-inheritance. </SPAN><SPAN STYLE="font-style: normal">Since </SPAN><SPAN STYLE="font-style: normal">the
-database and types</SPAN><SPAN STYLE="font-style: normal"> are maps,
-the type name should be unique in the database and the instance names
-should be unique to a type.   </SPAN><I> </I>
-</P>
-<P><BR><BR>
-</P>
-<P>The basic XML example for a type file is as follows:</P>
-<P CLASS="text-body-indent-western"><BR>
-</P>
-<P CLASS="text-body-indent-western">&lt;type name=””&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;instance name=””&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;/instance&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;context&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;attribute name=””
-value=””/&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;instance name=””&gt;</P>
-<P CLASS="text-body-indent-western">			&lt;attribute name=””&gt;</P>
-<P CLASS="text-body-indent-western">                          
-&lt;value&gt;&lt;/value&gt;</P>
-<P CLASS="text-body-indent-western">                     
-&lt;/attribute&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;/instance&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;/context&gt;</P>
-<P CLASS="text-body-indent-western">&lt;/type&gt;</P>
-<P CLASS="text-body-indent-western"><BR>
-</P>
-<P><BR><BR>
-</P>
-<H2 CLASS="western"><A NAME="__RefHeading__718_1030085182"></A>A
-Database as a Map of Types, Types as Maps of Instances</H2>
-<P>A database would be a map of types, such as applications, hosts,
-environments etc. It is comprised of a hierarchy of types, and
-instances of those types.  Attributes can be attached at any level
-and are inherited. Types and instances can be placed into contexts
-which allows inheritance subgroups.  
-</P>
-<P><IMG SRC="scotty_html_m1859a63b.png" NAME="graphics1" ALIGN=LEFT WIDTH=830 HEIGHT=649 BORDER=0><BR><BR>
-</P>
-<H1 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__338_1399982358"></A>
-The Transformation Markup DSL Explained</H1>
-<P>Scotty's templates are nothing more then a text file annotated
-with a very simple markup language.  The markups can insert retrieved
-values, run BeanShell scripts producing arbitrary output.</P>
-<TABLE WIDTH=894 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=5 CELLSPACING=0>
-	<COL WIDTH=324>
-	<COL WIDTH=548>
-	<TR VALIGN=TOP>
-		<TD WIDTH=324>
-			<P>{#c attribute,... #}</P>
-		</TD>
-		<TD WIDTH=548>
-			<P>Assert the runtime context contains required attributes</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=324>
-			<P>{#i template assignments #}</P>
-		</TD>
-		<TD WIDTH=548>
-			<P>Import another template into this one, with optional context
-			assignments.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=324>
-			<P>{#l language #}</P>
-		</TD>
-		<TD WIDTH=548>
-			<P>Define the scripting language (See <B>Scripts</B><SPAN STYLE="font-weight: normal">
-			below)</SPAN></P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=324>
-			<P>{#o filename #}</P>
-		</TD>
-		<TD WIDTH=548>
-			<P>Redirect output to indicated file. The file will be placed in
-			the <I>folder</I><SPAN STYLE="font-style: normal"> named in the
-			database context. If the folder is “-” then this directive is
-			ignore and the output goes to standard out.</SPAN></P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=324>
-			<P>{#t type,... #}</P>
-		</TD>
-		<TD WIDTH=548>
-			<P>Assert the database contains required types</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=324>
-			<P>{#? attribute assignments #}</P>
-		</TD>
-		<TD WIDTH=548>
-			<P>Query the database for an attribute best matching the given
-			context.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=324>
-			<P>{#= attribute #}</P>
-		</TD>
-		<TD WIDTH=548>
-			<P>Return an attribute from the runtime context.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=324>
-			<P>{#    …script…    #}</P>
-		</TD>
-		<TD WIDTH=548>
-			<P>Run a script, BeanShell by default.</P>
-		</TD>
-	</TR>
-</TABLE>
-<H2 CLASS="western"><A NAME="__RefHeading__456_1399982358"></A>Variables
-Available to Scripts</H2>
-<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=5 CELLSPACING=0>
-	<COL WIDTH=92*>
-	<COL WIDTH=164*>
-	<TR VALIGN=TOP>
-		<TD WIDTH=36%>
-			<P>Database <I>database</I> 
-			</P>
-		</TD>
-		<TD WIDTH=64%>
-			<P>The root context of the parsed database.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=36%>
-			<P>Context <I>context</I></P>
-		</TD>
-		<TD WIDTH=64%>
-			<P>The context that was provided on the command line.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=36%>
-			<P>PrintStream <I>output</I></P>
-		</TD>
-		<TD WIDTH=64%>
-			<P>The output print stream being used by scotty.</P>
-		</TD>
-	</TR>
-</TABLE>
-<H2 CLASS="western"><A NAME="__RefHeading__1226_672427820"></A>Inherent
-Attributes</H2>
-<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=5 CELLSPACING=0>
-	<COL WIDTH=51*>
-	<COL WIDTH=109*>
-	<COL WIDTH=96*>
-	<THEAD>
-		<TR VALIGN=TOP>
-			<TH WIDTH=20%>
-				<P ALIGN=LEFT>Attribute</P>
-			</TH>
-			<TH WIDTH=43%>
-				<P ALIGN=LEFT>Description</P>
-			</TH>
-			<TH WIDTH=38%>
-				<P ALIGN=LEFT>Where</P>
-			</TH>
-		</TR>
-	</THEAD>
-	<TBODY>
-		<TR VALIGN=TOP>
-			<TD WIDTH=20%>
-				<P><I>type</I></P>
-			</TD>
-			<TD WIDTH=43%>
-				<P>The type name this context represents</P>
-			</TD>
-			<TD WIDTH=38%>
-				<P>Any type instance in the database</P>
-			</TD>
-		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=20%>
-				<P><I>instance</I></P>
-			</TD>
-			<TD WIDTH=43%>
-				<P>The instance name</P>
-			</TD>
-			<TD WIDTH=38%>
-				<P>Any instance context in the database</P>
-			</TD>
-		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=20%>
-				<P><I>folder</I></P>
-			</TD>
-			<TD WIDTH=43%>
-				<P>The folder that output files should be created in</P>
-			</TD>
-			<TD WIDTH=38%>
-				<P>Any database context</P>
-			</TD>
-		</TR>
-	</TBODY>
-</TABLE>
-<H1 CLASS="western"><BR><BR>
-</H1>
-<H1 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__576_1226017537"></A>
-Class Documentation</H1>
-<P>Full API documentation is available at
-<A HREF="http://nwillc.github.io/scotty/apidocs/">http://nwillc.github.io/scotty/apidocs/</A>
-but the following is a concise explanation of the portions available
-to BeanShell.</P>
-<H3 CLASS="western"><A NAME="__RefHeading__707_501567663"></A>Context</H3>
-<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=5 CELLSPACING=0 STYLE="page-break-inside: avoid">
-	<COL WIDTH=106*>
-	<COL WIDTH=150*>
-	<TR VALIGN=TOP>
-		<TD WIDTH=41%>
-			<P><B>Method</B></P>
-		</TD>
-		<TD WIDTH=59%>
-			<P><B>Description</B></P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=41%>
-			<P STYLE="font-weight: normal">Map&lt;String, String&gt; getMap()</P>
-		</TD>
-		<TD WIDTH=59%>
-			<P STYLE="font-weight: normal">All the attributes in this context.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=41%>
-			<P STYLE="font-weight: normal">Map&lt;String, Context&gt;
-			getContained()</P>
-		</TD>
-		<TD WIDTH=59%>
-			<P STYLE="font-weight: normal">Any contexts contained inside this
-			one.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=41%>
-			<P STYLE="font-weight: normal">Context getContainer()</P>
-		</TD>
-		<TD WIDTH=59%>
-			<P STYLE="font-weight: normal">Get the context containing this
-			one.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=41%>
-			<P STYLE="font-weight: normal">Set&lt;String&gt; keySet()</P>
-		</TD>
-		<TD WIDTH=59%>
-			<P STYLE="font-weight: normal">The list of attribute keys
-			contained in this context and those of the context it is contained
-			in.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=41%>
-			<P STYLE="font-weight: normal">boolean containsKey(String key)</P>
-		</TD>
-		<TD WIDTH=59%>
-			<P STYLE="font-weight: normal">Get the list of keys contained in
-			the context.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=41%>
-			<P STYLE="font-weight: normal">String get(String key)</P>
-		</TD>
-		<TD WIDTH=59%>
-			<P STYLE="font-weight: normal">Get the string representation of a
-			value of a key.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=41%>
-			<P STYLE="font-weight: normal">Value getValue(String key)</P>
-		</TD>
-		<TD WIDTH=59%>
-			<P STYLE="font-weight: normal">Get the actual value associated
-			with key in a context.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=41%>
-			<P STYLE="font-weight: normal">put(String attributes)</P>
-		</TD>
-		<TD WIDTH=59%>
-			<P STYLE="font-weight: normal">Set attributes from a string
-			representation (see API docs)</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=41%>
-			<P STYLE="font-weight: normal">boolean isContained()</P>
-		</TD>
-		<TD WIDTH=59%>
-			<P STYLE="font-weight: normal">This context is contained in
-			another.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=41%>
-			<P STYLE="font-weight: normal">boolean isContainer()</P>
-		</TD>
-		<TD WIDTH=59%>
-			<P STYLE="font-weight: normal">This context is a container of sub
-			contexts.</P>
-		</TD>
-	</TR>
-</TABLE>
-<H3 CLASS="western"><A NAME="__RefHeading__1192_591635657"></A>Value</H3>
-<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=5 CELLSPACING=0>
-	<COL WIDTH=128*>
-	<COL WIDTH=128*>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<P><B>Method</B></P>
-		</TD>
-		<TD WIDTH=50%>
-			<P><B>Description</B></P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<P>String toString()</P>
-		</TD>
-		<TD WIDTH=50%>
-			<P>Returns the string representation which is a comma separated
-			list of all the values.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<P>List&lt;String&gt; values()</P>
-		</TD>
-		<TD WIDTH=50%>
-			<P>Gets a list of all the values contained in this value.</P>
-		</TD>
-	</TR>
-</TABLE>
-<H3 CLASS="western"><A NAME="__RefHeading__578_1226017537"></A>Database
-<SPAN STYLE="font-weight: normal">extends</SPAN> <B>Context</B></H3>
-<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=5 CELLSPACING=0>
-	<COL WIDTH=128*>
-	<COL WIDTH=128*>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<P><B>Method</B></P>
-		</TD>
-		<TD WIDTH=50%>
-			<P><B>Description</B></P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<P>List&lt;Instance&gt; query(Context c)</P>
-		</TD>
-		<TD WIDTH=50%>
-			<P>Retrieves first attribute value from database found matching
-			the name and context given.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<P>List&lt;String&gt; query(Context c, String attribute)</P>
-		</TD>
-		<TD WIDTH=50%>
-			<P>Retrieves an ordered set of all the values of the attribute
-			who's instance match the query.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<P>String find(String attribute)</P>
-		</TD>
-		<TD WIDTH=50%>
-			<P>Retrieves the value of the attribute exactly matching the name
-			given.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=50%>
-			<P>void print(PrintStream stream, Context c)</P>
-		</TD>
-		<TD WIDTH=50%>
-			<P>A debugging method, prints out the contents of the database in
-			flattened form, with the similarity score of each instance to the
-			context given.</P>
-		</TD>
-	</TR>
-</TABLE>
-<H1 CLASS="western"><A NAME="__RefHeading__753_1450102712"></A>Things
-Are Not Always Simple</H1>
-<P>While scotty is designed to be simple, it does support techniques
-that are more advanced.</P>
-<H2 CLASS="western"><A NAME="__RefHeading__755_1450102712"></A>Instance
-Inheritance</H2>
-<P>When you want an instance to have all the properties on an
-existing instance with some attribute additions or value changes you
-can employ inheritance.  The following is an example of a host that
-is completely the same as another but is in a different environment:</P>
-<P CLASS="text-body-indent-western"><BR>
-</P>
-<P CLASS="text-body-indent-western">&lt;instance name=”devbox”&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;attribute name=”os”
-value=”linux”/&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;attribute name=”env”
-value=”dev”/&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;instance name=”qabox”&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;attribute name=”env”
-value=”qa”/&gt;</P>
-<P CLASS="text-body-indent-western">		&lt;attribute name=”tag”
-value=”special”/&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;/instance&gt;</P>
-<P CLASS="text-body-indent-western">&lt;/instance&gt;</P>
-<H2 CLASS="western"><A NAME="__RefHeading__2027_249703325"></A>Multiple
-Value Attributes</H2>
-<P>Attributes can have a single value or multiple values. The
-notation for multiple values is:</P>
-<P CLASS="text-body-indent-western">&lt;attribute name”light”&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;value&gt;red&lt;/value&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;value&gt;amber&lt;/value&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;value&gt;green&lt;/value&gt;</P>
-<P CLASS="text-body-indent-western">&lt;/attribute&gt;</P>
-<P>Attributes with multiple values will test all values of the
-attribute in queries. So the above would match a context with<FONT FACE="Courier, monospace">
-light=red</FONT> or <FONT FACE="Courier, monospace">light=green</FONT>.
- They will return a comma separated string on a simple find.</P>
-<H2 CLASS="western"><A NAME="__RefHeading__2029_249703325"></A>Mutable
-in Memory Database &amp; Context 
-</H2>
-<P>The <FONT SIZE=2>database</FONT> and <FONT FACE="Courier, monospace"><FONT SIZE=2>context</FONT></FONT>
-accessible in the scripts are modifiable. For example if you wanted
-to add <I>app=webserver</I><SPAN STYLE="font-style: normal"> to the
-context you could simply:</SPAN></P>
-<P STYLE="font-style: normal"><BR><BR>
-</P>
-<P CLASS="text-body-indent-western">{#
-context.put(“app”,”webserver”); #}</P>
-<P CLASS="text-body-indent-western"><BR>
-</P>
-<P>These changes are not persisted in any way. 
-</P>
-<H2 CLASS="western"><BR><BR>
-</H2>
-<H2 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__724_1030085182"></A>
-Scripts</H2>
-<P>A template may contain scripted portions (in <A HREF="http://www.beanshell.org/">BeanShell</A>
-by default) which have access to the database, the runtime context,
-and the output stream. Scripts can therefore be used to perform
-elaborate traversals or even non persistent transformations of the
-database, producing completely flexible output.</P>
-<H3 CLASS="western"><A NAME="__RefHeading__1363_631966402"></A>Alternate
-Scripting Languages</H3>
-<P>Scotty uses Java's ScriptEngine support to allow loading in
-alternative scripting languages. For example if you provide the
-command line option “-l javascript” then any script in a {# …
-#} will be interpreted in JavaScript.  Scotty uses JSR-223 compliant
-scripting languages, with BeanShell and JavaScript baked in, others
-will require additional jars.  
-</P>
-<H3 CLASS="western"><A NAME="__RefHeading__1276_672427820"></A>Importing
-Additional Code</H3>
-<P>BeanShell scripts, being roughly Java, can import additional java
-code. You can add a jar to your command line's <FONT FACE="Courier New, monospace"><FONT SIZE=2>-cp</FONT></FONT>
-and then use the Java <FONT FACE="Courier New, monospace"><FONT SIZE=2>import
-the.class.Name;</FONT></FONT> directive and then use that class in
-your script.</P>
-<H2 CLASS="western"><A NAME="__RefHeading__1410_1555280004"></A>Template
-Imports</H2>
-<P>A template can use the <FONT FACE="Courier New, monospace"><FONT SIZE=2>{#i
-template assignments #}</FONT></FONT> to import another template. The
-template is given it's own context, inheriting from the importers
-context with any additional specified assignments.</P>
-<H2 CLASS="western"><A NAME="__RefHeading__709_501567663"></A>Query
-Results Ranking</H2>
-<P>The results of the query method are returned in a useful
-deterministic order. They are sorted first by the best matching
-score, and when that is equal then by the instantiation order of the
-instance read from top to bottom of the database.  
-</P>
-<P>Matching score is determined by the similarity of the two
-contexts. Similarity is measured by +1.0 for each attribute that
-matches between the two contexts. A penalty of 0.25 is applied for
-each attribute that is a multiple value attribute.</P>
-<P>So for example the similarity of the following two contexts would
-be 2.0:</P>
-<P CLASS="text-body-indent-western">&lt;context&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;attribute name=”continent”
-value=”North America”/&gt;</P>
-<P CLASS="text-body-indent-western">       &lt;attribute
-name=”country” value=”USA”/&gt;</P>
-<P CLASS="text-body-indent-western">       &lt;attribute name=”year”
-value=”1945”/&gt;</P>
-<P CLASS="text-body-indent-western">&lt;/context&gt;</P>
-<P CLASS="text-body-indent-western">&lt;context&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;attribute name=”continent”
-value=”North America”/&gt;</P>
-<P CLASS="text-body-indent-western">       &lt;attribute
-name=”country” value=”Canada”/&gt;</P>
-<P CLASS="text-body-indent-western">       &lt;attribute name=”year”
-value=”1945”/&gt;</P>
-<P CLASS="text-body-indent-western">&lt;/context&gt;</P>
-<P CLASS="text-body-indent-western" STYLE="line-height: 0.1in"><BR>
-</P>
-<P>While the similarity of the following would be 1.5, since in one
-matching attribute, both values are multiples:</P>
-<P><BR><BR>
-</P>
-<P CLASS="text-body-indent-western">&lt;context&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;attribute name=”continent”
-value=”North America”/&gt;</P>
-<P CLASS="text-body-indent-western">       &lt;attribute
-name=”country”&gt;</P>
-<P CLASS="text-body-indent-western">            &lt;value&gt;USA&lt;/value&gt;</P>
-<P CLASS="text-body-indent-western">            &lt;value&gt;Canada&lt;/value&gt;</P>
-<P CLASS="text-body-indent-western">       &lt;attribute&gt;</P>
-<P CLASS="text-body-indent-western">       &lt;attribute name=”year”
-value=”1945”/&gt;</P>
-<P CLASS="text-body-indent-western">&lt;/context&gt;</P>
-<P CLASS="text-body-indent-western">&lt;context&gt;</P>
-<P CLASS="text-body-indent-western">	&lt;attribute name=”continent”
-value=”North America”/&gt;</P>
-<P CLASS="text-body-indent-western">       &lt;attribute
-name=”country”&gt;</P>
-<P CLASS="text-body-indent-western">            &lt;value&gt;USA&lt;/value&gt;</P>
-<P CLASS="text-body-indent-western">            &lt;value&gt;Canada&lt;/value&gt;</P>
-<P CLASS="text-body-indent-western">       &lt;attribute&gt;</P>
-<P CLASS="text-body-indent-western">       &lt;attribute name=”year”
-value=”1945”/&gt;</P>
-<P CLASS="text-body-indent-western">&lt;/context&gt;</P>
-<P><BR><BR>
-</P>
-<P>This similarity scoring allows you to associate general data with
-instances and then override the instance with more specific
-attributes for more specifics cases. Say all applications might have
-attributes to do with logging, but those written in Java need Log4J
-configuration attributes.</P>
-<P>To help resolve scoring ambiguities see the void print(PrintStream stream, Context c)
-Database  method that will print database instances and how they
-compare to given context.</P>
-<H1 CLASS="western" STYLE="page-break-before: always"><A NAME="__RefHeading__714_1030085182"></A>
-Project License</H1>
-<P>This projected is licensed under the <A HREF="http://en.wikipedia.org/wiki/ISC_license">ISC</A>
-license:</P>
-<P><BR><BR>
-</P>
-<P CLASS="text-body-indent-western">Copyright (c) 2013-2014,
-nwillc@gmail.com</P>
-<P CLASS="text-body-indent-western"><BR>
-</P>
-<P CLASS="text-body-indent-western">Permission to use, copy, modify,
-and/or distribute this software for any purpose with or 
-</P>
-<P CLASS="text-body-indent-western">without fee is hereby granted,
-provided that the above copyright notice and this permission 
-</P>
-<P CLASS="text-body-indent-western">notice appear in all copies.</P>
-<P CLASS="text-body-indent-western"><BR>
-</P>
-<P CLASS="text-body-indent-western">THE SOFTWARE IS PROVIDED &quot;AS
-IS&quot; AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO 
-</P>
-<P CLASS="text-body-indent-western">THIS SOFTWARE INCLUDING ALL
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT 
-</P>
-<P CLASS="text-body-indent-western">SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR 
-</P>
-<P CLASS="text-body-indent-western">ANY DAMAGES WHATSOEVER RESULTING
-FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF 
-</P>
-<P CLASS="text-body-indent-western">CONTRACT, NEGLIGENCE OR OTHER
-TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
-</P>
-<P CLASS="text-body-indent-western">OR PERFORMANCE OF THIS SOFTWARE.</P>
-<P CLASS="text-body-indent-western"><BR>
-</P>
-<H1 CLASS="western"><A NAME="__RefHeading__726_1030085182"></A>The
-Project Build</H1>
-<P>Scotty is written in Java (1.7+) and built with maven (2.2.1+). It
-uses open source packages for functional programming
-(<A HREF="http://nwillc.github.io/almost-functional">almost-functional</A>),
-command line parsing (commons-cli), scripting (bsh) and testing
-(junit, fest  &amp; cucumber).  It is extremely light weight, has
-been test built on a linux atom netbook in under a minute and the
-resultant jar, with all dependencies needed is under half a megabyte.</P>
-<H2 CLASS="western"><A NAME="__RefHeading__728_1030085182"></A>Getting
-the Bits</H2>
-<P>The project home page is at <A HREF="http://nwillc.github.io/scotty">http://nwillc.github.io/scotty</A></P>
-<H1 CLASS="western"><A NAME="__RefHeading__572_1226017537"></A>See
-Also</H1>
-<UL>
-	<LI><P>Scotty API documentation:
-	<A HREF="http://nwillc.github.io/scotty/apidocs/">http://nwillc.github.io/scotty/apidocs/</A></P>
-	<LI><P>BeanShell:  <A HREF="http://www.beanshell.org/">http://www.beanshell.org/</A></P>
-	<P></P>
-</UL>
-<DIV TYPE=FOOTER>
-	<P ALIGN=CENTER STYLE="margin-top: 0.2in; margin-bottom: 0in">Version:
-	<SDFIELD TYPE=DOCINFO SUBTYPE=CUSTOM NAME="version">1.5</SDFIELD>   
-	                                                                    
-	                                    Page: <SDFIELD TYPE=PAGE SUBTYPE=RANDOM FORMAT=PAGE>13</SDFIELD>
-	of <SDFIELD TYPE=DOCSTAT SUBTYPE=PAGE FORMAT=PAGE>14</SDFIELD></P>
-</DIV>
-</BODY>
-</HTML>
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://dublincore.org/documents/dcmi-terms/"><meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/><title xml:lang="en-US">Simple Configuration Transformation Tool</title><meta name="DCTERMS.title" content="Simple Configuration Transformation Tool" xml:lang="en-US"/><meta name="DCTERMS.language" content="en-US" scheme="DCTERMS.RFC4646"/><meta name="DCTERMS.source" content="http://xml.openoffice.org/odf2xhtml"/><meta name="DCTERMS.issued" content="2013-05-04T14:42:57" scheme="DCTERMS.W3CDTF"/><meta name="DCTERMS.modified" content="2014-07-04T13:39:39" scheme="DCTERMS.W3CDTF"/><meta name="DCTERMS.provenance" content="" xml:lang="en-US"/><meta name="DCTERMS.subject" content="," xml:lang="en-US"/><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" hreflang="en"/><link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" hreflang="en"/><link rel="schema.DCTYPE" href="http://purl.org/dc/dcmitype/" hreflang="en"/><link rel="schema.DCAM" href="http://purl.org/dc/dcam/" hreflang="en"/><style type="text/css">
+	@page {  }
+	table { border-collapse:collapse; border-spacing:0; empty-cells:show }
+	td, th { vertical-align:top; font-size:12pt;}
+	h1, h2, h3, h4, h5, h6 { clear:both }
+	ol, ul { margin:0; padding:0;}
+	li { list-style: none; margin:0; padding:0;}
+	
+	li span. { clear: both; line-height:0; width:0; height:0; margin:0; padding:0; }
+	span.footnodeNumber { padding-right:1em; }
+	span.annotation_style_by_filter { font-size:95%; font-family:Arial; background-color:#fff000;  margin:0; border:0; padding:0;  }
+	* { margin:0;}
+	.fr1 { font-size:12pt; vertical-align:top; writing-mode:lr-tb; }
+	.Contents_20_1 { font-size:12pt; font-family:Times New Roman; writing-mode:page; margin:100%; margin-left:0in; margin-right:0in; margin-top:0in; margin-bottom:0in; text-indent:0in; }
+	.Contents_20_2 { font-size:12pt; font-family:Times New Roman; writing-mode:page; margin:100%; margin-left:0.1965in; margin-right:0in; margin-top:0in; margin-bottom:0in; text-indent:0in; }
+	.Contents_20_3 { font-size:12pt; font-family:Times New Roman; writing-mode:page; margin:100%; margin-left:0.3929in; margin-right:0in; margin-top:0in; margin-bottom:0in; text-indent:0in; }
+	.Contents_20_Heading { font-size:16pt; margin-bottom:0in; margin-top:0in; font-family:Arial; writing-mode:page; margin:100%; margin-left:0in; margin-right:0in; text-indent:0in; font-weight:bold; }
+	.Heading_20_1 { font-size:115%; margin-bottom:0.0835in; margin-top:0.1665in; font-family:Arial; writing-mode:page; font-weight:bold; }
+	.Heading_20_2 { font-size:14pt; margin-bottom:0.0835in; margin-top:0.1665in; font-family:Arial; writing-mode:page; font-style:italic; font-weight:bold; }
+	.Heading_20_3 { font-size:14pt; margin-bottom:0.0835in; margin-top:0.1665in; font-family:Arial; writing-mode:page; font-weight:bold; }
+	.P1 { font-size:12pt; font-family:Times New Roman; writing-mode:page; text-align:center ! important; }
+	.P10 { font-size:10pt; margin-bottom:0.0835in; margin-top:0in; font-family:Times New Roman; writing-mode:page; font-style:italic; }
+	.P11 { font-size:12pt; font-family:Times New Roman; writing-mode:page; font-weight:bold; }
+	.P12 { font-size:12pt; font-family:Times New Roman; writing-mode:page; font-weight:normal; }
+	.P13 { font-size:12pt; font-family:Times New Roman; writing-mode:page; font-style:italic; }
+	.P14 { font-size:24pt; font-family:Arial; writing-mode:page; text-align:center ! important; font-weight:bold; }
+	.P15 { font-size:20pt; font-family:Arial; writing-mode:page; text-align:center ! important; font-weight:bold; }
+	.P16 { font-size:10pt; font-family:Arial; writing-mode:page; text-align:center ! important; font-style:italic; font-weight:normal; }
+	.P17 { font-size:10pt; line-height:0.1in; margin:100%; margin-bottom:0in; margin-left:0.1965in; margin-right:0in; margin-top:0in; text-indent:0in; font-family:Courier; writing-mode:page; }
+	.P18 { font-size:10pt; line-height:0.1in; margin:100%; margin-bottom:0in; margin-left:0.1965in; margin-right:0in; margin-top:0in; text-indent:0in; font-family:Courier; writing-mode:page; }
+	.P19 { font-size:8pt; line-height:0.1in; margin:100%; margin-bottom:0in; margin-left:0.1965in; margin-right:0in; margin-top:0in; text-indent:0in; font-family:Courier; writing-mode:page; }
+	.P20 { font-size:10pt; line-height:0.1in; margin:100%; margin-bottom:0in; margin-left:0.1965in; margin-right:0in; margin-top:0in; text-indent:0in; font-family:Courier; writing-mode:page; }
+	.P21 { font-size:12pt; font-weight:bold; text-align:left ! important; font-family:Times New Roman; writing-mode:page; }
+	.P22 { font-size:12pt; margin:100%; margin-bottom:0in; margin-left:0.3929in; margin-right:0in; margin-top:0in; text-indent:0in; font-family:Times New Roman; writing-mode:page; }
+	.P23 { font-size:14pt; font-weight:bold; margin-bottom:0.0835in; margin-top:0.1665in; font-family:Arial; writing-mode:page; font-style:italic; }
+	.P24 { font-size:16pt; font-weight:bold; margin:100%; margin-bottom:0in; margin-left:0in; margin-right:0in; margin-top:0in; text-indent:0in; font-family:Arial; writing-mode:page; }
+	.P25 { font-size:12pt; margin:100%; margin-bottom:0in; margin-left:0.1965in; margin-right:0in; margin-top:0in; text-indent:0in; font-family:Times New Roman; writing-mode:page; }
+	.P26 { font-size:12pt; margin:100%; margin-bottom:0in; margin-left:0in; margin-right:0in; margin-top:0in; text-indent:0in; font-family:Times New Roman; writing-mode:page; }
+	.P27 { font-size:14pt; font-style:italic; font-weight:bold; margin-bottom:0.0835in; margin-top:0.1665in; font-family:Arial; writing-mode:page; }
+	.P28 { font-size:14pt; font-style:italic; font-weight:bold; margin-bottom:0.0835in; margin-top:0.1665in; font-family:Arial; writing-mode:page; }
+	.P29 { font-size:115%; font-weight:bold; margin-bottom:0.0835in; margin-top:0.1665in; font-family:Arial; writing-mode:page; text-align:center ! important; }
+	.P3 { font-size:12pt; margin-bottom:0.0835in; margin-top:0in; font-family:Arial; writing-mode:page; text-align:center ! important; letter-spacing:normal; font-style:italic; font-weight:normal; }
+	.P30 { font-size:115%; font-weight:bold; margin-bottom:0.0835in; margin-top:0.1665in; font-family:Arial; writing-mode:page; }
+	.P31 { font-size:115%; font-weight:bold; margin-bottom:0.0835in; margin-top:0.1665in; font-family:Arial; writing-mode:page; font-style:italic; }
+	.P32 { font-size:115%; font-weight:bold; margin-bottom:0.0835in; margin-top:0.1665in; font-family:Arial; writing-mode:page; }
+	.P33 { font-size:12pt; margin-bottom:0.0835in; margin-top:0in; font-family:Times New Roman; writing-mode:page; }
+	.P34 { font-size:12pt; margin-bottom:0.0835in; margin-top:0in; font-family:Times New Roman; writing-mode:page; }
+	.P35 { font-size:14pt; margin-bottom:0.0835in; margin-top:0.1665in; font-family:Arial; writing-mode:page; }
+	.P4 { font-size:10pt; margin-bottom:0.0835in; margin-top:0in; font-family:Arial; writing-mode:page; text-align:center ! important; letter-spacing:normal; font-style:italic; font-weight:normal; }
+	.P5 { font-size:10pt; margin-bottom:0.0835in; margin-top:0in; font-family:Arial; writing-mode:page; text-align:center ! important; font-style:italic; }
+	.P6 { font-size:12pt; margin-bottom:0.0835in; margin-top:0in; font-family:Times New Roman; writing-mode:page; text-align:center ! important; }
+	.P7 { font-size:12pt; margin-bottom:0.0835in; margin-top:0in; font-family:Times New Roman; writing-mode:page; font-style:normal; }
+	.P8 { font-size:8pt; margin-bottom:0.0835in; margin-top:0in; font-family:Courier; writing-mode:page; }
+	.P9 { font-size:12pt; margin-bottom:0.0835in; margin-top:0in; font-family:Times New Roman; writing-mode:page; font-style:italic; }
+	.Table_20_Contents { font-size:12pt; font-family:Times New Roman; writing-mode:page; }
+	.Text_20_body { font-size:12pt; font-family:Times New Roman; writing-mode:page; margin-top:0in; margin-bottom:0.0835in; }
+	.Text_20_body_20_indent { font-size:8pt; margin-bottom:0in; margin-top:0in; font-family:Courier; writing-mode:page; margin:100%; margin-left:0.1965in; margin-right:0in; line-height:0.1in; text-indent:0in; }
+	.Table1 { width:6.9271in; margin-left:0in; }
+	.Table2 { width:6.925in; float:none; }
+	.Table3 { width:6.925in; float:none; }
+	.Table4 { width:6.925in; float:none; }
+	.Table5 { width:6.925in; float:none; }
+	.Table6 { width:6.925in; float:none; }
+	.Table1_A1 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-width:0.0133cm; border-top-style:solid; border-top-color:#000000; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table1_A2 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-style:none; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table1_B1 { padding:0.0382in; border-width:0.0133cm; border-style:solid; border-color:#000000; }
+	.Table1_B2 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-width:0.0133cm; border-right-style:solid; border-right-color:#000000; border-top-style:none; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table2_A1 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-width:0.0133cm; border-top-style:solid; border-top-color:#000000; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table2_A2 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-style:none; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table2_B1 { padding:0.0382in; border-width:0.0133cm; border-style:solid; border-color:#000000; }
+	.Table2_B2 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-width:0.0133cm; border-right-style:solid; border-right-color:#000000; border-top-style:none; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table3_A1 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-width:0.0133cm; border-top-style:solid; border-top-color:#000000; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table3_A2 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-style:none; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table3_B1 { padding:0.0382in; border-width:0.0133cm; border-style:solid; border-color:#000000; }
+	.Table3_B2 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-width:0.0133cm; border-right-style:solid; border-right-color:#000000; border-top-style:none; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table4_A1 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-width:0.0133cm; border-top-style:solid; border-top-color:#000000; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table4_A2 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-style:none; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table4_B1 { padding:0.0382in; border-width:0.0133cm; border-style:solid; border-color:#000000; }
+	.Table4_B2 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-width:0.0133cm; border-right-style:solid; border-right-color:#000000; border-top-style:none; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table5_A1 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-width:0.0133cm; border-top-style:solid; border-top-color:#000000; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table5_A2 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-style:none; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table5_C1 { padding:0.0382in; border-width:0.0133cm; border-style:solid; border-color:#000000; }
+	.Table5_C2 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-width:0.0133cm; border-right-style:solid; border-right-color:#000000; border-top-style:none; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table6_A1 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-width:0.0133cm; border-top-style:solid; border-top-color:#000000; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table6_A2 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-style:none; border-top-style:none; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table6_B1 { padding:0.0382in; border-width:0.0133cm; border-style:solid; border-color:#000000; }
+	.Table6_B2 { padding:0.0382in; border-left-width:0.0133cm; border-left-style:solid; border-left-color:#000000; border-right-width:0.0133cm; border-right-style:solid; border-right-color:#000000; border-top-style:none; border-bottom-width:0.0133cm; border-bottom-style:solid; border-bottom-color:#000000; }
+	.Table1_A { width:2.5958in; }
+	.Table1_B { width:4.3313in; }
+	.Table2_A { width:2.5in; }
+	.Table2_B { width:4.425in; }
+	.Table3_A { width:3.4625in; }
+	.Table3_B { width:3.4625in; }
+	.Table4_A { width:3.4625in; }
+	.Table4_B { width:3.4625in; }
+	.Table5_A { width:1.3722in; }
+	.Table5_B { width:2.9472in; }
+	.Table5_C { width:2.6056in; }
+	.Table6_A { width:2.8722in; }
+	.Table6_B { width:4.0528in; }
+	.Bullet_20_Symbols { font-family:OpenSymbol; }
+	.T1 { font-style:normal; }
+	.T10 { font-family:Courier; font-size:10pt; }
+	.T11 { font-family:Courier New; font-size:10pt; }
+	.T12 { font-size:10pt; }
+	.T2 { font-style:italic; }
+	.T3 { font-weight:normal; }
+	.T4 { font-weight:bold; }
+	.T5 { color:#000000; font-family:Times New Roman; font-size:12pt; letter-spacing:normal; font-style:normal; font-weight:normal; }
+	.T6 { color:#000000; font-family:Times New Roman; font-size:12pt; letter-spacing:normal; font-style:normal; font-weight:normal; }
+	.T7 { color:#000000; font-family:Times New Roman; font-size:12pt; letter-spacing:normal; font-style:normal; text-decoration:none ! important; font-weight:normal; background-color:#ffffff; }
+	.T8 { color:#0b0080; font-family:Times New Roman; font-size:12pt; letter-spacing:normal; font-style:normal; text-decoration:none ! important; font-weight:normal; background-color:#ffffff; }
+	.T9 { font-family:Courier; }
+	
+	.Sect1 .Index_20_Link { }
+	</style></head><body dir="ltr" style="max-width:8.5in;margin-top:0.7874in; margin-bottom:0.7874in; margin-left:0.7874in; margin-right:0.7874in; "><p class="P6"> </p><p class="P14"><a name="__RefHeading__330_1399982358"/><span title="title">Simple Configuration Transformation Tool</span></p><p class="P15"><a name="__RefHeading__332_1399982358"/>(SCoTTy)</p><p class="P16">Yes, I bought a couple vowels...</p><p class="P5"> </p><p class="P5"> </p><p class="P5"> </p><p class="P5">Version: <span title="user-defined">1.6</span></p><p class="P5">Last Edit: <span title="date">2014-07-04</span></p><p class="P5"> </p><p class="P5"> </p><p class="P5"> </p><p class="P5"> </p><p class="P5"> </p><p class="P3">I have spent my whole life trying to figure out crazy ways of doing things.</p><p class="P4">- Montgomery Scott</p><table border="0" cellspacing="0" cellpadding="0" class="Sect1"><colgroup/><p class="P24">Table of Contents</p><tr><td><p class="P26"><a href="#__RefHeading__334_1399982358">Simple Configuration Transformation Tool</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__454_1399982358">An Example Database </a></p></td></tr><tr><td><p class="P22"><a href="#__RefHeading__716_1030085182">hosts.xml</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__2687_672427820">An Example Template </a></p></td></tr><tr><td><p class="P22"><a href="#__RefHeading__720_1030085182">hosts.scotty:</a></p></td></tr><tr><td><p class="P26"><a href="#__RefHeading__2695_672427820">Command Line Operation</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__722_1030085182">Command Line</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__574_1226017537">Example Run</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__1380_346239147">How Are Files Found?</a></p></td></tr><tr><td><p class="P26"><a href="#__RefHeading__2689_672427820">The Database Explained</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__718_1030085182">A Database as a Map of Types, Types as Maps of Instances</a></p></td></tr><tr><td><p class="P26"><a href="#__RefHeading__338_1399982358">The Transformation Markup DSL Explained</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__456_1399982358">Variables Available to Scripts</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__1226_672427820">Inherent Attributes</a></p></td></tr><tr><td><p class="P26"><a href="#__RefHeading__576_1226017537">Class Documentation</a></p></td></tr><tr><td><p class="P22"><a href="#__RefHeading__707_501567663">Context</a></p></td></tr><tr><td><p class="P22"><a href="#__RefHeading__1192_591635657">Value</a></p></td></tr><tr><td><p class="P22"><a href="#__RefHeading__578_1226017537">Database extends Context</a></p></td></tr><tr><td><p class="P26"><a href="#__RefHeading__753_1450102712">Things Are Not Always Simple</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__755_1450102712">Instance Inheritance</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__2027_249703325">Multiple Value Attributes</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__2029_249703325">Mutable in Memory Database &amp; Context </a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__724_1030085182">Scripts</a></p></td></tr><tr><td><p class="P22"><a href="#__RefHeading__1363_631966402">Alternate Scripting Languages</a></p></td></tr><tr><td><p class="P22"><a href="#__RefHeading__1276_672427820">Importing Additional Code</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__1410_1555280004">Template Imports</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__709_501567663">Query Results Ranking</a></p></td></tr><tr><td><p class="P26"><a href="#__RefHeading__714_1030085182">Project License</a></p></td></tr><tr><td><p class="P26"><a href="#__RefHeading__726_1030085182">The Project Build</a></p></td></tr><tr><td><p class="P25"><a href="#__RefHeading__728_1030085182">Getting the Bits</a></p></td></tr><tr><td><p class="P26"><a href="#__RefHeading__572_1226017537">See Also</a></p></td></tr></table><h1 class="P32"><a id="a__Simple_Configuration_Transformation_Tool"><span/></a><a name="__RefHeading__334_1399982358"/><span title="title">Simple Configuration Transformation Tool</span></h1><p class="Text_20_body">Scotty was written as a response to repeated exposures to crazy <a href="http://www.rubegoldberg.com/">Rube Goldberg</a> tools used to generate configuration files. Its designed to be sane and flexible, both in its implementation and use. It outputs configuration files by applying templates to data from a database of configuration data.  The database is stored as a collection of XML files. The templates are text files containing markup language and scripts. The database scheme is simple and the scripts are in familiar languages, like BeanShell which is basically Java, so coming<span class="T1"> up to speed </span><span class="T1">is easy, </span><span class="T1">but </span><span class="T1">allows</span><span class="T1"> for a great deal of </span><span class="T1">flexibility.  </span><span class="T1">Scotty</span><span class="T1"> generate</span><span class="T1">s text output, so it can generate</span><span class="T1"> any </span><span class="T1">sort</span><span class="T1"> of configuration file: properties, XML, JSON, etc.</span><span class="T1"> </span><span class="T1">Additionally, </span><span class="T1">The project is licensed under the </span><span class="T6">ISC license,</span><span class="T5"> a </span><a href="http://en.wikipedia.org/wiki/Permissive_free_software_license"><span class="T8">permissive free software license</span></a><span class="T7"> </span><span class="T5">written by the </span><a href="http://en.wikipedia.org/wiki/Internet_Systems_Consortium"><span class="T8">Internet Systems Consortium</span></a><span class="T7"> </span><span class="T5">(ISC) –</span><span class="T5"> so enjoy!</span></p><h2 class="P28"><a id="a__An_Example_Database"><span/></a><a name="__RefHeading__454_1399982358"/>An Example Database </h2><p class="Text_20_body">A Scotty database is built up of topical XML files following a very simple scheme. Following is a sample database file containing host data, listing  a sites host information. </p><h3 class="P23"><a id="a__hosts_xml"><span/></a><a name="__RefHeading__716_1030085182"/>hosts.xml</h3><p class="Text_20_body"> </p><p class="Text_20_body_20_indent">&lt;type name=”host” xmlns=&quot;<a href="http://nwillc.github.io/scotty">http://nwillc.github.io/scotty</a>&quot;</p><p class="Text_20_body_20_indent">    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</p><p class="Text_20_body_20_indent">    xsi:schemaLocation=&quot;<a href="http://nwillc.github.io/scotty">http://nwillc.github.io/scotty</a> <a href="http://nwillc.github.io/scotty/database.xsd">http://nwillc.github.io/scotty/database.xsd</a>&quot;&gt;</p><p class="Text_20_body_20_indent">       &lt;attribute name=”company” value=”Acme”/&gt;</p><p class="Text_20_body_20_indent"><span> &lt;context&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;attribute name=”env”&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> </span><span> &lt;value&gt;dev&lt;/value&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> </span><span> &lt;value&gt;alpha&lt;/value&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;/attribute&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;instance&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> </span><span> &lt;attribute name=&quot;hostname&quot; value=&quot;devbox&quot;/&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> </span><span> &lt;attribute name=”ip_address” value=”192.0.0.1”/&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;/instance&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;instance&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> </span><span> &lt;attribute name=&quot;hostname&quot; value=&quot;devbox2&quot;/&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> </span><span> &lt;attribute name=”ip_address” value=”192.0.0.2”/&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;/instance&gt;</span></p><p class="Text_20_body_20_indent"><span> &lt;/context&gt;</span></p><p class="Text_20_body_20_indent"><span> &lt;instance&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;attribute name=&quot;hostname&quot; value=&quot;prod1&quot;/&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;attribute name=”env” value=”prod”/&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;attribute name=”ip_address” value=”192.0.0.3”/&gt;</span></p><p class="Text_20_body_20_indent"><span> &lt;/instance&gt;</span></p><p class="Text_20_body_20_indent">&lt;/type&gt;</p><p class="P18"> </p><p class="Text_20_body">Each file is a collection of <span class="T2">instances</span><span class="T1"> of some </span><span class="T2">type</span><span class="T1">. Instances have </span><span class="T2">attributes </span><span class="T1">that define their properties. Instances can be grouped in </span><span class="T2">contexts</span><span class="T1"> to express commonalities and instances can inherit from parent instances to allow for overriding of, or addition of, attributes.</span></p><p class="P20"> </p><h2 class="Heading_20_2"><a id="a__An_Example_Template"><span/></a><a name="__RefHeading__2687_672427820"/>An Example Template        </h2><p class="Text_20_body">Templates are text files containing Scotty&apos;s markup DSL and scripts. The markup and scripting allows the templates to retrieve data from the database. The following is an example template draws from the host instances from the database to create a Java Properties file.</p><h3 class="Heading_20_3"><a id="a__hosts_scotty_"><span/></a><a name="__RefHeading__720_1030085182"/><span class="T2">hosts.scotty</span>:</h3><p class="Text_20_body"><span> </span></p><p class="Text_20_body_20_indent"># {#t host #}{#o hosts.properties #}</p><p class="Text_20_body_20_indent"># This is a properties file template to be used with SCoTTy</p><p class="Text_20_body_20_indent"># {#? company #}</p><p class="Text_20_body_20_indent">{#</p><p class="Text_20_body_20_indent"><span> Context c = new Context(context,&quot;type=host&quot;);</span></p><p class="Text_20_body_20_indent"><span> Set set = database.query(c, &quot;hostname&quot;);</span></p><p class="Text_20_body_20_indent"><span> for (String hostname : set ) {</span></p><p class="Text_20_body_20_indent"><span> </span><span> c.put(&quot;hostname&quot;, hostname);</span></p><p class="Text_20_body_20_indent"><span> </span><span> Instance host = database.query(c).get(0);</span></p><p class="Text_20_body_20_indent"><span> </span><span> output.format(&quot;%-20s%s\n&quot;, new Object[]{hostname,host.get(&quot;ip_address&quot;)});</span></p><p class="Text_20_body_20_indent"><span> }</span></p><p class="Text_20_body_20_indent">#}</p><p class="Text_20_body_20_indent"># End</p><h1 class="P32"><a id="a__Command_Line_Operation"><span/></a><a name="__RefHeading__2695_672427820"/>Command Line Operation</h1><p class="Text_20_body">Scotty is run from the command line, the command line describes the database, the runtime context, a template and the output file.</p><p class="Text_20_body"> </p><h2 class="Heading_20_2"><a id="a__Command_Line"><span/></a><a name="__RefHeading__722_1030085182"/>Command Line</h2><p class="Text_20_body_20_indent">usage: java -jar scotty.jar [options]</p><p class="Text_20_body_20_indent"> -c,--context &lt;assignments&gt;   Comma separated list of assignments to act</p><p class="Text_20_body_20_indent">                              as the context.</p><p class="Text_20_body_20_indent"> -d,--database &lt;filenames&gt;    Comma separated of XML files containing</p><p class="Text_20_body_20_indent">                              types in database.</p><p class="Text_20_body_20_indent"> -f,--folder &lt;directory&gt;      The folder to put output files in. Use &quot;-&quot;</p><p class="Text_20_body_20_indent">                              for standard out.</p><p class="Text_20_body_20_indent"> -h,--help                    print this message.</p><p class="Text_20_body_20_indent"> -l,--language &lt;language&gt;     Define an alternative scripting language.</p><p class="Text_20_body_20_indent">                              BeanShell used by default.</p><p class="Text_20_body_20_indent"> -o,--output &lt;filename&gt;       The name of the output file.</p><p class="Text_20_body_20_indent"> -p,--print                   Print the database out as a flattened text</p><p class="Text_20_body_20_indent">                              file.</p><p class="Text_20_body_20_indent"> -t,--template &lt;filename&gt;     The name of the template file.</p><h2 class="Heading_20_2"><a id="a__Example_Run"><span/></a><a name="__RefHeading__574_1226017537"/>Example Run</h2><p class="Text_20_body">The following could be used to use scotty to process the example files in this document:</p><p class="Text_20_body"> </p><p class="Text_20_body_20_indent">$ java -jar scotty.jar -c env=prod -d hosts.xml -t hosts.scotty -o host.properties -f -</p><h2 class="Heading_20_2"><a id="a__How_Are_Files_Found?"><span/></a><a name="__RefHeading__1380_346239147"/>How Are Files Found?</h2><p class="Text_20_body">It&apos;s noteworthy that the files designated on the command line, the database files and template, can be in the file system or in the jar, this allows you to embed Scotty along with those files if you desire.</p><h1 class="P32"><a id="a__The_Database_Explained"><span/></a><a name="__RefHeading__2689_672427820"/>The Database Explained</h1><p class="Text_20_body">A <span class="T2">database </span><span class="T1">is made up of a</span> map of <span class="T2">types. </span><span class="T1">Each type is contained in a single file, and is made up of a map of </span><span class="T2">instances.</span><span class="T1">  </span><span class="T1">Individual properties are set with </span><span class="T2">attributes</span><span class="T1"> which can be placed at any level.  </span><span class="T1">Attributes are a named </span><span class="T2">value, </span><span class="T1">a value being either a string or collection of strings.</span><span class="T2"> </span><span class="T1">Attributes are inherited, for example an attribute set in a type can be referenced by or overridden by any instance. </span><span class="T1">Instances can be grouped into </span><span class="T2">contexts</span><span class="T1"> </span><span class="T1">for the purpose of attribute inheritance. </span><span class="T1">Since </span><span class="T1">the database and types</span><span class="T1"> are maps, the type name should be unique in the database and the instance names should be unique to a type.   </span><span class="T2"> </span></p><p class="P9"> </p><p class="Text_20_body">The basic XML example for a type file is as follows:</p><p class="Text_20_body_20_indent"> </p><p class="Text_20_body_20_indent">&lt;type name=””&gt;</p><p class="Text_20_body_20_indent"><span> &lt;instance name=””&gt;</span></p><p class="Text_20_body_20_indent"><span> &lt;/instance&gt;</span></p><p class="Text_20_body_20_indent"><span> &lt;context&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;attribute name=”” value=””/&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;instance name=””&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> </span><span> &lt;attribute name=””&gt;</span></p><p class="Text_20_body_20_indent">                           &lt;value&gt;&lt;/value&gt;</p><p class="Text_20_body_20_indent">                      &lt;/attribute&gt;</p><p class="Text_20_body_20_indent"><span> </span><span> &lt;/instance&gt;</span></p><p class="Text_20_body_20_indent"><span> &lt;/context&gt;</span></p><p class="Text_20_body_20_indent">&lt;/type&gt;</p><p class="Text_20_body_20_indent"> </p><p class="P10"> </p><h2 class="Heading_20_2"><a id="a__A_Database_as_a_Map_of_Types__Types_as_Maps_of_Instances"><span/></a><a name="__RefHeading__718_1030085182"/>A Database as a Map of Types, Types as Maps of Instances</h2><p class="Text_20_body">A database would be a map of types, such as applications, hosts, environments etc. It is comprised of a hierarchy of types, and instances of those types.  Attributes can be attached at any level and are inherited. Types and instances can be placed into contexts which allows inheritance subgroups.  </p><div class="Text_20_body"> <div style="height:0.379cm;"> </div><div style="height:5.0307in;width:6.4366in; padding:0;  float:left; position:relative; left:0.2959cm; " class="fr1" id="graphics1"><img style="height:12.778cm;width:16.349cm;" alt="" src="data:image/*;base64,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"/></div></div><div style="clear:both; line-height:0; width:0; height:0; margin:0; padding:0;"> </div><h1 class="P32"><a id="a__The_Transformation_Markup_DSL_Explained"><span/></a><a name="__RefHeading__338_1399982358"/>The Transformation Markup DSL Explained</h1><p class="Text_20_body">Scotty&apos;s templates are nothing more then a text file annotated with a very simple markup language.  The markups can insert retrieved values, run BeanShell scripts producing arbitrary output.</p><table border="0" cellspacing="0" cellpadding="0" class="Table1"><colgroup><col width="288"/><col width="481"/></colgroup><tr><td style="text-align:left;width:2.5958in; " class="Table1_A1"><p class="Table_20_Contents">{#c attribute,... #}</p></td><td style="text-align:left;width:4.3313in; " class="Table1_B1"><p class="Table_20_Contents">Assert the runtime context contains required attributes</p></td></tr><tr><td style="text-align:left;width:2.5958in; " class="Table1_A2"><p class="Table_20_Contents">{#i template assignments #}</p></td><td style="text-align:left;width:4.3313in; " class="Table1_B2"><p class="Table_20_Contents">Import another template into this one, with optional context assignments.</p></td></tr><tr><td style="text-align:left;width:2.5958in; " class="Table1_A2"><p class="Table_20_Contents">{#l language #}</p></td><td style="text-align:left;width:4.3313in; " class="Table1_B2"><p class="Table_20_Contents">Define the scripting language (See <span class="T4">Scripts</span><span class="T3"> below)</span></p></td></tr><tr><td style="text-align:left;width:2.5958in; " class="Table1_A2"><p class="Table_20_Contents">{#o filename #}</p></td><td style="text-align:left;width:4.3313in; " class="Table1_B2"><p class="Table_20_Contents">Redirect output to indicated file. The file will be placed in the <span class="T2">folder</span><span class="T1"> named in the database context. If the folder is “-” then this directive is ignore and the output goes to standard out.</span></p></td></tr><tr><td style="text-align:left;width:2.5958in; " class="Table1_A2"><p class="Table_20_Contents">{#t type,... #}</p></td><td style="text-align:left;width:4.3313in; " class="Table1_B2"><p class="Table_20_Contents">Assert the database contains required types</p></td></tr><tr><td style="text-align:left;width:2.5958in; " class="Table1_A2"><p class="Table_20_Contents">{#? attribute assignments #}</p></td><td style="text-align:left;width:4.3313in; " class="Table1_B2"><p class="Table_20_Contents">Query the database for an attribute best matching the given context.</p></td></tr><tr><td style="text-align:left;width:2.5958in; " class="Table1_A2"><p class="Table_20_Contents">{#= attribute #}</p></td><td style="text-align:left;width:4.3313in; " class="Table1_B2"><p class="Table_20_Contents">Return an attribute from the runtime context.</p></td></tr><tr><td style="text-align:left;width:2.5958in; " class="Table1_A2"><p class="Table_20_Contents">{#    …script…    #}</p></td><td style="text-align:left;width:4.3313in; " class="Table1_B2"><p class="Table_20_Contents">Run a script, BeanShell by default.</p></td></tr></table><h2 class="Heading_20_2"><a id="a__Variables_Available_to_Scripts"><span/></a><a name="__RefHeading__456_1399982358"/>Variables Available to Scripts</h2><table border="0" cellspacing="0" cellpadding="0" class="Table2"><colgroup><col width="278"/><col width="491"/></colgroup><tr><td style="text-align:left;width:2.5in; " class="Table2_A1"><p class="Table_20_Contents">Database <span class="T2">database</span> </p></td><td style="text-align:left;width:4.425in; " class="Table2_B1"><p class="Table_20_Contents">The root context of the parsed database.</p></td></tr><tr><td style="text-align:left;width:2.5in; " class="Table2_A2"><p class="Table_20_Contents">Context <span class="T2">context</span></p></td><td style="text-align:left;width:4.425in; " class="Table2_B2"><p class="Table_20_Contents">The context that was provided on the command line.</p></td></tr><tr><td style="text-align:left;width:2.5in; " class="Table2_A2"><p class="Table_20_Contents">PrintStream <span class="T2">output</span></p></td><td style="text-align:left;width:4.425in; " class="Table2_B2"><p class="Table_20_Contents">The output print stream being used by scotty.</p></td></tr></table><h2 class="Heading_20_2"><a id="a__Inherent_Attributes"><span/></a><a name="__RefHeading__1226_672427820"/>Inherent Attributes</h2><table border="0" cellspacing="0" cellpadding="0" class="Table5"><colgroup><col width="152"/><col width="327"/><col width="289"/></colgroup><tr><td style="text-align:left;width:1.3722in; " class="Table5_A1"><p class="P21">Attribute</p></td><td style="text-align:left;width:2.9472in; " class="Table5_A1"><p class="P21">Description</p></td><td style="text-align:left;width:2.6056in; " class="Table5_C1"><p class="P21">Where</p></td></tr><tr><td style="text-align:left;width:1.3722in; " class="Table5_A2"><p class="P13">type</p></td><td style="text-align:left;width:2.9472in; " class="Table5_A2"><p class="Table_20_Contents">The type name this context represents</p></td><td style="text-align:left;width:2.6056in; " class="Table5_C2"><p class="Table_20_Contents">Any type instance in the database</p></td></tr><tr><td style="text-align:left;width:1.3722in; " class="Table5_A2"><p class="P13">instance</p></td><td style="text-align:left;width:2.9472in; " class="Table5_A2"><p class="Table_20_Contents">The instance name</p></td><td style="text-align:left;width:2.6056in; " class="Table5_C2"><p class="Table_20_Contents">Any instance context in the database</p></td></tr><tr><td style="text-align:left;width:1.3722in; " class="Table5_A2"><p class="P13">folder</p></td><td style="text-align:left;width:2.9472in; " class="Table5_A2"><p class="Table_20_Contents">The folder that output files should be created in</p></td><td style="text-align:left;width:2.6056in; " class="Table5_C2"><p class="Table_20_Contents">Any database context</p></td></tr></table><h1 class="P32"><a id="a__Class_Documentation"><span/></a><a name="__RefHeading__576_1226017537"/>Class Documentation</h1><p class="Text_20_body">Full API documentation is available at <a href="http://nwillc.github.io/scotty/apidocs/">http://nwillc.github.io/scotty/apidocs/</a> but the following is a concise explanation of the portions available to BeanShell.</p><h3 class="Heading_20_3"><a id="a__Context"><span/></a><a name="__RefHeading__707_501567663"/>Context</h3><table border="0" cellspacing="0" cellpadding="0" class="Table6"><colgroup><col width="319"/><col width="450"/></colgroup><tr><td style="text-align:left;width:2.8722in; " class="Table6_A1"><p class="P11">Method</p></td><td style="text-align:left;width:4.0528in; " class="Table6_B1"><p class="P11">Description</p></td></tr><tr><td style="text-align:left;width:2.8722in; " class="Table6_A2"><p class="P12">Map&lt;String, String&gt; getMap()</p></td><td style="text-align:left;width:4.0528in; " class="Table6_B2"><p class="P12">All the attributes in this context.</p></td></tr><tr><td style="text-align:left;width:2.8722in; " class="Table6_A2"><p class="P12">Map&lt;String, Context&gt; getContained()</p></td><td style="text-align:left;width:4.0528in; " class="Table6_B2"><p class="P12">Any contexts contained inside this one.</p></td></tr><tr><td style="text-align:left;width:2.8722in; " class="Table6_A2"><p class="P12">Context getContainer()</p></td><td style="text-align:left;width:4.0528in; " class="Table6_B2"><p class="P12">Get the context containing this one.</p></td></tr><tr><td style="text-align:left;width:2.8722in; " class="Table6_A2"><p class="P12">Set&lt;String&gt; keySet()</p></td><td style="text-align:left;width:4.0528in; " class="Table6_B2"><p class="P12">The list of attribute keys contained in this context and those of the context it is contained in.</p></td></tr><tr><td style="text-align:left;width:2.8722in; " class="Table6_A2"><p class="P12">boolean containsKey(String key)</p></td><td style="text-align:left;width:4.0528in; " class="Table6_B2"><p class="P12">Get the list of keys contained in the context.</p></td></tr><tr><td style="text-align:left;width:2.8722in; " class="Table6_A2"><p class="P12">String get(String key)</p></td><td style="text-align:left;width:4.0528in; " class="Table6_B2"><p class="P12">Get the string representation of a value of a key.</p></td></tr><tr><td style="text-align:left;width:2.8722in; " class="Table6_A2"><p class="P12">Value getValue(String key)</p></td><td style="text-align:left;width:4.0528in; " class="Table6_B2"><p class="P12">Get the actual value associated with key in a context.</p></td></tr><tr><td style="text-align:left;width:2.8722in; " class="Table6_A2"><p class="P12">put(String attributes)</p></td><td style="text-align:left;width:4.0528in; " class="Table6_B2"><p class="P12">Set attributes from a string representation (see API docs)</p></td></tr><tr><td style="text-align:left;width:2.8722in; " class="Table6_A2"><p class="P12">boolean isContained()</p></td><td style="text-align:left;width:4.0528in; " class="Table6_B2"><p class="P12">This context is contained in another.</p></td></tr><tr><td style="text-align:left;width:2.8722in; " class="Table6_A2"><p class="P12">boolean isContainer()</p></td><td style="text-align:left;width:4.0528in; " class="Table6_B2"><p class="P12">This context is a container of sub contexts.</p></td></tr></table><h3 class="Heading_20_3"><a id="a__Value"><span/></a><a name="__RefHeading__1192_591635657"/>Value</h3><table border="0" cellspacing="0" cellpadding="0" class="Table4"><colgroup><col width="384"/><col width="384"/></colgroup><tr><td style="text-align:left;width:3.4625in; " class="Table4_A1"><p class="P11">Method</p></td><td style="text-align:left;width:3.4625in; " class="Table4_B1"><p class="P11">Description</p></td></tr><tr><td style="text-align:left;width:3.4625in; " class="Table4_A2"><p class="Table_20_Contents">String toString()</p></td><td style="text-align:left;width:3.4625in; " class="Table4_B2"><p class="Table_20_Contents">Returns the string representation which is a comma separated list of all the values.</p></td></tr><tr><td style="text-align:left;width:3.4625in; " class="Table4_A2"><p class="Table_20_Contents">List&lt;String&gt; values()</p></td><td style="text-align:left;width:3.4625in; " class="Table4_B2"><p class="Table_20_Contents">Gets a list of all the values contained in this value.</p></td></tr></table><h3 class="Heading_20_3"><a id="a__Database_extends_Context"><span/></a><a name="__RefHeading__578_1226017537"/>Database <span class="T3">extends</span> <span class="T4">Context</span></h3><table border="0" cellspacing="0" cellpadding="0" class="Table3"><colgroup><col width="384"/><col width="384"/></colgroup><tr><td style="text-align:left;width:3.4625in; " class="Table3_A1"><p class="P11">Method</p></td><td style="text-align:left;width:3.4625in; " class="Table3_B1"><p class="P11">Description</p></td></tr><tr><td style="text-align:left;width:3.4625in; " class="Table3_A2"><p class="Table_20_Contents">List&lt;Instance&gt; query(Context c)</p></td><td style="text-align:left;width:3.4625in; " class="Table3_B2"><p class="Table_20_Contents">Retrieves first attribute value from database found matching the name and context given.</p></td></tr><tr><td style="text-align:left;width:3.4625in; " class="Table3_A2"><p class="Table_20_Contents">List&lt;String&gt; query(Context c, String attribute)</p></td><td style="text-align:left;width:3.4625in; " class="Table3_B2"><p class="Table_20_Contents">Retrieves an ordered set of all the values of the attribute who&apos;s instance match the query.</p></td></tr><tr><td style="text-align:left;width:3.4625in; " class="Table3_A2"><p class="Table_20_Contents">String find(String attribute)</p></td><td style="text-align:left;width:3.4625in; " class="Table3_B2"><p class="Table_20_Contents">Retrieves the value of the attribute exactly matching the name given.</p></td></tr><tr><td style="text-align:left;width:3.4625in; " class="Table3_A2"><p class="Table_20_Contents"><a id="Database_print"/><a id="databse_print"/>void print(PrintStream stream, Context c)</p></td><td style="text-align:left;width:3.4625in; " class="Table3_B2"><p class="Table_20_Contents">A debugging method, prints out the contents of the database in flattened form, with the similarity score of each instance to the context given.</p></td></tr></table><h1 class="Heading_20_1"><a id="a__Things_Are_Not_Always_Simple"><span/></a><a name="__RefHeading__753_1450102712"/>Things Are Not Always Simple</h1><p class="Text_20_body">While scotty is designed to be simple, it does support techniques that are more advanced.</p><h2 class="Heading_20_2"><a id="a__Instance_Inheritance"><span/></a><a name="__RefHeading__755_1450102712"/>Instance Inheritance</h2><p class="Text_20_body">When you want an instance to have all the properties on an existing instance with some attribute additions or value changes you can employ inheritance.  The following is an example of a host that is completely the same as another but is in a different environment:</p><p class="P17"> </p><p class="Text_20_body_20_indent">&lt;instance name=”devbox”&gt;</p><p class="Text_20_body_20_indent"><span> &lt;attribute name=”os” value=”linux”/&gt;</span></p><p class="Text_20_body_20_indent"><span> &lt;attribute name=”env” value=”dev”/&gt;</span></p><p class="Text_20_body_20_indent"><span> &lt;instance name=”qabox”&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;attribute name=”env” value=”qa”/&gt;</span></p><p class="Text_20_body_20_indent"><span> </span><span> &lt;attribute name=”tag” value=”special”/&gt;</span></p><p class="Text_20_body_20_indent"><span> &lt;/instance&gt;</span></p><p class="Text_20_body_20_indent">&lt;/instance&gt;</p><h2 class="Heading_20_2"><a id="a__Multiple_Value_Attributes"><span/></a><a name="__RefHeading__2027_249703325"/>Multiple Value Attributes</h2><p class="Text_20_body">Attributes can have a single value or multiple values. The notation for multiple values is:</p><p class="Text_20_body_20_indent">&lt;attribute name”light”&gt;</p><p class="Text_20_body_20_indent"><span> &lt;value&gt;red&lt;/value&gt;</span></p><p class="Text_20_body_20_indent"><span> &lt;value&gt;amber&lt;/value&gt;</span></p><p class="Text_20_body_20_indent"><span> &lt;value&gt;green&lt;/value&gt;</span></p><p class="Text_20_body_20_indent">&lt;/attribute&gt;</p><p class="Text_20_body">Attributes with multiple values will test all values of the attribute in queries. So the above would match a context with<span class="T9"> light=red</span> or <span class="T9">light=green</span>.  They will return a comma separated string on a simple find.</p><h2 class="Heading_20_2"><a id="a__Mutable_in_Memory_Database___Context"><span/></a><a name="__RefHeading__2029_249703325"/>Mutable in Memory Database &amp; Context </h2><p class="Text_20_body">The <span class="T12">database</span> and <span class="T10">context</span> accessible in the scripts are modifiable. For example if you wanted to add <span class="T2">app=webserver</span><span class="T1"> to the context you could simply:</span></p><p class="P7"> </p><p class="Text_20_body_20_indent">{# context.put(“app”,”webserver”); #}</p><p class="Text_20_body_20_indent"> </p><p class="Text_20_body">These changes are not persisted in any way. </p><h2 class="P28"><a id="a__Scripts"><span/></a><a name="__RefHeading__724_1030085182"/>Scripts</h2><p class="Text_20_body">A template may contain scripted portions (in <a href="http://www.beanshell.org/">BeanShell</a> by default) which have access to the database, the runtime context, and the output stream. Scripts can therefore be used to perform elaborate traversals or even non persistent transformations of the database, producing completely flexible output.</p><h3 class="Heading_20_3"><a id="a__Alternate_Scripting_Languages"><span/></a><a name="__RefHeading__1363_631966402"/>Alternate Scripting Languages</h3><p class="Text_20_body">Scotty uses Java&apos;s ScriptEngine support to allow loading in alternative scripting languages. For example if you provide the command line option “-l javascript” then any script in a {# … #} will be interpreted in JavaScript.  Scotty uses JSR-223 compliant scripting languages, with BeanShell and JavaScript baked in, others will require additional jars.  </p><h3 class="Heading_20_3"><a id="a__Importing_Additional_Code"><span/></a><a name="__RefHeading__1276_672427820"/>Importing Additional Code</h3><p class="Text_20_body">BeanShell scripts, being roughly Java, can import additional java code. You can add a jar to your command line&apos;s <span class="T11">-cp</span> and then use the Java <span class="T11">import the.class.Name;</span> directive and then use that class in your script.</p><h2 class="P27"><a id="a__Template_Imports"><span/></a><a name="__RefHeading__1410_1555280004"/>Template Imports</h2><p class="Text_20_body">A template can use the <span class="T11">{#i template assignments #}</span> to import another template. The template is given it&apos;s own context, inheriting from the importers context with any additional specified assignments.</p><h2 class="Heading_20_2"><a id="a__Query_Results_Ranking"><span/></a><a name="__RefHeading__709_501567663"/>Query Results Ranking</h2><p class="Text_20_body">The results of the query method are returned in a useful deterministic order. They are sorted first by the best matching score, and when that is equal then by the instantiation order of the instance read from top to bottom of the database.  </p><p class="Text_20_body">Matching score is determined by the similarity of the two contexts. Similarity is measured by +1.0 for each attribute that matches between the two contexts. A penalty of 0.25 is applied for each attribute that is a multiple value attribute.</p><p class="Text_20_body">So for example the similarity of the following two contexts would be 2.0:</p><p class="Text_20_body_20_indent">&lt;context&gt;</p><p class="Text_20_body_20_indent"><span> &lt;attribute name=”continent” value=”North America”/&gt;</span></p><p class="Text_20_body_20_indent">       &lt;attribute name=”country” value=”USA”/&gt;</p><p class="Text_20_body_20_indent">       &lt;attribute name=”year” value=”1945”/&gt;</p><p class="Text_20_body_20_indent">&lt;/context&gt;</p><p class="Text_20_body_20_indent">&lt;context&gt;</p><p class="Text_20_body_20_indent"><span> &lt;attribute name=”continent” value=”North America”/&gt;</span></p><p class="Text_20_body_20_indent">       &lt;attribute name=”country” value=”Canada”/&gt;</p><p class="Text_20_body_20_indent">       &lt;attribute name=”year” value=”1945”/&gt;</p><p class="Text_20_body_20_indent">&lt;/context&gt;</p><p class="P19"> </p><p class="Text_20_body">While the similarity of the following would be 1.5, since in one matching attribute, both values are multiples:</p><p class="Text_20_body"> </p><p class="Text_20_body_20_indent">&lt;context&gt;</p><p class="Text_20_body_20_indent"><span> &lt;attribute name=”continent” value=”North America”/&gt;</span></p><p class="Text_20_body_20_indent">       &lt;attribute name=”country”&gt;</p><p class="Text_20_body_20_indent">            &lt;value&gt;USA&lt;/value&gt;</p><p class="Text_20_body_20_indent">            &lt;value&gt;Canada&lt;/value&gt;</p><p class="Text_20_body_20_indent">       &lt;attribute&gt;</p><p class="Text_20_body_20_indent">       &lt;attribute name=”year” value=”1945”/&gt;</p><p class="Text_20_body_20_indent">&lt;/context&gt;</p><p class="Text_20_body_20_indent">&lt;context&gt;</p><p class="Text_20_body_20_indent"><span> &lt;attribute name=”continent” value=”North America”/&gt;</span></p><p class="Text_20_body_20_indent">       &lt;attribute name=”country”&gt;</p><p class="Text_20_body_20_indent">            &lt;value&gt;USA&lt;/value&gt;</p><p class="Text_20_body_20_indent">            &lt;value&gt;Canada&lt;/value&gt;</p><p class="Text_20_body_20_indent">       &lt;attribute&gt;</p><p class="Text_20_body_20_indent">       &lt;attribute name=”year” value=”1945”/&gt;</p><p class="Text_20_body_20_indent">&lt;/context&gt;</p><p class="P8"> </p><p class="Text_20_body">This similarity scoring allows you to associate general data with instances and then override the instance with more specific attributes for more specifics cases. Say all applications might have attributes to do with logging, but those written in Java need Log4J configuration attributes.</p><p class="Text_20_body">To help resolve scoring ambiguities see the <a href="#Database_print">void print(PrintStream stream, Context c)</a> Database  method that will print database instances and how they compare to given context.</p><h1 class="P32"><a id="a__Project_License"><span/></a><a name="__RefHeading__714_1030085182"/>Project License</h1><p class="Text_20_body">This projected is licensed under the <a href="http://en.wikipedia.org/wiki/ISC_license">ISC</a> license:</p><p class="Text_20_body"> </p><p class="Text_20_body_20_indent">Copyright (c) 2013-2014, nwillc@gmail.com</p><p class="Text_20_body_20_indent"> </p><p class="Text_20_body_20_indent">Permission to use, copy, modify, and/or distribute this software for any purpose with or </p><p class="Text_20_body_20_indent">without fee is hereby granted, provided that the above copyright notice and this permission </p><p class="Text_20_body_20_indent">notice appear in all copies.</p><p class="Text_20_body_20_indent"> </p><p class="Text_20_body_20_indent">THE SOFTWARE IS PROVIDED &quot;AS IS&quot; AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO </p><p class="Text_20_body_20_indent">THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT </p><p class="Text_20_body_20_indent">SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR </p><p class="Text_20_body_20_indent">ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF </p><p class="Text_20_body_20_indent">CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE </p><p class="Text_20_body_20_indent">OR PERFORMANCE OF THIS SOFTWARE.</p><p class="Text_20_body_20_indent"> </p><h1 class="Heading_20_1"><a id="a__The_Project_Build"><span/></a><a name="__RefHeading__726_1030085182"/>The Project Build</h1><p class="Text_20_body">Scotty is written in Java (1.7+) and built with gradle (1.2+). It uses open source packages for functional programming (<a href="http://nwillc.github.io/almost-functional">almost-functional</a>), command line parsing (commons-cli), scripting (bsh) and testing (contracts, junit, fest  &amp; cucumber).  It is extremely light weight, has been test built on a linux atom netbook in under a minute and the resultant jar, with all dependencies needed is under half a megabyte.</p><h2 class="Heading_20_2"><a id="a__Getting_the_Bits"><span/></a><a name="__RefHeading__728_1030085182"/>Getting the Bits</h2><p class="Text_20_body">The project home page is at <a href="http://nwillc.github.io/scotty">http://nwillc.github.io/scotty</a></p><h1 class="Heading_20_1"><a id="a__See_Also"><span/></a><a name="__RefHeading__572_1226017537"/>See Also</h1><ul><li><p class="P34" style="margin-left:0cm;"><span class="Bullet_20_Symbols" style="display:block;float:left;min-width:0cm">•</span>Scotty API documentation: <a href="http://nwillc.github.io/scotty/apidocs/">http://nwillc.github.io/scotty/apidocs/</a><span class="odfLiEnd"/> </p></li><li><p class="P34" style="margin-left:0cm;"><span class="Bullet_20_Symbols" style="display:block;float:left;min-width:0cm">•</span>BeanShell:  <a href="http://www.beanshell.org/">http://www.beanshell.org/</a><span class="odfLiEnd"/> </p><p class="P34" style="margin-left:0cm;"><span class="Bullet_20_Symbols" style="display:block;float:left;min-width:0cm"/><a href="http://nwillc.github.io/almost-functional"/><span class="odfLiEnd"/> </p></li></ul></body></html>
