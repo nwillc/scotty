@@ -23,4 +23,6 @@ Feature: A value is a collection of strings that should match to any one of the 
 
   Examples:
     | value   | string  |
+    | foo     | foo     |
     | foo bar | foo,bar |
+    | a b c   | a,b,c   |
