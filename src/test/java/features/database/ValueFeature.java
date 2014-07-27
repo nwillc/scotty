@@ -20,7 +20,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import scotty.database.Value;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ValueFeature {
 	private Value value;

@@ -18,7 +18,7 @@ package contracts;
 import org.junit.Test;
 import scotty.database.parser.Similarity;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SimilarityContract<T> {
     private Similarity<T> from;

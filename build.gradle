@@ -17,7 +17,7 @@ apply plugin: 'java'
 
 group = "com.github.nwillc"
 archivesBaseName = "scotty"
-version = "1.6"
+version = "1.6.1"
 
 configurations {
     cucumberRuntime {
@@ -33,9 +33,8 @@ dependencies {
     compile 'commons-cli:commons-cli:1.2',
             'org.beanshell:bsh:2.0b5',
             'com.github.nwillc:almost-functional:1.+'
-    testCompile 'junit:junit:4.11',
-            'org.easytesting:fest-assert:1.+',
-            'org.easytesting:fest-assert-core:2.0M10',
+    testCompile 'junit:junit:4.+',
+            'org.assertj:assertj-core:1.6.1',
             'com.github.nwillc:contracts:1.+',
             'info.cukes:cucumber-java:1.+',
             'info.cukes:cucumber-junit:1.+'

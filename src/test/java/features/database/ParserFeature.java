@@ -23,11 +23,8 @@ import scotty.database.Database;
 
 import java.util.List;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- *
- */
 public class ParserFeature {
     private String[] filename;
     private Database database;

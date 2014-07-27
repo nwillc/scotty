@@ -20,7 +20,7 @@ import org.junit.Test;
 import scotty.database.Instance;
 import scotty.database.Type;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ParserTest {
 	@Test
