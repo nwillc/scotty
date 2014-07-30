@@ -18,6 +18,8 @@ apply plugin: 'java'
 group = "com.github.nwillc"
 archivesBaseName = "scotty"
 version = "1.6.1"
+targetCompatibility = "1.8"
+sourceCompatibility = "1.8"
 
 configurations {
     cucumberRuntime {

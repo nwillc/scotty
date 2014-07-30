@@ -26,7 +26,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static scotty.util.ScottyUtilities.getResourceAsStream;
 
 public class ParserTest {
