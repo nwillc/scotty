@@ -33,8 +33,4 @@ public class InstanceTest extends ComparableContract {
 		return new Instance(null, "aaa");
 	}
 
-	@Override
-	protected Instance getGreaterThanValue() {
-		return new Instance(null, "ccc");
-	}
 }

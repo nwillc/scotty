@@ -40,11 +40,6 @@ public class RankedTest extends ComparableContract {
 		return new Ranked<>(1.0f, -1, 1);
 	}
 
-	@Override
-	protected Ranked<Integer> getGreaterThanValue() {
-		return new Ranked<>(0.9f, 0, 1);
-	}
-
 	@Test
 	public void sortTest() throws Exception {
 		List<Ranked<Integer>> list = new LinkedList<>();

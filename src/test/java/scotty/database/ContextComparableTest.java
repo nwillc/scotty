@@ -18,16 +18,10 @@ package scotty.database;
 import com.github.nwillc.contracts.ComparableContract;
 import org.junit.Before;
 
-public class ContextComparableTest extends ComparableContract {
-	private Context one, two, three;
-
-	@Before
-	public void setUp() throws Exception {
-		one = new Context();
-		two = new Context();
-		three = new Context();
-	}
-
+public class ContextComparableTest extends ComparableContract<Context> {
+	private Context one = new Context();
+	private Context two = new Context();
+	
 	@Override
 	protected Context getValue() {
 		return two;
@@ -43,8 +37,4 @@ public class ContextComparableTest extends ComparableContract {
 		return one;
 	}
 
-	@Override
-	protected Context getGreaterThanValue() {
-		return three;
-	}
 }

@@ -20,7 +20,7 @@ import com.github.nwillc.contracts.PrivateConstructorContract;
 public class ScottyUtilitiesTest extends PrivateConstructorContract {
 
 	@Override
-	protected Class<?> getUtilityClass() {
+	public Class<?> getClassToTest() {
 		return ScottyUtilities.class;
 	}
 

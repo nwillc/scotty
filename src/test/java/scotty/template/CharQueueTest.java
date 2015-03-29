@@ -43,8 +43,4 @@ public class CharQueueTest extends ComparableContract {
 		return new CharQueue("aaa", outputStream);
 	}
 
-	@Override
-	protected CharQueue getGreaterThanValue() {
-		return new CharQueue("ccc", outputStream);
-	}
 }
