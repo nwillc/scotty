@@ -19,3 +19,5 @@ The manual is found [here](http://nwillc.github.io/scotty/scotty.html)
 <br/>
 [![Build Status](https://travis-ci.org/nwillc/scotty.svg?branch=master)](https://travis-ci.org/nwillc/scotty)
 <br/>
+[![Coverage Status](https://coveralls.io/repos/nwillc/scotty/badge.svg?branch=master)](https://coveralls.io/r/nwillc/scotty?branch=master)
+<br/>
