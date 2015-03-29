@@ -14,10 +14,13 @@
  */
 
 apply plugin: 'java'
+apply plugin: 'com.github.nwillc.vplugin'
+apply plugin: 'jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
 
 group = "com.github.nwillc"
 archivesBaseName = "scotty"
-version = "1.6.1"
+version = "1.6.2"
 targetCompatibility = "1.8"
 sourceCompatibility = "1.8"
 
@@ -36,10 +39,34 @@ dependencies {
             'org.beanshell:bsh:2.0b5',
             'com.github.nwillc:almost-functional:1.+'
     testCompile 'junit:junit:4.+',
-            'org.assertj:assertj-core:1.6.+',
+            'org.assertj:assertj-core:2.0.0',
             'com.github.nwillc:contracts:1.+',
             'info.cukes:cucumber-java:1.+',
             'info.cukes:cucumber-junit:1.+'
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven {
+            url 'http://maven.tmatesoft.com/content/repositories/releases/'
+        }
+    }
+
+    dependencies {
+        classpath 'org.tmatesoft.sqljet:sqljet:1.1.9',
+                'com.github.nwillc:vplugin:1.+',
+                'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
 }
 
 test {
