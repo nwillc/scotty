@@ -19,17 +19,25 @@ package scotty.database;
 
 import contracts.SimilarityContract;
 import org.junit.Before;
+import org.junit.Test;
 
 public class ContextTest extends SimilarityContract<Context> {
+    private Context from;
+    private Context dislike;
 
     @Before
     public void setUp() throws Exception {
-        Context from = new Context("foo=bar");
-        Context dislike = new Context("bar=baz");
+        from = new Context("foo=bar");
+        dislike = new Context("bar=baz");
 
         setFrom(from);
         setLike(from);
         setDislike(dislike);
     }
 
+    @Test
+    public void testToString() throws Exception {
+        from.getContained().put("a", dislike);
+        System.out.println(from);
+    }
 }

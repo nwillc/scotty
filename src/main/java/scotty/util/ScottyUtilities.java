@@ -18,12 +18,10 @@
 package scotty.util;
 
 import almost.functional.Optional;
-import almost.functional.utils.Preconditions;
 
 import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
-import java.util.Iterator;
 import java.util.logging.Logger;
 
 import static almost.functional.utils.LogFactory.getLogger;
@@ -33,25 +31,6 @@ public final class ScottyUtilities {
     private static final Logger LOGGER = getLogger();
 
     private ScottyUtilities() {
-    }
-
-    public static String join(CharSequence delimeter, Iterable iterable) {
-        Preconditions.checkNotNull(iterable, "Can't join a null iterable");
-        Preconditions.checkNotNull(delimeter, " Null is not a valid delimeter");
-
-        Iterator iterator = iterable.iterator();
-        if (!iterator.hasNext()) {
-            return "";
-        }
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(iterator.next().toString());
-
-        while (iterator.hasNext()) {
-            stringBuilder.append(delimeter);
-            stringBuilder.append(iterator.next().toString());
-        }
-        return stringBuilder.toString();
     }
 
     /**

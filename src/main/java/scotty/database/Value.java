@@ -22,12 +22,12 @@ import scotty.database.parser.Similarity;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 import static almost.functional.Predicates.contains;
 import static almost.functional.utils.ArrayIterable.newIterable;
 import static almost.functional.utils.Iterables.any;
 import static almost.functional.utils.Iterables.forEach;
-import static scotty.util.ScottyUtilities.join;
 
 /**
  * The values of a Scotty attribute. A value contains 1 to n strings. The value is
@@ -83,7 +83,7 @@ public class Value implements Similarity<Value> {
 
     @Override
     public String toString() {
-		return join(",", contents);
+        return contents.stream().collect(Collectors.joining(","));
     }
 
     @Override

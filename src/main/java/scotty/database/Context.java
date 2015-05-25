@@ -27,13 +27,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import static almost.functional.utils.ArrayIterable.newIterable;
 import static almost.functional.utils.Iterables.forEach;
-import static almost.functional.utils.Iterables.map;
 import static almost.functional.utils.Preconditions.checkNotNull;
 import static almost.functional.utils.Preconditions.isAssignableTo;
-import static scotty.util.ScottyUtilities.join;
 
 /**
  * A Context is a set of attributes, that can inherit attributes from its parent and contain sub-contexts within it.
@@ -282,12 +281,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
         final StringBuilder sb = new StringBuilder(this.getClass().getSimpleName());
         sb.append("{");
         sb.append("Map{");
-		sb.append(join(", ", map(getMap().keySet(), new Function<String, String>() {
-			@Override
-			public String apply(String key) {
-				return key + "=" + getMap().get(key);
-			}
-		})));
+        sb.append(getMap().keySet().stream().map(key -> key + "=" + getMap().get(key)).collect(Collectors.joining(", ")));
         sb.append("}");
         sb.append(", isContained=");
         sb.append(isContained());
@@ -296,12 +290,7 @@ public class Context implements Comparable<Context>, Similarity<Context> {
             sb.append(isContainer());
         } else {
             sb.append(", Contained{");
-			sb.append(join(", ", map(getContained().keySet(), new Function<String, String>() {
-				@Override
-				public String apply(String key) {
-					return key + "=" + getContained().get(key);
-				}
-			})));
+            sb.append(getContained().keySet().stream().map(key -> key + "=" + getContained().get(key)).collect(Collectors.joining(", ")));
             sb.append("}");
         }
         sb.append(", age=").append(age);
