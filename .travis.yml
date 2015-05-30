@@ -3,5 +3,6 @@ jdk:
   - oraclejdk8
 env:
   - TERM=dumb
+script: gradle check cucumber
 after_success:
   - gradle jacocoTestReport coveralls
