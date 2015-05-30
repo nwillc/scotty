@@ -13,38 +13,6 @@
  * OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-apply plugin: 'java'
-apply plugin: 'com.github.nwillc.vplugin'
-apply plugin: 'jacoco'
-apply plugin: 'com.github.kt3k.coveralls'
-
-group = "com.github.nwillc"
-archivesBaseName = "scotty"
-version = "1.6.2"
-targetCompatibility = "1.8"
-sourceCompatibility = "1.8"
-
-configurations {
-    cucumberRuntime {
-        extendsFrom testRuntime
-    }
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile 'commons-cli:commons-cli:1.+',
-            'org.beanshell:bsh:2.0b5',
-            'com.github.nwillc:almost-functional:1.+'
-    testCompile 'junit:junit:4.+',
-            'org.assertj:assertj-core:2.0.0',
-            'com.github.nwillc:contracts:1.+',
-            'info.cukes:cucumber-java:1.+',
-            'info.cukes:cucumber-junit:1.+'
-}
-
 buildscript {
     repositories {
         mavenLocal()
@@ -56,9 +24,43 @@ buildscript {
     }
 
     dependencies {
-        classpath 'org.tmatesoft.sqljet:sqljet:1.1.9',
-                'com.github.nwillc:vplugin:1.+',
-                'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.1'
+        classpath 'org.tmatesoft.sqljet:sqljet:1.1.9'
+                  'au.com.ish.gradle:release:2.2.2'
+    }
+}
+
+plugins {
+    id 'java'
+    id "com.github.kt3k.coveralls" version "2.0.1"
+    id "com.github.nwillc.vplugin" version "1.2.3"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'commons-cli:commons-cli:1.+',
+            'org.beanshell:bsh:2.0b5',
+            'com.github.nwillc:almost-functional:1.+'
+    testCompile 'junit:junit:4.+',
+            'org.assertj:assertj-core:3.0.0',
+            'com.github.nwillc:contracts:1.+',
+            'info.cukes:cucumber-java:1.+',
+            'info.cukes:cucumber-junit:1.+'
+}
+
+apply plugin: 'jacoco'
+
+group = "com.github.nwillc"
+archivesBaseName = "scotty"
+version = "1.6.2"
+targetCompatibility = "1.8"
+sourceCompatibility = "1.8"
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
     }
 }
 
