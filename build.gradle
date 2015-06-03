@@ -75,6 +75,21 @@ test {
     filter {
         includeTestsMatching "*Test"
     }
+    beforeTest { descriptor ->
+        logger.lifecycle("\tRunning " + descriptor.className + "." + descriptor.name)
+    }
+
+    afterSuite { descriptor, result ->
+        if (descriptor.parent == null) {
+            logger.lifecycle("\tTests run: " + result.testCount
+                    + ", Failures: " + result.failedTestCount
+                    + ", Skipped: " + result.skippedTestCount)
+        }
+    }
+
+    testLogging {
+        exceptionFormat "full"
+    }
 }
 
 task cucumber() {
