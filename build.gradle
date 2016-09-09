@@ -36,7 +36,7 @@ plugins {
 }
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -44,8 +44,8 @@ dependencies {
             'org.beanshell:bsh:2.0b5',
             'com.github.nwillc:almost-functional:1.+'
     testCompile 'junit:junit:4.+',
-            'org.assertj:assertj-core:3.0.0',
-            'com.github.nwillc:contracts:1.+',
+            'org.assertj:assertj-core:3.5.2',
+            'com.github.nwillc:jdk_contract_tests:1.7.6',
             'info.cukes:cucumber-java:1.+',
             'info.cukes:cucumber-junit:1.+'
 }
