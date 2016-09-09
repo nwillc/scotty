@@ -3,6 +3,6 @@ jdk:
   - oraclejdk8
 env:
   - TERM=dumb
-script: gradle test cucumber
+script: ./gradlew test cucumber
 after_success:
   - ./gradlew jacocoTestReport coveralls
