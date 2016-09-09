@@ -5,4 +5,4 @@ env:
   - TERM=dumb
 script: gradle test cucumber
 after_success:
-  - gradle jacocoTestReport coveralls
+  - ./gradlew jacocoTestReport coveralls
